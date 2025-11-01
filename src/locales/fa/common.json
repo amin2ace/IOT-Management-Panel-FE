@@ -1,0 +1,16 @@
+{
+  "welcome": "خوش آمدید",
+  "login": "ورود",
+  "signup": "ثبت نام",
+  "email": "ایمیل",
+  "password": "رمز عبور",
+  "confirmPassword": "تکرار رمز عبور",
+  "rememberMe": "مرا به خاطر بسپار",
+  "forgotPassword": "رمز عبور را فراموش کرده‌اید؟",
+  "dashboard": "داشبورد",
+  "devices": "دستگاه‌ها",
+  "sensors": "سنسورها",
+  "alerts": "هشدارها",
+  "settings": "تنظیمات",
+  "logout": "خروج"
+}

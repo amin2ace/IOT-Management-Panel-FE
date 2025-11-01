@@ -1,0 +1,16 @@
+{
+  "welcome": "Welcome",
+  "login": "Login",
+  "signup": "Sign Up",
+  "email": "Email",
+  "password": "Password",
+  "confirmPassword": "Confirm Password",
+  "rememberMe": "Remember me",
+  "forgotPassword": "Forgot password?",
+  "dashboard": "Dashboard",
+  "devices": "Devices",
+  "sensors": "Sensors",
+  "alerts": "Alerts",
+  "settings": "Settings",
+  "logout": "Logout"
+}

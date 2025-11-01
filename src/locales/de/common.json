@@ -1,0 +1,16 @@
+{
+  "welcome": "Willkommen",
+  "login": "Anmelden",
+  "signup": "Registrieren",
+  "email": "E-Mail",
+  "password": "Passwort",
+  "confirmPassword": "Passwort bestätigen",
+  "rememberMe": "Angemeldet bleiben",
+  "forgotPassword": "Passwort vergessen?",
+  "dashboard": "Dashboard",
+  "devices": "Geräte",
+  "sensors": "Sensoren",
+  "alerts": "Benachrichtigungen",
+  "settings": "Einstellungen",
+  "logout": "Abmelden"
+}
