@@ -1,0 +1,11 @@
+{
+  "title": "Devices",
+  "connectedDevices": "Connected Devices",
+  "deviceControl": "Device Control",
+  "sendCommand": "Send Command",
+  "quickActions": "Quick Actions",
+  "toggle": "Toggle",
+  "turnOn": "Turn On",
+  "turnOff": "Turn Off",
+  "getStatus": "Get Status"
+}
