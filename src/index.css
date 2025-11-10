@@ -1,9 +1,16 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-/* فونت و تنظیمات پایه */
+/* Optional — custom styles */
+@theme {
+  --color-primary-50: #e0f2fe;
+  --color-primary-100: #bae6fd;
+  --color-primary-500: #0284c7;
+  --color-primary-700: #0369a1;
+  --color-accent: #f59e0b;
+}
+
 body {
-  @apply bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-900);
   font-family: "Inter", sans-serif;
 }
