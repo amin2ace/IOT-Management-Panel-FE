@@ -1,135 +1,56 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { useTranslation } from 'react-i18next';
-import { authService } from '../../services/authService';
-import Button from '../../components/UI/Button';
-import Input from '../../components/UI/Input';
-import { Card, CardHeader, CardTitle, CardContent } from '../../components/UI/Card';
+import { useAuth } from "@/context/useAuth";
+import { useState } from "react";
 
-const signupSchema = z.object({
-  userName: z.string().min(2, 'Username must be at least 2 characters'),
-  email: z.string().email('Invalid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
-  confirmPassword: z.string(),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords don't match",
-  path: ["confirmPassword"],
-});
+export function Login() {
+  const { login } = useAuth();
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-type SignupFormData = z.infer<typeof signupSchema>;
-
-const Signup: React.FC = () => {
-  const { t } = useTranslation();
-  const navigate = useNavigate();
-  const [loading, setLoading] = React.useState(false);
-  const [error, setError] = React.useState('');
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<SignupFormData>({
-    resolver: zodResolver(signupSchema),
-  });
-
-  const onSubmit = async (data: SignupFormData) => {
-    setLoading(true);
-    setError('');
-    
-    try {
-      await authService.signup(data);
-      navigate('/login');
-    } catch (err: any) {
-      setError(err.response?.data?.message || 'Signup failed');
-    } finally {
-      setLoading(false);
-    }
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await login(email, password);
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-            IoT Dashboard
-          </h1>
-          <p className="mt-2 text-gray-600 dark:text-gray-400">
-            Create your account
-          </p>
-        </div>
+    <div className="flex h-screen items-center justify-center bg-gradient-to-br from-slate-200 to-slate-400 dark:from-gray-800 dark:to-gray-900">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg w-96"
+      >
+        <h1 className="text-2xl font-bold text-center mb-6">Login</h1>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-center">{t('signup')}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
-              {error && (
-                <div className="bg-red-50 dark:bg-red-900/50 border border-red-200 dark:border-red-800 rounded-lg p-4">
-                  <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
-                </div>
-              )}
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full mb-4 p-2 rounded bg-gray-100 dark:bg-gray-700"
+        />
 
-              <Input
-                label="Username"
-                type="text"
-                autoComplete="username"
-                error={errors.userName?.message}
-                {...register('userName')}
-              />
+        <input
+          type="username"
+          placeholder="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          className="w-full mb-4 p-2 rounded bg-gray-100 dark:bg-gray-700"
+        />
 
-              <Input
-                label={t('email')}
-                type="email"
-                autoComplete="email"
-                error={errors.email?.message}
-                {...register('email')}
-              />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="w-full mb-4 p-2 rounded bg-gray-100 dark:bg-gray-700"
+        />
 
-              <Input
-                label={t('password')}
-                type="password"
-                autoComplete="new-password"
-                error={errors.password?.message}
-                {...register('password')}
-              />
-
-              <Input
-                label={t('confirmPassword')}
-                type="password"
-                autoComplete="new-password"
-                error={errors.confirmPassword?.message}
-                {...register('confirmPassword')}
-              />
-
-              <Button
-                type="submit"
-                loading={loading}
-                className="w-full"
-              >
-                {t('signup')}
-              </Button>
-
-              <div className="text-center">
-                <span className="text-sm text-gray-600 dark:text-gray-400">
-                  Already have an account?{' '}
-                  <Link
-                    to="/login"
-                    className="text-primary-500 hover:text-primary-600 font-medium"
-                  >
-                    {t('login')}
-                  </Link>
-                </span>
-              </div>
-            </form>
-          </CardContent>
-        </Card>
-      </div>
+        <button
+          type="submit"
+          className="w-full py-2 bg-primary-700 text-white rounded hover:bg-primary-500"
+        >
+          Login
+        </button>
+      </form>
     </div>
   );
-};
-
-export default Signup;
+}
