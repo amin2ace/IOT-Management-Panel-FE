@@ -1,4 +1,4 @@
-import { MqttPublish, MqttSubscribe } from "@/src/types";
+import { MqttPublish, MqttSubscribe } from "@/types";
 import api from "./axios";
 
 export const mqttApi = {

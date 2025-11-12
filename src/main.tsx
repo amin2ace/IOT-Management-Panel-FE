@@ -9,6 +9,7 @@ import { Login } from "@/pages/Auth/Login";
 // import { ProtectedRoute } from "./components/ProtectedRoute";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Dashboard } from "./pages/Dashboard";
+import DiscoveryPage from "./pages/DiscoveryPage";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <Route path="/" element={<Navigate to="/login" replace />} />
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/discovery" element={<DiscoveryPage />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

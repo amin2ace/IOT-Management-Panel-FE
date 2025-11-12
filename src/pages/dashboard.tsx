@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { deviceApi } from "@/api/deviceApi";
-import { DiscoveryResponse } from "@/src/types";
+import { DiscoveryResponse } from "@/types";
 
 export function Dashboard() {
   const { data, isLoading, isError } = useQuery({

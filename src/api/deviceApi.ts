@@ -2,7 +2,7 @@ import {
   DiscoveryRequest,
   SensorConfigRequest,
   SensorFunctionalityRequest,
-} from "@/src/types";
+} from "@/types";
 import api from "./axios";
 
 export const deviceApi = {

@@ -1,9 +1,3 @@
-export interface DeviceLocation {
-  site?: string;
-  floor?: number;
-  unit?: string;
-}
-
 export interface NetworkConfig {
   wifiSsid: string;
   wifiPassword: string;
