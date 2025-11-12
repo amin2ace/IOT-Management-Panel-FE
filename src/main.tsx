@@ -14,6 +14,7 @@ import AssignPage from "./pages/Devices/AssignPage";
 import ConfigPage from "./pages/Devices/ConfigPage";
 import TelemetryPage from "./pages/Devices/TelemetryPage";
 import HmiPage from "./pages/HmiPage";
+import { RequireRole } from "./components/RequireRole";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,15 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <Route path="devices/assign" element={<AssignPage />} />
             <Route path="devices/configure" element={<ConfigPage />} />
             <Route path="devices/telemetry" element={<TelemetryPage />} />
+            <Route
+              path="/topics"
+              element={
+                <RequireRole allowed={["SUPER_USER", "ADMIN"]}>
+                  <TopicsPage />
+                </RequireRole>
+              }
+            />
+
             <Route path="hmi" element={<HmiPage />} />
           </Routes>
         </BrowserRouter>

@@ -1,9 +1,10 @@
 import { createContext, useContext } from "react";
 
+export type Role = "SUPER_USER" | "ADMIN" | "OPERATOR" | "VIEWER" | "TEST";
 export interface User {
   username: string;
   email: string;
-  role: string;
+  role: Role;
 }
 
 interface AuthContextType {
