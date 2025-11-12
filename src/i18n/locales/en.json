@@ -1,4 +1,17 @@
 {
   "login": "Login",
-  "discover": "Discover Devices"
+  "logout": "Logout",
+  "discover": "Discover Devices",
+  "assign": "Assign Functionality",
+  "configure": "Configure Device",
+  "telemetry": "Telemetry",
+  "save": "Save",
+  "cancel": "Cancel",
+  "language": "Language",
+  "theme": "Theme",
+  "dashboard": "Dashboard",
+  "management": "Management",
+  "settings": "Settings",
+  "manual": "Manual Mode",
+  "automatic": "Automatic Mode"
 }

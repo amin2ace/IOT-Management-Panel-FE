@@ -2,9 +2,16 @@
   "login": "ورود",
   "logout": "خروج",
   "discover": "کشف دستگاه‌ها",
-  "assign": "واگذاری",
-  "configure": "پیکربندی",
-  "telemetry": "تَله‌متری",
+  "assign": "اختصاص عملکرد",
+  "configure": "پیکربندی دستگاه",
+  "telemetry": "تله‌متری",
   "save": "ذخیره",
-  "cancel": "انصراف"
+  "cancel": "انصراف",
+  "language": "زبان",
+  "theme": "پوسته",
+  "dashboard": "داشبورد",
+  "management": "مدیریت",
+  "settings": "تنظیمات",
+  "manual": "حالت دستی",
+  "automatic": "حالت خودکار"
 }

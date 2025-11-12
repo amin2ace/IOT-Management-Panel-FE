@@ -1,0 +1,17 @@
+{
+  "login": "Giriş",
+  "logout": "Çıkış",
+  "discover": "Cihazları Keşfet",
+  "assign": "Fonksiyon Ata",
+  "configure": "Cihazı Yapılandır",
+  "telemetry": "Telemetri",
+  "save": "Kaydet",
+  "cancel": "İptal",
+  "language": "Dil",
+  "theme": "Tema",
+  "dashboard": "Kontrol Paneli",
+  "management": "Yönetim",
+  "settings": "Ayarlar",
+  "manual": "Manuel Mod",
+  "automatic": "Otomatik Mod"
+}
