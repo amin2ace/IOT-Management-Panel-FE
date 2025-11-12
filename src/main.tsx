@@ -9,7 +9,8 @@ import { Login } from "@/pages/Auth/Login";
 // import { ProtectedRoute } from "./components/ProtectedRoute";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Dashboard } from "./pages/Dashboard";
-import DiscoveryPage from "./pages/DiscoveryPage";
+import DiscoverPage from "./pages/Devices/DiscoverPage";
+import AssignPage from "./pages/Devices/AssignPage";
 
 const queryClient = new QueryClient();
 
@@ -23,7 +24,11 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <Route path="/" element={<Navigate to="/login" replace />} />
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/discovery" element={<DiscoveryPage />} />
+            <Route index element={<DiscoverPage />} />
+            <Route path="devices/discover" element={<DiscoverPage />} />
+            <Route path="devices/assign" element={<AssignPage />} />
+            {/* <Route path="devices/configure" element={<ConfigPage />} />
+            <Route path="devices/telemetry" element={<TelemetryPage />} />{" "} */}
           </Routes>
         </BrowserRouter>
       </AuthProvider>
