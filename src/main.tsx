@@ -11,6 +11,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Dashboard } from "./pages/Dashboard";
 import DiscoverPage from "./pages/Devices/DiscoverPage";
 import AssignPage from "./pages/Devices/AssignPage";
+import ConfigPage from "./pages/Devices/ConfigPage";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <Route index element={<DiscoverPage />} />
             <Route path="devices/discover" element={<DiscoverPage />} />
             <Route path="devices/assign" element={<AssignPage />} />
+            <Route path="devices/config" element={<ConfigPage />} />
             {/* <Route path="devices/configure" element={<ConfigPage />} />
             <Route path="devices/telemetry" element={<TelemetryPage />} />{" "} */}
           </Routes>
