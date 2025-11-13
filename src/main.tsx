@@ -8,15 +8,16 @@ import "@/index.css";
 import { Login } from "@/pages/Auth/Login";
 // import { ProtectedRoute } from "./components/ProtectedRoute";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { Dashboard } from "./pages/Dashboard";
 import DiscoverPage from "./pages/Devices/DiscoverPage";
 import AssignPage from "./pages/Devices/AssignPage";
 import ConfigPage from "./pages/Devices/ConfigPage";
 import TelemetryPage from "./pages/Devices/TelemetryPage";
 import HmiPage from "./pages/HmiPage";
-import { RequireRole } from "./components/RequireRole";
+// import { RequireRole } from "./components/RequireRole";
 import "./i18n";
 import App from "./App";
+import { ProtectedRoute } from "./components/ProtectedRoute";
+import DashboardLayout from "./layouts/DashboardLayout";
 
 const queryClient = new QueryClient();
 
@@ -29,13 +30,19 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <Route path="/" element={<App />} />
             {/* <Route path="/" element={<Navigate to="/login" replace />} /> */}
             <Route path="/login" element={<Login />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route index element={<DiscoverPage />} />
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <DashboardLayout />
+                </ProtectedRoute>
+              }
+            />
             <Route path="devices/discover" element={<DiscoverPage />} />
             <Route path="devices/assign" element={<AssignPage />} />
             <Route path="devices/configure" element={<ConfigPage />} />
             <Route path="devices/telemetry" element={<TelemetryPage />} />
-            <Route
+            {/* <Route
               path="/topics"
               element={
                 <RequireRole allowed={["SUPER_USER", "ADMIN"]}>
@@ -43,7 +50,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
                 </RequireRole>
               }
             />
-
+ */}
             <Route path="hmi" element={<HmiPage />} />
           </Routes>
         </BrowserRouter>

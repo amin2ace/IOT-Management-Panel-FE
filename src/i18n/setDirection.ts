@@ -1,12 +1,10 @@
-import i18n from "./index";
-
-export function applyDirection() {
+export function applyDirection(language: string) {
   const rtlLangs = ["fa", "ar"];
-  const dir = rtlLangs.includes(i18n.language) ? "rtl" : "ltr";
+  const dir = rtlLangs.includes(language) ? "rtl" : "ltr";
 
-  // Update document direction
+  // Update HTML direction attribute
   document.documentElement.setAttribute("dir", dir);
 
-  // Optional: add a class for RTL to control styling in Tailwind if needed
+  // Optional Tailwind class for RTL-specific styling
   document.documentElement.classList.toggle("rtl", dir === "rtl");
 }

@@ -1,19 +1,34 @@
-import React from "react";
-import { useTheme } from "@/hooks/useTheme";
+import { Sun, Moon, Monitor } from "lucide-react";
+import { useTheme, Theme } from "@/hooks/useTheme";
+import { JSX } from "react";
 
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();
+
+  const options: { label: string; value: Theme; icon: JSX.Element }[] = [
+    { label: "Light", value: "light", icon: <Sun className="w-4 h-4" /> },
+    { label: "Dark", value: "dark", icon: <Moon className="w-4 h-4" /> },
+    { label: "System", value: "system", icon: <Monitor className="w-4 h-4" /> },
+  ];
+
   return (
-    <div className="flex items-center gap-2">
-      <select
-        value={theme}
-        onChange={(e) => setTheme(e.target.value as any)}
-        className="bg-gray-700 text-white p-1 rounded"
-      >
-        <option value="system">System</option>
-        <option value="dark">Dark</option>
-        <option value="light">Light</option>
-      </select>
+    <div className="flex gap-2 bg-gray-800/50 backdrop-blur-md border border-gray-700 p-2 rounded-xl">
+      {options.map((opt) => (
+        <button
+          key={opt.value}
+          onClick={() => setTheme(opt.value)}
+          className={`flex items-center gap-1 px-3 py-1 rounded-md transition ${
+            theme === opt.value
+              ? "bg-indigo-500 text-white shadow"
+              : "text-gray-400 hover:text-white hover:bg-gray-700/50"
+          }`}
+        >
+          {opt.icon}
+          <span className="hidden sm:inline text-sm font-medium">
+            {opt.label}
+          </span>
+        </button>
+      ))}
     </div>
   );
 }

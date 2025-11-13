@@ -8,7 +8,6 @@ import tr from "./locales/tr.json";
 import ar from "./locales/ar.json";
 import { applyDirection } from "./setDirection";
 
-// ✅ i18n initialization
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
@@ -21,17 +20,17 @@ i18n
     },
     fallbackLng: "en",
     debug: false,
-    interpolation: {
-      escapeValue: false, // React already escapes
-    },
+    interpolation: { escapeValue: false },
     detection: {
       order: ["querystring", "localStorage", "navigator"],
       caches: ["localStorage"],
     },
   });
 
-// ✅ Apply RTL/LTR direction dynamically
-i18n.on("languageChanged", () => applyDirection());
-applyDirection(); // initial load
+// ✅ Apply direction based on current language
+applyDirection(i18n.language);
+
+// ✅ Listen for language changes
+i18n.on("languageChanged", (lng) => applyDirection(lng));
 
 export default i18n;
