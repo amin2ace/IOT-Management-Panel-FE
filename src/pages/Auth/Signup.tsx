@@ -1,19 +1,20 @@
 import { useAuth } from "@/context/useAuth";
+import { useSignup } from "@/hooks/useSignup";
 import { useState } from "react";
 
-export function Login() {
-  const { login } = useAuth();
+export function Signup() {
+  const { signup } = useSignup();
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await login(email, password);
+    await signup(email, password, username);
   };
 
   return (
-    <div className="flex h-screen items-center justify-center bg-gradient-to-br from-slate-200 to-slate-400 dark:from-gray-800 dark:to-gray-900">
+    <div className="flex h-screen items-center justify-center bg-linear-to-br from-slate-200 to-slate-400 dark:from-gray-800 dark:to-gray-900">
       <form
         onSubmit={handleSubmit}
         className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg w-96"

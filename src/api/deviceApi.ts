@@ -1,25 +1,25 @@
-import {
-  DiscoveryRequest,
-  SensorConfigRequest,
-  SensorFunctionalityRequest,
-} from "@/types";
 import api from "./axios";
+import {
+  DiscoveryRequestDto,
+  SensorConfigRequestDto,
+  SensorFunctionalityRequestDto,
+} from "./models";
 
 export const deviceApi = {
   getAll: () => api.get("/devices/all"),
 
-  discoverBroadcast: (payload: DiscoveryRequest) =>
+  discoverBroadcast: (payload: DiscoveryRequestDto) =>
     api.post("/device/discover-broadcast", payload),
 
-  discoverUnicast: (payload: DiscoveryRequest) =>
+  discoverUnicast: (payload: DiscoveryRequestDto) =>
     api.post("/device/discover-unicast", payload),
 
   getUnassigned: () => api.get("/device/unassigned"),
 
-  provisionFunctionality: (payload: SensorFunctionalityRequest) =>
+  provisionFunctionality: (payload: SensorFunctionalityRequestDto) =>
     api.put("/device/deviceFunctionalityProvision", payload),
 
-  reconfigure: (payload: SensorConfigRequest) =>
+  reconfigure: (payload: SensorConfigRequestDto) =>
     api.post("/device/reconfigure", payload),
 
   delete: (id: string) => api.delete(`/device/${id}`),

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useSocket } from "@/hooks/useSocket";
-import { TelemetryResponse } from "@/types/telemetry";
 import {
   LineChart,
   Line,
@@ -11,6 +10,7 @@ import {
   CartesianGrid,
 } from "recharts";
 import { motion } from "framer-motion";
+import { TelemetryResponseDto } from "@/api/models/TelemetryResponseDto";
 
 interface MetricData {
   metric: string;
@@ -24,7 +24,7 @@ export default function TelemetryPage() {
   useEffect(() => {
     if (!socket) return;
 
-    socket.on("telemetry-update", (data: TelemetryResponse) => {
+    socket.on("telemetry-update", (data: TelemetryResponseDto) => {
       setMetrics((prev) => {
         const updated = new Map(prev);
         const metric = updated.get(data.metric) || {
@@ -51,7 +51,7 @@ export default function TelemetryPage() {
   }, [socket]);
 
   return (
-    <div className="p-6 min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-gray-100">
+    <div className="p-6 min-h-screen bg-linear-to-br from-gray-900 to-gray-800 text-gray-100">
       <header className="flex items-center justify-between mb-6">
         <h2 className="text-3xl font-bold tracking-wide">
           📊 Live Telemetry Dashboard

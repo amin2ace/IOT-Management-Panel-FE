@@ -3,13 +3,12 @@
 /* tslint:disable */
 /* eslint-disable */
 export type OtaConfigDto = {
-    /**
-     * Enable OTA updates
-     */
-    enabled: boolean;
-    /**
-     * OTA firmware URL
-     */
-    url?: string;
+  /**
+   * Enable OTA updates
+   */
+  enabled?: boolean;
+  /**
+   * OTA firmware URL
+   */
+  url?: string;
 };
-

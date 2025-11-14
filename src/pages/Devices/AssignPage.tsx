@@ -1,16 +1,12 @@
 import { useEffect, useState } from "react";
 import api from "@/api/axios";
-import {
-  SensorFunctionalityRequest,
-  SensorType,
-  RequestMessageCode,
-  DiscoveryResponse,
-} from "@/types";
+import { DeviceCapabilities, SensorFunctionalityRequestDto } from "@/api";
+import { RequestMessageCode } from "@/api/models/MessageCode";
 
 export default function AssignPage() {
-  const [devices, setDevices] = useState<DiscoveryResponse[]>([]);
+  const [devices, setDevices] = useState<SensorFunctionalityRequestDto[]>([]);
   const [selectedFunctionality, setSelectedFunctionality] = useState<
-    Record<string, SensorType | "">
+    Record<string, DeviceCapabilities | "">
   >({});
   const [loading, setLoading] = useState(false);
 
@@ -29,7 +25,10 @@ export default function AssignPage() {
   }, []);
 
   // 🧩 2. Handle dropdown selection
-  const handleFunctionalitySelect = (deviceId: string, func: SensorType) => {
+  const handleFunctionalitySelect = (
+    deviceId: string,
+    func: DeviceCapabilities
+  ) => {
     setSelectedFunctionality((prev) => ({
       ...prev,
       [deviceId]: func,
@@ -37,22 +36,21 @@ export default function AssignPage() {
   };
 
   // 🧩 3. Send provisioning request
-  const handleAssign = async (device: DiscoveryResponse) => {
-    const func = selectedFunctionality[device.sensorId];
+  const handleAssign = async (device: SensorFunctionalityRequestDto) => {
+    const func = selectedFunctionality[device.deviceId];
     if (!func) {
       alert("Please select functionality before assigning");
       return;
     }
 
-    const payload: SensorFunctionalityRequest = {
+    const payload: SensorFunctionalityRequestDto = {
       userId: "admin",
       requestId: `req-fn-${Math.floor(Math.random() * 1000)}`,
       requestCode: RequestMessageCode.ASSIGN_DEVICE_FUNCTION,
-      deviceId: device.sensorId,
+      deviceId: device.deviceId,
       timestamp: Date.now(),
-      functionality: [func],
-      publishTopic:
-        device.deviceBaseTopic || `sensors/${device.sensorId}/assign`,
+      functionality: [],
+      publishTopic: `sensors/${device.deviceId}/assign`,
       interval: 5000,
       highSetPoint: JSON.stringify({ high: 25 }),
       lowSetPoint: JSON.stringify({ low: 10 }),
@@ -63,7 +61,7 @@ export default function AssignPage() {
     try {
       setLoading(true);
       await api.put("/device/deviceFunctionalityProvision", payload);
-      alert(`Device ${device.sensorId} assigned as ${func}`);
+      alert(`Device ${device.deviceId} assigned as ${func}`);
     } catch (error) {
       console.error("Assign error:", error);
       alert("Failed to assign functionality");
@@ -83,29 +81,29 @@ export default function AssignPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {devices.map((device) => (
           <div
-            key={device.sensorId}
+            key={device.deviceId}
             className="bg-gray-800 p-4 rounded-lg border border-gray-700"
           >
-            <h3 className="text-lg font-bold mb-2">{device.sensorId}</h3>
-            <p className="text-sm mb-1 text-gray-400">MAC: {device.mac}</p>
+            <h3 className="text-lg font-bold mb-2">{device.deviceId}</h3>
             <p className="text-sm mb-3 text-gray-400">
-              Capabilities: {device.capabilities?.join(", ")}
+              Capabilities: {device.functionality.join(", ")}
             </p>
 
             <select
-              value={selectedFunctionality[device.sensorId] || ""}
+              value={selectedFunctionality[device.deviceId] || ""}
               onChange={(e) => {
-                const selected = e.target.value as keyof typeof SensorType;
+                const selected = e.target
+                  .value as keyof typeof DeviceCapabilities;
                 handleFunctionalitySelect(
-                  device.sensorId,
-                  SensorType[selected]
+                  device.deviceId,
+                  DeviceCapabilities[selected]
                 );
               }}
               className="w-full p-2 rounded bg-gray-700 text-white mb-3"
             >
               <option value="">Select Functionality</option>
-              {Object.values(SensorType)
-                .filter((cap) => device.capabilities.includes(cap))
+              {Object.values(DeviceCapabilities)
+                .filter((cap) => device.functionality.includes(cap))
                 .map((cap) => (
                   <option key={cap} value={cap}>
                     {cap.charAt(0).toUpperCase() + cap.slice(1)}

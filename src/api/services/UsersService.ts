@@ -5,6 +5,7 @@
 import type { AssignRolesDto } from '../models/AssignRolesDto';
 import type { CreateUserDto } from '../models/CreateUserDto';
 import type { UpdateUserDto } from '../models/UpdateUserDto';
+import type { UserResponseDto } from '../models/UserResponseDto';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
@@ -12,12 +13,12 @@ export class UsersService {
     /**
      * Create a new user (Admin only)
      * @param requestBody
-     * @returns any User created successfully
+     * @returns UserResponseDto User created successfully
      * @throws ApiError
      */
     public static usersControllerCreate(
         requestBody: CreateUserDto,
-    ): CancelablePromise<any> {
+    ): CancelablePromise<UserResponseDto> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/api/users',
@@ -45,12 +46,12 @@ export class UsersService {
     /**
      * Get user by ID
      * @param id
-     * @returns any User details
+     * @returns UserResponseDto User details
      * @throws ApiError
      */
     public static usersControllerFindById(
         id: string,
-    ): CancelablePromise<any> {
+    ): CancelablePromise<UserResponseDto> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/users/{id}',
@@ -66,13 +67,13 @@ export class UsersService {
      * Update user details
      * @param id
      * @param requestBody
-     * @returns any User updated successfully
+     * @returns UserResponseDto User updated successfully
      * @throws ApiError
      */
     public static usersControllerUpdate(
         id: string,
         requestBody: UpdateUserDto,
-    ): CancelablePromise<any> {
+    ): CancelablePromise<UserResponseDto> {
         return __request(OpenAPI, {
             method: 'PATCH',
             url: '/api/users/{id}',
@@ -111,13 +112,13 @@ export class UsersService {
      * Completely replaces the user's existing roles with the provided ones. Useful for role reassignment.
      * @param id
      * @param requestBody
-     * @returns any User roles updated successfully
+     * @returns UserResponseDto User roles updated successfully
      * @throws ApiError
      */
     public static usersControllerAssignRoles(
         id: string,
         requestBody: AssignRolesDto,
-    ): CancelablePromise<any> {
+    ): CancelablePromise<UserResponseDto> {
         return __request(OpenAPI, {
             method: 'PATCH',
             url: '/api/users/{id}/roles',
@@ -159,13 +160,13 @@ export class UsersService {
      * Appends new roles to the user's existing roles without removing others. Duplicates are automatically handled.
      * @param id
      * @param requestBody
-     * @returns any Roles added successfully
+     * @returns UserResponseDto Roles added successfully
      * @throws ApiError
      */
     public static usersControllerAddRoles(
         id: string,
         requestBody: AssignRolesDto,
-    ): CancelablePromise<any> {
+    ): CancelablePromise<UserResponseDto> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/api/users/{id}/roles/add',
@@ -185,13 +186,13 @@ export class UsersService {
      * Removes specified roles from the user. User must retain at least one role.
      * @param id
      * @param requestBody
-     * @returns any Roles removed successfully
+     * @returns UserResponseDto Roles removed successfully
      * @throws ApiError
      */
     public static usersControllerRemoveRoles(
         id: string,
         requestBody: AssignRolesDto,
-    ): CancelablePromise<any> {
+    ): CancelablePromise<UserResponseDto> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/api/users/{id}/roles/remove',

@@ -1,39 +1,33 @@
-import { connectSocket } from "@/utils/socket";
-import { useEffect, useState } from "react";
-import { Socket } from "socket.io-client";
+import { useEffect, useRef, useState } from "react";
+import { io, Socket } from "socket.io-client";
 
-export function useSocket() {
-  const [socket, setSocket] = useState<Socket | null>(null);
+// import.meta.env.VITE_GATEWAY_URL ??
+const SOCKET_URL = "http://localhost:30005/mqtt";
+
+export interface SocketHook {
+  socket: Socket | null;
+  isConnected: boolean;
+}
+
+export function useSocket(): SocketHook {
   const [isConnected, setIsConnected] = useState(false);
-  const [connectionError, setConnectionError] = useState<string | null>(null);
+  const socketRef = useRef<Socket | null>(null);
 
   useEffect(() => {
-    const sock = connectSocket();
-    setSocket(sock);
+    const s = io(SOCKET_URL, {
+      transports: ["websocket"],
+      reconnection: true,
+      reconnectionAttempts: 9999,
+    });
+    socketRef.current = s;
 
-    const handleConnect = () => {
-      setIsConnected(true);
-      setConnectionError(null);
-    };
-
-    const handleDisconnect = () => {
-      setIsConnected(false);
-    };
-
-    const handleError = (error: any) => {
-      setConnectionError(error?.message || "Connection error");
-    };
-
-    sock.on("connect", handleConnect);
-    sock.on("disconnect", handleDisconnect);
-    sock.on("connection-error", handleError);
+    s.on("connect", () => setIsConnected(true));
+    s.on("disconnect", () => setIsConnected(false));
 
     return () => {
-      sock.off("connect", handleConnect);
-      sock.off("disconnect", handleDisconnect);
-      sock.off("connection-error", handleError);
+      s.disconnect();
     };
   }, []);
 
-  return { socket, isConnected, connectionError };
+  return { socket: socketRef.current, isConnected };
 }

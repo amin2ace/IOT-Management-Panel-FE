@@ -2,23 +2,22 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { LogLevel } from './LogLevel';
+import type { LogLevel } from "./LogLevel";
 export type LoggingConfigDto = {
-    /**
-     * Logging level
-     */
-    level: LogLevel;
-    /**
-     * Enable serial debug output
-     */
-    enableSerial: boolean;
-    /**
-     * Enable serial debug output
-     */
-    buadrate?: number;
-    /**
-     * EExternal log server address
-     */
-    externalServer?: string;
+  /**
+   * Logging level
+   */
+  level?: LogLevel;
+  /**
+   * Enable serial debug output
+   */
+  enableSerial?: boolean;
+  /**
+   * Enable serial debug output
+   */
+  buadrate?: number;
+  /**
+   * EExternal log server address
+   */
+  externalServer?: string;
 };
-

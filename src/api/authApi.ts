@@ -1,11 +1,11 @@
 import api from "./axios";
+import { loginInputDto } from "./models/loginInputDto";
+import { SignupInputDto } from "./models/SignupInputDto";
 
 export const authApi = {
-  signup: (data: { username: string; email: string; password: string }) =>
-    api.post("/auth/signup", data),
+  signup: (data: SignupInputDto) => api.post("/auth/signup", data),
 
-  login: (data: { email: string; password: string }) =>
-    api.post("/auth/login", data),
+  login: (data: loginInputDto) => api.post("/auth/login", data),
 
   logout: () => api.post("/auth/logout"),
 

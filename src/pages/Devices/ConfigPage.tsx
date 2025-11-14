@@ -3,79 +3,124 @@ import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import api from "@/api/axios";
-import { DiscoveryResponse, Protocol, RequestMessageCode } from "@/types";
+import { SensorConfigRequestDto } from "@/api";
+import { RequestMessageCode } from "@/api/models/MessageCode";
 
 const schema = z.object({
-  deviceId: z.string().min(1),
-  wifiSsid: z.string().min(1),
-  wifiPassword: z.string().min(1),
-  dhcp: z.boolean(),
-  ip: z.string().optional(),
-  subnetMask: z.string().optional(),
-  gateway: z.string().optional(),
-  dnsServer1: z.string().optional(),
-  dnsServer2: z.string().optional(),
-  logLevel: z.string(),
-  enableSerial: z.boolean(),
-  buadrate: z.number().optional(),
-  externalServer: z.string().optional(),
-  otaEnabled: z.boolean(),
-  otaUrl: z.string().optional(),
-  site: z.string().optional(),
-  floor: z.number().optional(),
-  unit: z.string().optional(),
+  deviceId: z.string().min(1, "Device is required"),
+  network: z
+    .object({
+      wifiSsid: z.string().optional(),
+      wifiPassword: z.string().optional(),
+      dhcp: z.boolean().optional().default(true),
+      ip: z.string().optional(),
+      subnetMask: z.string().optional(),
+      gateway: z.string().optional(),
+      dnsServer1: z.string().optional(),
+      dnsServer2: z.string().optional(),
+    })
+    .superRefine((net, ctx) => {
+      if (net.dhcp === false) {
+        if (!net.ip) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            path: ["ip"],
+            message: "Static IP is required when DHCP is disabled",
+          });
+        }
+        if (!net.subnetMask) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            path: ["subnetMask"],
+            message: "Subnet mask is required when DHCP is disabled",
+          });
+        }
+        if (!net.gateway) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            path: ["gateway"],
+            message: "Gateway is required when DHCP is disabled",
+          });
+        }
+      }
+    }),
+  logging: z
+    .object({
+      level: z.enum([]).optional(),
+      enableSerial: z.boolean().optional().default(true),
+      buadrate: z.number().int().optional(),
+      externalServer: z.string().optional(),
+    })
+    .optional(),
+  ota: z
+    .object({
+      enabled: z.boolean().optional().default(false),
+      url: z.string().url().optional(),
+    })
+    .optional(),
+  location: z
+    .object({
+      site: z.string().optional(),
+      floor: z.number().int().optional(),
+      unit: z.string().optional(),
+    })
+    .optional(),
+  protocol: z.enum([]).optional(),
   timezone: z.string().optional(),
 });
 
 export default function ConfigPage() {
-  const [devices, setDevices] = useState<DiscoveryResponse[]>([]);
+  const [devices, setDevices] = useState<SensorConfigRequestDto[]>([]);
   const [activeTab, setActiveTab] = useState<
     "network" | "logging" | "ota" | "location"
   >("network");
   const methods = useForm({
     resolver: zodResolver(schema),
-    defaultValues: { dhcp: true, enableSerial: true, otaEnabled: false },
+    defaultValues: {
+      network: { dhcp: true },
+      logging: { enableSerial: true },
+      ota: { enabled: false },
+    },
   });
   const { register, handleSubmit, watch, reset } = methods;
-  const dhcp = watch("dhcp");
+  const dhcp = watch("network.dhcp");
 
   useEffect(() => {
     api.get("/device/all").then((res) => setDevices(res.data || []));
   }, []);
 
-  const onSubmit = async (data: any) => {
-    const payload = {
-      userId: "admin",
+  const onSubmit = async (data: z.infer<typeof schema>) => {
+    const payload: SensorConfigRequestDto = {
       requestId: `req-cfg-${Math.floor(Math.random() * 1000)}`,
       requestCode: RequestMessageCode.SENSOR_CONFIGURATION,
-      sensorId: data.deviceId,
+      deviceId: data.deviceId,
       timestamp: Date.now(),
       network: {
-        wifiSsid: data.wifiSsid,
-        wifiPassword: data.wifiPassword,
-        dhcp: data.dhcp,
-        ip: data.ip,
-        subnetMask: data.subnetMask,
-        gateway: data.gateway,
-        dnsServer1: data.dnsServer1,
-        dnsServer2: data.dnsServer2,
+        wifiSsid: data.network?.wifiSsid,
+        wifiPassword: data.network?.wifiPassword,
+        dhcp: data.network?.dhcp,
+        ip: data.network?.ip,
+        subnetMask: data.network?.subnetMask,
+        gateway: data.network?.gateway,
+        dnsServer1: data.network?.dnsServer1,
+        dnsServer2: data.network?.dnsServer2,
       },
       logging: {
-        level: data.logLevel,
-        enableSerial: data.enableSerial,
-        buadrate: data.buadrate,
-        externalServer: data.externalServer,
+        level: data.logging?.level,
+        enableSerial: data.logging?.enableSerial,
+        buadrate: data.logging?.buadrate,
+        externalServer: data.logging?.externalServer,
       },
       ota: {
-        enabled: data.otaEnabled,
-        url: data.otaUrl,
+        enabled: data.ota?.enabled,
+        url: data.ota?.url,
       },
       location: {
-        site: data.site,
-        floor: data.floor,
-        unit: data.unit,
+        site: data.location?.site,
+        floor: data.location?.floor,
+        unit: data.location?.unit,
       },
-      protocol: Protocol.MQTT,
+      protocol: data.protocol,
       timezone: data.timezone,
     };
 
@@ -101,8 +146,8 @@ export default function ConfigPage() {
           >
             <option value="">Choose a device</option>
             {devices.map((d) => (
-              <option key={d.sensorId} value={d.sensorId}>
-                {d.sensorId}
+              <option key={d.deviceId} value={d.deviceId}>
+                {d.deviceId}
               </option>
             ))}
           </select>
@@ -114,7 +159,9 @@ export default function ConfigPage() {
             <button
               key={tab}
               type="button"
-              onClick={() => setActiveTab(tab as any)}
+              onClick={() =>
+                setActiveTab(tab as "network" | "logging" | "ota" | "location")
+              }
               className={`pb-2 capitalize ${
                 activeTab === tab
                   ? "border-b-2 border-indigo-500 text-indigo-400"
@@ -132,15 +179,18 @@ export default function ConfigPage() {
             <>
               <div>
                 <label>Wi-Fi SSID</label>
-                <input {...register("wifiSsid")} className="input" />
+                <input {...register("network.wifiSsid")} className="input" />
               </div>
               <div>
                 <label>Wi-Fi Password</label>
-                <input {...register("wifiPassword")} className="input" />
+                <input
+                  {...register("network.wifiPassword")}
+                  className="input"
+                />
               </div>
               <div>
                 <label className="inline-flex items-center gap-2">
-                  <input type="checkbox" {...register("dhcp")} />
+                  <input type="checkbox" {...register("network.dhcp")} />
                   DHCP Enabled
                 </label>
               </div>
@@ -148,23 +198,32 @@ export default function ConfigPage() {
                 <>
                   <div>
                     <label>Static IP</label>
-                    <input {...register("ip")} className="input" />
+                    <input {...register("network.ip")} className="input" />
                   </div>
                   <div>
                     <label>Subnet Mask</label>
-                    <input {...register("subnetMask")} className="input" />
+                    <input
+                      {...register("network.subnetMask")}
+                      className="input"
+                    />
                   </div>
                   <div>
                     <label>Gateway</label>
-                    <input {...register("gateway")} className="input" />
+                    <input {...register("network.gateway")} className="input" />
                   </div>
                   <div>
                     <label>DNS 1</label>
-                    <input {...register("dnsServer1")} className="input" />
+                    <input
+                      {...register("network.dnsServer1")}
+                      className="input"
+                    />
                   </div>
                   <div>
                     <label>DNS 2</label>
-                    <input {...register("dnsServer2")} className="input" />
+                    <input
+                      {...register("network.dnsServer2")}
+                      className="input"
+                    />
                   </div>
                 </>
               )}
@@ -175,7 +234,7 @@ export default function ConfigPage() {
             <>
               <div>
                 <label>Log Level</label>
-                <select {...register("logLevel")} className="input">
+                <select {...register("logging.level")} className="input">
                   <option value="DEBUG">DEBUG</option>
                   <option value="INFO">INFO</option>
                   <option value="WARN">WARN</option>
@@ -184,7 +243,7 @@ export default function ConfigPage() {
               </div>
               <div>
                 <label className="inline-flex items-center gap-2">
-                  <input type="checkbox" {...register("enableSerial")} />
+                  <input type="checkbox" {...register("ota.enabled")} />
                   Enable Serial Output
                 </label>
               </div>
@@ -192,13 +251,16 @@ export default function ConfigPage() {
                 <label>Baud Rate</label>
                 <input
                   type="number"
-                  {...register("buadrate")}
+                  {...register("logging.buadrate")}
                   className="input"
                 />
               </div>
               <div>
                 <label>External Server</label>
-                <input {...register("externalServer")} className="input" />
+                <input
+                  {...register("logging.externalServer")}
+                  className="input"
+                />
               </div>
             </>
           )}
@@ -207,13 +269,13 @@ export default function ConfigPage() {
             <>
               <div>
                 <label className="inline-flex items-center gap-2">
-                  <input type="checkbox" {...register("otaEnabled")} />
+                  <input type="checkbox" {...register("ota.enabled")} />
                   Enable OTA Updates
                 </label>
               </div>
               <div>
                 <label>Firmware URL</label>
-                <input {...register("otaUrl")} className="input" />
+                <input {...register("ota.url")} className="input" />
               </div>
             </>
           )}
@@ -222,15 +284,19 @@ export default function ConfigPage() {
             <>
               <div>
                 <label>Site</label>
-                <input {...register("site")} className="input" />
+                <input {...register("location.site")} className="input" />
               </div>
               <div>
                 <label>Floor</label>
-                <input type="number" {...register("floor")} className="input" />
+                <input
+                  type="number"
+                  {...register("location.floor")}
+                  className="input"
+                />
               </div>
               <div>
                 <label>Unit</label>
-                <input {...register("unit")} className="input" />
+                <input {...register("location.unit")} className="input" />
               </div>
               <div>
                 <label>Timezone</label>
