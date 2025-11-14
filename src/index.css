@@ -14,3 +14,7 @@ body {
   color: var(--color-gray-900);
   font-family: "Inter", sans-serif;
 }
+
+.input {
+  @apply w-full p-2 rounded bg-gray-700 text-white;
+}

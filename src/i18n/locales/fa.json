@@ -1,4 +1,17 @@
 {
   "login": "ورود",
-  "discover": "کشف دستگاه‌ها"
+  "logout": "خروج",
+  "discover": "کشف دستگاه‌ها",
+  "assign": "اختصاص عملکرد",
+  "configure": "پیکربندی دستگاه",
+  "telemetry": "تله‌متری",
+  "save": "ذخیره",
+  "cancel": "انصراف",
+  "language": "زبان",
+  "theme": "پوسته",
+  "dashboard": "داشبورد",
+  "management": "مدیریت",
+  "settings": "تنظیمات",
+  "manual": "حالت دستی",
+  "automatic": "حالت خودکار"
 }
