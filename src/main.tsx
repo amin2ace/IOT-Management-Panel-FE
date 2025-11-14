@@ -6,15 +6,16 @@ import { AuthProvider } from "@/context/AuthContext";
 import "@/index.css";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import DiscoverPage from "./pages/Devices/DiscoverPage";
-import AssignPage from "./pages/Devices/AssignPage";
-import ConfigPage from "./pages/Devices/ConfigPage";
+import Assign from "./pages/Devices/AssignPage";
 import TelemetryPage from "./pages/Devices/TelemetryPage";
 import HmiPage from "./pages/HmiPage";
 import "./i18n";
 import App from "./App";
 import DashboardLayout from "./layouts/DashboardLayout";
 import LoginPage from "./pages/Auth/Login";
-import ProtectedRoute from "./components/ProtectedRoute";
+import { SignupPage } from "./pages";
+import ConfigPage from "./pages/Devices/ConfigPage";
+import Color from "./pages/color";
 
 const queryClient = new QueryClient();
 
@@ -26,17 +27,12 @@ createRoot(document.getElementById("root")!).render(
           <Routes>
             <Route path="/" element={<App />} />
             {/* <Route path="/" element={<Navigate to="/login" replace />} /> */}
-            <Route path="/login" element={<LoginPage />} />
-            <Route
-              path="/dashboard"
-              element={
-                <ProtectedRoute>
-                  <DashboardLayout />
-                </ProtectedRoute>
-              }
-            />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="signup" element={<SignupPage />} />
+            <Route path="dashboard" element={<DashboardLayout />} />
+            <Route path="test" element={<Color />} />
             <Route path="devices/discover" element={<DiscoverPage />} />
-            <Route path="devices/assign" element={<AssignPage />} />
+            <Route path="devices/assign" element={<Assign />} />
             <Route path="devices/configure" element={<ConfigPage />} />
             <Route path="devices/telemetry" element={<TelemetryPage />} />
             {/* <Route

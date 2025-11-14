@@ -1,9 +1,7 @@
 import api from "./axios";
-import {
-  DiscoveryRequestDto,
-  SensorConfigRequestDto,
-  SensorFunctionalityRequestDto,
-} from "./models";
+import { DiscoveryRequestDto } from "./models/DiscoveryRequestDto";
+import { SensorConfigRequestDto } from "./models/SensorConfigRequestDto";
+import { SensorFunctionalityRequestDto } from "./models/SensorFunctionalityRequestDto";
 
 export const deviceApi = {
   getAll: () => api.get("/devices/all"),

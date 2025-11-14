@@ -2,14 +2,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useAuth } from "@/context/useAuth";
 import { loginInputDto } from "@/api";
 import { useLogin } from "@/hooks/useLogin";
 
+// Componenet: Login Page 'READ_ONLY', 'The function name for component MUST start with uppercase'
 export default function LoginPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { setUser } = useAuth();
   const loginMutation = useLogin();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -21,14 +20,14 @@ export default function LoginPage() {
     };
 
     try {
-      const res = await loginMutation.mutateAsync(payload);
+      await loginMutation.mutateAsync(payload);
       // If backend returns user object
-      const user = res.data ?? null;
-      if (user) setUser(user);
+      // const user = res.data ?? null;
+      // if (user) setUser(user);
       navigate("/", { replace: true });
     } catch (err) {
       console.error(err);
-      alert("Login failed");
+      alert(t("Login failed"));
     }
   };
 

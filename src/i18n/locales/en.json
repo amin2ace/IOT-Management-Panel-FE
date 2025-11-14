@@ -1,6 +1,7 @@
 {
   "login": "Login",
   "logout": "Logout",
+  "signup": "Signup",
   "discover": "Discover Devices",
   "assign": "Assign Functionality",
   "configure": "Configure Device",

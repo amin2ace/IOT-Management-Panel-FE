@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { deviceApi } from "@/api/deviceApi";
-import { DiscoveryResponse } from "@/types";
+import { DiscoveryResponseDto } from "@/api/models/DiscoveryResponseDto";
 
 export function Dashboard() {
   const { data, isLoading, isError } = useQuery({
@@ -37,19 +37,18 @@ export function Dashboard() {
           </tr>
         </thead>
         <tbody>
-          {data?.map((device: DiscoveryResponse) => (
+          {data?.map((device: DiscoveryResponseDto) => (
             <tr
-              key={device.sensorId}
+              key={device.deviceId}
               className="border-t border-gray-300 dark:border-gray-700"
             >
-              <td className="px-4 py-2">{device.sensorId}</td>
+              <td className="px-4 py-2">{device.deviceId}</td>
               <td className="px-4 py-2">
-                {new Date(device.updatedAt).toLocaleString()}
+                {new Date(device.timestamp).toLocaleString()}
               </td>
               <td className="px-4 py-2">{device.capabilities.join(", ")}</td>
-              <td className="px-4 py-2">{device.assignedFunctionality}</td>
               <td className="px-4 py-2">{device.deviceHardware}</td>
-              <td className="px-4 py-2">{device.deviceBaseTopic}</td>
+              <td className="px-4 py-2">{device.topicPrefix}</td>
               <td className="px-4 py-2">
                 <span
                   className={`px-2 py-1 rounded text-xs font-semibold ${
@@ -64,9 +63,6 @@ export function Dashboard() {
               <td className="px-4 py-2">{device.firmware}</td>
               <td className="px-4 py-2">{device.mac}</td>
               <td className="px-4 py-2">{device.ip}</td>
-              <td className="px-4 py-2">
-                {device.lastReboot ? `${device.lastReboot}` : `Never`}
-              </td>
               <td className="px-4 py-2">
                 {device.location
                   ? `${device.location.site}|${device.location.floor}|${device.location.unit}`

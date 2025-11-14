@@ -3,7 +3,8 @@ import api from "@/api/axios";
 import { DeviceCapabilities, SensorFunctionalityRequestDto } from "@/api";
 import { RequestMessageCode } from "@/api/models/MessageCode";
 
-export default function AssignPage() {
+// Component: Assign Sensor Functionality 'READ_ONLY'
+export default function Assign() {
   const [devices, setDevices] = useState<SensorFunctionalityRequestDto[]>([]);
   const [selectedFunctionality, setSelectedFunctionality] = useState<
     Record<string, DeviceCapabilities | "">

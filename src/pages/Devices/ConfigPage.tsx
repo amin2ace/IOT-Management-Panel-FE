@@ -5,6 +5,7 @@ import { z } from "zod";
 import api from "@/api/axios";
 import { SensorConfigRequestDto } from "@/api";
 import { RequestMessageCode } from "@/api/models/MessageCode";
+import { useDevices } from "@/hooks/useDevices";
 
 const schema = z.object({
   deviceId: z.string().min(1, "Device is required"),
@@ -69,6 +70,7 @@ const schema = z.object({
   timezone: z.string().optional(),
 });
 
+// Component: Sensor Configuration Page 'READ_ONLY'
 export default function ConfigPage() {
   const [devices, setDevices] = useState<SensorConfigRequestDto[]>([]);
   const [activeTab, setActiveTab] = useState<
@@ -86,6 +88,7 @@ export default function ConfigPage() {
   const dhcp = watch("network.dhcp");
 
   useEffect(() => {
+    // useDevices()
     api.get("/device/all").then((res) => setDevices(res.data || []));
   }, []);
 

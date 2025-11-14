@@ -17,6 +17,7 @@ interface MetricData {
   values: { timestamp: number; value: number }[];
 }
 
+// Component: Sensor Telemetry Page 'READ_ONLY'
 export default function TelemetryPage() {
   const { socket, isConnected } = useSocket();
   const [metrics, setMetrics] = useState<Map<string, MetricData>>(new Map());

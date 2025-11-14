@@ -20,6 +20,8 @@ export default function DashboardLayout() {
       <aside className="w-64 bg-gray-100 dark:bg-gray-800 p-4 space-y-2 border-r border-gray-300 dark:border-gray-700">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-lg font-bold">IoT Panel</h2>
+        </div>
+        <div>
           <ThemeToggle />
         </div>
 

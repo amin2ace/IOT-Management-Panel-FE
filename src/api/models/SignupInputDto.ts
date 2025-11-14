@@ -3,8 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export type SignupInputDto = {
-    userName: string;
-    email: string;
-    password: string;
+  username: string;
+  email: string;
+  password: string;
 };
-
