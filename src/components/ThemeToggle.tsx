@@ -1,4 +1,4 @@
-import { Sun, Moon, Monitor } from "lucide-react";
+import { Sun, Moon } from "lucide-react";
 import { useTheme, Theme } from "@/hooks/useTheme";
 import { JSX } from "react";
 
@@ -8,7 +8,7 @@ export default function ThemeToggle() {
   const options: { label: string; value: Theme; icon: JSX.Element }[] = [
     { label: "Light", value: "light", icon: <Sun className="w-4 h-4" /> },
     { label: "Dark", value: "dark", icon: <Moon className="w-4 h-4" /> },
-    { label: "System", value: "system", icon: <Monitor className="w-4 h-4" /> },
+    // { label: "System", value: "system", icon: <Monitor className="w-4 h-4" /> },
   ];
 
   return (

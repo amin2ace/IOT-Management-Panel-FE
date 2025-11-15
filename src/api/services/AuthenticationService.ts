@@ -10,6 +10,8 @@ import type { SignupInputDto } from "../models/SignupInputDto";
 import type { CancelablePromise } from "../core/CancelablePromise";
 import { OpenAPI } from "../core/OpenAPI";
 import { request as __request } from "../core/request";
+import { LoginResponseDto } from "../models/LoginResponseDto";
+import { SignupResponseDto } from "../models/SignupResponseDto";
 export class AuthenticationService {
   /**
    * Register a new user
@@ -19,7 +21,7 @@ export class AuthenticationService {
    */
   public static authControllerSignup(
     requestBody: SignupInputDto
-  ): CancelablePromise<any> {
+  ): CancelablePromise<SignupResponseDto> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/auth/signup",

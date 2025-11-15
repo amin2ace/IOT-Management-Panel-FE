@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import api from "@/api/axios";
 import { SensorConfigRequestDto } from "@/api";
 import { RequestMessageCode } from "@/api/models/MessageCode";
-import { useDevices } from "@/hooks/useDevices";
+import api from "@/api/client";
 
 const schema = z.object({
   deviceId: z.string().min(1, "Device is required"),

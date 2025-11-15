@@ -9,8 +9,8 @@ export function useSignup() {
     mutationFn: (payload: SignupInputDto) =>
       AuthenticationService.authControllerSignup(payload),
     onSuccess: (res) => {
-      localStorage.setItem("user", JSON.stringify(res.data));
-      setUser(res.data);
+      localStorage.setItem("user", JSON.stringify(res));
+      setUser(res);
     },
   });
 }

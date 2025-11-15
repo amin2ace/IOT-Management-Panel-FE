@@ -24,7 +24,7 @@ export default function LoginPage() {
       // If backend returns user object
       // const user = res.data ?? null;
       // if (user) setUser(user);
-      navigate("/", { replace: true });
+      navigate("/dashboard", { replace: true, viewTransition: true });
     } catch (err) {
       console.error(err);
       alert(t("Login failed"));
@@ -32,37 +32,41 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-linear-to-b from-gray-900 to-gray-800 p-6">
-      <form
-        onSubmit={handleSubmit}
-        className="w-full max-w-md bg-gray-800/70 backdrop-blur-md p-8 rounded-2xl"
-      >
+    <div className="auth-page-bg">
+      <form onSubmit={handleSubmit} className="auth-form">
         <h2 className="text-2xl font-bold mb-6 text-center text-indigo-300">
           {t("login")}
         </h2>
 
-        <label className="block mb-2 text-sm">Email</label>
         <input
           name="email"
           type="email"
+          placeholder={t("email")}
           required
-          className="w-full p-2 rounded bg-gray-700 mb-4"
+          className="form-input"
         />
 
-        <label className="block mb-2 text-sm">Password</label>
         <input
           name="password"
           type="password"
+          placeholder={t("password")}
           required
-          className="w-full p-2 rounded bg-gray-700 mb-6"
+          className="form-input"
         />
 
-        <button
-          type="submit"
-          className="w-full bg-indigo-600 py-2 rounded font-semibold"
-        >
+        <button type="submit" className="form-submit">
           {loginMutation.isPending ? "Signing in..." : t("login")}
         </button>
+        <p className="text-center text-sm text-gray-400 p-4">
+          {t("dontHaveAccount")}{" "}
+          <button
+            type="button"
+            onClick={() => navigate("/signup")}
+            className="text-indigo-400 hover:text-indigo-300 font-medium"
+          >
+            {t("signUp")}
+          </button>
+        </p>
       </form>
     </div>
   );

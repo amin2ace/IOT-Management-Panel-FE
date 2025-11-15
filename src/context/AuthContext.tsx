@@ -1,24 +1,23 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import {
-  AuthenticationService,
-  loginInputDto,
-  SignupInputDto,
-  UserResponseDto,
-} from "@/api";
+import { AuthenticationService, loginInputDto, SignupInputDto } from "@/api";
+import { LoginResponseDto } from "@/api/models/LoginResponseDto";
+import { SignupResponseDto } from "@/api/models/SignupResponseDto";
 
 export interface AuthContextValue {
-  user: UserResponseDto | null;
+  user: LoginResponseDto | SignupResponseDto | null;
   loading: boolean;
   login: (payload: loginInputDto) => Promise<void>;
   signup: (payload: SignupInputDto) => Promise<void>;
   logout: () => Promise<void>;
-  setUser: (u: UserResponseDto | null) => void;
+  setUser: (u: LoginResponseDto | SignupResponseDto | null) => void;
 }
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<UserResponseDto | null>(null);
+  const [user, setUser] = useState<LoginResponseDto | SignupResponseDto | null>(
+    null
+  );
   const [loading, setLoading] = useState(true);
 
   // Load user from localStorage at startup
@@ -35,15 +34,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   const login = async (payload: loginInputDto) => {
-    const res = await AuthenticationService.authControllerLogin(payload);
-    const userData: UserResponseDto = res.data;
+    const userData = await AuthenticationService.authControllerLogin(payload);
     setUser(userData);
     localStorage.setItem("user", JSON.stringify(userData));
   };
 
   const signup = async (payload: SignupInputDto) => {
-    const res = await AuthenticationService.authControllerSignup(payload);
-    const userData: UserResponseDto = res.data;
+    const userData = await AuthenticationService.authControllerSignup(payload);
     setUser(userData);
     localStorage.setItem("user", JSON.stringify(userData));
   };

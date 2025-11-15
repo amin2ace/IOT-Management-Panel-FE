@@ -1,52 +1,61 @@
+import DashboardHeader from "@/components/DashboardHeader";
+import { useTranslation } from "react-i18next";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import ThemeToggle from "../components/ThemeToggle";
 
 export default function DashboardLayout() {
   const { pathname } = useLocation();
+  const { t } = useTranslation();
 
   const navItems = [
-    { path: "/devices/discover", label: "Discover" },
-    { path: "/devices/assign", label: "Assign" },
-    { path: "/devices/configure", label: "Configure" },
-    { path: "/devices/telemetry", label: "Telemetry" },
-    { path: "/mqtt/config", label: "MQTT Manager" },
-    { path: "/users", label: "Users" },
-    { path: "/topics", label: "Topics" },
+    { path: "/dashboard", label: t("dashboardTab") },
+    { path: "/devices/discover", label: t("discoverTab") },
+    { path: "/devices/assign", label: t("assignTab") },
+    { path: "/devices/configure", label: t("configureTab") },
+    { path: "/devices/telemetry", label: t("telemetryTab") },
   ];
 
   return (
-    <div className="flex min-h-screen bg-surface-light dark:bg-surface-dark text-gray-900 dark:text-gray-100">
-      {/* Sidebar */}
-      <aside className="w-64 bg-gray-100 dark:bg-gray-800 p-4 space-y-2 border-r border-gray-300 dark:border-gray-700">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-lg font-bold">IoT Panel</h2>
-        </div>
-        <div>
-          <ThemeToggle />
-        </div>
+    <div>
+      <div>
+        <DashboardHeader />
+      </div>
 
-        {navItems.map((item) => {
-          const active = pathname === item.path;
-          return (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`block p-2 rounded font-medium transition ${
-                active
-                  ? "bg-indigo-600 text-white"
-                  : "hover:bg-gray-200 dark:hover:bg-gray-700"
-              }`}
-            >
-              {item.label}
-            </Link>
-          );
-        })}
-      </aside>
+      <div className="flex min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100">
+        {/* SIDEBAR */}
+        <aside
+          className="
+        w-64 h-screen sticky top-0 p-5 bg-white/70 dark:bg-gray-800/80 
+        backdrop-blur-xl border-r border-gray-300/40 dark:border-gray-700/40
+        shadow-md flex flex-col
+        "
+        >
+          <h1 className="text-xl font-bold mb-8">IoT Panel</h1>
 
-      {/* Main Content */}
-      <main className="flex-1 p-6 overflow-y-auto">
-        <Outlet />
-      </main>
+          <nav className="flex flex-col gap-2">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`
+                p-3 rounded-lg text-sm font-medium transition
+                ${
+                  pathname === item.path
+                    ? "bg-indigo-600 text-white shadow"
+                    : "hover:bg-gray-200 dark:hover:bg-gray-700"
+                }
+              `}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+        </aside>
+
+        {/* MAIN CONTENT */}
+        <main className="flex-1 p-6 overflow-y-auto">
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
 }

@@ -24,7 +24,7 @@ export default function UsersPage() {
             className="p-3 bg-white/5 rounded flex justify-between items-center"
           >
             <div>
-              <div className="font-medium">{u.userName}</div>
+              <div className="font-medium">{u.username}</div>
               <div className="text-xs text-gray-400">{u.email}</div>
             </div>
             <div className="flex gap-2">
