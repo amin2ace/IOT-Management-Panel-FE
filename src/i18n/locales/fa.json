@@ -11,6 +11,22 @@
   "alreadyHaveAccount": "حساب کاربری دارید؟",
   "createAccount": "ایجاد حساب کاربری",
 
+  "loginFailed": "ورود ناموفق بود",
+  "loginSuccess": "ورود با موفقیت انجام شد",
+  "wongcredentials": "نام کاربری یا رمز عبور اشتباه است",
+
+  "signupFailed": "ثبت‌نام ناموفق بود",
+  "signupSuccess": "ثبت‌نام با موفقیت انجام شد",
+  "emailInUse": "حساب از قبل وجود دارد، لطفاً وارد شوید",
+
+  "lightMode": "روشن",
+  "darkMode": "تیره",
+
+  "en": "انگلیسی",
+  "fa": "فارسی",
+  "ar": "عربی",
+  "tr": "ترکی",
+
   "dashboardTab": "داشبورد",
   "discoverTab": "کشف دستگاه‌ها",
   "assignTab": "اختصاص دستگاه‌ها",

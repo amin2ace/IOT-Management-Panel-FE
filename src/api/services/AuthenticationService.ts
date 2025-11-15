@@ -41,7 +41,7 @@ export class AuthenticationService {
    */
   public static authControllerLogin(
     requestBody: loginInputDto
-  ): CancelablePromise<any> {
+  ): CancelablePromise<LoginResponseDto> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/auth/login",

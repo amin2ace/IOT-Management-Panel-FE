@@ -12,5 +12,8 @@ export function useLogin() {
       localStorage.setItem("user", JSON.stringify(res));
       setUser(res);
     },
+    // onError: () => {
+    //   toast.error("error");
+    // },
   });
 }

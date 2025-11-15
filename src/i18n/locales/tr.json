@@ -11,6 +11,22 @@
   "alreadyHaveAccount": "Zaten Hesabınız Var mı?",
   "createAccount": "Hesap Oluştur",
 
+  "loginFailed": "Giriş Başarısız",
+  "loginSuccess": "Giriş Başarılı",
+  "wongcredentials": "Kullanıcı adı veya şifre yanlış",
+
+  "signupFailed": "Kayıt Başarısız",
+  "signupSuccess": "Kayıt Başarılı",
+  "emailInUse": "Hesap zaten mevcut, lütfen giriş yapın",
+
+  "lightMode": "Aydınlık",
+  "darkMode": "Karanlık",
+
+  "en": "EN",
+  "fa": "FA",
+  "ar": "AR",
+  "tr": "TR",
+
   "dashboardTab": "Kontrol Paneli",
   "discoverTab": "Cihazları Keşfet",
   "assignTab": "Cihazları Atama",

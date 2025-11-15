@@ -1,13 +1,13 @@
 import { useTranslation } from "react-i18next";
 
 export function LanguageSelector() {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   const languages = [
-    { code: "en", label: "EN" },
-    { code: "fa", label: "FA" },
-    { code: "tr", label: "TR" },
-    { code: "ar", label: "AR" },
+    { code: "en", label: t("en") },
+    { code: "fa", label: t("fa") },
+    { code: "tr", label: t("tr") },
+    { code: "ar", label: t("ar") },
   ];
 
   return (

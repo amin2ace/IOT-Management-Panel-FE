@@ -16,6 +16,7 @@ import { SignupPage } from "./pages";
 import ConfigPage from "./pages/Devices/ConfigPage";
 import HomeDashboard from "./pages/HomeDashboard";
 import Landing from "./App";
+import { Toaster } from "react-hot-toast";
 
 const queryClient = new QueryClient();
 
@@ -30,23 +31,14 @@ createRoot(document.getElementById("root")!).render(
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/" element={<DashboardLayout />}>
               <Route index path="/dashboard" element={<HomeDashboard />} />
-              {/* <Route path="/" element={<Navigate to="/login" replace />} /> */}
               <Route path="/devices/discover" element={<DiscoverPage />} />
               <Route path="/devices/assign" element={<Assign />} />
               <Route path="/devices/configure" element={<ConfigPage />} />
               <Route path="/devices/telemetry" element={<TelemetryPage />} />
-              {/* <Route
-              path="/topics"
-              element={
-                <RequireRole allowed={["SUPER_USER", "ADMIN"]}>
-                  <TopicsPage />
-                </RequireRole>
-              }
-            />
- */}
               <Route path="hmi" element={<HmiPage />} />
             </Route>
           </Routes>
+          <Toaster position="top-center" />
         </BrowserRouter>
       </AuthProvider>
       <ReactQueryDevtools initialIsOpen={false} />

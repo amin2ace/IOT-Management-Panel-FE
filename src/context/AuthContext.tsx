@@ -36,6 +36,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const login = async (payload: loginInputDto) => {
     const userData = await AuthenticationService.authControllerLogin(payload);
     setUser(userData);
+    console.log({ userData });
     localStorage.setItem("user", JSON.stringify(userData));
   };
 

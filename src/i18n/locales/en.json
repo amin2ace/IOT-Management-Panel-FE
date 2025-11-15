@@ -11,11 +11,27 @@
   "alreadyHaveAccount": "Already Have Account?",
   "createAccount": "Create Account",
 
+  "loginFailed": "Login Failed",
+  "loginSuccess": "Login Successful",
+  "wongcredentials": "Password or username is wrong",
+
+  "signupFailed": "Signup Failed",
+  "signupSuccess": "Signup Successful",
+  "emailInUse": "Account already exists, try login",
+
   "dashboardTab": "Dashboard",
   "discoverTab": "Discover Devices",
   "assignTab": "Assign Devices",
   "configureTab": "Configure Devices",
   "telemetryTab": "Telemetry",
+
+  "lightMode": "Light",
+  "darkMode": "Dark",
+
+  "en": "EN",
+  "fa": "FA",
+  "ar": "AR",
+  "tr": "TR",
 
   "save": "Save",
   "cancel": "Cancel",

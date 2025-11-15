@@ -11,11 +11,27 @@
   "alreadyHaveAccount": "هل لديك حساب بالفعل؟",
   "createAccount": "إنشاء حساب",
 
+  "loginFailed": "فشل تسجيل الدخول",
+  "loginSuccess": "تم تسجيل الدخول بنجاح",
+  "wongcredentials": "اسم المستخدم أو كلمة المرور غير صحيحة",
+
+  "signupFailed": "فشل إنشاء الحساب",
+  "signupSuccess": "تم إنشاء الحساب بنجاح",
+  "emailInUse": "الحساب موجود بالفعل، يرجى تسجيل الدخول",
+
   "dashboardTab": "لوحة التحكم",
   "discoverTab": "اكتشاف الأجهزة",
   "assignTab": "تعيين الأجهزة",
-  "configureTab": "تكوين الأجهزة",
-  "telemetryTab": "القياسات",
+  "configureTab": "تهيئة الأجهزة",
+  "telemetryTab": "البيانات الحية",
+
+  "lightMode": "فاتح",
+  "darkMode": "داكن",
+
+  "en": "EN",
+  "fa": "FA",
+  "ar": "AR",
+  "tr": "TR",
 
   "save": "حفظ",
   "cancel": "إلغاء",

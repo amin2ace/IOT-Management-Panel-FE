@@ -1,6 +1,7 @@
 import { SignupInputDto } from "@/api";
 import { useSignup } from "@/hooks/useSignup";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -28,9 +29,10 @@ export function SignupPage() {
       // const user = res.data ?? null;
       // if (user) setUser(user);
       navigate("/dashboard", { replace: true });
+      toast.success(t("signupSuccess"));
     } catch (err) {
       console.error(err);
-      alert("Signup failed");
+      toast.error(t("signupFailed"));
     }
   };
 

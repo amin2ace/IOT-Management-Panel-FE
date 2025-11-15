@@ -2,14 +2,13 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { Role } from './Role';
+import type { Role } from "./Role";
 export type CreateUserDto = {
-    userName: string;
-    email: string;
-    password: string;
-    /**
-     * User role for RBAC
-     */
-    roles: Array<Role>;
+  username: string;
+  email: string;
+  password: string;
+  /**
+   * User role for RBAC
+   */
+  roles: Array<Role>;
 };
-

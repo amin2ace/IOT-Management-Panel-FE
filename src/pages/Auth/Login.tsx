@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { loginInputDto } from "@/api";
 import { useLogin } from "@/hooks/useLogin";
+import toast from "react-hot-toast";
 
 // Componenet: Login Page 'READ_ONLY', 'The function name for component MUST start with uppercase'
 export default function LoginPage() {
@@ -25,9 +26,10 @@ export default function LoginPage() {
       // const user = res.data ?? null;
       // if (user) setUser(user);
       navigate("/dashboard", { replace: true, viewTransition: true });
+      toast.success(t("loginSuccess"));
     } catch (err) {
       console.error(err);
-      alert(t("Login failed"));
+      toast.error(t("loginFailed"));
     }
   };
 
@@ -64,7 +66,7 @@ export default function LoginPage() {
             onClick={() => navigate("/signup")}
             className="text-indigo-400 hover:text-indigo-300 font-medium"
           >
-            {t("signUp")}
+            {t("signup")}
           </button>
         </p>
       </form>
