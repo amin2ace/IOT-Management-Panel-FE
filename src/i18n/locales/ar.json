@@ -1,13 +1,13 @@
 {
   "login": "تسجيل الدخول",
   "logout": "تسجيل الخروج",
-  "signup": "ایجاد الحساب",
+  "signup": "إنشاء حساب",
 
   "email": "البريد الإلكتروني",
   "username": "اسم المستخدم",
   "password": "كلمة المرور",
 
-  "dontHaveAccount": "أليس لديك حساب؟",
+  "dontHaveAccount": "لا تملك حساباً؟",
   "alreadyHaveAccount": "هل لديك حساب بالفعل؟",
   "createAccount": "إنشاء حساب",
 
@@ -17,13 +17,13 @@
 
   "signupFailed": "فشل إنشاء الحساب",
   "signupSuccess": "تم إنشاء الحساب بنجاح",
-  "emailInUse": "الحساب موجود بالفعل، يرجى تسجيل الدخول",
+  "emailInUse": "الحساب موجود مسبقاً، يرجى تسجيل الدخول",
 
   "dashboardTab": "لوحة التحكم",
   "discoverTab": "اكتشاف الأجهزة",
   "assignTab": "تعيين الأجهزة",
   "configureTab": "تهيئة الأجهزة",
-  "telemetryTab": "البيانات الحية",
+  "telemetryTab": "القياسات",
 
   "lightMode": "فاتح",
   "darkMode": "داكن",
@@ -33,10 +33,28 @@
   "ar": "AR",
   "tr": "TR",
 
+  "discoveryBroadcastTitle": "ابدأ اكتشاف البث للعثور على الأجهزة في الشبكة المحلية.",
+  "discoveryUnicastTitle": "ابدأ اكتشاف Unicast للعثور على جهاز واحد في الشبكة المحلية.",
+
+  "broadcast": "بث",
+  "broadcastDiscover": "اكتشاف البث",
+  "unicast": "Unicast",
+  "unicastDiscover": "اكتشاف Unicast",
+  "discoveryUnicastSent": "تم إرسال اكتشاف Unicast",
+  "discoveryBroadcastSent": "تم إرسال اكتشاف البث",
+  "failedToSendDiscovery": "فشل إرسال عملية الاكتشاف",
+
+  "deviceId": "معرف الجهاز",
+  "device": "الجهاز",
+  "discover": "اكتشاف",
+  "sending": "جارٍ الإرسال...",
+  "sent": "تم الإرسال",
+  "id": "المعرف",
+
   "save": "حفظ",
   "cancel": "إلغاء",
   "language": "اللغة",
-  "theme": "السمة",
+  "theme": "المظهر",
   "management": "الإدارة",
   "settings": "الإعدادات",
   "manual": "الوضع اليدوي",

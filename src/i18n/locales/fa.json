@@ -1,7 +1,7 @@
 {
   "login": "ورود",
   "logout": "خروج",
-  "signup": "ایجاد حساب",
+  "signup": "ثبت‌نام",
 
   "email": "ایمیل",
   "username": "نام کاربری",
@@ -9,15 +9,21 @@
 
   "dontHaveAccount": "حساب کاربری ندارید؟",
   "alreadyHaveAccount": "حساب کاربری دارید؟",
-  "createAccount": "ایجاد حساب کاربری",
+  "createAccount": "ایجاد حساب",
 
-  "loginFailed": "ورود ناموفق بود",
-  "loginSuccess": "ورود با موفقیت انجام شد",
+  "loginFailed": "ورود ناموفق",
+  "loginSuccess": "ورود موفق",
   "wongcredentials": "نام کاربری یا رمز عبور اشتباه است",
 
-  "signupFailed": "ثبت‌نام ناموفق بود",
-  "signupSuccess": "ثبت‌نام با موفقیت انجام شد",
-  "emailInUse": "حساب از قبل وجود دارد، لطفاً وارد شوید",
+  "signupFailed": "ثبت‌نام ناموفق",
+  "signupSuccess": "ثبت‌نام موفق",
+  "emailInUse": "این حساب قبلاً وجود دارد، لطفاً وارد شوید",
+
+  "dashboardTab": "داشبورد",
+  "discoverTab": "کشف دستگاه‌ها",
+  "assignTab": "اختصاص دستگاه",
+  "configureTab": "پیکربندی دستگاه",
+  "telemetryTab": "داده‌های سنجش",
 
   "lightMode": "روشن",
   "darkMode": "تیره",
@@ -27,16 +33,28 @@
   "ar": "عربی",
   "tr": "ترکی",
 
-  "dashboardTab": "داشبورد",
-  "discoverTab": "کشف دستگاه‌ها",
-  "assignTab": "اختصاص دستگاه‌ها",
-  "configureTab": "پیکربندی دستگاه‌ها",
-  "telemetryTab": "تلومتری",
+  "discoveryBroadcastTitle": "شروع جستجوی Broadcast برای یافتن دستگاه‌ها در شبکه محلی.",
+  "discoveryUnicastTitle": "شروع جستجوی Unicast برای یافتن یک دستگاه در شبکه محلی.",
+
+  "broadcast": "پخش",
+  "broadcastDiscover": "کشف پخش",
+  "unicast": "یک‌به‌یک",
+  "unicastDiscover": "کشف یک‌به‌یک",
+  "discoveryUnicastSent": "کشف Unicast ارسال شد",
+  "discoveryBroadcastSent": "کشف Broadcast ارسال شد",
+  "failedToSendDiscovery": "ارسال کشف ناموفق بود",
+
+  "deviceId": "شناسه دستگاه",
+  "device": "دستگاه",
+  "discover": "کشف",
+  "sending": "در حال ارسال...",
+  "sent": "ارسال شد",
+  "id": "شناسه",
 
   "save": "ذخیره",
   "cancel": "انصراف",
   "language": "زبان",
-  "theme": "پوسته",
+  "theme": "تم",
   "management": "مدیریت",
   "settings": "تنظیمات",
   "manual": "حالت دستی",

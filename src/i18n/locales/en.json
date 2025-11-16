@@ -33,6 +33,24 @@
   "ar": "AR",
   "tr": "TR",
 
+  "discoveryBroadcastTitle": "Start broadcast discovery to find devices on the LAN.",
+  "discoveryUnicastTitle": "Start Unicast discovery to find a device on the LAN.",
+
+  "broadcast": "Broadcast ",
+  "broadcastDiscover": "Broadcast Discover ",
+  "unicast": "Unicast ",
+  "unicastDiscover": "Unicast Discover ",
+  "discoveryUnicastSent": "Discovery unicast sent",
+  "discoveryBroadcastSent": "Discovery broadcast sent",
+  "failedToSendDiscovery": "Failed to send discovery",
+
+  "deviceId": "Device ID ",
+  "device": "Device ",
+  "discover": "Discover ",
+  "sending": "Sending... ",
+  "sent": "Sent ",
+  "id": "ID ",
+
   "save": "Save",
   "cancel": "Cancel",
   "language": "Language",

@@ -14,6 +14,7 @@ import type { CancelablePromise } from "../core/CancelablePromise";
 import { OpenAPI } from "../core/OpenAPI";
 import { request as __request } from "../core/request";
 import { QueryDeviceDto } from "../models/QueryDeviceDto";
+import { DiscoveryResponseDto } from "../models/DiscoveryResponseDto";
 export class DevicesService {
   /**
    * Get all devices
@@ -47,7 +48,7 @@ export class DevicesService {
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "POST",
-      url: "/api/devices/discover-broadcast",
+      url: "/devices/discover-broadcast",
       body: requestBody,
       mediaType: "application/json",
     });
@@ -63,7 +64,7 @@ export class DevicesService {
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "POST",
-      url: "/api/devices/discover-unicast",
+      url: "/devices/discover-unicast",
       body: requestBody,
       mediaType: "application/json",
     });

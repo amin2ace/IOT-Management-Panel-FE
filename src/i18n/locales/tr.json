@@ -1,14 +1,14 @@
 {
-  "login": "Giriş",
-  "logout": "Çıkış",
-  "signup": "Jirra",
+  "login": "Giriş Yap",
+  "logout": "Çıkış Yap",
+  "signup": "Kayıt Ol",
 
   "email": "E-posta",
   "username": "Kullanıcı Adı",
   "password": "Şifre",
 
-  "dontHaveAccount": "Hesabınız Yok mu?",
-  "alreadyHaveAccount": "Zaten Hesabınız Var mı?",
+  "dontHaveAccount": "Hesabınız yok mu?",
+  "alreadyHaveAccount": "Zaten hesabınız var mı?",
   "createAccount": "Hesap Oluştur",
 
   "loginFailed": "Giriş Başarısız",
@@ -17,21 +17,39 @@
 
   "signupFailed": "Kayıt Başarısız",
   "signupSuccess": "Kayıt Başarılı",
-  "emailInUse": "Hesap zaten mevcut, lütfen giriş yapın",
+  "emailInUse": "Bu hesap zaten mevcut, lütfen giriş yapın",
 
-  "lightMode": "Aydınlık",
-  "darkMode": "Karanlık",
+  "dashboardTab": "Gösterge Paneli",
+  "discoverTab": "Cihaz Keşfi",
+  "assignTab": "Cihaz Atama",
+  "configureTab": "Cihaz Yapılandırma",
+  "telemetryTab": "Telemetri",
+
+  "lightMode": "Açık",
+  "darkMode": "Koyu",
 
   "en": "EN",
   "fa": "FA",
   "ar": "AR",
   "tr": "TR",
 
-  "dashboardTab": "Kontrol Paneli",
-  "discoverTab": "Cihazları Keşfet",
-  "assignTab": "Cihazları Atama",
-  "configureTab": "Cihazları Yapılandır",
-  "telemetryTab": "Telemetri",
+  "discoveryBroadcastTitle": "Yerel ağda cihazları bulmak için yayın keşfini başlatın.",
+  "discoveryUnicastTitle": "Yerel ağda tek bir cihaz bulmak için unicast keşfini başlatın.",
+
+  "broadcast": "Yayın",
+  "broadcastDiscover": "Yayın Keşfi",
+  "unicast": "Unicast",
+  "unicastDiscover": "Unicast Keşfi",
+  "discoveryUnicastSent": "Unicast keşfi gönderildi",
+  "discoveryBroadcastSent": "Yayın keşfi gönderildi",
+  "failedToSendDiscovery": "Keşif gönderilemedi",
+
+  "deviceId": "Cihaz Kimliği",
+  "device": "Cihaz",
+  "discover": "Keşfet",
+  "sending": "Gönderiliyor...",
+  "sent": "Gönderildi",
+  "id": "Kimlik",
 
   "save": "Kaydet",
   "cancel": "İptal",

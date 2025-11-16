@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "@/context/AuthContext";
 import "@/index.css";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import DiscoverPage from "./pages/Devices/DiscoverPage";
 import Assign from "./pages/Devices/AssignPage";
 import TelemetryPage from "./pages/Devices/TelemetryPage";
 import HmiPage from "./pages/HmiPage";
@@ -14,9 +13,10 @@ import DashboardLayout from "./layouts/DashboardLayout";
 import LoginPage from "./pages/Auth/Login";
 import { SignupPage } from "./pages";
 import ConfigPage from "./pages/Devices/ConfigPage";
-import HomeDashboard from "./pages/HomeDashboard";
 import Landing from "./App";
 import { Toaster } from "react-hot-toast";
+import HomeDashboard from "./pages/HomeDashboard";
+import DiscoveryPage from "./pages/Devices/DiscoveryPage";
 
 const queryClient = new QueryClient();
 
@@ -31,7 +31,7 @@ createRoot(document.getElementById("root")!).render(
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/" element={<DashboardLayout />}>
               <Route index path="/dashboard" element={<HomeDashboard />} />
-              <Route path="/devices/discover" element={<DiscoverPage />} />
+              <Route path="/devices/discover" element={<DiscoveryPage />} />
               <Route path="/devices/assign" element={<Assign />} />
               <Route path="/devices/configure" element={<ConfigPage />} />
               <Route path="/devices/telemetry" element={<TelemetryPage />} />
