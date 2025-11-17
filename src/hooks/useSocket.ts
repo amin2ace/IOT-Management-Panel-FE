@@ -24,9 +24,9 @@ export function useSocket(): SocketHook {
     s.on("connect", () => setIsConnected(true));
     s.on("disconnect", () => setIsConnected(false));
 
-    // return () => {
-    //   s.disconnect();
-    // };
+    return () => {
+      s.disconnect();
+    };
   }, []);
 
   return { socket: socketRef.current, isConnected };

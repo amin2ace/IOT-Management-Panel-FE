@@ -1,34 +1,60 @@
 // src/pages/Discover/DiscoverPage.tsx
-import { DiscoveryRequestDto } from "@/api";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useTranslation } from "react-i18next";
 import z from "zod";
 import toast from "react-hot-toast";
 import { useSocket } from "@/hooks/useSocket";
 import { useAuth } from "@/context/AuthContext";
+import { DiscoveryRequestDto } from "@/api";
+import { useTranslation } from "react-i18next";
+import { DiscoveryResponseDto } from "@/api/models/DiscoveryResponseDto";
+import DevicesResultTable from "@/components/DiscoveryResultsTable";
 
-// Component: Broadcast Discovery Page 'READ_ONLY'
 export default function DiscoveryPage() {
   const { t } = useTranslation();
-  const [loading, setLoading] = useState(false);
   const { socket } = useSocket();
   const { user } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState<DiscoveryResponseDto>();
 
-  socket?.on("ws/message/discovery/broadcast/response", (res) => {
-    toast.success(res);
-  });
-  // Get device id from input tag
+  // -------------------------------
+  // Listen for incoming discovery responses
+  // -------------------------------
+  useEffect(() => {
+    if (!socket) return;
+    // clear previous results when entering the page
+    // setResult();
+    const listener = (res: DiscoveryResponseDto) => {
+      if (!res) return;
+
+      toast.success(`Device: ${res.deviceId}`);
+      setResult(res); // Add new device
+    };
+
+    socket.on("ws/message/discovery/broadcast/response", listener);
+    socket.on("ws/message/discovery/unicast/response", listener);
+
+    return () => {
+      socket.off("ws/message/discovery/broadcast/response", listener);
+      socket.off("ws/message/discovery/unicast/response", listener);
+      // optional: also clear when leaving
+    };
+  }, [socket]);
+
+  // -------------------------------
+  // Form schema
+  // -------------------------------
   const schema = z.object({
-    deviceId: z.string().min(1, { error: "Device ID is required" }),
-  });
-  const method = useForm({
-    resolver: zodResolver(schema),
+    deviceId: z.string().min(1, "Device ID is required"),
   });
 
+  const method = useForm({ resolver: zodResolver(schema) });
   const { handleSubmit, register } = method;
 
+  // -------------------------------
+  // Unicast
+  // -------------------------------
   const handleUnicast = async (data: z.infer<typeof schema>) => {
     setLoading(true);
     const payload: DiscoveryRequestDto = {
@@ -41,15 +67,18 @@ export default function DiscoveryPage() {
     };
 
     try {
-      socket?.emit("react/message/discovery/unicast/req", payload);
+      socket?.emit("react/message/discovery/unicast/request", payload);
       toast.success(t("discoveryUnicastSent"));
-    } catch (err) {
-      console.error(err);
+    } catch {
       toast.error(t("failedToSendDiscovery"));
     } finally {
       setLoading(false);
     }
   };
+
+  // -------------------------------
+  // Broadcast
+  // -------------------------------
   const handleBroadcast = async () => {
     setLoading(true);
     const payload: DiscoveryRequestDto = {
@@ -59,11 +88,11 @@ export default function DiscoveryPage() {
       timestamp: Date.now(),
       isBroadcast: true,
     };
+
     try {
-      socket?.emit("react/message/discovery/broadcast/req", payload);
+      socket?.emit("react/message/discovery/broadcast/request", payload);
       toast.success(t("discoveryBroadcastSent"));
-    } catch (err) {
-      console.error(err);
+    } catch {
       toast.error(t("failedToSendDiscovery"));
     } finally {
       setLoading(false);
@@ -72,39 +101,38 @@ export default function DiscoveryPage() {
 
   return (
     <div className="space-y-6">
-      <header className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">{t("discover")}</h1>
-      </header>
+      <h1 className="text-2xl font-semibold">{t("discover")}</h1>
 
-      <div className="bg-white/5 p-6 rounded-2xl backdrop-blur-md border border-white/10">
-        <p className="text-gray-300 mb-4">{t("discoveryBroadcastTitle")}</p>
-
-        <div className="flex gap-3">
-          <button
-            onClick={handleBroadcast}
-            disabled={loading}
-            className="px-4 py-2 bg-indigo-600 rounded hover:bg-indigo-700"
-          >
-            {loading ? t("sending") : t("broadcastDiscover")}
-          </button>
-        </div>
+      {/* Broadcast */}
+      <div className="bg-white/5 p-6 rounded-2xl border border-white/10">
+        <p className="text-gray-300 mb-3">{t("discoveryBroadcastTitle")}</p>
+        <button
+          onClick={handleBroadcast}
+          disabled={loading}
+          className="px-4 py-2 bg-indigo-600 rounded hover:bg-indigo-700 disabled:opacity-50"
+        >
+          {loading ? t("sending") : t("broadcastDiscover")}
+        </button>
       </div>
-      <div className="bg-white/5 p-6 rounded-2xl backdrop-blur-md border border-white/10">
-        <p className="text-gray-300 mb-4">{t("discoveryUnicastTitle")}</p>
+
+      {/* Unicast */}
+      <div className="bg-white/5 p-6 rounded-2xl border border-white/10">
+        <p className="text-gray-300 mb-3">{t("discoveryUnicastTitle")}</p>
 
         <form onSubmit={handleSubmit(handleUnicast)} className="flex gap-3">
-          <button
-            disabled={loading}
-            className="px-6 py-2 bg-indigo-600 rounded hover:bg-indigo-700"
-          >
+          <button className="px-4 py-2 bg-indigo-600 rounded hover:bg-indigo-700">
             {loading ? t("sending") : t("unicastDiscover")}
           </button>
-          <div className="flex place-items-center">
-            <label className="w-1/2">{t("deviceId") + ":"}</label>
-            <input {...register("deviceId")} className="input" />
+
+          <div className="flex items-center gap-2">
+            <label>{t("deviceId")}</label>
+            <input {...register("deviceId")} className="input w-40" />
           </div>
         </form>
       </div>
+
+      {/* Results Table */}
+      <DevicesResultTable result={result} />
     </div>
   );
 }
