@@ -3,25 +3,24 @@
 /* tslint:disable */
 /* eslint-disable */
 export type UserResponseDto = {
-    /**
-     * Unique user identifier
-     */
-    userId: string;
-    /**
-     * User email address
-     */
-    email: string;
-    /**
-     * User display name
-     */
-    userName: string;
-    /**
-     * User active status
-     */
-    isActive: boolean;
-    /**
-     * User roles for RBAC
-     */
-    roles: Array<'viewer' | 'test' | 'engineer' | 'admin' | 'super_admin'>;
+  /**
+   * Unique user identifier
+   */
+  userId: string;
+  /**
+   * User email address
+   */
+  email: string;
+  /**
+   * User display name
+   */
+  username: string;
+  /**
+   * User active status
+   */
+  isActive: boolean;
+  /**
+   * User roles for RBAC
+   */
+  roles: Array<"viewer" | "test" | "engineer" | "admin" | "super_admin">;
 };
-

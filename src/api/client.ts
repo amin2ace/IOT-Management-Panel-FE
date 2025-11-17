@@ -1,11 +1,10 @@
 // src/api/client.ts
 import axios, { AxiosInstance } from "axios";
 
-const BASE_URL =
-  // import.meta.env.VITE_API_BASE_URL ??
-  "http://localhost:3000/api";
+// import.meta.env.VITE_API_BASE_URL ??
+const BASE_URL = "http://localhost:3000/api";
 
-export const apiClient: AxiosInstance = axios.create({
+export const api: AxiosInstance = axios.create({
   baseURL: BASE_URL,
   withCredentials: true, // required for cookie-based auth
   headers: {
@@ -14,13 +13,20 @@ export const apiClient: AxiosInstance = axios.create({
 });
 
 // Optional: request interceptor (e.g. attach bearer token if you add it)
-apiClient.interceptors.request.use((config) => {
+api.interceptors.request.use((config) => {
   // e.g. if you later store access token in memory, attach here
+  //  const token = Cookies.get("refreshToken");
+  //   if (token) {
+  //     config.headers.Authorization = `Bearer ${token}`;
+  //   }
+  //   return config;
+  // });
+
   return config;
 });
 
 // Response interceptor: centralized error handling
-apiClient.interceptors.response.use(
+api.interceptors.response.use(
   (res) => res,
   (err) => {
     // You can customize global error handling here
@@ -29,4 +35,4 @@ apiClient.interceptors.response.use(
   }
 );
 
-export default apiClient;
+export default api;

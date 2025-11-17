@@ -1,14 +1,20 @@
-import { Sun, Moon, Monitor } from "lucide-react";
+import { Sun, Moon } from "lucide-react";
 import { useTheme, Theme } from "@/hooks/useTheme";
 import { JSX } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();
+  const { t } = useTranslation();
 
   const options: { label: string; value: Theme; icon: JSX.Element }[] = [
-    { label: "Light", value: "light", icon: <Sun className="w-4 h-4" /> },
-    { label: "Dark", value: "dark", icon: <Moon className="w-4 h-4" /> },
-    { label: "System", value: "system", icon: <Monitor className="w-4 h-4" /> },
+    {
+      label: t("lightMode"),
+      value: "light",
+      icon: <Sun className="w-4 h-4" />,
+    },
+    { label: t("darkMode"), value: "dark", icon: <Moon className="w-4 h-4" /> },
+    // { label: "System", value: "system", icon: <Monitor className="w-4 h-4" /> },
   ];
 
   return (

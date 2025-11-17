@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
-import api from "@/api/axios";
 import { DeviceCapabilities, SensorFunctionalityRequestDto } from "@/api";
 import { RequestMessageCode } from "@/api/models/MessageCode";
+import { useProvisionDevice, useUnassignedDevices } from "@/hooks/useDevices";
 
-export default function AssignPage() {
+// Component: Assign Sensor Functionality 'READ_ONLY'
+export default function Assign() {
   const [devices, setDevices] = useState<SensorFunctionalityRequestDto[]>([]);
+  const [unassignedDevices] = useUnassignedDevices();
+  const [provisionDevice] = useProvisionDevice();
   const [selectedFunctionality, setSelectedFunctionality] = useState<
     Record<string, DeviceCapabilities | "">
   >({});
@@ -14,7 +17,7 @@ export default function AssignPage() {
   useEffect(() => {
     const fetchDevices = async () => {
       try {
-        const response = await api.get("/device/unassigned");
+        const response = await unassignedDevices;
         setDevices(response.data || []);
       } catch (error) {
         console.error("Failed to fetch devices:", error);
@@ -60,7 +63,7 @@ export default function AssignPage() {
 
     try {
       setLoading(true);
-      await api.put("/device/deviceFunctionalityProvision", payload);
+      await provisionDevice(payload);
       alert(`Device ${device.deviceId} assigned as ${func}`);
     } catch (error) {
       console.error("Assign error:", error);

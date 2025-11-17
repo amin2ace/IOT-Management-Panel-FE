@@ -1,5 +1,16 @@
-html {
-  transition:
-    background-color 0.4s ease,
-    color 0.4s ease;
+/* src/styles/background.css */
+.page-bg {
+  @apply min-h-screen flex items-center justify-center
+         p-4 sm:p-6 md:p-8
+         bg-linear-to-br 
+         from-gray-100 via-gray-200 to-gray-300 
+         dark:from-gray-900 dark:via-gray-800 dark:to-gray-700
+         transition-colors duration-700;
+}
+
+/* Optional overlay for better readability on small devices */
+.page-bg::before {
+  content: "";
+  @apply absolute inset-0 bg-white/20 dark:bg-black/20;
+  pointer-events: none; /* don’t block interactions */
 }

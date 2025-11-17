@@ -1,15 +1,60 @@
 {
   "login": "ورود",
   "logout": "خروج",
-  "discover": "کشف دستگاه‌ها",
-  "assign": "اختصاص عملکرد",
-  "configure": "پیکربندی دستگاه",
-  "telemetry": "تله‌متری",
+  "signup": "ثبت‌نام",
+
+  "email": "ایمیل",
+  "username": "نام کاربری",
+  "password": "رمز عبور",
+
+  "dontHaveAccount": "حساب کاربری ندارید؟",
+  "alreadyHaveAccount": "حساب کاربری دارید؟",
+  "createAccount": "ایجاد حساب",
+
+  "loginFailed": "ورود ناموفق",
+  "loginSuccess": "ورود موفق",
+  "wongcredentials": "نام کاربری یا رمز عبور اشتباه است",
+
+  "signupFailed": "ثبت‌نام ناموفق",
+  "signupSuccess": "ثبت‌نام موفق",
+  "emailInUse": "این حساب قبلاً وجود دارد، لطفاً وارد شوید",
+
+  "dashboardTab": "داشبورد",
+  "discoverTab": "کشف دستگاه‌ها",
+  "assignTab": "اختصاص دستگاه",
+  "configureTab": "پیکربندی دستگاه",
+  "telemetryTab": "داده‌های سنجش",
+
+  "lightMode": "روشن",
+  "darkMode": "تیره",
+
+  "en": "انگلیسی",
+  "fa": "فارسی",
+  "ar": "عربی",
+  "tr": "ترکی",
+
+  "discoveryBroadcastTitle": "شروع جستجوی Broadcast برای یافتن دستگاه‌ها در شبکه محلی.",
+  "discoveryUnicastTitle": "شروع جستجوی Unicast برای یافتن یک دستگاه در شبکه محلی.",
+
+  "broadcast": "پخش",
+  "broadcastDiscover": "کشف پخش",
+  "unicast": "یک‌به‌یک",
+  "unicastDiscover": "کشف یک‌به‌یک",
+  "discoveryUnicastSent": "کشف Unicast ارسال شد",
+  "discoveryBroadcastSent": "کشف Broadcast ارسال شد",
+  "failedToSendDiscovery": "ارسال کشف ناموفق بود",
+
+  "deviceId": "شناسه دستگاه",
+  "device": "دستگاه",
+  "discover": "کشف",
+  "sending": "در حال ارسال...",
+  "sent": "ارسال شد",
+  "id": "شناسه",
+
   "save": "ذخیره",
   "cancel": "انصراف",
   "language": "زبان",
-  "theme": "پوسته",
-  "dashboard": "داشبورد",
+  "theme": "تم",
   "management": "مدیریت",
   "settings": "تنظیمات",
   "manual": "حالت دستی",

@@ -3,7 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export type FilterDto = {
-    subnet: string;
-    hardware: Array<string>;
-};
+  subnet?: string;
 
+  hardware?: Array<string>;
+};

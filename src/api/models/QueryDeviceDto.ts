@@ -3,7 +3,7 @@ import { ProvisionState } from "./ProvisionState";
 
 export type QueryDeviceDto = {
   // e.g. "device-1234"
-  deviceId: string; // Request from specific device
+  deviceId?: string; // Request from specific device
 
   // e.g. "assigned"
   provisionState?: ProvisionState;

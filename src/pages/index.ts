@@ -1,5 +1,6 @@
-export * from "./Dashboard";
-export * from "./DiscoveryPage";
+// export * from "./Dashboard";
+export * from "./HomeDashboard";
+export * from "./Devices/DiscoveryPage";
 export * from "./HmiPage";
 
 export * from "./Auth/Login";

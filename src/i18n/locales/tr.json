@@ -1,15 +1,60 @@
 {
-  "login": "Giriş",
-  "logout": "Çıkış",
-  "discover": "Cihazları Keşfet",
-  "assign": "Fonksiyon Ata",
-  "configure": "Cihazı Yapılandır",
-  "telemetry": "Telemetri",
+  "login": "Giriş Yap",
+  "logout": "Çıkış Yap",
+  "signup": "Kayıt Ol",
+
+  "email": "E-posta",
+  "username": "Kullanıcı Adı",
+  "password": "Şifre",
+
+  "dontHaveAccount": "Hesabınız yok mu?",
+  "alreadyHaveAccount": "Zaten hesabınız var mı?",
+  "createAccount": "Hesap Oluştur",
+
+  "loginFailed": "Giriş Başarısız",
+  "loginSuccess": "Giriş Başarılı",
+  "wongcredentials": "Kullanıcı adı veya şifre yanlış",
+
+  "signupFailed": "Kayıt Başarısız",
+  "signupSuccess": "Kayıt Başarılı",
+  "emailInUse": "Bu hesap zaten mevcut, lütfen giriş yapın",
+
+  "dashboardTab": "Gösterge Paneli",
+  "discoverTab": "Cihaz Keşfi",
+  "assignTab": "Cihaz Atama",
+  "configureTab": "Cihaz Yapılandırma",
+  "telemetryTab": "Telemetri",
+
+  "lightMode": "Açık",
+  "darkMode": "Koyu",
+
+  "en": "EN",
+  "fa": "FA",
+  "ar": "AR",
+  "tr": "TR",
+
+  "discoveryBroadcastTitle": "Yerel ağda cihazları bulmak için yayın keşfini başlatın.",
+  "discoveryUnicastTitle": "Yerel ağda tek bir cihaz bulmak için unicast keşfini başlatın.",
+
+  "broadcast": "Yayın",
+  "broadcastDiscover": "Yayın Keşfi",
+  "unicast": "Unicast",
+  "unicastDiscover": "Unicast Keşfi",
+  "discoveryUnicastSent": "Unicast keşfi gönderildi",
+  "discoveryBroadcastSent": "Yayın keşfi gönderildi",
+  "failedToSendDiscovery": "Keşif gönderilemedi",
+
+  "deviceId": "Cihaz Kimliği",
+  "device": "Cihaz",
+  "discover": "Keşfet",
+  "sending": "Gönderiliyor...",
+  "sent": "Gönderildi",
+  "id": "Kimlik",
+
   "save": "Kaydet",
   "cancel": "İptal",
   "language": "Dil",
   "theme": "Tema",
-  "dashboard": "Kontrol Paneli",
   "management": "Yönetim",
   "settings": "Ayarlar",
   "manual": "Manuel Mod",

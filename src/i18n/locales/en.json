@@ -1,15 +1,60 @@
 {
   "login": "Login",
   "logout": "Logout",
-  "discover": "Discover Devices",
-  "assign": "Assign Functionality",
-  "configure": "Configure Device",
-  "telemetry": "Telemetry",
+  "signup": "Signup",
+
+  "email": "Email",
+  "username": "Username",
+  "password": "Password",
+
+  "dontHaveAccount": "Don't have account?",
+  "alreadyHaveAccount": "Already Have Account?",
+  "createAccount": "Create Account",
+
+  "loginFailed": "Login Failed",
+  "loginSuccess": "Login Successful",
+  "wongcredentials": "Password or username is wrong",
+
+  "signupFailed": "Signup Failed",
+  "signupSuccess": "Signup Successful",
+  "emailInUse": "Account already exists, try login",
+
+  "dashboardTab": "Dashboard",
+  "discoverTab": "Discover Devices",
+  "assignTab": "Assign Devices",
+  "configureTab": "Configure Devices",
+  "telemetryTab": "Telemetry",
+
+  "lightMode": "Light",
+  "darkMode": "Dark",
+
+  "en": "EN",
+  "fa": "FA",
+  "ar": "AR",
+  "tr": "TR",
+
+  "discoveryBroadcastTitle": "Start broadcast discovery to find devices on the LAN.",
+  "discoveryUnicastTitle": "Start Unicast discovery to find a device on the LAN.",
+
+  "broadcast": "Broadcast ",
+  "broadcastDiscover": "Broadcast Discover ",
+  "unicast": "Unicast ",
+  "unicastDiscover": "Unicast Discover ",
+  "discoveryUnicastSent": "Discovery unicast sent",
+  "discoveryBroadcastSent": "Discovery broadcast sent",
+  "failedToSendDiscovery": "Failed to send discovery",
+
+  "deviceId": "Device ID ",
+  "device": "Device ",
+  "discover": "Discover ",
+  "sending": "Sending... ",
+  "sent": "Sent ",
+  "id": "ID ",
+
   "save": "Save",
   "cancel": "Cancel",
   "language": "Language",
   "theme": "Theme",
-  "dashboard": "Dashboard",
   "management": "Management",
   "settings": "Settings",
   "manual": "Manual Mode",

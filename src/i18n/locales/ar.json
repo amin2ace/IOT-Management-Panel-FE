@@ -1,15 +1,60 @@
 {
   "login": "تسجيل الدخول",
   "logout": "تسجيل الخروج",
-  "discover": "اكتشاف الأجهزة",
-  "assign": "تعيين الوظيفة",
-  "configure": "تكوين الجهاز",
-  "telemetry": "القياسات عن بُعد",
+  "signup": "إنشاء حساب",
+
+  "email": "البريد الإلكتروني",
+  "username": "اسم المستخدم",
+  "password": "كلمة المرور",
+
+  "dontHaveAccount": "لا تملك حساباً؟",
+  "alreadyHaveAccount": "هل لديك حساب بالفعل؟",
+  "createAccount": "إنشاء حساب",
+
+  "loginFailed": "فشل تسجيل الدخول",
+  "loginSuccess": "تم تسجيل الدخول بنجاح",
+  "wongcredentials": "اسم المستخدم أو كلمة المرور غير صحيحة",
+
+  "signupFailed": "فشل إنشاء الحساب",
+  "signupSuccess": "تم إنشاء الحساب بنجاح",
+  "emailInUse": "الحساب موجود مسبقاً، يرجى تسجيل الدخول",
+
+  "dashboardTab": "لوحة التحكم",
+  "discoverTab": "اكتشاف الأجهزة",
+  "assignTab": "تعيين الأجهزة",
+  "configureTab": "تهيئة الأجهزة",
+  "telemetryTab": "القياسات",
+
+  "lightMode": "فاتح",
+  "darkMode": "داكن",
+
+  "en": "EN",
+  "fa": "FA",
+  "ar": "AR",
+  "tr": "TR",
+
+  "discoveryBroadcastTitle": "ابدأ اكتشاف البث للعثور على الأجهزة في الشبكة المحلية.",
+  "discoveryUnicastTitle": "ابدأ اكتشاف Unicast للعثور على جهاز واحد في الشبكة المحلية.",
+
+  "broadcast": "بث",
+  "broadcastDiscover": "اكتشاف البث",
+  "unicast": "Unicast",
+  "unicastDiscover": "اكتشاف Unicast",
+  "discoveryUnicastSent": "تم إرسال اكتشاف Unicast",
+  "discoveryBroadcastSent": "تم إرسال اكتشاف البث",
+  "failedToSendDiscovery": "فشل إرسال عملية الاكتشاف",
+
+  "deviceId": "معرف الجهاز",
+  "device": "الجهاز",
+  "discover": "اكتشاف",
+  "sending": "جارٍ الإرسال...",
+  "sent": "تم الإرسال",
+  "id": "المعرف",
+
   "save": "حفظ",
   "cancel": "إلغاء",
   "language": "اللغة",
-  "theme": "السمة",
-  "dashboard": "لوحة التحكم",
+  "theme": "المظهر",
   "management": "الإدارة",
   "settings": "الإعدادات",
   "manual": "الوضع اليدوي",
