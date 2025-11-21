@@ -4,11 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --port 3001",
+    "dev": "vite --port 30001",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview --port 3001",
-    "api:generate": "openapi --input http://localhost:3000/api/docs-json --output src/api --client axios",
+    "preview": "vite preview --port 30001",
+    "api:generate": "openapi --input http://localhost:30000/api/docs-json --output src/api --client axios",
     "api:watch": "nodemon --watch ../iot-management-panel-be/src --exec \"npm run api:generate\""
   },
   "dependencies": {

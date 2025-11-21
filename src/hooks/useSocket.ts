@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { io, Socket } from "socket.io-client";
 
 // import.meta.env.VITE_GATEWAY_URL ??
-const SOCKET_URL = "http://localhost:30005/mqtt";
+const SOCKET_URL = import.meta.env.VITE_WEB_COCKET_URL; // "http://localhost:30005/mqtt";
 
 export interface SocketHook {
   socket: Socket | null;

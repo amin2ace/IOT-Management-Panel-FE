@@ -30,7 +30,7 @@ export { ProvisionState } from "./models/ProvisionState";
 export type { ResetPasswordDto } from "./models/ResetPasswordDto";
 export { Role } from "./models/Role";
 export type { SensorConfigRequestDto } from "./models/SensorConfigRequestDto";
-export type { SensorFunctionalityRequestDto } from "./models/SensorFunctionalityRequestDto";
+export type { SensorFunctionalityRequestDto } from "./models/SensorAssignRequestDto";
 export type { SignupInputDto } from "./models/SignupInputDto";
 export type { TelemetryRequestDto as TelemetryRequestDto } from "./models/TelemetryRequestDto";
 export type { UpdateUserDto } from "./models/UpdateUserDto";
