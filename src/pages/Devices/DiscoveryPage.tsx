@@ -1,4 +1,10 @@
-// src/pages/Discover/DiscoverPage.tsx
+/**
+ * Shows the page for discover all devices in lan
+ *
+ * Path ---->> "/devices/discover"
+ *
+ *
+ */
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -126,7 +132,7 @@ export default function DiscoveryPage() {
 
           <div className="flex items-center gap-2">
             <label>{t("deviceId")}</label>
-            <input {...register("deviceId")} className="input w-40" />
+            <input {...register("deviceId")} className="form-input w-40" />
           </div>
         </form>
       </div>

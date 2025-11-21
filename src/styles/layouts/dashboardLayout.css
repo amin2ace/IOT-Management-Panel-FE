@@ -1,0 +1,25 @@
+.dashboardLayout {
+  @apply flex min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100;
+}
+
+.dashboardLayoutSidebar {
+  @apply w-64 h-screen sticky top-0 p-5 bg-white/70 dark:bg-gray-800/80 
+        backdrop-blur-xl border-r border-gray-300/40 dark:border-gray-700/40
+        shadow-md flex flex-col;
+}
+
+.dashboardLayoutSidebarTitle {
+  @apply text-3xl font-extrabold mb-10;
+}
+
+.dashboardLayoutSidebarTab {
+  @apply flex flex-col gap-2;
+}
+
+.dashboardLayoutSidebarTabSelected {
+  @apply bg-indigo-600 text-white shadow;
+}
+
+.dashboardLayoutSidebarTabNotSelected {
+  @apply hover:bg-gray-200 dark:hover:bg-gray-700;
+}

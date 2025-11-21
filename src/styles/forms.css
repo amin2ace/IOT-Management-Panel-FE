@@ -1,17 +1,46 @@
+/* Auth Page Background */
 .auth-page-bg {
-  @apply min-h-screen flex items-center justify-center
-        bg-linear-to-b from-gray-700 via-indigo-950 to-gray-900
-        text-gray-900 dark:text-gray-100;
+  @apply min-h-screen flex items-center justify-center 
+         bg-linear-to-b from-gray-700 via-indigo-950 to-gray-900
+         dark:from-slate-900 dark:via-indigo-950 dark:to-slate-950
+         text-gray-900 dark:text-gray-100
+         transition-all duration-300;
 }
 
 .auth-form {
-  @apply bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg w-96;
+  @apply bg-white dark:bg-gray-800 
+         p-8 rounded-2xl shadow-xl
+         w-96 max-w-[90vw]
+         border border-white/20 dark:border-gray-600/30
+         backdrop-blur-sm
+         transition-all duration-300;
 }
 
 .form-input {
-  @apply w-full mb-4 p-2 rounded bg-gray-100 dark:bg-gray-700;
+  @apply w-full mb-4 p-3 rounded-lg
+         bg-indigo-500 dark:bg-indigo-100
+         text-white dark:text-gray-800
+         placeholder-white/70 dark:placeholder-gray-600
+         border-none
+         focus:outline-none focus:ring-2 focus:ring-primary-500/50
+         transition-all duration-300;
 }
 
 .form-submit {
-  @apply w-full bg-indigo-800  hover:bg-indigo-600 py-2 rounded font-semibold;
+  @apply w-full bg-indigo-800 dark:bg-indigo-600
+         hover:bg-indigo-600 dark:hover:bg-indigo-500
+         text-white font-semibold
+         py-3 rounded-lg
+         transition-all duration-300
+         transform hover:-translate-y-0.5
+         focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800;
+}
+
+/* Optional: Add some glassmorphism to the auth form */
+.dark .auth-form {
+  @apply bg-gray-800/80 backdrop-blur-md;
+}
+
+.auth-form {
+  @apply bg-white/95 backdrop-blur-md;
 }

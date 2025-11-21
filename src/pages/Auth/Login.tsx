@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { loginInputDto } from "@/api";
 import { useLogin } from "@/hooks/useLogin";
 import toast from "react-hot-toast";
+import DashboardHeader from "@/components/DashboardHeader";
 
 // Componenet: Login Page 'READ_ONLY', 'The function name for component MUST start with uppercase'
 export default function LoginPage() {
@@ -34,42 +35,49 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="auth-page-bg">
-      <form onSubmit={handleSubmit} className="auth-form">
-        <h2 className="text-2xl font-bold mb-6 text-center text-indigo-300">
-          {t("login")}
-        </h2>
+    <div>
+      <div>
+        <DashboardHeader showProfile={false} />
+      </div>
+      <div className="auth-page-bg">
+        {/* <DashboardHeader showProfile={false} /> */}
 
-        <input
-          name="email"
-          type="email"
-          placeholder={t("email")}
-          required
-          className="form-input"
-        />
+        <form onSubmit={handleSubmit} className="auth-form">
+          <h2 className="text-2xl font-bold mb-6 text-center text-indigo-300">
+            {t("login")}
+          </h2>
 
-        <input
-          name="password"
-          type="password"
-          placeholder={t("password")}
-          required
-          className="form-input"
-        />
+          <input
+            name="email"
+            type="email"
+            placeholder={t("email")}
+            required
+            className="form-input"
+          />
 
-        <button type="submit" className="form-submit">
-          {loginMutation.isPending ? "Signing in..." : t("login")}
-        </button>
-        <p className="text-center text-sm text-gray-400 p-4">
-          {t("dontHaveAccount")}{" "}
-          <button
-            type="button"
-            onClick={() => navigate("/signup")}
-            className="text-indigo-400 hover:text-indigo-300 font-medium"
-          >
-            {t("signup")}
+          <input
+            name="password"
+            type="password"
+            placeholder={t("password")}
+            required
+            className="form-input"
+          />
+
+          <button type="submit" className="form-submit">
+            {loginMutation.isPending ? "Signing in..." : t("login")}
           </button>
-        </p>
-      </form>
+          <p className="text-center text-sm text-gray-400 p-4">
+            {t("dontHaveAccount")}{" "}
+            <button
+              type="button"
+              onClick={() => navigate("/signup")}
+              className="text-indigo-400 hover:text-indigo-300 font-medium"
+            >
+              {t("signup")}
+            </button>
+          </p>
+        </form>
+      </div>
     </div>
   );
 }

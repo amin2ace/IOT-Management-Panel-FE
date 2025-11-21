@@ -12,10 +12,7 @@ export function LanguageSelector() {
 
   return (
     <select
-      className="
-        p-2 rounded-lg border bg-white/60 dark:bg-gray-800/60 
-        border-gray-300 dark:border-gray-600 shadow
-      "
+      className="languageSelect"
       value={i18n.language}
       onChange={(e) => i18n.changeLanguage(e.target.value)}
     >

@@ -16,22 +16,13 @@ export default function DashboardLayout() {
 
   return (
     <div>
-      <div>
-        <DashboardHeader />
-      </div>
-
-      <div className="flex min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100">
+      <DashboardHeader showProfile={true} />
+      <div className="dashboardLayout">
         {/* SIDEBAR */}
-        <aside
-          className="
-        w-64 h-screen sticky top-0 p-5 bg-white/70 dark:bg-gray-800/80 
-        backdrop-blur-xl border-r border-gray-300/40 dark:border-gray-700/40
-        shadow-md flex flex-col
-        "
-        >
-          <h1 className="text-xl font-bold mb-8">IoT Panel</h1>
+        <aside className="dashboardLayoutSidebar">
+          <h1 className="dashboardLayoutSidebarTitle">IoT Panel</h1>
 
-          <nav className="flex flex-col gap-2">
+          <nav className="dashboardLayoutSidebarTab">
             {navItems.map((item) => (
               <Link
                 key={item.path}
@@ -40,8 +31,8 @@ export default function DashboardLayout() {
                 p-3 rounded-lg text-sm font-medium transition
                 ${
                   pathname === item.path
-                    ? "bg-indigo-600 text-white shadow"
-                    : "hover:bg-gray-200 dark:hover:bg-gray-700"
+                    ? "dashboardLayoutSidebarTabSelected"
+                    : "dashboardLayoutTabNotSidebarSelected"
                 }
               `}
               >

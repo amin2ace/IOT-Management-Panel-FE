@@ -15,30 +15,31 @@ export function useTheme() {
   useEffect(() => {
     const root = document.documentElement;
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const prefersDark = mediaQuery.matches;
 
-    const apply = (t: Theme) => {
-      if (t === "system") {
-        if (prefersDark) root.classList.add("dark");
-        else root.classList.remove("dark");
-      } else {
-        if (t === "dark") root.classList.add("dark");
-        else root.classList.remove("dark");
+    const applyTheme = (t: Theme) => {
+      // Get fresh system preference each time
+      const systemPrefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      const shouldBeDark = t === "system" ? systemPrefersDark : t === "dark";
+
+      console.log("🎨 Applying:", t, "Dark:", shouldBeDark);
+      root.classList.toggle("dark", shouldBeDark);
+    };
+
+    applyTheme(theme);
+    localStorage.setItem(STORAGE_KEY, theme);
+
+    // React to system changes
+    const handleSystemChange = (e: MediaQueryListEvent) => {
+      console.log("💻 System theme changed:", e.matches);
+      if (theme === "system") {
+        root.classList.toggle("dark", e.matches);
       }
     };
 
-    apply(theme);
-    localStorage.setItem(STORAGE_KEY, theme);
-
-    // react to system changes
-    const mediaListener = (e: MediaQueryListEvent) => {
-      if (theme === "system") root.classList.toggle("dark", e.matches);
-    };
-    mediaQuery.addEventListener("change", mediaListener);
-
-    return () => {
-      mediaQuery.removeEventListener("change", mediaListener);
-    };
+    mediaQuery.addEventListener("change", handleSystemChange);
+    return () => mediaQuery.removeEventListener("change", handleSystemChange);
   }, [theme]);
 
   return { theme, setTheme };

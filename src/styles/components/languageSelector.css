@@ -1,0 +1,4 @@
+.languageSelect {
+  @apply p-2 rounded-lg border bg-white/60 dark:bg-gray-800/60 
+        border-gray-300 dark:border-gray-600 shadow font-sans;
+}

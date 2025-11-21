@@ -1,4 +1,4 @@
-import { Sun, Moon } from "lucide-react";
+import { Sun, Moon, Monitor } from "lucide-react";
 import { useTheme, Theme } from "@/hooks/useTheme";
 import { JSX } from "react";
 import { useTranslation } from "react-i18next";
@@ -14,25 +14,38 @@ export default function ThemeToggle() {
       icon: <Sun className="w-4 h-4" />,
     },
     { label: t("darkMode"), value: "dark", icon: <Moon className="w-4 h-4" /> },
-    // { label: "System", value: "system", icon: <Monitor className="w-4 h-4" /> },
+    { label: "System", value: "system", icon: <Monitor className="w-4 h-4" /> },
   ];
 
+  const handleThemeChange = (newTheme: Theme) => {
+    console.log("🔄 ThemeToggle: Changing theme to", newTheme);
+    setTheme(newTheme);
+
+    // Immediate verification
+    setTimeout(() => {
+      const currentClass = document.documentElement.classList.contains("dark");
+      const saved = localStorage.getItem("app-theme");
+      console.log(
+        "✅ Verification - Dark class:",
+        currentClass,
+        "Saved:",
+        saved
+      );
+    }, 100);
+  };
+
   return (
-    <div className="flex gap-2 bg-gray-800/50 backdrop-blur-md border border-gray-700 p-2 rounded-xl">
+    <div className="themeToggle">
       {options.map((opt) => (
         <button
           key={opt.value}
-          onClick={() => setTheme(opt.value)}
-          className={`flex items-center gap-1 px-3 py-1 rounded-md transition ${
-            theme === opt.value
-              ? "bg-indigo-500 text-white shadow"
-              : "text-gray-400 hover:text-white hover:bg-gray-700/50"
+          onClick={() => handleThemeChange(opt.value)}
+          className={`themeChange ${
+            theme === opt.value ? "themeSelected" : "themeNotSelected"
           }`}
         >
           {opt.icon}
-          <span className="hidden sm:inline text-sm font-medium">
-            {opt.label}
-          </span>
+          <span className="themeLabel">{opt.label}</span>
         </button>
       ))}
     </div>
