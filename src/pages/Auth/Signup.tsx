@@ -45,7 +45,7 @@ export function SignupPage() {
 
       <div className="auth-page-bg">
         <form onSubmit={handleSubmit} className="auth-form">
-          <h1 className="text-2xl font-bold mb-6 text-center text-indigo-300">
+          <h1 className="text-2xl font-bold mb-6 text-center text-indigo-950 dark:text-indigo-100">
             {t("createAccount")}
           </h1>
 
@@ -80,12 +80,12 @@ export function SignupPage() {
             {t("signup")}
           </button>
 
-          <p className="text-center text-sm text-gray-400 p-4">
+          <p className="text-center text-sm text-indigo-950 dark:text-indigo-100 p-4">
             {t("alreadyHaveAccount")}{" "}
             <button
               type="button"
               onClick={() => navigate("/login")}
-              className="text-indigo-400 hover:text-indigo-300 font-medium"
+              className="text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-500 font-medium"
             >
               {t("login")}
             </button>

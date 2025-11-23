@@ -6,6 +6,8 @@
 @import "./styles/components/languageSelector.css";
 @import "./styles/layouts/dashboardLayout.css";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-primary-50: #e0f2fe;
   --color-primary-100: #bae6fd;

@@ -43,7 +43,7 @@ export default function LoginPage() {
         {/* <DashboardHeader showProfile={false} /> */}
 
         <form onSubmit={handleSubmit} className="auth-form">
-          <h2 className="text-2xl font-bold mb-6 text-center text-indigo-300">
+          <h2 className="text-2xl font-bold mb-6 text-center text-indigo-950 dark:text-indigo-100">
             {t("login")}
           </h2>
 
@@ -66,12 +66,12 @@ export default function LoginPage() {
           <button type="submit" className="form-submit">
             {loginMutation.isPending ? "Signing in..." : t("login")}
           </button>
-          <p className="text-center text-sm text-gray-400 p-4">
+          <p className="text-center text-sm text-indigo-950 dark:text-indigo-100 p-4">
             {t("dontHaveAccount")}{" "}
             <button
               type="button"
               onClick={() => navigate("/signup")}
-              className="text-indigo-400 hover:text-indigo-300 font-medium"
+              className="text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-500 font-medium"
             >
               {t("signup")}
             </button>

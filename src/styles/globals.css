@@ -37,7 +37,7 @@
 .page-bg::after {
   content: "";
   @apply absolute inset-0 
-         bg-gradient-to-br from-white/40 via-transparent to-white/30
+         bg-linear-to-br from-white/40 via-transparent to-white/30
          dark:from-black/50 dark:via-transparent dark:to-black/40
          backdrop-blur-[2px]
          pointer-events-none;
