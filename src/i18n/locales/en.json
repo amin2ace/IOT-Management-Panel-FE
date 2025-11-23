@@ -43,6 +43,11 @@
   "discoveryUnicastSent": "Discovery unicast sent",
   "discoveryBroadcastSent": "Discovery broadcast sent",
   "failedToSendDiscovery": "Failed to send discovery",
+  "enterDeviceId": "Enter device ID",
+  "formConfigurationMissing": "Form configuration missing",
+
+  "noDevicesDiscoveredYet": "No devices discovered yet...",
+  "discoveredDevices": "Discovered Devices",
 
   "deviceId": "Device ID ",
   "device": "Device ",
