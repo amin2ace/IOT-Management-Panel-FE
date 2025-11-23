@@ -1,9 +1,9 @@
 .dashboardHeader {
   @apply flex items-center justify-between p-4 
-                      bg-white/80 dark:bg-gray-900/80 
-                      backdrop-blur-md border-b border-gray-200 dark:border-gray-700
-                      text-gray-800 dark:text-gray-200
-                      transition-colors duration-300;
+      bg-white/80 dark:bg-gray-900/80  border
+      backdrop-blur-md border-gray-200 dark:border-gray-700
+      text-gray-800 dark:text-gray-200
+      transition-colors duration-300;
 }
 
 .dashboardProfile {
@@ -12,8 +12,8 @@
 
 .dashboardProfileImage {
   @apply w-10 h-10 rounded-full bg-linear-to-br
-                      from-indigo-500 to-purple-600 text-white flex items-center 
-                      justify-center font-bold shadow-lg;
+      from-indigo-500 to-purple-600 text-white flex items-center 
+      justify-center font-bold shadow-lg;
 }
 
 .dashboardProfileUsername {
@@ -21,5 +21,5 @@
 }
 
 .dashboardProfileRole {
-  @apply text-sm text-gray-800 dark:text-gray-300;
+  @apply text-sm text-gray-500 dark:text-gray-200;
 }

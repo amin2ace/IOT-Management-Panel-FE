@@ -1,5 +1,6 @@
 .themeToggle {
-  @apply flex gap-2 bg-gray-800/50 backdrop-blur-md border border-gray-700 p-2 rounded-xl;
+  @apply flex gap-2 bg-gray-200/60 border-gray-300 border
+      backdrop-blur-md dark:bg-gray-800/60 dark:border-gray-600 p-2 rounded-xl;
 }
 
 .themeChange {
@@ -11,7 +12,7 @@
 }
 
 .themeNotSelected {
-  @apply text-gray-400 hover:text-white hover:bg-gray-700/50;
+  @apply text-gray-800 dark:text-gray-400 hover:text-white hover:bg-gray-400/50;
 }
 
 .themeLabel {
