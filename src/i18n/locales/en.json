@@ -49,6 +49,8 @@
   "noDevicesDiscoveredYet": "No devices discovered yet...",
   "discoveredDevices": "Discovered Devices",
 
+  "navHeader": "IoT Management",
+
   "deviceId": "Device ID ",
   "device": "Device ",
   "discover": "Discover ",
