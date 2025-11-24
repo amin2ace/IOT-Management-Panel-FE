@@ -91,11 +91,17 @@
   "table.id": "Device ID ",
 
   "##################################_9": "User Profile Pages ",
+
   "profile.title": "Profile",
   "profile.firstName": "First Name",
   "profile.lastName": "Last Name",
-  "profile.username": "User Name",
+  "profile.username": "Username",
   "profile.email": "Email",
+
+  "profile.photoUrl": "Profile Photo",
+  "profile.isActive": "Active Status",
+  "profile.createdAt": "Created Date",
+  "profile.updatedAt": "Updated Date",
 
   "profile.changePhoto": "Change Photo",
   "profile.summary": "Profile Information",

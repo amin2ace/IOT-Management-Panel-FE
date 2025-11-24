@@ -2,25 +2,17 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+
+import { Role } from "./Role";
 export type UserResponseDto = {
-  /**
-   * Unique user identifier
-   */
   userId: string;
-  /**
-   * User email address
-   */
   email: string;
-  /**
-   * User display name
-   */
   username: string;
-  /**
-   * User active status
-   */
+  firstName?: string;
+  lastName?: string;
+  photoUrl?: string;
   isActive: boolean;
-  /**
-   * User roles for RBAC
-   */
-  roles: Array<"viewer" | "test" | "engineer" | "admin" | "super_admin">;
+  roles: Role[];
+  createdAt: string;
+  updatedAt: string;
 };

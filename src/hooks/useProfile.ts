@@ -10,10 +10,7 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 export function useProfile() {
   return useQuery({
     queryKey: ["profile"],
-    queryFn: async () => {
-      const res = await UsersService.usersControllerGetUserProfile();
-      return res.data;
-    },
+    queryFn: () => UsersService.usersControllerGetUserProfile(),
   });
 }
 
@@ -21,7 +18,7 @@ export function useProfile() {
 export function useUpdateProfile() {
   return useMutation({
     mutationFn: (payload: UpdateUserDto) =>
-      UsersService.usersControllerUpdateProfile(payload),
+      UsersService.usersControllerUpdateUserProfile(payload),
   });
 }
 
@@ -39,7 +36,6 @@ export function useUploadProfilePhoto() {
     mutationFn: async (file: File) => {
       const form = new FormData();
       form.append("file", file);
-
       return await UsersService.usersControllerUploadProfilePhoto(form);
     },
   });

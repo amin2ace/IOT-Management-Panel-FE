@@ -91,11 +91,17 @@
   "table.id": "Cihaz ID",
 
   "##################################_9": "User Profile Pages ",
+
   "profile.title": "Profil",
   "profile.firstName": "Ad",
   "profile.lastName": "Soyad",
   "profile.username": "Kullanıcı Adı",
   "profile.email": "E-posta",
+
+  "profile.photoUrl": "Profil Fotoğrafı",
+  "profile.isActive": "Aktif Durum",
+  "profile.createdAt": "Oluşturulma Tarihi",
+  "profile.updatedAt": "Güncellenme Tarihi",
 
   "profile.changePhoto": "Fotoğrafı Değiştir",
   "profile.summary": "Profil Bilgileri",

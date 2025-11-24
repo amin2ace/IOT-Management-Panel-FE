@@ -91,11 +91,17 @@
   "table.id": "شناسه دستگاه",
 
   "##################################_9": "User Profile Pages ",
+
   "profile.title": "پروفایل",
   "profile.firstName": "نام",
   "profile.lastName": "نام خانوادگی",
   "profile.username": "نام کاربری",
   "profile.email": "ایمیل",
+
+  "profile.photoUrl": "عکس پروفایل",
+  "profile.isActive": "وضعیت فعال",
+  "profile.createdAt": "تاریخ ایجاد",
+  "profile.updatedAt": "تاریخ به‌روزرسانی",
 
   "profile.changePhoto": "تغییر عکس",
   "profile.summary": "اطلاعات پروفایل",

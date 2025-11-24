@@ -9,11 +9,10 @@ import { useAuth } from "@/context/AuthContext";
 import { useTranslation } from "react-i18next";
 import toast from "react-hot-toast";
 import PasswordModal from "@/components/PasswordModal";
-import { useNavigate } from "react-router-dom";
+import { UserResponseDto } from "@/api";
 
 export default function ProfilePage() {
   const { logout } = useAuth();
-  const navigate = useNavigate();
   const { t } = useTranslation();
 
   const { data: user, refetch } = useProfile();
@@ -24,22 +23,39 @@ export default function ProfilePage() {
   const [isEditing, setIsEditing] = useState(false);
   const [showPasswordModal, setShowPasswordModal] = useState(false);
 
-  const [form, setForm] = useState({
-    username: "",
+  const [form, setForm] = useState<UserResponseDto>({
+    userId: "",
     email: "",
+    username: "",
+    firstName: "",
+    lastName: "",
+    photoUrl: "",
+    isActive: false,
+    roles: [],
+    createdAt: "",
+    updatedAt: "",
   });
 
   React.useEffect(() => {
     if (user) {
       setForm({
-        username: user.username || "",
-        email: user.email || "",
+        userId: user.userId || "unknown",
+        email: user.email || "unknown",
+        username: user.username || "unknown",
+        firstName: user.firstName || "unknown",
+        lastName: user.lastName || "unknown",
+        photoUrl: user.photoUrl || "unknown",
+        isActive: user.isActive || false,
+        roles: user.roles || [],
+        createdAt: user.createdAt || "unknown",
+        updatedAt: user.updatedAt || "unknown",
       });
     }
   }, [user]);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setForm({ ...form, [e.target.name]: e.target.value });
+    logout(); // ⬅ IMPORTANT
   }
 
   async function handleSave() {
@@ -94,7 +110,7 @@ export default function ProfilePage() {
 
         {/* User Fields */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-          {["firstName", "lastName", "email", "username"].map((field) => (
+          {Object.keys(form).map((field) => (
             <div key={field} className="flex flex-col gap-1">
               <label className="text-indigo-950 dark:text-gray-200/80 text-sm">
                 {t("profile." + field)}
@@ -127,8 +143,16 @@ export default function ProfilePage() {
                 onClick={() => {
                   setIsEditing(false);
                   setForm({
-                    username: user?.firstName || "",
-                    email: user?.email || "",
+                    userId: user?.userId || "unknown",
+                    email: user?.email || "unknown",
+                    username: user?.username || "unknown",
+                    firstName: user?.firstName || "unknown",
+                    lastName: user?.lastName || "unknown",
+                    photoUrl: user?.photoUrl || "unknown",
+                    isActive: user?.isActive || false,
+                    roles: user?.roles || [],
+                    createdAt: user?.createdAt || "unknown",
+                    updatedAt: user?.updatedAt || "unknown",
                   });
                 }}
               >
@@ -168,7 +192,7 @@ export default function ProfilePage() {
 
           <div>
             <div className="text-sm text-gray-400">{t("profile.roles")}</div>
-            <div className="text-sm">{user?.role}</div>
+            <div className="text-sm">{user?.roles}</div>
           </div>
         </div>
       </div>

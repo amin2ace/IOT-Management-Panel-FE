@@ -10,15 +10,55 @@ import type { CancelablePromise } from "../core/CancelablePromise";
 import { OpenAPI } from "../core/OpenAPI";
 import { request as __request } from "../core/request";
 export class UsersService {
-  static usersControllerGetUserProfile(
-    id: string
-  ): CancelablePromise<UserResponseDto> {
+  static usersControllerGetUserProfile(): CancelablePromise<UserResponseDto> {
     return __request(OpenAPI, {
       method: "GET",
       url: "/api/users/profile",
-
       errors: {
         404: `User not found`,
+      },
+    });
+  }
+
+  /**
+   * Update user details
+   * @param id
+   * @param requestBody
+   * @returns UserResponseDto User updated successfully
+   * @throws ApiError
+   */
+  public static usersControllerUpdateUserProfile(
+    requestBody: UpdateUserDto
+  ): CancelablePromise<UserResponseDto> {
+    return __request(OpenAPI, {
+      method: "PATCH",
+      url: "/api/users/{id}",
+      body: requestBody,
+      mediaType: "application/json",
+      errors: {
+        404: `User not found`,
+      },
+    });
+  }
+
+  /**
+   * Upload profile photo for the authenticated user
+   * @param fileData FormData containing the photo file
+   * @returns UserResponseDto Updated user with new profile photo
+   * @throws ApiError
+   */
+  public static usersControllerUploadProfilePhoto(
+    fileData: FormData
+  ): CancelablePromise<UserResponseDto> {
+    return __request(OpenAPI, {
+      method: "POST",
+      url: "/api/users/profile/photo",
+      body: fileData,
+      mediaType: "multipart/form-data",
+      errors: {
+        400: `Invalid file`,
+        401: `Unauthorized`,
+        500: `Server error`,
       },
     });
   }

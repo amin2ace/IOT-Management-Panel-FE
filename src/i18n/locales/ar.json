@@ -91,11 +91,17 @@
   "table.id": "معرف الجهاز",
 
   "##################################_9": "User Profile Pages ",
+
   "profile.title": "الملف الشخصي",
   "profile.firstName": "الاسم الأول",
   "profile.lastName": "اسم العائلة",
   "profile.username": "اسم المستخدم",
   "profile.email": "البريد الإلكتروني",
+
+  "profile.photoUrl": "صورة الملف الشخصي",
+  "profile.isActive": "الحالة النشطة",
+  "profile.createdAt": "تاريخ الإنشاء",
+  "profile.updatedAt": "تاريخ التحديث",
 
   "profile.changePhoto": "تغيير الصورة",
   "profile.summary": "معلومات الملف الشخصي",
