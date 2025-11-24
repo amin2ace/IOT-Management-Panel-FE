@@ -32,27 +32,27 @@ export default function DiscoveryMethod({
   );
 
   return (
-    <div className="bg-white/5 rounded-2xl border border-white/10 overflow-hidden">
+    <div className="dashboardDiscoveryContainer">
       {/* Tab Navigation */}
       <menu className="flex border-b border-white/10">
-        <li className="flex-1">
+        <li className="flex-1 bg-gray-400">
           <button
             className={`w-full py-4 px-6 text-center transition-colors duration-200 ${
               activeTab === DiscoverMethod.BROADCAST
-                ? "bg-indigo-600 text-white"
-                : "text-gray-300 hover:bg-white/5"
+                ? "bg-gray-700 text-white"
+                : "text-gray-900 dark:text-gray-300 hover:bg-gray-950/50"
             }`}
             onClick={() => setActiveTab(DiscoverMethod.BROADCAST)}
           >
             {t("broadcast") || "Broadcast"}
           </button>
         </li>
-        <li className="flex-1">
+        <li className="flex-1 bg-gray-400">
           <button
             className={`w-full py-4 px-6 text-center transition-colors duration-200 ${
               activeTab === DiscoverMethod.UNICAST
-                ? "bg-indigo-600 text-white"
-                : "text-gray-300 hover:bg-white/5"
+                ? "bg-gray-700 text-white"
+                : "text-gray-900 dark:text-gray-300 hover:bg-gray-950/50"
             }`}
             onClick={() => setActiveTab(DiscoverMethod.UNICAST)}
           >
@@ -66,11 +66,13 @@ export default function DiscoveryMethod({
         {/* Broadcast Tab Content */}
         {activeTab === DiscoverMethod.BROADCAST && (
           <div className="space-y-4">
-            <p className="text-gray-300">{t("discoveryBroadcastTitle")}</p>
+            <p className="text-gray-900 dark:text-gray-400">
+              {t("discoveryBroadcastTitle")}
+            </p>
             <button
               onClick={onBroadcast}
               disabled={loading}
-              className="px-6 py-3 bg-indigo-600 rounded-lg hover:bg-indigo-700 disabled:opacity-50 transition-colors duration-200 font-medium"
+              className="form-submit md:w-1/4! sm:w-1/2!"
             >
               {loading ? t("sending") : t("broadcastDiscover")}
             </button>
@@ -80,7 +82,7 @@ export default function DiscoveryMethod({
         {/* Unicast Tab Content */}
         {activeTab === DiscoverMethod.UNICAST && (
           <div className="space-y-4">
-            <p className="text-gray-300">
+            <p className="text-gray-900 dark:text-gray-400">
               {t("discoveryUnicastTitle") || "Discover specific device by ID"}
             </p>
             {submit && register ? (
@@ -88,20 +90,20 @@ export default function DiscoveryMethod({
                 onSubmit={submit(onUnicast)}
                 className="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-4 items-baseline-last"
               >
-                <div>
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-start">
                   <input
                     {...register("deviceId")}
-                    className="w-1/2 form-input"
+                    className="form-input w-full! sm:w-3/4! md:w-1/3!"
                     placeholder={t("Enter device ID")}
                   />
-                </div>
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="px-10 form-submit"
-                >
-                  {loading ? t("sending") : t("unicastDiscover")}
-                </button>
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="form-submit w-full! sm:w-2/4! md:w-1/5! whitespace-nowrap"
+                  >
+                    {loading ? t("sending") : t("unicastDiscover")}
+                  </button>
+                </div>{" "}
               </form>
             ) : (
               <p className="text-red-400">{t("Form configuration missing")}</p>

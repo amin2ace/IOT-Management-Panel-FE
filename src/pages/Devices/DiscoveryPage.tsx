@@ -104,8 +104,8 @@ export default function DiscoveryPage() {
   };
 
   return (
-    <div className="space-y-6  p-4">
-      <h1 className="text-2xl font-semibold text-white">{t("discover")}</h1>
+    <div className="flex flex-col px-10 sm:px-12 md:px-1 w-full h-full space-y-4">
+      <h1 className="text-2xl font-semibold">{t("discover")}</h1>
 
       {/* Single DiscoveryMethod component with tabs */}
       <DiscoveryMethod

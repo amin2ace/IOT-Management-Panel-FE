@@ -41,6 +41,12 @@
       transition-all cursor-pointer text-sm sm:text-base;
 }
 
+/* Discovery page style */
+.dashboardDiscoveryContainer {
+  @apply bg-gray-400/40 dark:bg-white/5 rounded-2xl border
+    border-gray-900/10 dark:border-white/10 overflow-hidden;
+}
+
 /* Additional mobile-specific utilities */
 @media (max-width: 640px) {
   .mobile-collapse {
