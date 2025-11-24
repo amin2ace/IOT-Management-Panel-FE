@@ -25,6 +25,7 @@
   "path.assignTab": "Assign Devices",
   "path.configureTab": "Configure Devices",
   "path.telemetryTab": "Telemetry",
+  "path.profile": "Pofile",
 
   "##################################_3": "Header Language Selector and Theme Toggle",
 
@@ -78,7 +79,7 @@
   "assign.provisionButton": "Assign",
   "assign.reset": "Reset",
 
-  "##################################_8": "Dashboard Tale Headers ",
+  "##################################_8": "Dashboard Table Headers ",
 
   "table.capabilities": "Capabilities",
   "table.functionality": "Functionality",
@@ -89,6 +90,22 @@
   "table.hSetPoint": "High SP",
   "table.id": "Device ID ",
 
+  "##################################_9": "User Profile Pages ",
+  "profile.title": "Profile",
+  "profile.firstName": "First Name",
+  "profile.lastName": "Last Name",
+  "profile.username": "User Name",
+  "profile.email": "Email",
+
+  "profile.changePhoto": "Change Photo",
+  "profile.summary": "Profile Information",
+  "profile.userId": "User ID",
+  "profile.roles": "User Roles",
+  "profile.joined": "Joined Date",
+  "profile.edit": "Edit Profile",
+  "profile.changePassword": "Change Password",
+  "profile.accountMeta": "Account Meta",
+
   "##################################_": "Dashboard Common ",
 
   "common.sending": "Sending... ",
@@ -96,6 +113,8 @@
   "common.sent": "Sent ",
   "common.id": "ID ",
   "common.save": "Save",
+  "common.saveChanges": "Save Changes",
+  "common.return": "Return",
   "common.cancel": "Cancel",
   "common.language": "Language",
   "common.theme": "Theme",

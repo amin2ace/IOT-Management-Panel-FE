@@ -17,6 +17,7 @@ import { Toaster } from "react-hot-toast";
 import HomeDashboard from "./pages/HomeDashboard";
 import DiscoveryPage from "./pages/Devices/DiscoveryPage";
 import AssignPage from "./pages/Devices/AssignPage";
+import ProfilePage from "./pages/Auth/Profile";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +36,7 @@ createRoot(document.getElementById("root")!).render(
               <Route path="/devices/assign" element={<AssignPage />} />
               <Route path="/devices/configure" element={<ConfigPage />} />
               <Route path="/devices/telemetry" element={<TelemetryPage />} />
+              <Route path="/profile" element={<ProfilePage />} />
               <Route path="hmi" element={<HmiPage />} />
             </Route>
           </Routes>

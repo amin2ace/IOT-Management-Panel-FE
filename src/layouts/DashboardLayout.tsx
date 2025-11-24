@@ -14,6 +14,7 @@ export default function DashboardLayout() {
     { path: "/devices/assign", label: t("path.assignTab"), icon: "📋" },
     { path: "/devices/configure", label: t("path.configureTab"), icon: "⚙️" },
     { path: "/devices/telemetry", label: t("path.telemetryTab"), icon: "📡" },
+    { path: "/profile", label: t("path.profile"), icon: "👤" },
   ];
 
   const toggleSidebar = () => {

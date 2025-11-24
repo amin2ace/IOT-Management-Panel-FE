@@ -57,6 +57,15 @@
       transition-all text-sm sm:text-base;
 }
 
+/* Dashboard Profile Container */
+.dashboardProfileContainer {
+  @apply p-4 sm:p-6 rounded-lg sm:rounded-xl shadow-md sm:shadow-lg 
+    bg-white/60 dark:bg-gray-800/40 border 
+      backdrop-blur-xl border-gray-300/40 dark:border-gray-700/40
+      hover:shadow-lg sm:hover:shadow-2xl dark:hover:shadow-xl dark:shadow-gray-500/30 
+      transition-all text-sm sm:text-base;
+}
+
 /* Dashboard Assign Container */
 .dashboardAssignContainer {
   @apply p-4 sm:p-6 rounded-lg sm:rounded-xl shadow-md sm:shadow-lg 

@@ -10,6 +10,19 @@ import type { CancelablePromise } from "../core/CancelablePromise";
 import { OpenAPI } from "../core/OpenAPI";
 import { request as __request } from "../core/request";
 export class UsersService {
+  static usersControllerGetUserProfile(
+    id: string
+  ): CancelablePromise<UserResponseDto> {
+    return __request(OpenAPI, {
+      method: "GET",
+      url: "/api/users/profile",
+
+      errors: {
+        404: `User not found`,
+      },
+    });
+  }
+
   /**
    * Create a new user (Admin only)
    * @param requestBody
