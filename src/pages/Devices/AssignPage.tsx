@@ -188,14 +188,15 @@ export default function AssignPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="dashboardContainer">
       <header className="flex items-center justify-between">
         <h1 className="text-2xl font-semibold">{t("assignTab")}</h1>
       </header>
 
       <div className="bg-white/5 p-4 rounded-2xl backdrop-blur-md border border-white/10">
         <p className="text-gray-300 mb-2">
-          {t("assignIntro") || "Assign functionalities to unassigned sensors"}
+          {t("dashoard.assignIntro") ||
+            "Assign functionalities to unassigned sensors"}
         </p>
 
         <div className="overflow-x-auto">
@@ -217,7 +218,7 @@ export default function AssignPage() {
               {loading && (
                 <tr>
                   <td colSpan={8} className="p-6 text-center text-gray-400">
-                    Loading...
+                    {t("loading")}
                   </td>
                 </tr>
               )}

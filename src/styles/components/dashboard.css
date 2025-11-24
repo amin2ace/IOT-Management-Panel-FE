@@ -27,7 +27,7 @@
 }
 
 /* Dashboard Home Container - Mobile padding */
-.dashboardHomeContainer {
+.dashboardContainer {
   @apply flex flex-col px-10 sm:px-12 md:px-1 w-full h-full
     bg-gray-100 text-gray-900 
     dark:bg-gray-900 dark:text-gray-100;
@@ -41,10 +41,13 @@
       transition-all cursor-pointer text-sm sm:text-base;
 }
 
-/* Discovery page style */
+/* Dashboard Discovery Container */
 .dashboardDiscoveryContainer {
-  @apply bg-gray-400/40 dark:bg-white/5 rounded-2xl border
-    border-gray-900/10 dark:border-white/10 overflow-hidden;
+  @apply p-4 sm:p-6 rounded-lg sm:rounded-xl shadow-md sm:shadow-lg 
+    bg-white/60 dark:bg-gray-800/40 border 
+      backdrop-blur-xl border-gray-300/40 dark:border-gray-700/40
+      hover:shadow-lg sm:hover:shadow-2xl dark:hover:shadow-xl dark:shadow-gray-500/30 
+      transition-all text-sm sm:text-base;
 }
 
 /* Additional mobile-specific utilities */

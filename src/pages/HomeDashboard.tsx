@@ -6,6 +6,7 @@ export default function HomeDashboard() {
   const cards = [
     { title: t("dashboard.Clock"), value: "--" },
     { title: t("dashboard.uptime"), value: "--" },
+    { title: t("dashboard.buadrate"), value: "--" },
     { title: t("dashboard.connectedSensors"), value: "--" },
     { title: t("dashboard.connectedControllers"), value: "--" },
     { title: t("dashboard.cpuUsage"), value: "-- %" },
@@ -15,7 +16,7 @@ export default function HomeDashboard() {
   ];
 
   return (
-    <div className="dashboardHomeContainer">
+    <div className="dashboardContainer">
       {/* HEADER */}
       <header className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-semibold">{t("dashboard.title1")}</h1>

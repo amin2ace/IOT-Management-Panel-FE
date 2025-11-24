@@ -1,13 +1,13 @@
 /* Auth Page Background */
 .auth-page-bg {
   @apply min-h-screen flex items-center justify-center bg-linear-to-b
-    from-indigo-200 via-indigo-100 to-indigo-700
+    from-slate-700 via-cyan-900/80 to-slate-600
     dark:from-gray-700 dark:via-indigo-950 dark:to-gray-900
       transition-all duration-300;
 }
 
 .auth-form {
-  @apply bg-indigo-300 dark:bg-gray-800 
+  @apply bg-slate-300 dark:bg-cyan-950 
       p-8 rounded-2xl shadow-xl
       w-96 max-w-[90vw]
       border border-white/20 dark:border-gray-600/30
@@ -25,7 +25,7 @@
 }
 
 .form-submit {
-  @apply w-full bg-indigo-500 dark:bg-indigo-700
+  @apply w-full bg-indigo-500 dark:bg-indigo-700 cursor-pointer
       hover:bg-indigo-600 dark:hover:bg-indigo-500
       text-white font-bold py-3 rounded-lg transition-all duration-300
       transform hover:-translate-y-0.5 focus:outline-none

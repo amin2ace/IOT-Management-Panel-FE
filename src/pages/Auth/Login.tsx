@@ -71,7 +71,7 @@ export default function LoginPage() {
             <button
               type="button"
               onClick={() => navigate("/signup")}
-              className="text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-500 font-medium"
+              className="cursor-pointer text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-500 font-medium"
             >
               {t("signup")}
             </button>

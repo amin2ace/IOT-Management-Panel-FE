@@ -52,6 +52,7 @@
   "dashboard.title1": "Summary",
   "dashboard.Clock": "Clock",
   "dashboard.uptime": "Up Time",
+  "dashboard.buadrate": "Buad Rate",
   "dashboard.connectedSensors": "Sensors",
   "dashboard.connectedControllers": "Controllers",
   "dashboard.cpuUsage": "CPU Usage",
@@ -59,12 +60,15 @@
   "dashboard.errors": "Errors",
   "dashboard.warnings": "Warnings",
 
+  "dashoard.assignIntro": "Unassigned Devices",
+
   "navHeader": "IoT Management",
 
   "deviceId": "Device ID ",
   "device": "Device ",
   "discover": "Discover ",
   "sending": "Sending... ",
+  "loading": "Loading...",
   "sent": "Sent ",
   "id": "ID ",
 

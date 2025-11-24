@@ -35,24 +35,24 @@ export default function DiscoveryMethod({
     <div className="dashboardDiscoveryContainer">
       {/* Tab Navigation */}
       <menu className="flex border-b border-white/10">
-        <li className="flex-1 bg-gray-400">
+        <li className="flex-1">
           <button
-            className={`w-full py-4 px-6 text-center transition-colors duration-200 ${
+            className={`w-full rounded-lg py-4 px-6 text-center transition-colors duration-200 cursor-pointer ${
               activeTab === DiscoverMethod.BROADCAST
                 ? "bg-gray-700 text-white"
-                : "text-gray-900 dark:text-gray-300 hover:bg-gray-950/50"
+                : "bg-gray-300 text-gray-950 dark:text-gray-950 dark:hover:text-gray-300 dark:hover:bg-gray-700 hover:bg-gray-950/30"
             }`}
             onClick={() => setActiveTab(DiscoverMethod.BROADCAST)}
           >
             {t("broadcast") || "Broadcast"}
           </button>
         </li>
-        <li className="flex-1 bg-gray-400">
+        <li className="flex-1">
           <button
-            className={`w-full py-4 px-6 text-center transition-colors duration-200 ${
+            className={`w-full rounded-lg py-4 px-6 text-center transition-colors duration-200 cursor-pointer ${
               activeTab === DiscoverMethod.UNICAST
                 ? "bg-gray-700 text-white"
-                : "text-gray-900 dark:text-gray-300 hover:bg-gray-950/50"
+                : "bg-gray-300 text-gray-950 dark:text-gray-950 dark:hover:text-gray-300 dark:hover:bg-gray-700 hover:bg-gray-950/30"
             }`}
             onClick={() => setActiveTab(DiscoverMethod.UNICAST)}
           >
