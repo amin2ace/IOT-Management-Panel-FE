@@ -49,6 +49,16 @@
   "noDevicesDiscoveredYet": "No devices discovered yet...",
   "discoveredDevices": "Discovered Devices",
 
+  "dashboard.title1": "Summary",
+  "dashboard.Clock": "Clock",
+  "dashboard.uptime": "Up Time",
+  "dashboard.connectedSensors": "Sensors",
+  "dashboard.connectedControllers": "Controllers",
+  "dashboard.cpuUsage": "CPU Usage",
+  "dashboard.ramUsage": "RAM Usage",
+  "dashboard.errors": "Errors",
+  "dashboard.warnings": "Warnings",
+
   "navHeader": "IoT Management",
 
   "deviceId": "Device ID ",
