@@ -72,9 +72,9 @@ export default function DiscoveryPage() {
 
     try {
       socket?.emit("react/message/discovery/unicast/request", payload);
-      toast.success(t("discoveryUnicastSent"));
+      toast.success(t("discovery.UnicastSent"));
     } catch {
-      toast.error(t("failedToSendDiscovery"));
+      toast.error(t("discovery.failedToSendDiscovery"));
     } finally {
       setLoading(false);
     }
@@ -95,9 +95,9 @@ export default function DiscoveryPage() {
 
     try {
       socket?.emit("react/message/discovery/broadcast/request", payload);
-      toast.success(t("discoveryBroadcastSent"));
+      toast.success(t("discovery.broadcastSent"));
     } catch {
-      toast.error(t("failedToSendDiscovery"));
+      toast.error(t("discovery.failedToSendDiscovery"));
     } finally {
       setLoading(false);
     }
@@ -105,7 +105,7 @@ export default function DiscoveryPage() {
 
   return (
     <div className="flex flex-col px-10 sm:px-12 md:px-1 w-full h-full space-y-4">
-      <h1 className="text-2xl font-semibold">{t("discover")}</h1>
+      <h1 className="text-2xl font-semibold">{t("discovery.discover")}</h1>
 
       {/* Single DiscoveryMethod component with tabs */}
       <DiscoveryMethod

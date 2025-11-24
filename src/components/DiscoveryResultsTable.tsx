@@ -16,13 +16,13 @@ export default function DevicesResultTable({ result }: Props) {
   if (!result)
     return (
       <div className="text-gray-400 italic text-center py-6">
-        {t("noDevicesDiscoveredYet")}
+        {t("discovery.noDevicesDiscoveredYet")}
       </div>
     );
   return (
     <div className="mt-8 bg-white/10 backdrop-blur-xl rounded-xl p-4 border border-white/20 shadow-xl">
       <h2 className="text-xl font-semibold mb-4 text-white">
-        {t("discoveredDevices")}
+        {t("discovery.discoveredDevices")}
       </h2>
 
       {/* Scroll wrapper */}

@@ -44,7 +44,7 @@ export default function DiscoveryMethod({
             }`}
             onClick={() => setActiveTab(DiscoverMethod.BROADCAST)}
           >
-            {t("broadcast") || "Broadcast"}
+            {t("discovery.broadcast") || "Broadcast"}
           </button>
         </li>
         <li className="flex-1">
@@ -56,7 +56,7 @@ export default function DiscoveryMethod({
             }`}
             onClick={() => setActiveTab(DiscoverMethod.UNICAST)}
           >
-            {t("unicast") || "Unicast"}
+            {t("discovery.unicast") || "Unicast"}
           </button>
         </li>
       </menu>
@@ -67,14 +67,14 @@ export default function DiscoveryMethod({
         {activeTab === DiscoverMethod.BROADCAST && (
           <div className="space-y-4">
             <p className="text-gray-900 dark:text-gray-400">
-              {t("discoveryBroadcastTitle")}
+              {t("discovery.broadcastTitle")}
             </p>
             <button
               onClick={onBroadcast}
               disabled={loading}
               className="form-submit md:w-1/4! sm:w-1/2!"
             >
-              {loading ? t("sending") : t("broadcastDiscover")}
+              {loading ? t("common.sending") : t("discovery.broadcastDiscover")}
             </button>
           </div>
         )}
@@ -83,7 +83,8 @@ export default function DiscoveryMethod({
         {activeTab === DiscoverMethod.UNICAST && (
           <div className="space-y-4">
             <p className="text-gray-900 dark:text-gray-400">
-              {t("discoveryUnicastTitle") || "Discover specific device by ID"}
+              {t("discovery.discoveryUnicastTitle") ||
+                "Discover specific device by ID"}
             </p>
             {submit && register ? (
               <form
@@ -94,19 +95,21 @@ export default function DiscoveryMethod({
                   <input
                     {...register("deviceId")}
                     className="form-input w-full! sm:w-3/4! md:w-1/3!"
-                    placeholder={t("Enter device ID")}
+                    placeholder={t("discovery.enterDeviceId")}
                   />
                   <button
                     type="submit"
                     disabled={loading}
                     className="form-submit w-full! sm:w-2/4! md:w-1/5! whitespace-nowrap"
                   >
-                    {loading ? t("sending") : t("unicastDiscover")}
+                    {loading
+                      ? t("common.sending")
+                      : t("discovery.unicastDiscover")}
                   </button>
                 </div>{" "}
               </form>
             ) : (
-              <p className="text-red-400">{t("Form configuration missing")}</p>
+              <p className="text-red-400">{t("discovery.formMissConfig")}</p>
             )}
           </div>
         )}

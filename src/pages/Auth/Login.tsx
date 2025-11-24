@@ -27,10 +27,10 @@ export default function LoginPage() {
       // const user = res.data ?? null;
       // if (user) setUser(user);
       navigate("/dashboard", { replace: true, viewTransition: true });
-      toast.success(t("loginSuccess"));
+      toast.success(t("auth.loginSuccess"));
     } catch (err) {
       console.error(err);
-      toast.error(t("loginFailed"));
+      toast.error(t("auth.loginFailed"));
     }
   };
 
@@ -44,13 +44,13 @@ export default function LoginPage() {
 
         <form onSubmit={handleSubmit} className="auth-form">
           <h2 className="text-2xl font-bold mb-6 text-center text-indigo-950 dark:text-indigo-100">
-            {t("login")}
+            {t("auth.login")}
           </h2>
 
           <input
             name="email"
             type="email"
-            placeholder={t("email")}
+            placeholder={t("auth.email")}
             required
             className="form-input"
           />
@@ -58,22 +58,22 @@ export default function LoginPage() {
           <input
             name="password"
             type="password"
-            placeholder={t("password")}
+            placeholder={t("auth.password")}
             required
             className="form-input"
           />
 
           <button type="submit" className="form-submit">
-            {loginMutation.isPending ? "Signing in..." : t("login")}
+            {loginMutation.isPending ? "Signing in..." : t("auth.login")}
           </button>
           <p className="text-center text-sm text-indigo-950 dark:text-indigo-100 p-4">
-            {t("dontHaveAccount")}{" "}
+            {t("auth.dontHaveAccount")}{" "}
             <button
               type="button"
               onClick={() => navigate("/signup")}
               className="cursor-pointer text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-500 font-medium"
             >
-              {t("signup")}
+              {t("auth.signup")}
             </button>
           </p>
         </form>

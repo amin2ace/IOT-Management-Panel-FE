@@ -188,29 +188,29 @@ export default function AssignPage() {
   }
 
   return (
-    <div className="dashboardContainer">
-      <header className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">{t("assignTab")}</h1>
+    <div className="dashboardAssignContainer">
+      <header className="flex items-center justify-between mb-5 ml-3">
+        <h1 className="text-2xl font-semibold">{t("path.assignTab")}</h1>
       </header>
 
       <div className="bg-white/5 p-4 rounded-2xl backdrop-blur-md border border-white/10">
-        <p className="text-gray-300 mb-2">
-          {t("dashoard.assignIntro") ||
+        <p className="text-gray-300 mb-5">
+          {t("assign.assignIntro") ||
             "Assign functionalities to unassigned sensors"}
         </p>
 
-        <div className="overflow-x-auto">
-          <table className="min-w-full text-left">
+        <div className="overflow-x-auto rounded-t-lg">
+          <table className="min-w-full text-left ">
             <thead>
-              <tr className="bg-gray-200 dark:bg-gray-700 text-sm uppercase">
-                <th className="px-4 py-2">Device ID</th>
-                <th className="px-4 py-2">Capabilities</th>
-                <th className="px-4 py-2">Functionality</th>
-                <th className="px-4 py-2">Publish Topic</th>
-                <th className="px-4 py-2">Interval (ms)</th>
-                <th className="px-4 py-2">Low SP</th>
-                <th className="px-4 py-2">High SP</th>
-                <th className="px-4 py-2">Action</th>
+              <tr className="bg-gray-300 dark:bg-gray-600 text-sm uppercase ">
+                <th className="px-4 py-2">{t("table.id")}</th>
+                <th className="px-4 py-2">{t("table.capabilities")}</th>
+                <th className="px-4 py-2">{t("table.functionality")}</th>
+                <th className="px-4 py-2">{t("table.controller")}</th>
+                <th className="px-4 py-2">{t("table.baseTopic")}</th>
+                <th className="px-4 py-2">{t("table.interval")}</th>
+                <th className="px-4 py-2">{t("table.lSetPoint")}</th>
+                <th className="px-4 py-2">{t("table.hSetPoint")}</th>
               </tr>
             </thead>
 
@@ -218,7 +218,7 @@ export default function AssignPage() {
               {loading && (
                 <tr>
                   <td colSpan={8} className="p-6 text-center text-gray-400">
-                    {t("loading")}
+                    {t("common.loading")}
                   </td>
                 </tr>
               )}
@@ -226,7 +226,7 @@ export default function AssignPage() {
               {!loading && devices.length === 0 && (
                 <tr>
                   <td colSpan={8} className="p-6 text-center text-gray-400">
-                    No unassigned devices
+                    {t("assign.noDevice")}
                   </td>
                 </tr>
               )}
@@ -288,7 +288,7 @@ export default function AssignPage() {
 
                     <td className="px-4 py-3 align-top w-40">
                       <NumberInput
-                        label={t("interval")}
+                        label={t("table.interval")}
                         value={model.interval}
                         setValue={(v: number) =>
                           updateFor(device.deviceId, { interval: v })
@@ -301,7 +301,7 @@ export default function AssignPage() {
 
                     <td className="px-4 py-3 align-top w-32">
                       <NumberInput
-                        label={t("lowSetPoint")}
+                        label={t("table.lowSetPoint")}
                         value={model.lowSetPoint}
                         setValue={(v: number) =>
                           updateFor(device.deviceId, { lowSetPoint: v })
@@ -314,7 +314,7 @@ export default function AssignPage() {
 
                     <td className="px-4 py-3 align-top w-32">
                       <NumberInput
-                        label={t("highSetPoint")}
+                        label={t("table.highSetPoint")}
                         value={model.highSetPoint}
                         setValue={(v: number) =>
                           updateFor(device.deviceId, { highSetPoint: v })
@@ -331,7 +331,7 @@ export default function AssignPage() {
                           onClick={() => handleSend(device)}
                           className="w-full bg-indigo-600 hover:bg-indigo-700 py-2 rounded"
                         >
-                          {t("assign")}
+                          {t("assign.provisionButton")}
                         </button>
 
                         <button
@@ -346,7 +346,7 @@ export default function AssignPage() {
                           }
                           className="w-full bg-gray-700 hover:bg-gray-600 py-2 rounded text-sm"
                         >
-                          {t("reset")}
+                          {t("assign.reset")}
                         </button>
                       </div>
                     </td>

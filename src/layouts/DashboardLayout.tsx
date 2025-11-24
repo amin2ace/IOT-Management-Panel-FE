@@ -9,11 +9,11 @@ export default function DashboardLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const navItems = [
-    { path: "/dashboard", label: t("dashboardTab"), icon: "📊" },
-    { path: "/devices/discover", label: t("discoverTab"), icon: "🔍" },
-    { path: "/devices/assign", label: t("assignTab"), icon: "📋" },
-    { path: "/devices/configure", label: t("configureTab"), icon: "⚙️" },
-    { path: "/devices/telemetry", label: t("telemetryTab"), icon: "📡" },
+    { path: "/dashboard", label: t("path.dashboardTab"), icon: "📊" },
+    { path: "/devices/discover", label: t("path.discoverTab"), icon: "🔍" },
+    { path: "/devices/assign", label: t("path.assignTab"), icon: "📋" },
+    { path: "/devices/configure", label: t("path.configureTab"), icon: "⚙️" },
+    { path: "/devices/telemetry", label: t("path.telemetryTab"), icon: "📡" },
   ];
 
   const toggleSidebar = () => {
@@ -62,7 +62,7 @@ export default function DashboardLayout() {
           {/* Sidebar Header */}
           <div className="navHeader">
             {isSidebarOpen && (
-              <h1 className="responsiveText">{t("navHeader")}</h1>
+              <h1 className="responsiveText">{t("nav.header")}</h1>
             )}
             {/* Desktop toggle button - hidden on mobile */}
             <button onClick={toggleSidebar} className="navHeaderButton">

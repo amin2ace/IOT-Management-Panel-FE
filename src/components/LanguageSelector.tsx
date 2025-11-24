@@ -4,10 +4,10 @@ export function LanguageSelector() {
   const { i18n, t } = useTranslation();
 
   const languages = [
-    { code: "en", label: t("en") },
-    { code: "fa", label: t("fa") },
-    { code: "tr", label: t("tr") },
-    { code: "ar", label: t("ar") },
+    { code: "en", label: t("lang.en") },
+    { code: "fa", label: t("lang.fa") },
+    { code: "tr", label: t("lang.tr") },
+    { code: "ar", label: t("lang.ar") },
   ];
 
   return (

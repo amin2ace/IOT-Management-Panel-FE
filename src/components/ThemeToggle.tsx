@@ -9,12 +9,20 @@ export default function ThemeToggle() {
 
   const options: { label: string; value: Theme; icon: JSX.Element }[] = [
     {
-      label: t("lightMode"),
+      label: t("theme.lightMode"),
       value: "light",
       icon: <Sun className="w-4 h-4" />,
     },
-    { label: t("darkMode"), value: "dark", icon: <Moon className="w-4 h-4" /> },
-    { label: "System", value: "system", icon: <Monitor className="w-4 h-4" /> },
+    {
+      label: t("theme.darkMode"),
+      value: "dark",
+      icon: <Moon className="w-4 h-4" />,
+    },
+    {
+      label: t("theme.system"),
+      value: "system",
+      icon: <Monitor className="w-4 h-4" />,
+    },
   ];
 
   const handleThemeChange = (newTheme: Theme) => {
