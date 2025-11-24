@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { loginInputDto } from "@/api";
 import { useLogin } from "@/hooks/useLogin";
 import toast from "react-hot-toast";
+import DashboardHeader from "@/components/DashboardHeader";
 
 // Componenet: Login Page 'READ_ONLY', 'The function name for component MUST start with uppercase'
 export default function LoginPage() {
@@ -26,50 +27,57 @@ export default function LoginPage() {
       // const user = res.data ?? null;
       // if (user) setUser(user);
       navigate("/dashboard", { replace: true, viewTransition: true });
-      toast.success(t("loginSuccess"));
+      toast.success(t("auth.loginSuccess"));
     } catch (err) {
       console.error(err);
-      toast.error(t("loginFailed"));
+      toast.error(t("auth.loginFailed"));
     }
   };
 
   return (
-    <div className="auth-page-bg">
-      <form onSubmit={handleSubmit} className="auth-form">
-        <h2 className="text-2xl font-bold mb-6 text-center text-indigo-300">
-          {t("login")}
-        </h2>
+    <div>
+      <div>
+        <DashboardHeader showProfile={false} />
+      </div>
+      <div className="auth-page-bg">
+        {/* <DashboardHeader showProfile={false} /> */}
 
-        <input
-          name="email"
-          type="email"
-          placeholder={t("email")}
-          required
-          className="form-input"
-        />
+        <form onSubmit={handleSubmit} className="auth-form">
+          <h2 className="text-2xl font-bold mb-6 text-center text-indigo-950 dark:text-indigo-100">
+            {t("auth.login")}
+          </h2>
 
-        <input
-          name="password"
-          type="password"
-          placeholder={t("password")}
-          required
-          className="form-input"
-        />
+          <input
+            name="email"
+            type="email"
+            placeholder={t("auth.email")}
+            required
+            className="form-input"
+          />
 
-        <button type="submit" className="form-submit">
-          {loginMutation.isPending ? "Signing in..." : t("login")}
-        </button>
-        <p className="text-center text-sm text-gray-400 p-4">
-          {t("dontHaveAccount")}{" "}
-          <button
-            type="button"
-            onClick={() => navigate("/signup")}
-            className="text-indigo-400 hover:text-indigo-300 font-medium"
-          >
-            {t("signup")}
+          <input
+            name="password"
+            type="password"
+            placeholder={t("auth.password")}
+            required
+            className="form-input"
+          />
+
+          <button type="submit" className="form-submit">
+            {loginMutation.isPending ? "Signing in..." : t("auth.login")}
           </button>
-        </p>
-      </form>
+          <p className="text-center text-sm text-indigo-950 dark:text-indigo-100 p-4">
+            {t("auth.dontHaveAccount")}{" "}
+            <button
+              type="button"
+              onClick={() => navigate("/signup")}
+              className="cursor-pointer text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-500 font-medium"
+            >
+              {t("auth.signup")}
+            </button>
+          </p>
+        </form>
+      </div>
     </div>
   );
 }

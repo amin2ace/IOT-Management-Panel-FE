@@ -1,0 +1,105 @@
+/* Dashboard Header - Mobile optimizations */
+.dashboardHeader {
+  @apply flex items-center justify-between p-3 sm:p-4 
+      bg-white/80 dark:bg-gray-900/80 border
+      border-gray-200 dark:border-gray-700
+      text-gray-800 dark:text-gray-200
+      transition-colors duration-300;
+}
+
+/* Dashboar Logout Button */
+.dashboardLogoutButton {
+  @apply w-full p-2 bg-gray-200/60 border-gray-300 border text-gray-800
+    dark:border-gray-600 dark:bg-gray-800/60 dark:text-gray-400 
+    hover:bg-red-700/60 hover:text-gray-200
+      rounded-lg transition-colors duration-500;
+}
+/* Dashboard Profile - Stack on small screens */
+.dashboardProfile {
+  @apply flex items-center gap-2 sm:gap-3;
+}
+
+.dashboardProfileImage {
+  @apply w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-linear-to-br
+      from-indigo-500 to-purple-600 text-white flex items-center 
+      justify-center font-bold shadow-lg text-xs sm:text-sm md:text-base;
+}
+
+.dashboardProfileUsername {
+  @apply font-semibold text-gray-900 dark:text-white text-xs sm:text-sm md:text-base hidden sm:block;
+}
+
+.dashboardProfileRole {
+  @apply text-xs sm:text-sm text-gray-500 dark:text-gray-200 hidden sm:block;
+}
+
+/* Dashboard Home Container - Mobile padding */
+.dashboardContainer {
+  @apply flex flex-col px-10 sm:px-12 md:px-1 w-full h-full
+    bg-gray-100 text-gray-900 
+    dark:bg-gray-900 dark:text-gray-100;
+}
+
+.dashboardHomeContainerGrid {
+  @apply p-4 sm:p-6 rounded-lg sm:rounded-xl shadow-md sm:shadow-lg 
+      bg-white/60 dark:bg-gray-800/40 border 
+      backdrop-blur-xl border-gray-300/40 dark:border-gray-700/40
+      hover:shadow-lg sm:hover:shadow-2xl dark:hover:shadow-xl dark:shadow-gray-500/30 
+      transition-all cursor-pointer text-sm sm:text-base;
+}
+
+/* Dashboard Discovery Container */
+.dashboardDiscoveryContainer {
+  @apply p-4 sm:p-6 rounded-lg sm:rounded-xl shadow-md sm:shadow-lg 
+    bg-white/60 dark:bg-gray-800/40 border 
+      backdrop-blur-xl border-gray-300/40 dark:border-gray-700/40
+      hover:shadow-lg sm:hover:shadow-2xl dark:hover:shadow-xl dark:shadow-gray-500/30 
+      transition-all text-sm sm:text-base;
+}
+
+/* Dashboard Assign Container */
+.dashboardAssignContainer {
+  @apply p-4 sm:p-6 rounded-lg sm:rounded-xl shadow-md sm:shadow-lg 
+    bg-white/60 dark:bg-gray-800/40 border 
+      backdrop-blur-xl border-gray-300/40 dark:border-gray-700/40
+      hover:shadow-lg sm:hover:shadow-2xl dark:hover:shadow-xl dark:shadow-gray-500/30 
+      transition-all text-sm sm:text-base;
+}
+
+/* Additional mobile-specific utilities */
+@media (max-width: 640px) {
+  .mobile-collapse {
+    @apply flex-col items-start gap-1;
+  }
+
+  .mobile-text-sm {
+    @apply text-xs;
+  }
+
+  .mobile-p-2 {
+    @apply p-2;
+  }
+
+  .mobile-grid-cols-1 {
+    @apply grid-cols-1;
+  }
+
+  .mobile-gap-3 {
+    @apply gap-3;
+  }
+}
+
+/* Extra small screen adjustments (using max-width media query) */
+@media (max-width: 480px) {
+  .mobile-xs-text {
+    @apply text-xs;
+  }
+
+  .mobile-xs-p-2 {
+    @apply p-2;
+  }
+
+  .mobile-xs-hidden {
+    @apply hidden;
+  }
+}

@@ -8,7 +8,7 @@ import type { DiscoveryRequestDto } from "../models/DiscoveryRequestDto";
 import type { HardwareStatusRequestDto } from "../models/HardwareStatusRequestDto";
 import type { ProvisionState } from "../models/ProvisionState";
 import type { SensorConfigRequestDto } from "../models/SensorConfigRequestDto";
-import type { SensorFunctionalityRequestDto } from "../models/SensorFunctionalityRequestDto";
+import type { SensorFunctionalityRequestDto } from "../models/SensorAssignRequestDto";
 import type { TelemetryRequestDto } from "../models/TelemetryRequestDto";
 import type { CancelablePromise } from "../core/CancelablePromise";
 import { OpenAPI } from "../core/OpenAPI";
@@ -77,7 +77,7 @@ export class DevicesService {
   public static deviceControllerGetUnassignedSensor(): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "GET",
-      url: "/api/devices/unassigned",
+      url: "/devices/unassigned",
     });
   }
   /**

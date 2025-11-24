@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "@/context/AuthContext";
 import "@/index.css";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import Assign from "./pages/Devices/AssignPage";
 import TelemetryPage from "./pages/Devices/TelemetryPage";
 import HmiPage from "./pages/HmiPage";
 import "./i18n";
@@ -17,6 +16,7 @@ import Landing from "./App";
 import { Toaster } from "react-hot-toast";
 import HomeDashboard from "./pages/HomeDashboard";
 import DiscoveryPage from "./pages/Devices/DiscoveryPage";
+import AssignPage from "./pages/Devices/AssignPage";
 
 const queryClient = new QueryClient();
 
@@ -32,7 +32,7 @@ createRoot(document.getElementById("root")!).render(
             <Route path="/" element={<DashboardLayout />}>
               <Route index path="/dashboard" element={<HomeDashboard />} />
               <Route path="/devices/discover" element={<DiscoveryPage />} />
-              <Route path="/devices/assign" element={<Assign />} />
+              <Route path="/devices/assign" element={<AssignPage />} />
               <Route path="/devices/configure" element={<ConfigPage />} />
               <Route path="/devices/telemetry" element={<TelemetryPage />} />
               <Route path="hmi" element={<HmiPage />} />

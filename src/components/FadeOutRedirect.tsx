@@ -37,7 +37,7 @@ export default function FadeOutRedirect({
   return (
     <div
       className="flex h-screen items-center justify-center 
-      bg-linear-to-br from-slate-200 to-slate-400
+      bg-linear-to-b from-slate-700 via-cyan-900/80 to-slate-600
       dark:from-gray-800 dark:to-gray-900"
     >
       <div

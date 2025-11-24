@@ -14,7 +14,7 @@ import { ProvisionState } from "./ProvisionState";
  *
  * @example
  * {
- *   "sensorId": "sensor-67890",
+ *   "deviceId": "sensor-67890",
  *   "capabilities": ["TEMPERATURE", "HUMIDITY"],
  *   "deviceHardware": "ESP32-WROOM",
  *   "assignedFunctionality": ["TEMPERATURE"],
@@ -50,7 +50,7 @@ export type GetSingleSensorDto = {
    * Unique sensor identifier (ESP MAC or custom ID)
    * @example "sensor-67890"
    */
-  sensorId: string;
+  deviceId: string;
 
   /**
    * Device capabilities/supported functionalities

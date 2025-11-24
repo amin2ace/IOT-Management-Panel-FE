@@ -1,6 +1,12 @@
 @import "tailwindcss";
 @import "./styles/forms.css";
 @import "./styles/globals.css";
+@import "./styles/components/dashboard.css";
+@import "./styles/components/themeToggle.css";
+@import "./styles/components/languageSelector.css";
+@import "./styles/layouts/dashboardLayout.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-primary-50: #e0f2fe;
@@ -11,42 +17,39 @@
 }
 
 body {
-  /* background-color: var(--color-gray-100); */
-  color: var(--color-gray-900);
+  @apply bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-50;
   font-family: "Inter", sans-serif;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
-/* .dark body {
-  @apply bg-gray-900 text-gray-100;
-}
-
-.light body {
-  @apply bg-gray-100 text-gray-900;
+/* .input {
+  @apply w-full p-2 rounded bg-gray-700 text-white dark:bg-gray-600 dark:text-gray-100 transition-colors;
 } */
-
-.input {
-  @apply w-full p-2 rounded bg-gray-700 text-white;
-}
 
 /* Glassmorphism effect */
 .glass-card {
-  padding: 2rem;
-  border-radius: 1.5rem;
+  @apply p-8 rounded-3xl text-center transform scale-100 opacity-100 transition-all;
   background: rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.25);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-  text-align: center;
-  transform: scale(1);
-  opacity: 1;
 }
 
-/* fade in */
+.dark .glass-card {
+  background: rgba(17, 24, 39, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Keep all your existing animations */
 .fade-in {
   opacity: 1;
   animation: fadeIn 0.8s ease forwards;
 }
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -58,10 +61,10 @@ body {
   }
 }
 
-/* fade + zoom + blur */
 .fade-zoom-out {
   animation: fadeZoomOut 0.8s forwards;
 }
+
 @keyframes fadeZoomOut {
   0% {
     opacity: 1;
@@ -75,7 +78,6 @@ body {
   }
 }
 
-/* Beating / pulse effect */
 .pulse {
   animation: pulseEffect 1.2s ease-in-out infinite;
 }

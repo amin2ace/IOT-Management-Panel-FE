@@ -21,6 +21,8 @@ export const useUnassignedDevices = () =>
     queryKey: ["unassigned"],
     queryFn: async () => {
       const res = await DevicesService.deviceControllerGetUnassignedSensor();
+      console.log({ res });
+      console.log(res.data);
       return res.data;
     },
   });

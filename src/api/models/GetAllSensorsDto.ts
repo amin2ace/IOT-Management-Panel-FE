@@ -12,7 +12,7 @@ import { GetSingleSensorDto } from "./GetSingleSensorDto";
  * {
  *   "data": [
  *     {
- *       "sensorId": "sensor-67890",
+ *       "deviceId": "sensor-67890",
  *       "capabilities": ["TEMPERATURE", "HUMIDITY"],
  *       "deviceHardware": "ESP32-WROOM",
  *       "assignedFunctionality": ["TEMPERATURE"],
