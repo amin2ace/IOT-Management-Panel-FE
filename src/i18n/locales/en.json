@@ -78,6 +78,9 @@
   "assign.noDevice": "No Unassigned Devices",
   "assign.provisionButton": "Assign",
   "assign.reset": "Reset",
+  "assign.functionalityNotSelected": "Select at least one functionality",
+  "assign.requestSent": "Assign request sent",
+  "assign.requestFailed": "Assign request failed",
 
   "##################################_8": "Dashboard Table Headers ",
 
@@ -111,6 +114,10 @@
   "profile.edit": "Edit Profile",
   "profile.changePassword": "Change Password",
   "profile.accountMeta": "Account Meta",
+
+  "##################################_10": "Web Socket ",
+
+  "socke.notConnected": "Socket not connected",
 
   "##################################_": "Dashboard Common ",
 

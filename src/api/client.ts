@@ -21,7 +21,7 @@ api.interceptors.request.use((config) => {
   //   }
   //   return config;
   // });
-
+  config.withCredentials = true;
   return config;
 });
 

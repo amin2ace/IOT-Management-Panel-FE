@@ -1,16 +1,15 @@
+// src/pages/AssignPage.tsx
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import toast from "react-hot-toast";
 import { useSocket } from "@/hooks/useSocket";
-import { DeviceCapabilities, SensorFunctionalityRequestDto } from "@/api";
+import { DeviceCapabilities } from "@/api";
 import { RequestMessageCode } from "@/api/models/MessageCode";
-import { useProvisionDevice } from "@/hooks/useDevices";
 import { useAuth } from "@/context/AuthContext";
-import { CapabilityColorMap } from "@/api/models/ColorMaps";
 import { QueryUnassignedDevicesDto } from "@/api/models/QueryUnassignedDevicesDto";
-import { ResponseGetSensors } from "@/api/models/GetSensorResponseDto";
+import AssignTable from "@/components/AssignTable";
+import { ResponseGetDevice } from "@/api/models/GetSensorResponseDto";
 
-// same constants…
+// Constants
 const INTERVAL_MIN = 500;
 const INTERVAL_MAX = 30000;
 const LOW_MIN = 2;
@@ -18,53 +17,12 @@ const LOW_MAX = 36;
 const HIGH_MIN = 36;
 const HIGH_MAX = 120;
 
-function CapabilityChip({ cap, selected, onToggle }: any) {
-  return (
-    <button
-      type="button"
-      onClick={() => onToggle(cap)}
-      className={`px-2 py-1 rounded-md text-xs font-medium border transition inline-flex items-center gap-2 ${
-        selected
-          ? "ring-2 ring-indigo-400 bg-indigo-700 text-white"
-          : `${CapabilityColorMap[cap]} hover:scale-105`
-      }`}
-    >
-      {cap}
-    </button>
-  );
-}
-
-function NumberInput({
-  value,
-  setValue,
-  min,
-  max,
-  step = 1,
-  label,
-  placeholder,
-}: any) {
-  return (
-    <div className="flex flex-col gap-1">
-      {label && <label className="text-xs text-gray-300">{label}</label>}
-      <input
-        type="number"
-        value={value ?? ""}
-        min={min}
-        max={max}
-        step={step}
-        placeholder={placeholder}
-        onChange={(e) => {
-          const v = Number(e.target.value);
-          if (Number.isNaN(v)) return setValue(min);
-          setValue(v);
-        }}
-        className="w-full p-2 rounded bg-gray-700 text-sm"
-      />
-      <div className="text-xs text-gray-400">
-        {min} - {max}
-      </div>
-    </div>
-  );
+export interface DeviceEditState {
+  functionality: DeviceCapabilities[];
+  publishTopic: string;
+  interval: number;
+  highSetPoint: number;
+  lowSetPoint: number;
 }
 
 export default function AssignPage() {
@@ -72,16 +30,35 @@ export default function AssignPage() {
   const { socket } = useSocket();
   const { user } = useAuth();
 
-  // socket-only device storage
-  const [devices, setDevices] = useState<ResponseGetSensors[]>([]);
+  const [devices, setDevices] = useState<ResponseGetDevice[]>([]);
   const [loading, setLoading] = useState(true);
+  const [editState, setEditState] = useState<Record<string, DeviceEditState>>(
+    {}
+  );
 
-  // edit states
-  const [editState, setEditState] = useState<Record<string, any>>({});
-
-  // SOCKET-ONLY DEVICE FETCH
+  // Socket-only device fetch
   useEffect(() => {
     if (!socket) return;
+
+    const listener = (devices: ResponseGetDevice[]) => {
+      setDevices((prev) => {
+        // Create a map of existing devices for quick lookup
+        const existingDevices = new Map(
+          prev.map((device) => [device.deviceId, device])
+        );
+
+        // Add new devices that don't exist already
+        devices.forEach((device) => {
+          if (!existingDevices.has(device.deviceId)) {
+            existingDevices.set(device.deviceId, device);
+          }
+        });
+
+        // Convert back to array
+        return Array.from(existingDevices.values());
+      });
+      setLoading(false);
+    };
 
     const payload: QueryUnassignedDevicesDto = {
       userId: user?.userId || "",
@@ -90,102 +67,80 @@ export default function AssignPage() {
       deviceId: "",
       timestamp: Date.now(),
     };
-    // request
+
     socket.emit("react/message/device/query/unassinged/request", payload);
 
-    // response listener
-    socket.on(
-      "ws/message/unassinged/query/response",
-      (device: ResponseGetSensors) => {
-        setDevices((prev) => {
-          const exists = prev.find((d) => d.deviceId === device.deviceId);
-          if (exists) return prev;
-          return [...prev, device];
-        });
-        setLoading(false);
-      }
-    );
+    // If the backend sends an array of devices
+    socket.on("ws/message/unassinged/query/response", listener);
 
     return () => {
       socket.off("ws/message/unassinged/query/response");
     };
-  }, [socket]);
+  }, [socket, user?.userId]);
 
-  // initialize editState only once per device
+  // Initialize editState only once per device - FIXED VERSION
   useEffect(() => {
-    if (devices.length === 0) return;
+    // Add null/undefined check and empty array fallback
+    const devicesArray = devices || [];
 
-    const next: any = {};
-    devices.forEach((d) => {
-      next[d.deviceId] = {
-        functionality: d.capabilities.length ? [d.capabilities[0]] : [],
-        publishTopic: d.deviceBaseTopic || `sensors/${d.deviceId}/assign`,
-        interval: 5000,
-        highSetPoint: 50,
-        lowSetPoint: 10,
-      };
+    if (devicesArray.length === 0) return;
+
+    const next: Record<string, DeviceEditState> = {};
+
+    devicesArray.forEach((d) => {
+      // Add safety check for device properties
+      if (d && d.deviceId) {
+        next[d.deviceId] = {
+          functionality:
+            d.capabilities && d.capabilities.length > 0
+              ? [d.capabilities[0]]
+              : [],
+          publishTopic: d.deviceBaseTopic || `sensors/${d.deviceId}/assign`,
+          interval: 5000,
+          highSetPoint: 50,
+          lowSetPoint: 10,
+        };
+      }
     });
 
-    setEditState((prev) => ({ ...next, ...prev }));
+    setEditState((prev) => ({ ...prev, ...next }));
   }, [devices]);
 
-  function updateFor(deviceId: string, patch: Partial<ResponseGetSensors>) {
+  const updateFor = (deviceId: string, patch: Partial<DeviceEditState>) => {
     setEditState((prev) => ({
       ...prev,
       [deviceId]: {
-        ...(prev[deviceId] ?? {}),
+        ...(prev[deviceId] ?? {
+          functionality: [],
+          publishTopic: `sensors/${deviceId}/assign`,
+          interval: 5000,
+          highSetPoint: 50,
+          lowSetPoint: 10,
+        }),
         ...patch,
       },
     }));
-  }
+  };
 
-  function toggleFunctionality(deviceId: string, cap: DeviceCapabilities) {
-    const cur = editState[deviceId]?.functionality ?? [];
-    const exists = cur.includes(cap);
+  const toggleFunctionality = (deviceId: string, cap: DeviceCapabilities) => {
+    const current = editState[deviceId]?.functionality ?? [];
+    const exists = current.includes(cap);
     updateFor(deviceId, {
-      assignedFunctionality: exists
-        ? cur.filter((c: DeviceCapabilities) => c !== cap)
-        : [...cur, cap],
+      functionality: exists
+        ? current.filter((c: DeviceCapabilities) => c !== cap)
+        : [...current, cap],
     });
-  }
+  };
 
-  const provisionMutation = useProvisionDevice();
-
-  async function handleSend(device: ResponseGetSensors) {
-    if (!socket) return;
-
-    const model = editState[device.deviceId];
-
-    if (!model || model.functionality.length === 0) {
-      toast.error("Select at least one functionality");
-      return;
-    }
-
-    const payload: SensorFunctionalityRequestDto = {
-      userId: user?.userId ?? "null",
-      requestId: `req-fn-${crypto.randomUUID()}`,
-      requestCode: RequestMessageCode.ASSIGN_DEVICE_FUNCTION,
-      deviceId: device.deviceId,
-      timestamp: Date.now(),
-      functionality: model.functionality,
-      publishTopic: model.publishTopic,
-      interval: model.interval,
-      highSetPoint: JSON.stringify({ high: model.highSetPoint }),
-      lowSetPoint: JSON.stringify({ low: model.lowSetPoint }),
-      ackRequired: true,
-      signature: "client-signature",
-    };
-
-    try {
-      socket.emit("react/message/device/function/assign/request", payload);
-      await provisionMutation.mutateAsync(payload);
-
-      toast.success("Assign request sent");
-    } catch (err) {
-      console.error(err);
-      toast.error("Assign request failed");
-    }
-  }
+  const resetDevice = (deviceId: string) => {
+    updateFor(deviceId, {
+      functionality: [],
+      publishTopic: `sensors/${deviceId}/assign`,
+      interval: 5000,
+      highSetPoint: 50,
+      lowSetPoint: 10,
+    });
+  };
 
   return (
     <div className="dashboardAssignContainer">
@@ -199,163 +154,19 @@ export default function AssignPage() {
             "Assign functionalities to unassigned sensors"}
         </p>
 
-        <div className="overflow-x-auto rounded-t-lg">
-          <table className="min-w-full text-left ">
-            <thead>
-              <tr className="bg-gray-300 dark:bg-gray-600 text-sm uppercase ">
-                <th className="px-4 py-2">{t("table.id")}</th>
-                <th className="px-4 py-2">{t("table.capabilities")}</th>
-                <th className="px-4 py-2">{t("table.functionality")}</th>
-                <th className="px-4 py-2">{t("table.controller")}</th>
-                <th className="px-4 py-2">{t("table.baseTopic")}</th>
-                <th className="px-4 py-2">{t("table.interval")}</th>
-                <th className="px-4 py-2">{t("table.lSetPoint")}</th>
-                <th className="px-4 py-2">{t("table.hSetPoint")}</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {loading && (
-                <tr>
-                  <td colSpan={8} className="p-6 text-center text-gray-400">
-                    {t("common.loading")}
-                  </td>
-                </tr>
-              )}
-
-              {!loading && devices.length === 0 && (
-                <tr>
-                  <td colSpan={8} className="p-6 text-center text-gray-400">
-                    {t("assign.noDevice")}
-                  </td>
-                </tr>
-              )}
-
-              {devices?.map((device) => {
-                const model = editState[device.deviceId];
-
-                return (
-                  <tr
-                    key={device.deviceId}
-                    className="border-t border-gray-700"
-                  >
-                    <td className="px-4 py-3 align-top">
-                      <div className="font-medium">{device.deviceId}</div>
-                      <div className="text-xs text-gray-400">
-                        {device.deviceHardware}
-                      </div>
-                    </td>
-
-                    <td className="px-4 py-3 align-top">
-                      <div className="flex gap-2 flex-wrap">
-                        {device?.capabilities?.map((cap) => (
-                          <span
-                            key={cap}
-                            className="px-2 py-1 bg-indigo-600/30 text-indigo-300 rounded-md text-[11px]"
-                          >
-                            {cap}
-                          </span>
-                        ))}
-                      </div>
-                    </td>
-
-                    <td className="px-4 py-3 align-top">
-                      <div className="flex gap-2 flex-wrap">
-                        {device.capabilities.map((cap) => (
-                          <CapabilityChip
-                            key={cap}
-                            cap={cap}
-                            selected={model.functionality.includes(cap)}
-                            onToggle={() =>
-                              toggleFunctionality(device.deviceId, cap)
-                            }
-                          />
-                        ))}
-                      </div>
-                    </td>
-
-                    <td className="px-4 py-3 align-top w-64">
-                      <input
-                        className="w-full p-2 rounded bg-gray-700 text-sm"
-                        value={model.publishTopic}
-                        onChange={(e) =>
-                          updateFor(device.deviceId, {
-                            deviceBaseTopic: e.target.value,
-                          })
-                        }
-                      />
-                    </td>
-
-                    <td className="px-4 py-3 align-top w-40">
-                      <NumberInput
-                        label={t("table.interval")}
-                        value={model.interval}
-                        setValue={(v: number) =>
-                          updateFor(device.deviceId, { interval: v })
-                        }
-                        min={INTERVAL_MIN}
-                        max={INTERVAL_MAX}
-                        step={100}
-                      />
-                    </td>
-
-                    <td className="px-4 py-3 align-top w-32">
-                      <NumberInput
-                        label={t("table.lowSetPoint")}
-                        value={model.lowSetPoint}
-                        setValue={(v: number) =>
-                          updateFor(device.deviceId, { lowSetPoint: v })
-                        }
-                        min={LOW_MIN}
-                        max={LOW_MAX}
-                        step={0.1}
-                      />
-                    </td>
-
-                    <td className="px-4 py-3 align-top w-32">
-                      <NumberInput
-                        label={t("table.highSetPoint")}
-                        value={model.highSetPoint}
-                        setValue={(v: number) =>
-                          updateFor(device.deviceId, { highSetPoint: v })
-                        }
-                        min={HIGH_MIN}
-                        max={HIGH_MAX}
-                        step={0.1}
-                      />
-                    </td>
-
-                    <td className="px-4 py-3 align-top w-36">
-                      <div className="flex flex-col gap-2">
-                        <button
-                          onClick={() => handleSend(device)}
-                          className="w-full bg-indigo-600 hover:bg-indigo-700 py-2 rounded"
-                        >
-                          {t("assign.provisionButton")}
-                        </button>
-
-                        <button
-                          onClick={() =>
-                            updateFor(device.deviceId, {
-                              assignedFunctionality: [],
-                              deviceBaseTopic: `sensors/${device.deviceId}/assign`,
-                              interval: 5000,
-                              highSetPoint: 50,
-                              lowSetPoint: 10,
-                            })
-                          }
-                          className="w-full bg-gray-700 hover:bg-gray-600 py-2 rounded text-sm"
-                        >
-                          {t("assign.reset")}
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+        <AssignTable
+          devices={devices} // Ensure devices is always an array
+          loading={loading}
+          editState={editState}
+          onUpdate={updateFor}
+          onToggleFunctionality={toggleFunctionality}
+          onReset={resetDevice}
+          constants={{
+            interval: { min: INTERVAL_MIN, max: INTERVAL_MAX, step: 100 },
+            lowSetPoint: { min: LOW_MIN, max: LOW_MAX, step: 0.1 },
+            highSetPoint: { min: HIGH_MIN, max: HIGH_MAX, step: 0.1 },
+          }}
+        />
       </div>
     </div>
   );

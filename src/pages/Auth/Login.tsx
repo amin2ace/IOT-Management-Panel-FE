@@ -35,7 +35,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div>
+    <>
       <div>
         <DashboardHeader showProfile={false} />
       </div>
@@ -78,6 +78,6 @@ export default function LoginPage() {
           </p>
         </form>
       </div>
-    </div>
+    </>
   );
 }

@@ -7,12 +7,17 @@ import {
 import { useQuery, useMutation } from "@tanstack/react-query";
 
 // Fetch current user profile
-export function useProfile() {
+export const useProfile = (options?: { enabled?: boolean }) => {
   return useQuery({
     queryKey: ["profile"],
-    queryFn: () => UsersService.usersControllerGetUserProfile(),
+    queryFn: async () => {
+      const response = await fetch("/api/profile");
+      if (!response.ok) throw new Error("Failed to fetch profile");
+      return response.json();
+    },
+    enabled: options?.enabled ?? true, // Default to true if not specified
   });
-}
+};
 
 // Update profile data
 export function useUpdateProfile() {

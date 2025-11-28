@@ -3,20 +3,19 @@ import { DeviceCapabilities } from "./DeviceCapabilities";
 import { Protocol } from "./Protocol";
 import { ProvisionState } from "./ProvisionState";
 
-export type LocationResponse = {
+export interface DeviceLocation {
   room?: string;
   floor?: number;
   unit?: string;
-};
+}
 
-export type ResponseGetSensors = {
-  id: string;
+export type ResponseGetDevice = {
   deviceId: string;
   capabilities: DeviceCapabilities[];
   deviceHardware: string;
   assignedFunctionality?: DeviceCapabilities[];
   deviceBaseTopic?: string;
-  location: LocationResponse;
+  location: DeviceLocation;
   provisionState: ProvisionState;
   clientId?: string;
   lastValue: number;
@@ -32,6 +31,7 @@ export type ResponseGetSensors = {
   ip?: string;
   protocol: Protocol;
   broker: string;
+  isDeleted: boolean;
   lastReboot?: Date | string;
   lastUpgrade?: Date | string;
   createdAt: Date | string;

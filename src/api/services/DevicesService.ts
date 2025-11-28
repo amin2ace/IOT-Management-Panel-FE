@@ -107,7 +107,7 @@ export class DevicesService {
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "PUT",
-      url: "/api/devices/provision",
+      url: "/devices/provision",
       body: requestBody,
       mediaType: "application/json",
     });

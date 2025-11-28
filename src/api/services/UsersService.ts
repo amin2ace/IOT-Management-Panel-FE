@@ -13,7 +13,7 @@ export class UsersService {
   static usersControllerGetUserProfile(): CancelablePromise<UserResponseDto> {
     return __request(OpenAPI, {
       method: "GET",
-      url: "/api/users/profile",
+      url: "/users/profile",
       errors: {
         404: `User not found`,
       },

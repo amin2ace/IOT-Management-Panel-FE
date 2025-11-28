@@ -17,13 +17,17 @@ import { useTranslation } from "react-i18next";
 import { DiscoveryResponseDto } from "@/api/models/DiscoveryResponseDto";
 import DevicesResultTable from "@/components/DiscoveryResultsTable";
 import DiscoveryMethod from "@/components/DiscoveryMethod";
+import { useDiscoveryStore } from "@/hooks/useDiscoveryStore";
 
 export default function DiscoveryPage() {
   const { t } = useTranslation();
   const { socket } = useSocket();
   const { user } = useAuth();
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<DiscoveryResponseDto>();
+  // const [result, setResult] = useState<DiscoveryResponseDto>();
+  const { devices, addDevice, clear } = useDiscoveryStore();
+
+  // Whenever new discovery result comes from API:
 
   // -------------------------------
   // Listen for incoming discovery responses
@@ -32,9 +36,12 @@ export default function DiscoveryPage() {
     if (!socket) return;
 
     const listener = (res: DiscoveryResponseDto) => {
-      if (!res) return;
-      toast.success(`Device: ${res.deviceId}`);
-      setResult(res);
+      if (!res || !res.responseId) {
+        toast.error(t("discovery.failedToSendDiscovery"));
+        return;
+      }
+      toast.success(`${t("discovery.device")}: ${res.deviceId}`);
+      addDevice(res);
     };
 
     socket.on("ws/message/discovery/broadcast/response", listener);
@@ -60,6 +67,8 @@ export default function DiscoveryPage() {
   // Unicast
   // -------------------------------
   const handleUnicast = async (data: z.infer<typeof schema>) => {
+    //Clear the devices list discovered
+    clear();
     setLoading(true);
     const payload: DiscoveryRequestDto = {
       userId: user?.userId || "null",
@@ -84,6 +93,8 @@ export default function DiscoveryPage() {
   // Broadcast
   // -------------------------------
   const handleBroadcast = async () => {
+    //Clear the devices list discovered
+    clear();
     setLoading(true);
     const payload: DiscoveryRequestDto = {
       userId: user?.userId || "null",
@@ -117,7 +128,7 @@ export default function DiscoveryPage() {
       />
 
       {/* Results Table */}
-      <DevicesResultTable result={result} />
+      <DevicesResultTable devices={devices} />
     </div>
   );
 }

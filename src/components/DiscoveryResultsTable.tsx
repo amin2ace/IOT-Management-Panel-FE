@@ -8,27 +8,30 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 type Props = {
-  result: DiscoveryResponseDto | undefined;
+  devices: DiscoveryResponseDto[] | [];
 };
 
-export default function DevicesResultTable({ result }: Props) {
+export default function DevicesResultTable({ devices }: Props) {
   const { t } = useTranslation();
-  if (!result)
+
+  if (devices.length === 0)
     return (
       <div className="text-gray-400 italic text-center py-6">
         {t("discovery.noDevicesDiscoveredYet")}
       </div>
     );
+
   return (
     <div className="mt-8 bg-white/10 backdrop-blur-xl rounded-xl p-4 border border-white/20 shadow-xl">
       <h2 className="text-xl font-semibold mb-4 text-white">
         {t("discovery.discoveredDevices")}
       </h2>
+      <button>clear</button>
 
       {/* Scroll wrapper */}
       <div className="overflow-auto max-h-[500px] overscroll-contain rounded-lg">
         <table className="min-w-[1200px] w-full text-sm text-gray-200">
-          <thead className="sticky top-0 bg-black/40 backdrop-blur-md">
+          <thead className="sticky top-0 bg-black backdrop-blur-md">
             <tr>
               <th className="px-4 py-3 text-left">Device ID</th>
               <th className="px-4 py-3 text-left">Hardware</th>
@@ -47,74 +50,76 @@ export default function DevicesResultTable({ result }: Props) {
           </thead>
 
           <tbody>
-            <tr
-              key={1}
-              className="border-b border-white/10 hover:bg-white/5 transition"
-            >
-              <td className="px-4 py-3">{result.deviceId}</td>
-              <td className="px-4 py-3">{result.deviceHardware}</td>
+            {devices.map((device, index) => (
+              <tr
+                key={index}
+                className="border-b border-white/10 hover:bg-white/5 transition"
+              >
+                <td className="px-4 py-3">{device.deviceId || index}</td>
+                <td className="px-4 py-3">{device.deviceHardware}</td>
 
-              <td className="px-4 py-3">
-                <div className="flex gap-1 flex-wrap">
-                  {result?.capabilities?.map((c: string) => {
-                    const colorClass =
-                      CapabilityColorMap[c] || CapabilityColorMap.default;
+                <td className="px-4 py-3">
+                  <div className="flex gap-1 flex-wrap">
+                    {device?.capabilities?.map((c: string) => {
+                      const colorClass =
+                        CapabilityColorMap[c] || CapabilityColorMap.default;
 
-                    return (
-                      <span
-                        key={c}
-                        className={`px-2 py-1 rounded-md text-[11px] ${colorClass}`}
-                      >
-                        {c}
-                      </span>
-                    );
-                  })}
-                </div>{" "}
-              </td>
+                      return (
+                        <span
+                          key={c}
+                          className={`px-2 py-1 rounded-md text-[11px] ${colorClass}`}
+                        >
+                          {c}
+                        </span>
+                      );
+                    })}
+                  </div>{" "}
+                </td>
 
-              <td className="px-4 py-3">{result.mac}</td>
-              <td className="px-4 py-3">{result.ip}</td>
+                <td className="px-4 py-3">{device.mac}</td>
+                <td className="px-4 py-3">{device.ip}</td>
 
-              <td className="px-4 py-3">
-                <span
-                  className={`px-2 py-1 rounded-md text-xs 
-      ${ConnectionStateColorMap[result.connectionState] || ConnectionStateColorMap.default}
+                <td className="px-4 py-3">
+                  <span
+                    className={`px-2 py-1 rounded-md text-xs 
+      ${ConnectionStateColorMap[device.connectionState] || ConnectionStateColorMap.default}
     `}
-                >
-                  {result.connectionState}
-                </span>
-              </td>
-              <td className="px-4 py-3">
-                <span
-                  className={`px-2 py-1 rounded text-xs ${
-                    ProtocolColorMap[result.protocol] ||
-                    ProtocolColorMap.default
-                  }`}
-                >
-                  {result.protocol}
-                </span>
-              </td>
-              <td className="px-4 py-3">{result.topicPrefix}</td>
-              <td className="px-4 py-3">{result.firmware}</td>
+                  >
+                    {device.connectionState}
+                  </span>
+                </td>
+                <td className="px-4 py-3">
+                  <span
+                    className={`px-2 py-1 rounded text-xs ${
+                      ProtocolColorMap[device.protocol] ||
+                      ProtocolColorMap.default
+                    }`}
+                  >
+                    {device.protocol}
+                  </span>
+                </td>
+                <td className="px-4 py-3">{device.topicPrefix}</td>
+                <td className="px-4 py-3">{device.firmware}</td>
 
-              <td className="px-4 py-3">
-                <pre className="bg-black/30 p-2 rounded-md text-xs">
-                  {JSON.stringify(result.location, null, 2)}
-                </pre>
-              </td>
+                <td className="px-4 py-3">
+                  <pre className="bg-black/30 p-2 rounded-md text-xs">
+                    {JSON.stringify(device.location, null, 2)}
+                  </pre>
+                </td>
 
-              <td className="px-4 py-3">{result.broker}</td>
+                <td className="px-4 py-3">{device.broker}</td>
 
-              <td className="px-4 py-3">
-                <pre className="bg-black/30 p-2 rounded-md text-xs">
-                  {JSON.stringify(result.additionalInfo, null, 2)}
-                </pre>
-              </td>
+                <td className="px-4 py-3">
+                  <pre className="bg-black/30 p-2 rounded-md text-xs">
+                    {JSON.stringify(device.additionalInfo, null, 2)}
+                  </pre>
+                </td>
 
-              <td className="px-4 py-3">
-                {new Date(result.timestamp).toLocaleString()}
-              </td>
-            </tr>
+                <td className="px-4 py-3">
+                  {new Date(device.timestamp).toLocaleString()}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

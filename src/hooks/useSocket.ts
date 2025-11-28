@@ -1,8 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+// Even better - singleton pattern
+import { useEffect, useState } from "react";
 import { io, Socket } from "socket.io-client";
 
-// import.meta.env.VITE_GATEWAY_URL ??
-const SOCKET_URL = import.meta.env.VITE_WEB_COCKET_URL; // "http://localhost:30005/mqtt";
+const SOCKET_URL = import.meta.env.VITE_WEB_COCKET_URL;
+
+// Singleton socket instance
+let globalSocket: Socket | null = null;
 
 export interface SocketHook {
   socket: Socket | null;
@@ -11,23 +14,28 @@ export interface SocketHook {
 
 export function useSocket(): SocketHook {
   const [isConnected, setIsConnected] = useState(false);
-  const socketRef = useRef<Socket | null>(null);
+  const [socket, setSocket] = useState<Socket | null>(null);
 
   useEffect(() => {
-    const s = io(SOCKET_URL, {
-      transports: ["websocket"],
-      reconnection: true,
-      reconnectionAttempts: 9999,
-    });
-    socketRef.current = s;
+    // Use existing socket or create new one
+    if (!globalSocket) {
+      globalSocket = io(SOCKET_URL, {
+        transports: ["websocket"],
+        reconnection: true,
+        reconnectionAttempts: 9999,
+      });
 
-    s.on("connect", () => setIsConnected(true));
-    s.on("disconnect", () => setIsConnected(false));
+      globalSocket.on("connect", () => setIsConnected(true));
+      globalSocket.on("disconnect", () => setIsConnected(false));
+    }
+
+    setSocket(globalSocket);
 
     return () => {
-      s.disconnect();
+      // Don't disconnect - keep socket alive for entire app
+      // The socket will be cleaned up when the page is refreshed
     };
   }, []);
 
-  return { socket: socketRef.current, isConnected };
+  return { socket, isConnected };
 }

@@ -38,7 +38,7 @@ export function SignupPage() {
   };
 
   return (
-    <div>
+    <>
       <div>
         <DashboardHeader showProfile={false} />
       </div>
@@ -92,6 +92,6 @@ export function SignupPage() {
           </p>
         </form>
       </div>
-    </div>
+    </>
   );
 }

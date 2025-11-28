@@ -12,8 +12,10 @@ type props = {
 };
 
 export default function DashboardHeader({ showProfile }: props) {
-  const { logout } = useAuth();
-  const { data: user } = useProfile();
+  const { user: authUser, logout } = useAuth();
+  const { data: user } = useProfile({
+    enabled: !!authUser,
+  });
   const { t } = useTranslation();
 
   const navigate = useNavigate();
@@ -49,7 +51,7 @@ export default function DashboardHeader({ showProfile }: props) {
     <>
       <header className="dashboardHeader">
         {/* Left: User Info */}
-        {showProfile && (
+        {showProfile && authUser && (
           <div className="dashboardProfile">
             <div
               className="dashboardProfileImage cursor-pointer hover:scale-105 transition-transform"
@@ -72,7 +74,7 @@ export default function DashboardHeader({ showProfile }: props) {
         <div className="flex items-center gap-3 ">
           <ThemeToggle />
           <LanguageSelector />
-          {showProfile && (
+          {showProfile && authUser && (
             <button
               onClick={handleLogout}
               className="dashboardLogoutButton"
