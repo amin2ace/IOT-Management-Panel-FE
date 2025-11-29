@@ -1,0 +1,139 @@
+/* Profile Page Container */
+.dashboardProfileContainer {
+  @apply max-w-4xl mx-auto p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg;
+}
+
+/* Profile Header */
+.dashboardProfileContainer header {
+  @apply flex items-center justify-between mb-6 pb-4 border-b border-gray-200 dark:border-gray-700;
+}
+
+.dashboardProfileContainer header h1 {
+  @apply text-2xl font-semibold text-gray-900 dark:text-white;
+}
+
+/* Profile Card */
+.profile-card {
+  @apply bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-200 dark:border-gray-700 mb-6;
+}
+
+/* Profile Photo Section */
+.profile-photo-section {
+  @apply flex items-center gap-4 mb-6 pb-6 border-b border-gray-200 dark:border-gray-700;
+}
+
+.profile-photo {
+  @apply w-20 h-20 rounded-full object-cover border-2 border-gray-300 dark:border-gray-600;
+}
+
+.photo-upload-label {
+  @apply cursor-pointer bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-700 dark:hover:bg-indigo-600 
+         px-4 py-2 rounded-md text-white text-sm font-medium transition-colors duration-200;
+}
+
+.photo-upload-input {
+  @apply hidden;
+}
+
+/* Form Grid */
+.profile-form-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-4 mt-6;
+}
+
+.profile-field {
+  @apply flex flex-col gap-2;
+}
+
+.profile-label {
+  @apply text-sm font-medium text-gray-700 dark:text-gray-300;
+}
+
+.profile-input {
+  @apply w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
+         rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 
+         focus:border-indigo-500 bg-white dark:bg-gray-800 
+         text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400
+         transition-colors duration-200;
+}
+
+.profile-input:disabled {
+  @apply bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed;
+}
+
+/* Action Buttons */
+.profile-actions {
+  @apply flex flex-col sm:flex-row justify-between items-center gap-4 mt-6 pt-6 border-t border-gray-200 dark:border-gray-700;
+}
+
+.profile-button-primary {
+  @apply bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-700 dark:hover:bg-indigo-600 
+         text-white px-5 py-2 rounded-md font-medium transition-colors duration-200 
+         focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 
+         dark:focus:ring-offset-gray-800;
+}
+
+.profile-button-secondary {
+  @apply bg-gray-600 hover:bg-gray-700 dark:bg-gray-700 dark:hover:bg-gray-600 
+         text-white px-5 py-2 rounded-md font-medium transition-colors duration-200 
+         focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 
+         dark:focus:ring-offset-gray-800;
+}
+
+.profile-button-success {
+  @apply bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 
+         text-white px-5 py-2 rounded-md font-medium transition-colors duration-200 
+         focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 
+         dark:focus:ring-offset-gray-800;
+}
+
+.profile-button-warning {
+  @apply bg-yellow-600 hover:bg-yellow-700 dark:bg-yellow-700 dark:hover:bg-yellow-600 
+         text-white px-5 py-2 rounded-md font-medium transition-colors duration-200 
+         focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 
+         dark:focus:ring-offset-gray-800;
+}
+
+/* Button Group */
+.profile-button-group {
+  @apply flex gap-3;
+}
+
+/* Metadata Section */
+.profile-metadata {
+  @apply bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-200 dark:border-gray-700;
+}
+
+.profile-metadata h2 {
+  @apply text-xl font-semibold text-gray-900 dark:text-white mb-4;
+}
+
+.metadata-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-4;
+}
+
+.metadata-item {
+  @apply space-y-1;
+}
+
+.metadata-label {
+  @apply text-sm text-gray-500 dark:text-gray-400;
+}
+
+.metadata-value {
+  @apply text-sm text-gray-900 dark:text-white font-medium;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .profile-photo-section {
+    @apply flex-col items-start;
+  }
+
+  .profile-actions {
+    @apply flex-col items-stretch;
+  }
+
+  .profile-button-group {
+    @apply flex-col;
+  }
+}

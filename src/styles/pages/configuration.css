@@ -1,0 +1,137 @@
+/* Dashboard Config Container */
+.dashboardConfigContainer {
+  @apply p-4 sm:p-6 rounded-lg sm:rounded-xl shadow-md sm:shadow-lg 
+    bg-white/60 dark:bg-gray-800/40 border 
+      space-y-6 text-gray-900 dark:text-gray-100
+      backdrop-blur-xl border-gray-300/40 dark:border-gray-700/40
+      hover:shadow-lg sm:hover:shadow-2xl dark:hover:shadow-xl dark:shadow-gray-500/30 
+      transition-all text-sm sm:text-base;
+}
+
+/* Label Styles */
+.dashboardConfigContainer label {
+  @apply block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2;
+}
+
+.dashboardConfigContainer label.inline-flex {
+  @apply inline-flex items-center text-gray-700 dark:text-gray-300 cursor-pointer;
+}
+
+/* Input Styles */
+.dashboardConfigContainer .input {
+  @apply w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
+         rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 
+         focus:border-indigo-500 bg-white dark:bg-gray-800 
+         text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400
+         transition-colors duration-200;
+}
+
+/* Select Styles */
+.dashboardConfigContainer select {
+  @apply w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
+         rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 
+         focus:border-indigo-500 bg-white dark:bg-gray-800 
+         text-gray-900 dark:text-white appearance-none
+         transition-colors duration-200;
+}
+
+/* Checkbox Styles */
+.dashboardConfigContainer input[type="checkbox"] {
+  @apply w-4 h-4 text-indigo-600 bg-gray-100 dark:bg-gray-700 
+         border-gray-300 dark:border-gray-600 rounded 
+         focus:ring-indigo-500 dark:focus:ring-indigo-600 
+         focus:ring-2 dark:ring-offset-gray-800;
+}
+
+/* Number Input Styles */
+.dashboardConfigContainer input[type="number"] {
+  @apply w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
+         rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 
+         focus:border-indigo-500 bg-white dark:bg-gray-800 
+         text-gray-900 dark:text-white
+         transition-colors duration-200;
+}
+
+/* Button Styles */
+.dashboardConfigContainer button[type="submit"] {
+  @apply w-full bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-700 dark:hover:bg-indigo-600 
+         text-white font-medium py-3 px-4 rounded-md 
+         focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 
+         dark:focus:ring-offset-gray-800 transition-colors duration-200;
+}
+
+/* Tab Styles */
+.dashboardConfigContainer .border-b {
+  @apply border-gray-300 dark:border-gray-600;
+}
+
+/* Focus states for accessibility */
+.dashboardConfigContainer input:focus,
+.dashboardConfigContainer select:focus {
+  @apply ring-2 ring-indigo-500 dark:ring-indigo-600;
+}
+
+/* Add these to your existing CSS */
+.config-select {
+  @apply w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
+         rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 
+         focus:border-indigo-500 bg-white dark:bg-gray-800 
+         text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400
+         transition-colors duration-200;
+}
+
+.hidden {
+  @apply hidden;
+}
+
+.relative {
+  @apply relative;
+}
+
+.absolute {
+  @apply absolute;
+}
+
+.transform {
+  @apply transform;
+}
+
+.-translate-y-1\/2 {
+  transform: translateY(-50%);
+}
+
+.z-50 {
+  z-index: 50;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.max-h-60 {
+  max-height: 15rem;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.tracking-wide {
+  letter-spacing: 0.025em;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.pr-10 {
+  padding-right: 2.5rem;
+}

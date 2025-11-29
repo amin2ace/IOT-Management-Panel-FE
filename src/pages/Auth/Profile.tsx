@@ -11,6 +11,27 @@ import toast from "react-hot-toast";
 import PasswordModal from "@/components/PasswordModal";
 import { UserResponseDto } from "@/api";
 
+// Role enum (you can import this from your API types if available)
+enum Role {
+  VIEWER = "viewer",
+  TEST = "test",
+  ENGINEER = "engineer",
+  ADMIN = "admin",
+  SUPER_ADMIN = "super_admin",
+}
+
+// Helper function to format role display names
+const formatRoleName = (role: string): string => {
+  const roleMap: { [key in Role]: string } = {
+    [Role.VIEWER]: "Viewer",
+    [Role.TEST]: "Test",
+    [Role.ENGINEER]: "Engineer",
+    [Role.ADMIN]: "Admin",
+    [Role.SUPER_ADMIN]: "Super Admin",
+  };
+  return roleMap[role as Role] || role;
+};
+
 export default function ProfilePage() {
   const { logout } = useAuth();
   const { t } = useTranslation();
@@ -53,9 +74,25 @@ export default function ProfilePage() {
     }
   }, [user]);
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+  function handleChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) {
     setForm({ ...form, [e.target.name]: e.target.value });
-    logout(); // ⬅ IMPORTANT
+    logout();
+  }
+
+  function handleRolesChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    const selectedOptions = Array.from(
+      e.target.selectedOptions,
+      (option) => option.value
+    );
+
+    // Type guard to ensure only valid Role values are included
+    const validRoles: Role[] = selectedOptions.filter((role): role is Role =>
+      Object.values(Role).includes(role as Role)
+    );
+
+    setForm({ ...form, roles: validRoles });
   }
 
   async function handleSave() {
@@ -82,6 +119,9 @@ export default function ProfilePage() {
     });
   }
 
+  // Role options from the enum
+  const roleOptions = Object.values(Role);
+
   return (
     <div className="dashboardProfileContainer">
       {/* Header */}
@@ -90,79 +130,101 @@ export default function ProfilePage() {
       </header>
 
       {/* Profile Card */}
-      <div className="bg-white/5 p-6 rounded-2xl border border-white/10">
+      <div className="profile-card">
         {/* Profile Photo */}
-        <div className="flex items-center gap-4">
+        <div className="profile-photo-section">
           <img
             src={user?.photoUrl || "/default-avatar.png"}
-            className="w-20 h-20 rounded-full object-cover border border-gray-800 dark:border-gray-200"
+            className="profile-photo"
           />
-
-          <label className="cursor-pointer bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-md text-sm">
+          <label className="photo-upload-label">
             {t("profile.changePhoto")}
             <input
               type="file"
-              className="hidden"
+              className="photo-upload-input"
               onChange={handlePhotoUpload}
             />
           </label>
         </div>
 
         {/* User Fields */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-          {Object.keys(form).map((field) => (
-            <div key={field} className="flex flex-col gap-1">
-              <label className="text-indigo-950 dark:text-gray-200/80 text-sm">
-                {t("profile." + field)}
-              </label>
-              <input
-                name={field}
-                disabled={!isEditing || field === "email"}
-                value={(form as any)[field]}
-                onChange={handleChange}
-                className="px-3 py-2 rounded-md bg-indigo-50 dark:bg-indigo-100 text-indigo-950 dark:text-gray-800"
-              />
-            </div>
-          ))}
-        </div>
+        <div className="profile-form-grid">
+          {Object.keys(form)
+            .filter((field) => field !== "roles") // Exclude roles from regular inputs
+            .map((field) => (
+              <div key={field} className="profile-field">
+                <label className="profile-label">{t("profile." + field)}</label>
+                <input
+                  name={field}
+                  disabled={!isEditing || field === "email"}
+                  value={field?.toString() || ""}
+                  onChange={handleChange}
+                  className="profile-input"
+                />
+              </div>
+            ))}
 
+          {/* Role Dropdown Field */}
+          <div className="profile-field">
+            <label className="profile-label">{t("profile.role")}</label>
+            {isEditing ? (
+              <select
+                name="role"
+                value={form.roles || ""}
+                onChange={handleRolesChange}
+                className="profile-input"
+              >
+                <option value="">Select a role</option>
+                {roleOptions.map((role) => (
+                  <option key={role} value={role}>
+                    {formatRoleName(role)}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              <div className="profile-input bg-gray-100 dark:bg-gray-700 cursor-not-allowed">
+                {form.roles
+                  ? formatRoleName(form.roles[0])
+                  : "No role assigned"}
+              </div>
+            )}
+          </div>
+        </div>
         {/* Action Buttons */}
-        <div className="flex justify-between mt-6">
+        <div className="profile-actions">
           {/* Edit / Save */}
           {!isEditing ? (
             <button
-              className="bg-indigo-600 hover:bg-indigo-700 px-5 py-2 rounded-md"
+              className="profile-button-primary"
               onClick={() => setIsEditing(true)}
             >
               {t("profile.edit")}
             </button>
           ) : (
-            <div className="flex gap-3">
+            <div className="profile-button-group">
               <button
-                className="bg-gray-700 hover:bg-gray-600 px-5 py-2 rounded-md"
+                className="profile-button-secondary"
                 onClick={() => {
                   setIsEditing(false);
-                  setForm({
-                    userId: user?.userId || "unknown",
-                    email: user?.email || "unknown",
-                    username: user?.username || "unknown",
-                    firstName: user?.firstName || "unknown",
-                    lastName: user?.lastName || "unknown",
-                    photoUrl: user?.photoUrl || "unknown",
-                    isActive: user?.isActive || false,
-                    roles: user?.roles || [],
-                    createdAt: user?.createdAt || "unknown",
-                    updatedAt: user?.updatedAt || "unknown",
-                  });
+                  if (user) {
+                    setForm({
+                      userId: user.userId || "unknown",
+                      email: user.email || "unknown",
+                      username: user.username || "unknown",
+                      firstName: user.firstName || "unknown",
+                      lastName: user.lastName || "unknown",
+                      photoUrl: user.photoUrl || "unknown",
+                      isActive: user.isActive || false,
+                      roles: user.roles || [],
+                      createdAt: user.createdAt || "unknown",
+                      updatedAt: user.updatedAt || "unknown",
+                    });
+                  }
                 }}
               >
                 {t("common.cancel")}
               </button>
-
-              <button
-                className="bg-green-600 hover:bg-green-700 px-5 py-2 rounded-md"
-                onClick={handleSave}
-              >
+              <button className="profile-button-success" onClick={handleSave}>
                 {t("common.saveChanges")}
               </button>
             </div>
@@ -170,7 +232,7 @@ export default function ProfilePage() {
 
           {/* Change Password */}
           <button
-            className="bg-yellow-600 hover:bg-yellow-700 px-5 py-2 rounded-md"
+            className="profile-button-warning"
             onClick={() => setShowPasswordModal(true)}
           >
             {t("profile.changePassword")}
@@ -179,20 +241,20 @@ export default function ProfilePage() {
       </div>
 
       {/* Metadata */}
-      <div className="bg-white/5 p-6 rounded-2xl border border-white/10">
-        <h2 className="text-xl font-semibold mb-4">
-          {t("profile.accountMeta")}
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-300">
-          <div>
-            <div className="text-sm text-gray-400">{t("profile.userId")}</div>
-            <div className="text-sm">{user?.userId}</div>
+      <div className="profile-metadata">
+        <h2>{t("profile.accountMeta")}</h2>
+        <div className="metadata-grid">
+          <div className="metadata-item">
+            <div className="metadata-label">{t("profile.userId")}</div>
+            <div className="metadata-value">{user?.userId}</div>
           </div>
-
-          <div>
-            <div className="text-sm text-gray-400">{t("profile.roles")}</div>
-            <div className="text-sm">{user?.roles}</div>
+          <div className="metadata-item">
+            <div className="metadata-label">{t("profile.roles")}</div>
+            <div className="metadata-value">
+              {user?.roles
+                ?.map((role: Role) => formatRoleName(role))
+                .join(", ") || "No roles"}
+            </div>
           </div>
         </div>
       </div>

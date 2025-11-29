@@ -5,6 +5,8 @@
 @import "./styles/components/themeToggle.css";
 @import "./styles/components/languageSelector.css";
 @import "./styles/layouts/dashboardLayout.css";
+@import "./styles/pages/configuration.css";
+@import "./styles/pages/profile.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 

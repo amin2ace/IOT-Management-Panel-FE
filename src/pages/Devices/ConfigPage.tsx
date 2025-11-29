@@ -5,6 +5,7 @@ import { z } from "zod";
 import { SensorConfigRequestDto } from "@/api";
 import { RequestMessageCode } from "@/api/models/MessageCode";
 import api from "@/api/client";
+import TimezoneSelect from "@/components/TimeZoneSelect";
 
 const schema = z.object({
   deviceId: z.string().min(1, "Device is required"),
@@ -83,7 +84,7 @@ export default function ConfigPage() {
       ota: { enabled: false },
     },
   });
-  const { register, handleSubmit, watch, reset } = methods;
+  const { register, handleSubmit, setValue, watch, reset } = methods;
   const dhcp = watch("network.dhcp");
 
   useEffect(() => {
@@ -134,9 +135,9 @@ export default function ConfigPage() {
     <FormProvider {...methods}>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="space-y-6 text-gray-100"
+        className="dashboardConfigContainer"
       >
-        <h2 className="text-2xl font-semibold mb-4">Device Configuration</h2>
+        <h2 className=" text-2xl font-semibold mb-4">Device Configuration</h2>
 
         {/* Device selector */}
         <div>
@@ -301,8 +302,7 @@ export default function ConfigPage() {
                 <input {...register("location.unit")} className="input" />
               </div>
               <div>
-                <label>Timezone</label>
-                <input {...register("timezone")} className="input" />
+                <TimezoneSelect register={register} setValue={setValue} />{" "}
               </div>
             </>
           )}

@@ -32,7 +32,7 @@ export class UsersService {
   ): CancelablePromise<UserResponseDto> {
     return __request(OpenAPI, {
       method: "PATCH",
-      url: "/api/users/{id}",
+      url: "/users/{id}",
       body: requestBody,
       mediaType: "application/json",
       errors: {

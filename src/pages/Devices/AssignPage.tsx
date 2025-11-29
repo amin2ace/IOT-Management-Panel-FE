@@ -149,7 +149,7 @@ export default function AssignPage() {
       </header>
 
       <div className="bg-white/5 p-4 rounded-2xl backdrop-blur-md border border-white/10">
-        <p className="text-gray-300 mb-5">
+        <p className="text-gray-600 dark:text-gray-300 mb-5">
           {t("assign.assignIntro") ||
             "Assign functionalities to unassigned sensors"}
         </p>
