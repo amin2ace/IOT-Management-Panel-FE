@@ -10,7 +10,7 @@ import {
   CartesianGrid,
 } from "recharts";
 import { motion } from "framer-motion";
-import { TelemetryResponseDto } from "@/api/models/device/TelemetryResponseDto";
+import { ResponseTelemetryDto } from "@/api/models/device/ResponseTelemetryDto";
 
 interface MetricData {
   metric: string;
@@ -25,7 +25,7 @@ export default function TelemetryPage() {
   useEffect(() => {
     if (!socket) return;
 
-    socket.on("telemetry-update", (data: TelemetryResponseDto) => {
+    socket.on("telemetry-update", (data: ResponseTelemetryDto) => {
       setMetrics((prev) => {
         const updated = new Map(prev);
         const metric = updated.get(data.metric) || {

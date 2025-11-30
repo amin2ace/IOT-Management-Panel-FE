@@ -2,16 +2,16 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { ChangePasswordDto } from "../models/auth/ChangePasswordDto";
-import type { ForgetPasswordDto } from "../models/auth/ForgetPasswordDto";
-import type { loginInputDto } from "../models/auth/loginInputDto";
-import type { ResetPasswordDto } from "../models/auth/ResetPasswordDto";
-import type { SignupInputDto } from "../models/auth/SignupInputDto";
+import type { RequestChangePasswordDto } from "../models/auth/RequestChangePasswordDto";
+import type { RequestForgetPasswordDto } from "../models/auth/RequestForgetPasswordDto";
+import type { RequestLoginInputDto } from "../models/auth/RequestLoginInputDto";
+import type { RequestResetPasswordDto } from "../models/auth/RequestResetPasswordDto";
+import type { RequestSignupInputDto } from "../models/auth/RequestSignupInputDto";
 import type { CancelablePromise } from "../core/CancelablePromise";
 import { OpenAPI } from "../core/OpenAPI";
 import { request as __request } from "../core/request";
-import { LoginResponseDto } from "../models/auth/LoginResponseDto";
-import { SignupResponseDto } from "../models/auth/SignupResponseDto";
+import { ResponseLoginDto } from "../models/auth/ResponseLoginDto";
+import { ResponseSignupDto } from "../models/auth/ResponseSignupDto";
 export class AuthenticationService {
   /**
    * Register a new user
@@ -20,8 +20,8 @@ export class AuthenticationService {
    * @throws ApiError
    */
   public static authControllerSignup(
-    requestBody: SignupInputDto
-  ): CancelablePromise<SignupResponseDto> {
+    requestBody: RequestSignupInputDto
+  ): CancelablePromise<ResponseSignupDto> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/auth/signup",
@@ -40,8 +40,8 @@ export class AuthenticationService {
    * @throws ApiError
    */
   public static authControllerLogin(
-    requestBody: loginInputDto
-  ): CancelablePromise<LoginResponseDto> {
+    requestBody: RequestLoginInputDto
+  ): CancelablePromise<ResponseLoginDto> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/auth/login",
@@ -73,7 +73,7 @@ export class AuthenticationService {
    * @throws ApiError
    */
   public static authControllerChangePassword(
-    requestBody: ChangePasswordDto
+    requestBody: RequestChangePasswordDto
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "POST",
@@ -92,7 +92,7 @@ export class AuthenticationService {
    * @throws ApiError
    */
   public static authControllerForgetPassword(
-    requestBody: ForgetPasswordDto
+    requestBody: RequestForgetPasswordDto
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "POST",
@@ -108,7 +108,7 @@ export class AuthenticationService {
    * @throws ApiError
    */
   public static authControllerResetPassword(
-    requestBody: ResetPasswordDto
+    requestBody: RequestResetPasswordDto
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "POST",

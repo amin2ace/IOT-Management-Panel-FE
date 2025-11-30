@@ -3,18 +3,18 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { ControlDeviceDto } from "../models/additionals/ControlDeviceDto";
-import type { DeviceCapabilities } from "../models/extra/DeviceCapabilities";
-import type { DiscoveryRequestDto } from "../models/device/DiscoveryRequestDto";
-import type { HardwareStatusRequestDto } from "../models/configuration/HardwareStatusRequestDto";
+import type { DeviceCapabilities } from "../models/enums/DeviceCapabilities";
+import type { RequestDiscoveryDto } from "../models/device/RequestDiscoveryDto";
+import type { RequestHardwareStatusDto } from "../models/configuration/RequestHardwareStatusDto";
 import type { ProvisionState } from "../models/enums/ProvisionStateEnum";
-import type { SensorConfigRequestDto } from "../models/device/SensorConfigRequestDto";
-import type { SensorFunctionalityRequestDto } from "../models/device/SensorAssignRequestDto";
-import type { TelemetryRequestDto } from "../models/device/TelemetryRequestDto";
+import type { RequestSensorConfigDto } from "../models/device/RequestSensorConfigDto";
+import type { RequestSensorAssignDto } from "../models/device/RequestSensorAssignDto";
+import type { RequestTelemetryDto } from "../models/device/RequestTelemetryDto";
 import type { CancelablePromise } from "../core/CancelablePromise";
 import { OpenAPI } from "../core/OpenAPI";
 import { request as __request } from "../core/request";
 import { QueryDeviceDto } from "../models/device/QueryDeviceDto";
-import { DiscoveryResponseDto } from "../models/device/DiscoveryResponseDto";
+import { ResponseDiscoveryDto } from "../models/device/ResponseDiscoveryDto";
 export class DevicesService {
   /**
    * Get all devices
@@ -44,7 +44,7 @@ export class DevicesService {
    * @throws ApiError
    */
   public static deviceControllerDiscoverDevicesBroadcast(
-    requestBody: DiscoveryRequestDto
+    requestBody: RequestDiscoveryDto
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "POST",
@@ -60,7 +60,7 @@ export class DevicesService {
    * @throws ApiError
    */
   public static deviceControllerDiscoverDeviceUnicast(
-    requestBody: DiscoveryRequestDto
+    requestBody: RequestDiscoveryDto
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "POST",
@@ -87,7 +87,7 @@ export class DevicesService {
    * @throws ApiError
    */
   public static deviceControllerGetHardwareStatus(
-    requestBody: HardwareStatusRequestDto
+    requestBody: RequestHardwareStatusDto
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "POST",
@@ -103,7 +103,7 @@ export class DevicesService {
    * @throws ApiError
    */
   public static deviceControllerProvisionDevice(
-    requestBody: SensorFunctionalityRequestDto
+    requestBody: RequestSensorAssignDto
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "PUT",
@@ -136,7 +136,7 @@ export class DevicesService {
    * @throws ApiError
    */
   public static deviceControllerReconfigureDevice(
-    requestBody: SensorConfigRequestDto
+    requestBody: RequestSensorConfigDto
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "POST",
@@ -205,7 +205,7 @@ export class DevicesService {
    * @throws ApiError
    */
   public static deviceControllerGetDeviceTelemetry(
-    requestBody: TelemetryRequestDto
+    requestBody: RequestTelemetryDto
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "GET",

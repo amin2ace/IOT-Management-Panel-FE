@@ -1,4 +1,4 @@
-import { DeviceCapabilities } from "../extra/DeviceCapabilities";
+import { DeviceCapabilities } from "../enums/DeviceCapabilities";
 import { ProvisionState } from "../enums/ProvisionStateEnum";
 
 export type QueryDeviceDto = {

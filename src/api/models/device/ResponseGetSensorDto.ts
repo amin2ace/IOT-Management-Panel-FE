@@ -1,0 +1,34 @@
+import { ConnectionState } from "../enums/ConnectionStateEnum";
+import { DeviceCapabilities } from "../enums/DeviceCapabilities";
+import { Protocol } from "../enums/ProtocolEnum";
+import { ProvisionState } from "../enums/ProvisionStateEnum";
+import { DeviceLocationDto } from "../extra/DeviceLocationDto";
+
+export type ResponseGetSensorDto = {
+  deviceId: string;
+  capabilities: DeviceCapabilities[];
+  deviceHardware: string;
+  assignedFunctionality?: DeviceCapabilities[];
+  deviceBaseTopic?: string;
+  location: DeviceLocationDto;
+  provisionState: ProvisionState;
+  clientId?: string;
+  lastValue: number;
+  lastValueAt?: number;
+  connectionState?: ConnectionState;
+  isActuator: boolean;
+  highSetPoint: number;
+  lowSetPoint: number;
+  interval: number;
+  hasError: boolean;
+  firmware?: string;
+  mac?: string;
+  ip?: string;
+  protocol: Protocol;
+  broker: string;
+  isDeleted: boolean;
+  lastReboot?: Date | string;
+  lastUpgrade?: Date | string;
+  createdAt: Date | string;
+  updatedAt: Date | string;
+};

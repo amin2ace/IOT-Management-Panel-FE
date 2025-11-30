@@ -8,7 +8,7 @@ import { RequestMessageCode } from "@/api/models/enums/MessageCodeEnum";
 import { useProvisionDevice } from "@/hooks/useDevices";
 import { useAuth } from "@/context/AuthContext";
 import { DeviceEditState } from "@/pages";
-import { ResponseGetDevice } from "@/api/models/device/GetSensorResponseDto";
+import { ResponseGetDevice } from "@/api/models/device/ResponseGetSensorDto";
 
 export function useAssignDevice() {
   const { t } = useTranslation();
