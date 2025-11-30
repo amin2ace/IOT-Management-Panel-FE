@@ -1,11 +1,11 @@
 /* generated from NestJS DTO - do not edit */
 /* Sensor response data transfer object */
 
-import { ConnectionState } from "./ConnectionStateEnum";
-import { DeviceCapabilities } from "./DeviceCapabilities";
-import { DeviceLocationDto } from "./DeviceLocationDto";
-import { Protocol } from "./Protocol";
-import { ProvisionState } from "./ProvisionState";
+import { ConnectionState } from "../enums/ConnectionStateEnum";
+import { DeviceCapabilities } from "../enums/DeviceCapabilities";
+import { DeviceLocationDto } from "../extra/DeviceLocationDto";
+import { Protocol } from "../enums/ProtocolEnum";
+import { ProvisionState } from "../enums/ProvisionStateEnum";
 
 /**
  * Sensor Response DTO
@@ -45,7 +45,7 @@ import { ProvisionState } from "./ProvisionState";
  *   "updatedAt": "2025-11-14T10:35:00Z"
  * }
  */
-export type GetSingleSensorDto = {
+export type RequestGetSingleSensorDto = {
   /**
    * Unique sensor identifier (ESP MAC or custom ID)
    * @example "sensor-67890"

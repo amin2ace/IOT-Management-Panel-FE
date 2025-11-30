@@ -1,7 +1,7 @@
 /* generated from NestJS DTO - do not edit */
 /* Get all devices response data transfer object */
 
-import { GetSingleSensorDto } from "./GetSingleSensorDto";
+import { RequestGetSingleSensorDto } from "./RequestGetSingleSensorDto";
 
 /**
  * Get All Devices Response DTO
@@ -50,11 +50,11 @@ import { GetSingleSensorDto } from "./GetSingleSensorDto";
  *   "hasMore": false
  * }
  */
-export type GetAllSensorsDto = {
+export type RequestGetAllSensorsDto = {
   /**
    * Array of device/sensor records
    */
-  data: GetSingleSensorDto[];
+  data: RequestGetSingleSensorDto[];
 
   /**
    * Total number of devices in the system

@@ -1,21 +1,16 @@
-import { ConnectionState } from "./ConnectionStateEnum";
-import { DeviceCapabilities } from "./DeviceCapabilities";
-import { Protocol } from "./Protocol";
-import { ProvisionState } from "./ProvisionState";
+import { ConnectionState } from "../enums/ConnectionStateEnum";
+import { DeviceCapabilities } from "../enums/DeviceCapabilities";
+import { Protocol } from "../enums/ProtocolEnum";
+import { ProvisionState } from "../enums/ProvisionStateEnum";
+import { DeviceLocationDto } from "../extra/DeviceLocationDto";
 
-export interface DeviceLocation {
-  room?: string;
-  floor?: number;
-  unit?: string;
-}
-
-export type ResponseGetDevice = {
+export type ResponseGetSensorDto = {
   deviceId: string;
   capabilities: DeviceCapabilities[];
   deviceHardware: string;
   assignedFunctionality?: DeviceCapabilities[];
   deviceBaseTopic?: string;
-  location: DeviceLocation;
+  location: DeviceLocationDto;
   provisionState: ProvisionState;
   clientId?: string;
   lastValue: number;

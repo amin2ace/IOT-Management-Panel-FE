@@ -3,11 +3,11 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSocket } from "@/hooks/useSocket";
 import { DeviceCapabilities } from "@/api";
-import { RequestMessageCode } from "@/api/models/MessageCode";
+import { RequestMessageCode } from "@/api/models/enums/MessageCodeEnum";
 import { useAuth } from "@/context/AuthContext";
-import { QueryUnassignedDevicesDto } from "@/api/models/QueryUnassignedDevicesDto";
+import { QueryUnassignedDevicesDto } from "@/api/models/device/QueryUnassignedDevicesDto";
 import AssignTable from "@/components/AssignTable";
-import { ResponseGetDevice } from "@/api/models/GetSensorResponseDto";
+import { ResponseGetDevice } from "@/api/models/device/ResponseGetSensorDto";
 
 // Constants
 const INTERVAL_MIN = 500;

@@ -2,13 +2,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { Role } from "./Role";
-export type CreateUserDto = {
+export type RequestSignupInputDto = {
   username: string;
   email: string;
   password: string;
-  /**
-   * User role for RBAC
-   */
-  roles: Array<Role>;
 };

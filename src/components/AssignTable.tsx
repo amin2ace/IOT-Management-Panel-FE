@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { DeviceCapabilities } from "@/api";
 import { DeviceEditState } from "@/pages";
 import TableRow from "./TableRow";
-import { ResponseGetDevice } from "@/api/models/GetSensorResponseDto";
+import { ResponseGetDevice } from "@/api/models/device/ResponseGetSensorDto";
 
 interface AssignTableProps {
   devices: ResponseGetDevice[];

@@ -2,15 +2,15 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { AssignRolesDto } from "../models/AssignRolesDto";
-import type { CreateUserDto } from "../models/CreateUserDto";
-import type { UpdateUserDto } from "../models/UpdateUserDto";
-import type { UserResponseDto } from "../models/UserResponseDto";
+import type { RequestAssignRolesDto } from "../models/auth/RequestAssignRolesDto";
+import type { RequestCreateUserDto } from "../models/auth/RequestCreateUserDto";
+import type { RequestUpdateUserDto } from "../models/auth/RequestUpdateUserDto";
+import type { RequestGetUserDto } from "../models/auth/ResponseGetUserDto";
 import type { CancelablePromise } from "../core/CancelablePromise";
 import { OpenAPI } from "../core/OpenAPI";
 import { request as __request } from "../core/request";
 export class UsersService {
-  static usersControllerGetUserProfile(): CancelablePromise<UserResponseDto> {
+  static usersControllerGetUserProfile(): CancelablePromise<RequestGetUserDto> {
     return __request(OpenAPI, {
       method: "GET",
       url: "/users/profile",
@@ -28,8 +28,8 @@ export class UsersService {
    * @throws ApiError
    */
   public static usersControllerUpdateUserProfile(
-    requestBody: UpdateUserDto
-  ): CancelablePromise<UserResponseDto> {
+    requestBody: RequestUpdateUserDto
+  ): CancelablePromise<RequestGetUserDto> {
     return __request(OpenAPI, {
       method: "PATCH",
       url: "/users/{id}",
@@ -49,7 +49,7 @@ export class UsersService {
    */
   public static usersControllerUploadProfilePhoto(
     fileData: FormData
-  ): CancelablePromise<UserResponseDto> {
+  ): CancelablePromise<RequestGetUserDto> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/api/users/profile/photo",
@@ -70,8 +70,8 @@ export class UsersService {
    * @throws ApiError
    */
   public static usersControllerCreate(
-    requestBody: CreateUserDto
-  ): CancelablePromise<UserResponseDto> {
+    requestBody: RequestCreateUserDto
+  ): CancelablePromise<RequestGetUserDto> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/api/users",
@@ -104,7 +104,7 @@ export class UsersService {
    */
   public static usersControllerFindById(
     id: string
-  ): CancelablePromise<UserResponseDto> {
+  ): CancelablePromise<RequestGetUserDto> {
     return __request(OpenAPI, {
       method: "GET",
       url: "/api/users/{id}",
@@ -125,8 +125,8 @@ export class UsersService {
    */
   public static usersControllerUpdate(
     id: string,
-    requestBody: UpdateUserDto
-  ): CancelablePromise<UserResponseDto> {
+    requestBody: RequestUpdateUserDto
+  ): CancelablePromise<RequestGetUserDto> {
     return __request(OpenAPI, {
       method: "PATCH",
       url: "/api/users/{id}",
@@ -168,8 +168,8 @@ export class UsersService {
    */
   public static usersControllerAssignRoles(
     id: string,
-    requestBody: AssignRolesDto
-  ): CancelablePromise<UserResponseDto> {
+    requestBody: RequestAssignRolesDto
+  ): CancelablePromise<RequestGetUserDto> {
     return __request(OpenAPI, {
       method: "PATCH",
       url: "/api/users/{id}/roles",
@@ -216,8 +216,8 @@ export class UsersService {
    */
   public static usersControllerAddRoles(
     id: string,
-    requestBody: AssignRolesDto
-  ): CancelablePromise<UserResponseDto> {
+    requestBody: RequestAssignRolesDto
+  ): CancelablePromise<RequestGetUserDto> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/api/users/{id}/roles/add",
@@ -242,8 +242,8 @@ export class UsersService {
    */
   public static usersControllerRemoveRoles(
     id: string,
-    requestBody: AssignRolesDto
-  ): CancelablePromise<UserResponseDto> {
+    requestBody: RequestAssignRolesDto
+  ): CancelablePromise<RequestGetUserDto> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/api/users/{id}/roles/remove",

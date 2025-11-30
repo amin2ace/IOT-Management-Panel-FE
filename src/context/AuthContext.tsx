@@ -1,21 +1,21 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { AuthenticationService, loginInputDto, SignupInputDto } from "@/api";
-import { LoginResponseDto } from "@/api/models/LoginResponseDto";
-import { SignupResponseDto } from "@/api/models/SignupResponseDto";
+import { ResponseLoginDto } from "@/api/models/auth/ResponseLoginDto";
+import { ResponseSignupDto } from "@/api/models/auth/ResponseSignupDto";
 
 export interface AuthContextValue {
-  user: LoginResponseDto | SignupResponseDto | null;
+  user: ResponseLoginDto | ResponseSignupDto | null;
   loading: boolean;
   login: (payload: loginInputDto) => Promise<void>;
   signup: (payload: SignupInputDto) => Promise<void>;
   logout: () => Promise<void>;
-  setUser: (u: LoginResponseDto | SignupResponseDto | null) => void;
+  setUser: (u: ResponseLoginDto | ResponseSignupDto | null) => void;
 }
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<LoginResponseDto | SignupResponseDto | null>(
+  const [user, setUser] = useState<ResponseLoginDto | ResponseSignupDto | null>(
     null
   );
   const [loading, setLoading] = useState(true);

@@ -1,4 +1,4 @@
-import { RequestMessageCode } from "./MessageCode";
+import { RequestMessageCode } from "../enums/MessageCodeEnum";
 
 export type QueryUnassignedDevicesDto = {
   userId: string;

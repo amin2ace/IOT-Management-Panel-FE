@@ -2,8 +2,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { FilterDto } from "./FilterDto";
-export type DiscoveryRequestDto = {
+import type { FilterDto } from "../extra/FilterDto";
+export type RequestDiscoveryDto = {
   /**
    * Unique identifier of the user who initiated the request
    */

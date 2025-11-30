@@ -2,12 +2,12 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { DeviceLocationDto } from "./DeviceLocationDto";
-import type { LoggingConfigDto } from "./LoggingConfigDto";
-import type { NetworkConfigDto } from "./NetworkConfigDto";
-import type { OtaConfigDto } from "./OtaConfigDto";
-import type { Protocol } from "./Protocol";
-export type SensorConfigRequestDto = {
+import type { DeviceLocationDto } from "../extra/DeviceLocationDto";
+import type { LoggingConfigDto } from "../configuration/LoggingConfigDto";
+import type { NetworkConfigDto } from "../configuration/NetworkConfigDto";
+import type { OtaConfigDto } from "../configuration/OtaConfigDto";
+import type { Protocol } from "../enums/ProtocolEnum";
+export type RequestSensorConfigDto = {
   /**
    * Unique identifier of the user who initiated the request
    */

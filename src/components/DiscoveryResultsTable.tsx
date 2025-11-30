@@ -1,14 +1,14 @@
-import { DiscoveryResponseDto } from "@/api/models/DiscoveryResponseDto";
+import { ResponseDiscoveryDto } from "@/api/models/device/ResponseDiscoveryDto";
 import {
   CapabilityColorMap,
   ConnectionStateColorMap,
   ProtocolColorMap,
-} from "@/api/models/ColorMaps";
+} from "@/api/models/extra/ColorMaps";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
 type Props = {
-  devices: DiscoveryResponseDto[] | [];
+  devices: ResponseDiscoveryDto[] | [];
 };
 
 export default function DevicesResultTable({ devices }: Props) {

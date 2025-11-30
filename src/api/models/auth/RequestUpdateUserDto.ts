@@ -2,8 +2,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { Role } from "./Role";
-export type UpdateUserDto = {
+import type { Role } from "../enums/RoleEnum";
+export type RequestUpdateUserDto = {
   /**
    * Username must be unique and 3-20 characters
    * @pattern ^[a-zA-Z0-9_]{3,20}$

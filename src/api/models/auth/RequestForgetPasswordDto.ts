@@ -2,9 +2,4 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type ChangePasswordDto = {
-    oldPassword: string;
-    newPassword: string;
-    retypePassword: string;
-};
-
+export type RequestForgetPasswordDto = {};

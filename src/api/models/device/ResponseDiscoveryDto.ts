@@ -1,11 +1,11 @@
 /* generated from NestJS DTO - do not edit */
 /* Discovery response data transfer objects */
 
-import { AdditionalInfoDto } from "./AdditionalInfoDto";
-import { ConnectionState } from "./ConnectionStateEnum";
-import { DeviceCapabilities } from "./DeviceCapabilities";
-import { DeviceLocationDto } from "./DeviceLocationDto";
-import { Protocol } from "./Protocol";
+import { AdditionalInfoDto } from "../extra/AdditionalInfoDto";
+import { ConnectionState } from "../enums/ConnectionStateEnum";
+import { DeviceCapabilities } from "../enums/DeviceCapabilities";
+import { DeviceLocationDto } from "../extra/DeviceLocationDto";
+import { Protocol } from "../enums/ProtocolEnum";
 
 /**
  * Discovery response data transfer object
@@ -39,7 +39,7 @@ import { Protocol } from "./Protocol";
  *   }
  * }
  */
-export type DiscoveryResponseDto = {
+export type ResponseDiscoveryDto = {
   /**
    * Unique identifier of the user who initiated the request
    * @example "user-001"

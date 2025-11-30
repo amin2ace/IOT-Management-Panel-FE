@@ -1,8 +1,8 @@
 /* generated from NestJS DTO - do not edit */
 /* Telemetry response data transfer object */
 
-import { TelemetryMetaDto } from "./TelemetryMetaDto";
-import { TelemetryMetric } from "./TelemetryMetrics";
+import { TelemetryMetaDto } from "../extra/TelemetryMetaDto";
+import { TelemetryMetric } from "../enums/TelemetryMetricsEnum";
 
 /**
  * Telemetry response data transfer object
@@ -28,7 +28,7 @@ import { TelemetryMetric } from "./TelemetryMetrics";
  *   }
  * }
  */
-export type TelemetryResponseDto = {
+export type ResponseTelemetryDto = {
   /**
    * Unique identifier of the user who initiated the request
    * @example "user-001"

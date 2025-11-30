@@ -4,11 +4,11 @@ import { useTranslation } from "react-i18next";
 import toast from "react-hot-toast";
 import { useSocket } from "@/hooks/useSocket";
 import { SensorFunctionalityRequestDto } from "@/api";
-import { RequestMessageCode } from "@/api/models/MessageCode";
+import { RequestMessageCode } from "@/api/models/enums/MessageCodeEnum";
 import { useProvisionDevice } from "@/hooks/useDevices";
 import { useAuth } from "@/context/AuthContext";
 import { DeviceEditState } from "@/pages";
-import { ResponseGetDevice } from "@/api/models/GetSensorResponseDto";
+import { ResponseGetDevice } from "@/api/models/device/ResponseGetSensorDto";
 
 export function useAssignDevice() {
   const { t } = useTranslation();

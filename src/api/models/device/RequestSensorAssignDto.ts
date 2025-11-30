@@ -2,8 +2,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { DeviceCapabilities } from "./DeviceCapabilities";
-export type SensorFunctionalityRequestDto = {
+import type { DeviceCapabilities } from "../enums/DeviceCapabilities";
+export type RequestSensorAssignDto = {
   /**
    * Unique identifier of the user who initiated the request
    */

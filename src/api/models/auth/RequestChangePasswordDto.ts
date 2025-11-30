@@ -2,8 +2,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type SignupInputDto = {
-  username: string;
-  email: string;
-  password: string;
+export type RequestChangePasswordDto = {
+  oldPassword: string;
+  newPassword: string;
+  retypePassword: string;
 };

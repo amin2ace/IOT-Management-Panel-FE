@@ -2,7 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type TelemetryRequestDto = {
+export type RequestHardwareStatusDto = {
   /**
    * Unique identifier of the user who initiated the request
    */

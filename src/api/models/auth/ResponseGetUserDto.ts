@@ -3,8 +3,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Role } from "./Role";
-export type UserResponseDto = {
+import { Role } from "../enums/RoleEnum";
+export type RequestGetUserDto = {
   userId: string;
   email: string;
   username: string;

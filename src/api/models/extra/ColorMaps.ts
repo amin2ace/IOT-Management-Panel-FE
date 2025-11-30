@@ -1,6 +1,6 @@
-import { ConnectionState } from "./ConnectionStateEnum";
-import { DeviceCapabilities } from "./DeviceCapabilities";
-import { Protocol } from "./Protocol";
+import { ConnectionState } from "../enums/ConnectionStateEnum";
+import { DeviceCapabilities } from "../enums/DeviceCapabilities";
+import { Protocol } from "../enums/ProtocolEnum";
 
 export const CapabilityColorMap: Record<DeviceCapabilities | string, string> = {
   [DeviceCapabilities.TEMPERATURE]: "bg-red-600/30 text-red-300",
