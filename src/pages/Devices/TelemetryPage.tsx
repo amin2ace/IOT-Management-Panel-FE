@@ -10,7 +10,7 @@ import {
   CartesianGrid,
 } from "recharts";
 import { motion } from "framer-motion";
-import { TelemetryResponseDto } from "@/api/models/TelemetryResponseDto";
+import { TelemetryResponseDto } from "@/api/models/device/TelemetryResponseDto";
 
 interface MetricData {
   metric: string;

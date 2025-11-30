@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { AuthenticationService, loginInputDto, SignupInputDto } from "@/api";
-import { LoginResponseDto } from "@/api/models/LoginResponseDto";
-import { SignupResponseDto } from "@/api/models/SignupResponseDto";
+import { LoginResponseDto } from "@/api/models/auth/LoginResponseDto";
+import { SignupResponseDto } from "@/api/models/auth/SignupResponseDto";
 
 export interface AuthContextValue {
   user: LoginResponseDto | SignupResponseDto | null;

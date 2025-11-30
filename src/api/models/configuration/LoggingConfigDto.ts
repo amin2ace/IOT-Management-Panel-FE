@@ -2,7 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { LogLevel } from "./LogLevel";
+import type { LogLevel } from "../enums/LogLevelEnum";
 export type LoggingConfigDto = {
   /**
    * Logging level

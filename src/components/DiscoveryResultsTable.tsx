@@ -1,9 +1,9 @@
-import { DiscoveryResponseDto } from "@/api/models/DiscoveryResponseDto";
+import { DiscoveryResponseDto } from "@/api/models/device/DiscoveryResponseDto";
 import {
   CapabilityColorMap,
   ConnectionStateColorMap,
   ProtocolColorMap,
-} from "@/api/models/ColorMaps";
+} from "@/api/models/extra/ColorMaps";
 import React from "react";
 import { useTranslation } from "react-i18next";
 

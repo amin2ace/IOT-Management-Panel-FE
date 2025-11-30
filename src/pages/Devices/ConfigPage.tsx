@@ -3,7 +3,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { SensorConfigRequestDto } from "@/api";
-import { RequestMessageCode } from "@/api/models/MessageCode";
+import { RequestMessageCode } from "@/api/models/enums/MessageCodeEnum";
 import api from "@/api/client";
 import TimezoneSelect from "@/components/TimeZoneSelect";
 

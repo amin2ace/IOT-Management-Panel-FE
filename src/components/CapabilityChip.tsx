@@ -1,4 +1,4 @@
-import { CapabilityColorMap } from "@/api/models/ColorMaps";
+import { CapabilityColorMap } from "@/api/models/extra/ColorMaps";
 
 type props = {
   cap: string;

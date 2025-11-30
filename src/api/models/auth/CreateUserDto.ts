@@ -2,7 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { Role } from "./Role";
+import type { Role } from "../enums/RoleEnum";
 export type CreateUserDto = {
   username: string;
   email: string;

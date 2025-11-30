@@ -1,7 +1,7 @@
 /* generated from NestJS DTO - do not edit */
 /* Telemetry metadata transfer object */
 
-import { DeviceLocationDto } from "./DeviceLocationDto";
+import { DeviceLocationDto } from "../extra/DeviceLocationDto";
 
 /**
  * Telemetry metadata transfer object

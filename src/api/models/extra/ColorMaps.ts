@@ -1,4 +1,4 @@
-import { ConnectionState } from "./ConnectionStateEnum";
+import { ConnectionState } from "../enums/ConnectionStateEnum";
 import { DeviceCapabilities } from "./DeviceCapabilities";
 import { Protocol } from "./Protocol";
 

@@ -2,16 +2,16 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { ChangePasswordDto } from "../models/ChangePasswordDto";
-import type { ForgetPasswordDto } from "../models/ForgetPasswordDto";
-import type { loginInputDto } from "../models/loginInputDto";
-import type { ResetPasswordDto } from "../models/ResetPasswordDto";
-import type { SignupInputDto } from "../models/SignupInputDto";
+import type { ChangePasswordDto } from "../models/auth/ChangePasswordDto";
+import type { ForgetPasswordDto } from "../models/auth/ForgetPasswordDto";
+import type { loginInputDto } from "../models/auth/loginInputDto";
+import type { ResetPasswordDto } from "../models/auth/ResetPasswordDto";
+import type { SignupInputDto } from "../models/auth/SignupInputDto";
 import type { CancelablePromise } from "../core/CancelablePromise";
 import { OpenAPI } from "../core/OpenAPI";
 import { request as __request } from "../core/request";
-import { LoginResponseDto } from "../models/LoginResponseDto";
-import { SignupResponseDto } from "../models/SignupResponseDto";
+import { LoginResponseDto } from "../models/auth/LoginResponseDto";
+import { SignupResponseDto } from "../models/auth/SignupResponseDto";
 export class AuthenticationService {
   /**
    * Register a new user

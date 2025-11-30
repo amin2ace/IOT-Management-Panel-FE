@@ -14,7 +14,7 @@ import { useSocket } from "@/hooks/useSocket";
 import { useAuth } from "@/context/AuthContext";
 import { DiscoveryRequestDto } from "@/api";
 import { useTranslation } from "react-i18next";
-import { DiscoveryResponseDto } from "@/api/models/DiscoveryResponseDto";
+import { DiscoveryResponseDto } from "@/api/models/device/DiscoveryResponseDto";
 import DevicesResultTable from "@/components/DiscoveryResultsTable";
 import DiscoveryMethod from "@/components/DiscoveryMethod";
 import { useDiscoveryStore } from "@/hooks/useDiscoveryStore";

@@ -2,10 +2,10 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { AssignRolesDto } from "../models/AssignRolesDto";
-import type { CreateUserDto } from "../models/CreateUserDto";
-import type { UpdateUserDto } from "../models/UpdateUserDto";
-import type { UserResponseDto } from "../models/UserResponseDto";
+import type { AssignRolesDto } from "../models/auth/AssignRolesDto";
+import type { CreateUserDto } from "../models/auth/CreateUserDto";
+import type { UpdateUserDto } from "../models/auth/UpdateUserDto";
+import type { UserResponseDto } from "../models/auth/UserResponseDto";
 import type { CancelablePromise } from "../core/CancelablePromise";
 import { OpenAPI } from "../core/OpenAPI";
 import { request as __request } from "../core/request";

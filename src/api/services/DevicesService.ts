@@ -2,19 +2,19 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { ControlDeviceDto } from "../models/ControlDeviceDto";
-import type { DeviceCapabilities } from "../models/DeviceCapabilities";
-import type { DiscoveryRequestDto } from "../models/DiscoveryRequestDto";
-import type { HardwareStatusRequestDto } from "../models/HardwareStatusRequestDto";
-import type { ProvisionState } from "../models/ProvisionState";
-import type { SensorConfigRequestDto } from "../models/SensorConfigRequestDto";
-import type { SensorFunctionalityRequestDto } from "../models/SensorAssignRequestDto";
-import type { TelemetryRequestDto } from "../models/TelemetryRequestDto";
+import type { ControlDeviceDto } from "../models/additionals/ControlDeviceDto";
+import type { DeviceCapabilities } from "../models/extra/DeviceCapabilities";
+import type { DiscoveryRequestDto } from "../models/device/DiscoveryRequestDto";
+import type { HardwareStatusRequestDto } from "../models/configuration/HardwareStatusRequestDto";
+import type { ProvisionState } from "../models/enums/ProvisionStateEnum";
+import type { SensorConfigRequestDto } from "../models/device/SensorConfigRequestDto";
+import type { SensorFunctionalityRequestDto } from "../models/device/SensorAssignRequestDto";
+import type { TelemetryRequestDto } from "../models/device/TelemetryRequestDto";
 import type { CancelablePromise } from "../core/CancelablePromise";
 import { OpenAPI } from "../core/OpenAPI";
 import { request as __request } from "../core/request";
-import { QueryDeviceDto } from "../models/QueryDeviceDto";
-import { DiscoveryResponseDto } from "../models/DiscoveryResponseDto";
+import { QueryDeviceDto } from "../models/device/QueryDeviceDto";
+import { DiscoveryResponseDto } from "../models/device/DiscoveryResponseDto";
 export class DevicesService {
   /**
    * Get all devices

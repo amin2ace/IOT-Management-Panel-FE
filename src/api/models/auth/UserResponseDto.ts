@@ -3,7 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Role } from "./Role";
+import { Role } from "../enums/RoleEnum";
 export type UserResponseDto = {
   userId: string;
   email: string;

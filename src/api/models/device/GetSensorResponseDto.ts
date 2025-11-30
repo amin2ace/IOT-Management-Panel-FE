@@ -1,7 +1,7 @@
-import { ConnectionState } from "./ConnectionStateEnum";
-import { DeviceCapabilities } from "./DeviceCapabilities";
-import { Protocol } from "./Protocol";
-import { ProvisionState } from "./ProvisionState";
+import { ConnectionState } from "../enums/ConnectionStateEnum";
+import { DeviceCapabilities } from "../extra/DeviceCapabilities";
+import { Protocol } from "../extra/Protocol";
+import { ProvisionState } from "../enums/ProvisionStateEnum";
 
 export interface DeviceLocation {
   room?: string;

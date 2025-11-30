@@ -1,11 +1,11 @@
 /* generated from NestJS DTO - do not edit */
 /* Sensor response data transfer object */
 
-import { ConnectionState } from "./ConnectionStateEnum";
-import { DeviceCapabilities } from "./DeviceCapabilities";
-import { DeviceLocationDto } from "./DeviceLocationDto";
-import { Protocol } from "./Protocol";
-import { ProvisionState } from "./ProvisionState";
+import { ConnectionState } from "../enums/ConnectionStateEnum";
+import { DeviceCapabilities } from "../extra/DeviceCapabilities";
+import { DeviceLocationDto } from "../extra/DeviceLocationDto";
+import { Protocol } from "../extra/Protocol";
+import { ProvisionState } from "../enums/ProvisionStateEnum";
 
 /**
  * Sensor Response DTO

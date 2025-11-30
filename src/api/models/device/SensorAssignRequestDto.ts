@@ -2,7 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { DeviceCapabilities } from "./DeviceCapabilities";
+import type { DeviceCapabilities } from "../extra/DeviceCapabilities";
 export type SensorFunctionalityRequestDto = {
   /**
    * Unique identifier of the user who initiated the request

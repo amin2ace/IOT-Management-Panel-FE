@@ -4,7 +4,7 @@ import {
   SensorConfigRequestDto,
   SensorFunctionalityRequestDto,
 } from "@/api";
-import { QueryDeviceDto } from "@/api/models/QueryDeviceDto";
+import { QueryDeviceDto } from "@/api/models/device/QueryDeviceDto";
 import { useQuery, useMutation } from "@tanstack/react-query";
 
 export const useDevices = (params: QueryDeviceDto) =>

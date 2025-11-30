@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { DiscoveryResponseDto } from "@/api/models/DiscoveryResponseDto";
+import { DiscoveryResponseDto } from "@/api/models/device/DiscoveryResponseDto";
 
 const STORAGE_KEY = "discovery_devices";
 

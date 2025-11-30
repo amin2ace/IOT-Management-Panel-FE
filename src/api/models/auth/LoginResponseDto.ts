@@ -1,4 +1,4 @@
-import { Role } from "./Role";
+import { Role } from "../enums/RoleEnum";
 
 export type LoginResponseDto = {
   userId: string;

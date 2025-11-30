@@ -2,7 +2,7 @@
 /* Telemetry response data transfer object */
 
 import { TelemetryMetaDto } from "./TelemetryMetaDto";
-import { TelemetryMetric } from "./TelemetryMetrics";
+import { TelemetryMetric } from "../enums/TelemetryMetricsEnum";
 
 /**
  * Telemetry response data transfer object

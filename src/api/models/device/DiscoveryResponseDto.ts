@@ -1,11 +1,11 @@
 /* generated from NestJS DTO - do not edit */
 /* Discovery response data transfer objects */
 
-import { AdditionalInfoDto } from "./AdditionalInfoDto";
-import { ConnectionState } from "./ConnectionStateEnum";
-import { DeviceCapabilities } from "./DeviceCapabilities";
-import { DeviceLocationDto } from "./DeviceLocationDto";
-import { Protocol } from "./Protocol";
+import { AdditionalInfoDto } from "../extra/AdditionalInfoDto";
+import { ConnectionState } from "../enums/ConnectionStateEnum";
+import { DeviceCapabilities } from "../extra/DeviceCapabilities";
+import { DeviceLocationDto } from "../extra/DeviceLocationDto";
+import { Protocol } from "../extra/Protocol";
 
 /**
  * Discovery response data transfer object
