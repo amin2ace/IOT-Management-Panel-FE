@@ -7,7 +7,7 @@ import { RequestMessageCode } from "@/api/models/enums/MessageCodeEnum";
 import { useAuth } from "@/context/AuthContext";
 import { QueryUnassignedDevicesDto } from "@/api/models/device/QueryUnassignedDevicesDto";
 import AssignTable from "@/components/AssignTable";
-import { ResponseGetDevice } from "@/api/models/device/ResponseGetSensorDto";
+import { ResponseGetDevice } from "@/api/models/device/GetSensorResponseDto";
 
 // Constants
 const INTERVAL_MIN = 500;

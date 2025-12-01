@@ -11,9 +11,11 @@ export const useProfile = (options?: { enabled?: boolean }) => {
   return useQuery({
     queryKey: ["profile"],
     queryFn: async () => {
-      const response = await fetch("/api/profile");
-      if (!response.ok) throw new Error("Failed to fetch profile");
-      return response.json();
+      const response = await UsersService.usersControllerGetUserProfile();
+      console.log(response);
+
+      if (!response) throw new Error("Failed to fetch profile");
+      return response;
     },
     enabled: options?.enabled ?? true, // Default to true if not specified
   });

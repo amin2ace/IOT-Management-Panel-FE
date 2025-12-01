@@ -6,6 +6,7 @@ import { useAuth } from "@/context/AuthContext";
 import { LanguageSelector } from "./LanguageSelector";
 import { useProfile } from "@/hooks/useProfile";
 import { useTranslation } from "react-i18next";
+import { UserProfileSection } from "./UserProfileSection";
 
 type props = {
   showProfile: boolean;
@@ -75,25 +76,10 @@ export default function DashboardHeader({ showProfile }: props) {
           <ThemeToggle />
           <LanguageSelector />
           {showProfile && authUser && (
-            <button
-              onClick={handleLogout}
-              className="dashboardLogoutButton"
-              title={t("auth.logout")}
-            >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                />
-              </svg>
-            </button>
+            <UserProfileSection
+              onProfileClick={() => setIsProfileOpen(true)}
+              onLogout={handleLogout}
+            />
           )}
         </div>
       </header>
