@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { DeviceCapabilities } from "@/api";
 import { DeviceEditState } from "@/pages";
 import TableRow from "./TableRow";
-import { ResponseGetDevice } from "@/api/models/device/ResponseGetSensorDto";
+import { ResponseGetDevice } from "@/api/models/device/GetSensorResponseDto";
 
 interface AssignTableProps {
   devices: ResponseGetDevice[];
@@ -69,7 +69,7 @@ export default function AssignTable({
 
             return (
               <TableRow
-                key={`${device.deviceId}-${index}`} // ✅ Fallback to index if deviceId might not be unique
+                key={`${device.deviceId}-${index}`} //
                 device={device}
                 model={model}
                 onUpdate={onUpdate}

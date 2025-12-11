@@ -8,7 +8,7 @@ import { RequestMessageCode } from "@/api/models/enums/MessageCodeEnum";
 import { useProvisionDevice } from "@/hooks/useDevices";
 import { useAuth } from "@/context/AuthContext";
 import { DeviceEditState } from "@/pages";
-import { ResponseGetDevice } from "@/api/models/device/ResponseGetSensorDto";
+import { ResponseGetDevice } from "@/api/models/device/GetSensorResponseDto";
 
 export function useAssignDevice() {
   const { t } = useTranslation();
@@ -36,7 +36,7 @@ export function useAssignDevice() {
     const payload: SensorFunctionalityRequestDto = {
       userId: user?.userId ?? "null",
       requestId: `req-fn-${crypto.randomUUID()}`,
-      requestCode: RequestMessageCode.ASSIGN_DEVICE_FUNCTION,
+      requestCode: RequestMessageCode.REQUEST_ASSIGN_DEVICE_FUNCTION,
       deviceId: device.deviceId,
       timestamp: Date.now(),
       functionality: model.functionality,

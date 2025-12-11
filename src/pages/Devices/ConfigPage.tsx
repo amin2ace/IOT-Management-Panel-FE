@@ -2,10 +2,15 @@ import { useEffect, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { SensorConfigRequestDto } from "@/api";
+import { DevicesService, SensorConfigRequestDto } from "@/api";
 import { RequestMessageCode } from "@/api/models/enums/MessageCodeEnum";
-import api from "@/api/client";
 import TimezoneSelect from "@/components/TimeZoneSelect";
+import toast from "react-hot-toast";
+import { useSocket } from "@/hooks/useSocket";
+import { GetAllDevicesResponse } from "@/api/models/device/QueryAllDevicesDto";
+import { useTranslation } from "react-i18next";
+import { ResponseGetSensorDto } from "@/api/models/device/ResponseGetSensorDto";
+import { redirect } from "react-router-dom";
 
 const schema = z.object({
   deviceId: z.string().min(1, "Device is required"),
@@ -70,12 +75,21 @@ const schema = z.object({
   timezone: z.string().optional(),
 });
 
+enum ConfigTabs {
+  "NETWORK" = "network",
+  "LOGGING" = "logging",
+  "OTA" = "ota",
+  "LOCATION" = "location",
+}
+
 // Component: Sensor Configuration Page 'READ_ONLY'
 export default function ConfigPage() {
-  const [devices, setDevices] = useState<SensorConfigRequestDto[]>([]);
-  const [activeTab, setActiveTab] = useState<
-    "network" | "logging" | "ota" | "location"
-  >("network");
+  const [devices, setDevices] = useState<ResponseGetSensorDto[]>([]);
+  const { socket } = useSocket();
+  const { t } = useTranslation();
+
+  const [activeDevice, setActiveDevice] = useState<ResponseGetSensorDto>();
+  const [activeTab, setActiveTab] = useState<ConfigTabs>(ConfigTabs.NETWORK);
   const methods = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -89,13 +103,30 @@ export default function ConfigPage() {
 
   useEffect(() => {
     // useDevices()
-    api.get("/device/all").then((res) => setDevices(res.data || []));
-  }, []);
+    if (!socket) return;
 
+    const listener = (res: GetAllDevicesResponse) => {
+      if (!res) {
+        toast.error(t("config.getAllSensorsError"));
+        return;
+      }
+      toast.success(t("config.getAllSensorsSuccess"));
+      setDevices((old) => [...old, ...res.data]);
+    };
+    socket.emit("react/message/query/devices/all/request");
+    socket.on("ws/message/query/devices/all/response", listener);
+  }, [socket]);
+
+  const handleSelectDevice = (e) => {
+    reset({ deviceId: e.target.value });
+    setActiveDevice(
+      devices.find((device) => device.deviceId === e.target.value)
+    );
+  };
   const onSubmit = async (data: z.infer<typeof schema>) => {
     const payload: SensorConfigRequestDto = {
       requestId: `req-cfg-${Math.floor(Math.random() * 1000)}`,
-      requestCode: RequestMessageCode.SENSOR_CONFIGURATION,
+      requestCode: RequestMessageCode.REQUEST_SET_SENSOR_CONFIG,
       deviceId: data.deviceId,
       timestamp: Date.now(),
       network: {
@@ -127,8 +158,14 @@ export default function ConfigPage() {
       timezone: data.timezone,
     };
 
-    await api.post("/device/reconfigure", payload);
-    alert("✅ Configuration sent to device");
+    try {
+      await DevicesService.deviceControllerReconfigureDevice(payload);
+      toast.success(t("config.configurationSentToDevice"));
+      redirect("/devices/configure");
+    } catch (error) {
+      toast.error(t("config.configurationSentError"));
+      console.log(error);
+    }
   };
 
   return (
@@ -137,17 +174,19 @@ export default function ConfigPage() {
         onSubmit={handleSubmit(onSubmit)}
         className="dashboardConfigContainer"
       >
-        <h2 className=" text-2xl font-semibold mb-4">Device Configuration</h2>
+        <h2 className=" text-2xl font-semibold mb-4">
+          {t("config.deviceConfiguration")}
+        </h2>
 
         {/* Device selector */}
         <div>
-          <label className="block mb-2">Select Device</label>
+          <label className="block mb-2">{t("config.selectDevice")}</label>
           <select
             {...register("deviceId")}
-            onChange={(e) => reset({ deviceId: e.target.value })}
+            onChange={handleSelectDevice}
             className="p-2 rounded bg-gray-700 text-white"
           >
-            <option value="">Choose a device</option>
+            <option value="">{t("config.chooseDevice")}</option>
             {devices.map((d) => (
               <option key={d.deviceId} value={d.deviceId}>
                 {d.deviceId}
@@ -162,16 +201,14 @@ export default function ConfigPage() {
             <button
               key={tab}
               type="button"
-              onClick={() =>
-                setActiveTab(tab as "network" | "logging" | "ota" | "location")
-              }
+              onClick={() => setActiveTab(tab as ConfigTabs)}
               className={`pb-2 capitalize ${
                 activeTab === tab
                   ? "border-b-2 border-indigo-500 text-indigo-400"
                   : "text-gray-400"
               }`}
             >
-              {tab}
+              {t(`config.tab.${tab}`)}
             </button>
           ))}
         </div>
@@ -181,11 +218,15 @@ export default function ConfigPage() {
           {activeTab === "network" && (
             <>
               <div>
-                <label>Wi-Fi SSID</label>
-                <input {...register("network.wifiSsid")} className="input" />
+                <label>{t("config.wifiSsid")}</label>
+                <input
+                  {...register("network.wifiSsid")}
+                  className="input"
+                  defaultValue={activeDevice?.broker}
+                />
               </div>
               <div>
-                <label>Wi-Fi Password</label>
+                <label>{t("config.wifiPassword")}</label>
                 <input
                   {...register("network.wifiPassword")}
                   className="input"
@@ -194,35 +235,35 @@ export default function ConfigPage() {
               <div>
                 <label className="inline-flex items-center gap-2">
                   <input type="checkbox" {...register("network.dhcp")} />
-                  DHCP Enabled
+                  {t("config.dhcpEnabled")}
                 </label>
               </div>
               {!dhcp && (
                 <>
                   <div>
-                    <label>Static IP</label>
+                    <label>{t("config.selectIP")}</label>
                     <input {...register("network.ip")} className="input" />
                   </div>
                   <div>
-                    <label>Subnet Mask</label>
+                    <label>{t("config.subnetMask")}</label>
                     <input
                       {...register("network.subnetMask")}
                       className="input"
                     />
                   </div>
                   <div>
-                    <label>Gateway</label>
+                    <label>{t("config.gateway")}</label>
                     <input {...register("network.gateway")} className="input" />
                   </div>
                   <div>
-                    <label>DNS 1</label>
+                    <label>{t("config.dns1")}</label>
                     <input
                       {...register("network.dnsServer1")}
                       className="input"
                     />
                   </div>
                   <div>
-                    <label>DNS 2</label>
+                    <label>{t("config.dns2")}</label>
                     <input
                       {...register("network.dnsServer2")}
                       className="input"
@@ -236,7 +277,7 @@ export default function ConfigPage() {
           {activeTab === "logging" && (
             <>
               <div>
-                <label>Log Level</label>
+                <label>{t("config.logLevel")}</label>
                 <select {...register("logging.level")} className="input">
                   <option value="DEBUG">DEBUG</option>
                   <option value="INFO">INFO</option>
@@ -247,11 +288,11 @@ export default function ConfigPage() {
               <div>
                 <label className="inline-flex items-center gap-2">
                   <input type="checkbox" {...register("ota.enabled")} />
-                  Enable Serial Output
+                  {t("config.enableSerialOutput")}
                 </label>
               </div>
               <div>
-                <label>Baud Rate</label>
+                <label>{t("config.buadRate")}</label>
                 <input
                   type="number"
                   {...register("logging.buadrate")}
@@ -259,7 +300,7 @@ export default function ConfigPage() {
                 />
               </div>
               <div>
-                <label>External Server</label>
+                <label>{t("config.externalServer")}</label>
                 <input
                   {...register("logging.externalServer")}
                   className="input"
@@ -273,11 +314,11 @@ export default function ConfigPage() {
               <div>
                 <label className="inline-flex items-center gap-2">
                   <input type="checkbox" {...register("ota.enabled")} />
-                  Enable OTA Updates
+                  {t("config.enableOtaUpdates")}
                 </label>
               </div>
               <div>
-                <label>Firmware URL</label>
+                <label>{t("config.firmwareUrl")}</label>
                 <input {...register("ota.url")} className="input" />
               </div>
             </>
@@ -286,11 +327,11 @@ export default function ConfigPage() {
           {activeTab === "location" && (
             <>
               <div>
-                <label>Site</label>
+                <label>{"config.locationSite"}</label>
                 <input {...register("location.site")} className="input" />
               </div>
               <div>
-                <label>Floor</label>
+                <label>{t("config.locationFloor")}</label>
                 <input
                   type="number"
                   {...register("location.floor")}
@@ -298,7 +339,7 @@ export default function ConfigPage() {
                 />
               </div>
               <div>
-                <label>Unit</label>
+                <label>{t("config.locationUnit")}</label>
                 <input {...register("location.unit")} className="input" />
               </div>
               <div>
@@ -312,7 +353,7 @@ export default function ConfigPage() {
           type="submit"
           className="mt-6 bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded"
         >
-          Save Configuration
+          {t("config.saveConfigurations")}
         </button>
       </form>
     </FormProvider>

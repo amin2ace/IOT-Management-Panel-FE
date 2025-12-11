@@ -10,6 +10,7 @@ import {
   Tooltip,
   CartesianGrid,
 } from "recharts";
+import { TelemetryResponseDto } from "@/api/models/device/TelemetryResponseDto";
 
 interface MetricData {
   metric: string;
@@ -22,7 +23,7 @@ export default function TelemetryPage() {
 
   useEffect(() => {
     if (!socket) return;
-    const handler = (data: TelemetryResponse) => {
+    const handler = (data: TelemetryResponseDto) => {
       setMetrics((prev) => {
         const existing = prev[data.metric] ?? {
           metric: data.metric,

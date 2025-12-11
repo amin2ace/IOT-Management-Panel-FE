@@ -6,7 +6,7 @@ import { AuthProvider } from "@/context/AuthContext";
 import "@/index.css";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import TelemetryPage from "./pages/Devices/TelemetryPage";
-import HmiPage from "./pages/HmiPage";
+// import HmiPage from "./pages/HmiPage";
 import "./i18n";
 import DashboardLayout from "./layouts/DashboardLayout";
 import LoginPage from "./pages/Auth/Login";
@@ -37,7 +37,7 @@ createRoot(document.getElementById("root")!).render(
               <Route path="/devices/configure" element={<ConfigPage />} />
               <Route path="/devices/telemetry" element={<TelemetryPage />} />
               <Route path="/profile" element={<ProfilePage />} />
-              <Route path="hmi" element={<HmiPage />} />
+              {/* <Route path="hmi" element={<HmiPage />} /> */}
             </Route>
           </Routes>
           <Toaster position="top-center" />

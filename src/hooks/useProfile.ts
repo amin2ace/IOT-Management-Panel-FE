@@ -4,12 +4,15 @@ import {
   ChangePasswordDto,
   AuthenticationService,
 } from "@/api";
+import { useAuth } from "@/context/AuthContext";
 import { useQuery, useMutation } from "@tanstack/react-query";
 
 // Fetch current user profile
 export const useProfile = (options?: { enabled?: boolean }) => {
+  const { user } = useAuth();
+
   return useQuery({
-    queryKey: ["profile"],
+    queryKey: ["profile", user?.userId],
     queryFn: async () => {
       const response = await UsersService.usersControllerGetUserProfile();
       console.log(response);
@@ -17,7 +20,7 @@ export const useProfile = (options?: { enabled?: boolean }) => {
       if (!response) throw new Error("Failed to fetch profile");
       return response;
     },
-    enabled: options?.enabled ?? true, // Default to true if not specified
+    enabled: (options?.enabled ?? true) && !!user, // Default to true if not specified
   });
 };
 

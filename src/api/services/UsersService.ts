@@ -10,7 +10,7 @@ import type { CancelablePromise } from "../core/CancelablePromise";
 import { OpenAPI } from "../core/OpenAPI";
 import { request as __request } from "../core/request";
 export class UsersService {
-  static usersControllerGetUserProfile(): CancelablePromise<RequestGetUserDto> {
+  public static usersControllerGetUserProfile(): CancelablePromise<RequestGetUserDto> {
     return __request(OpenAPI, {
       method: "GET",
       url: "/users/profile",

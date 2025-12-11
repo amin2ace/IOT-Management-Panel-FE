@@ -63,7 +63,7 @@ export default function AssignPage() {
     const payload: QueryUnassignedDevicesDto = {
       userId: user?.userId || "",
       requestId: `req-discovery-${crypto.randomUUID()}`,
-      requestCode: RequestMessageCode.ASSIGN_DEVICE_FUNCTION,
+      requestCode: RequestMessageCode.REQUEST_ASSIGN_DEVICE_FUNCTION,
       deviceId: "",
       timestamp: Date.now(),
     };

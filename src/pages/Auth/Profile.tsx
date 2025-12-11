@@ -36,7 +36,7 @@ export default function ProfilePage() {
   const { logout } = useAuth();
   const { t } = useTranslation();
 
-  const { data: user, refetch } = useProfile();
+  const { data: user, refetch } = useProfile({ enabled: false });
   const updateProfile = useUpdateProfile();
   const changePassword = useChangePassword();
   const uploadPhoto = useUploadProfilePhoto();
