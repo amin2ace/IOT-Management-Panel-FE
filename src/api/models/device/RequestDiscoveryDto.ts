@@ -7,15 +7,15 @@ export type RequestDiscoveryDto = {
   /**
    * Unique identifier of the user who initiated the request
    */
-  userId: string;
+  userId?: string;
   /**
    * Unique identifier for the request
    */
-  requestId: string;
+  requestId?: string;
   /**
    * Numeric code representing the request type
    */
-  requestCode: number;
+  requestCode?: number;
   /**
    * Unique identifier of the device
    */
@@ -23,11 +23,11 @@ export type RequestDiscoveryDto = {
   /**
    * Time of the request in epoch milli second
    */
-  timestamp: number;
+  timestamp?: number;
   /**
    * Determine that if the message is broadcasting or not
    */
-  isBroadcast: boolean;
+  isBroadcast?: boolean;
   /**
    * Time of the request in epoch milli second
    */

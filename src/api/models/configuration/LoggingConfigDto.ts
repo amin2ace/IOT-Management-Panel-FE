@@ -8,14 +8,17 @@ export type LoggingConfigDto = {
    * Logging level
    */
   level?: LogLevel;
+
   /**
    * Enable serial debug output
    */
   enableSerial?: boolean;
+
   /**
    * Enable serial debug output
    */
   buadrate?: number;
+
   /**
    * EExternal log server address
    */

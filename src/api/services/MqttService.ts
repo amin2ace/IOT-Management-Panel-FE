@@ -2,9 +2,9 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { MqttConfigDto } from "../models/configuration/MqttConfigDto";
-import type { MqttPublishDto } from "../models/configuration/MqttPublishDto";
-import type { MqttSubscribeDto } from "../models/configuration/MqttSubscribeDto";
+import type { MqttConfigDto } from "../models/Mqtt/MqttConfigDto";
+import type { MqttPublishDto } from "../models/Mqtt/MqttPublishDto";
+import type { MqttSubscribeDto } from "../models/Mqtt/MqttSubscribeDto";
 import type { CancelablePromise } from "../core/CancelablePromise";
 import { OpenAPI } from "../core/OpenAPI";
 import { request as __request } from "../core/request";

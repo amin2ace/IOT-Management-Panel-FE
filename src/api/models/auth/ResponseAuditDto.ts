@@ -1,6 +1,6 @@
 import { Role } from "../enums/RoleEnum";
 
-export type ResponseLoginDto = {
+export type ResponseAuditDto = {
   userId: string;
   username: string;
   roles: Role[];

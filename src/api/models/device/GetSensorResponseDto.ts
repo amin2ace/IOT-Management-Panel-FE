@@ -1,13 +1,8 @@
 import { ConnectionState } from "../enums/ConnectionStateEnum";
-import { DeviceCapabilities } from "../extra/DeviceCapabilities";
 import { Protocol } from "../extra/Protocol";
 import { ProvisionState } from "../enums/ProvisionStateEnum";
-
-export interface DeviceLocation {
-  room?: string;
-  floor?: number;
-  unit?: string;
-}
+import { DeviceCapabilities } from "../enums/DeviceCapabilities";
+import { DeviceLocationDto } from "../extra/DeviceLocationDto";
 
 export type ResponseGetDevice = {
   deviceId: string;
@@ -15,7 +10,7 @@ export type ResponseGetDevice = {
   deviceHardware: string;
   assignedFunctionality?: DeviceCapabilities[];
   deviceBaseTopic?: string;
-  location: DeviceLocation;
+  location: DeviceLocationDto;
   provisionState: ProvisionState;
   clientId?: string;
   lastValue: number;

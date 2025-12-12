@@ -34,13 +34,12 @@ export default function DiscoveryPage() {
   // -------------------------------
   useEffect(() => {
     if (!socket) return;
-
     const listener = (res: ResponseDiscoveryDto) => {
       if (!res || !res.responseId) {
         toast.error(t("discovery.failedToSendDiscovery"));
         return;
       }
-      toast.success(`${t("discovery.device")}: ${res.deviceId}`);
+      toast.success(`${t("discovery.device")}: ${res.sensorData?.deviceId}`);
       addDevice(res);
     };
 
@@ -72,11 +71,8 @@ export default function DiscoveryPage() {
     setLoading(true);
     const payload: DiscoveryRequestDto = {
       userId: user?.userId || "null",
-      requestId: crypto.randomUUID(),
-      requestCode: 100,
       timestamp: Date.now(),
       deviceId: data.deviceId,
-      isBroadcast: false,
     };
 
     try {
@@ -98,10 +94,7 @@ export default function DiscoveryPage() {
     setLoading(true);
     const payload: DiscoveryRequestDto = {
       userId: user?.userId || "null",
-      requestId: crypto.randomUUID(),
-      requestCode: 100,
       timestamp: Date.now(),
-      isBroadcast: true,
     };
 
     try {

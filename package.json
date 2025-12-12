@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview --port 30001",
-    "api:generate": "openapi --input http://localhost:30000/api/docs-json --output src/api --client axios",
+    "api:generate": "openapi --input http://localhost:30000/api/docs-json --output src/api/generate --client axios",
     "api:watch": "nodemon --watch ../iot-management-panel-be/src --exec \"npm run api:generate\""
   },
   "dependencies": {

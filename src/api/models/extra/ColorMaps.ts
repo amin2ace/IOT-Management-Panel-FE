@@ -4,7 +4,7 @@ import { Protocol } from "../enums/ProtocolEnum";
 
 export const CapabilityColorMap: Record<DeviceCapabilities | string, string> = {
   [DeviceCapabilities.TEMPERATURE]: "bg-red-600/30 text-red-300",
-  [DeviceCapabilities.HUMIDITY]: "bg-blue-600/30 text-blue-300",
+  [DeviceCapabilities.HUMIDITY]: "bg-cyan-600/30 text-cyan-300",
   [DeviceCapabilities.PRESSURE]: "bg-yellow-600/30 text-yellow-300",
   [DeviceCapabilities.LIGHT]: "bg-green-600/30 text-green-300",
   [DeviceCapabilities.MOTION]: "bg-purple-600/30 text-purple-300",

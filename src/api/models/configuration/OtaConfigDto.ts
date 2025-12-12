@@ -7,8 +7,14 @@ export type OtaConfigDto = {
    * Enable OTA updates
    */
   enabled?: boolean;
+
   /**
    * OTA firmware URL
    */
   url?: string;
+
+  /**
+   * Ota Check intervals
+   */
+  checkInterval?: number;
 };

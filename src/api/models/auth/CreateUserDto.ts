@@ -2,7 +2,6 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { Role } from "../enums/RoleEnum";
 export type CreateUserDto = {
   username: string;
   email: string;
@@ -10,5 +9,13 @@ export type CreateUserDto = {
   /**
    * User role for RBAC
    */
-  roles: Array<Role>;
+  roles: Array<any[]>;
+  /**
+   * User first name
+   */
+  firstName?: string;
+  /**
+   * User last name
+   */
+  lastName?: string;
 };

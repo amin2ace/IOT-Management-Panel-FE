@@ -26,10 +26,10 @@ export type { RequestSensorConfigDto as SensorConfigRequestDto } from "./models/
 export type { RequestSensorAssignDto as SensorFunctionalityRequestDto } from "./models/device/RequestSensorAssignDto";
 export type { RequestTelemetryDto as RequestTelemetryDto } from "./models/device/RequestTelemetryDto";
 export type { RequestHardwareStatusDto as HardwareStatusRequestDto } from "./models/configuration/RequestHardwareStatusDto";
-export { MqttConfigDto } from "./models/configuration/MqttConfigDto";
-export type { MqttSubscribeDto } from "./models/configuration/MqttSubscribeDto";
+export { MqttConfigDto } from "./models/Mqtt/MqttConfigDto";
+export type { MqttSubscribeDto } from "./models/Mqtt/MqttSubscribeDto";
 export type { NetworkConfigDto } from "./models/configuration/NetworkConfigDto";
-export { MqttPublishDto } from "./models/configuration/MqttPublishDto";
+export { MqttPublishDto } from "./models/Mqtt/MqttPublishDto";
 export type { LoggingConfigDto } from "./models/configuration/LoggingConfigDto";
 export type { OtaConfigDto } from "./models/configuration/OtaConfigDto";
 export { ProvisionState } from "./models/enums/ProvisionStateEnum";

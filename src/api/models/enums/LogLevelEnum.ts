@@ -6,9 +6,9 @@
  * Logging level
  */
 export enum LogLevel {
-    '_1' = 1,
-    '_2' = 2,
-    '_3' = 3,
-    '_4' = 4,
-    '_5' = 5,
+  DEBUG = 1, // Lowest severity, verbose output
+  INFO = 2, // General informational messages
+  WARN = 3, // Warning, something might be wrong
+  ERROR = 4, // Error, requires attention
+  FATAL = 5, // Critical error, system may be unstable
 }

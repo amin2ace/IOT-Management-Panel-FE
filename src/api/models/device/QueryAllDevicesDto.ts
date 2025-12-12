@@ -1,9 +1,9 @@
-import { ResponseGetSensorDto } from "./ResponseGetSensorDto";
+import { SensorDto } from "./SensorDto";
 
 // Main response type matching GetAllDevicesResponseDto
-export interface GetAllDevicesResponse {
+export interface GetAllDevicesDto {
   /** Array of device/sensor records */
-  data: ResponseGetSensorDto[];
+  data: SensorDto[];
 
   /** Total number of devices in the system */
   total?: number;

@@ -2,36 +2,27 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { DeviceLocationDto } from "../extra/DeviceLocationDto";
-import type { LoggingConfigDto } from "../configuration/LoggingConfigDto";
-import type { NetworkConfigDto } from "../configuration/NetworkConfigDto";
-import type { OtaConfigDto } from "../configuration/OtaConfigDto";
-import type { Protocol } from "../enums/ProtocolEnum";
+
+import { LoggingConfigDto } from "../configuration/LoggingConfigDto";
+import { NetworkConfigDto } from "../configuration/NetworkConfigDto";
+import { OtaConfigDto } from "../configuration/OtaConfigDto";
+import { ThresholdDto } from "../configuration/ThresholdDto";
+import { Protocol } from "../enums/ProtocolEnum";
+import { DeviceLocationDto } from "../extra/DeviceLocationDto";
+
 export type RequestSensorConfigDto = {
   /**
-   * Unique identifier of the user who initiated the request
-   */
-  // userId: string;
-  /**
-   * Unique identifier for the request
-   */
-  requestId: string;
-  /**
-   * Numeric code representing the request type
-   */
-  requestCode: number;
-  /**
-   * Unique identifier of the device
+   * Unique identifier of the sensor
    */
   deviceId: string;
   /**
-   * Time of the request in epoch milli second
+   * Device high and low set points
    */
-  timestamp: number;
+  threshold: ThresholdDto;
   /**
    * Base MQTT topic for the device
    */
-  baseTopic?: string;
+  baseTopic: string;
   /**
    * Network configuration
    */
@@ -60,8 +51,6 @@ export type RequestSensorConfigDto = {
    * Protocol name to use
    */
   protocol?: Protocol;
-  apSsid?: string;
-  apPassword?: string;
   /**
    * Configuration version for update tracking
    */

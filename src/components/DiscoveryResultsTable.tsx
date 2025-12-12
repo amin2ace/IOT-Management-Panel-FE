@@ -55,12 +55,16 @@ export default function DevicesResultTable({ devices }: Props) {
                 key={index}
                 className="border-b border-white/10 hover:bg-white/5 transition"
               >
-                <td className="px-4 py-3">{device.deviceId || index}</td>
-                <td className="px-4 py-3">{device.deviceHardware}</td>
+                <td className="px-4 py-3">
+                  {device.sensorData?.deviceId || index}
+                </td>
+                <td className="px-4 py-3">
+                  {device.sensorData?.deviceHardware}
+                </td>
 
                 <td className="px-4 py-3">
                   <div className="flex gap-1 flex-wrap">
-                    {device?.capabilities?.map((c: string) => {
+                    {device?.sensorData?.capabilities?.map((c: string) => {
                       const colorClass =
                         CapabilityColorMap[c] || CapabilityColorMap.default;
 
@@ -76,38 +80,51 @@ export default function DevicesResultTable({ devices }: Props) {
                   </div>{" "}
                 </td>
 
-                <td className="px-4 py-3">{device.mac}</td>
-                <td className="px-4 py-3">{device.ip}</td>
+                <td className="px-4 py-3">
+                  {device.sensorData?.configuration.network?.mac}
+                </td>
+                <td className="px-4 py-3">
+                  {device.sensorData?.configuration.network?.ip}
+                </td>
 
                 <td className="px-4 py-3">
                   <span
                     className={`px-2 py-1 rounded-md text-xs 
-      ${ConnectionStateColorMap[device.connectionState] || ConnectionStateColorMap.default}
+      ${(device.sensorData && ConnectionStateColorMap[device.sensorData.connectionState]) || ConnectionStateColorMap.default}
     `}
                   >
-                    {device.connectionState}
+                    {device.sensorData?.connectionState}
                   </span>
                 </td>
                 <td className="px-4 py-3">
                   <span
                     className={`px-2 py-1 rounded text-xs ${
-                      ProtocolColorMap[device.protocol] ||
+                      (device.sensorData?.configuration.protocol &&
+                        ProtocolColorMap[
+                          device.sensorData?.configuration?.protocol
+                        ]) ||
                       ProtocolColorMap.default
                     }`}
                   >
-                    {device.protocol}
+                    {device.sensorData?.configuration.protocol}
                   </span>
                 </td>
-                <td className="px-4 py-3">{device.topicPrefix}</td>
-                <td className="px-4 py-3">{device.firmware}</td>
+                <td className="px-4 py-3">
+                  {device.sensorData?.configuration.baseTopic}
+                </td>
+                <td className="px-4 py-3">{device.sensorData?.firmware}</td>
 
                 <td className="px-4 py-3">
                   <pre className="bg-black/30 p-2 rounded-md text-xs">
-                    {JSON.stringify(device.location, null, 2)}
+                    {JSON.stringify(
+                      device.sensorData?.configuration.location,
+                      null,
+                      2
+                    )}
                   </pre>
                 </td>
 
-                <td className="px-4 py-3">{device.broker}</td>
+                <td className="px-4 py-3">{device.sensorData?.broker}</td>
 
                 <td className="px-4 py-3">
                   <pre className="bg-black/30 p-2 rounded-md text-xs">

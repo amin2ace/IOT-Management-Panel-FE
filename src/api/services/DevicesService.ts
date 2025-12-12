@@ -15,6 +15,7 @@ import { OpenAPI } from "../core/OpenAPI";
 import { request as __request } from "../core/request";
 import { QueryDeviceDto } from "../models/device/QueryDeviceDto";
 import { ResponseDiscoveryDto } from "../models/device/ResponseDiscoveryDto";
+import { SensorConfigDto } from "../models/device/SensorConfigDto";
 export class DevicesService {
   /**
    * Get all devices
@@ -136,7 +137,7 @@ export class DevicesService {
    * @throws ApiError
    */
   public static deviceControllerReconfigureDevice(
-    requestBody: RequestSensorConfigDto
+    requestBody: SensorConfigDto
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "POST",

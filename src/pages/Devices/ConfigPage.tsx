@@ -2,78 +2,83 @@ import { useEffect, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { DevicesService, SensorConfigRequestDto } from "@/api";
-import { RequestMessageCode } from "@/api/models/enums/MessageCodeEnum";
+import { DevicesService } from "@/api";
 import TimezoneSelect from "@/components/TimeZoneSelect";
 import toast from "react-hot-toast";
 import { useSocket } from "@/hooks/useSocket";
-import { GetAllDevicesResponse } from "@/api/models/device/QueryAllDevicesDto";
+import { GetAllDevicesDto } from "@/api/models/device/QueryAllDevicesDto";
 import { useTranslation } from "react-i18next";
-import { ResponseGetSensorDto } from "@/api/models/device/ResponseGetSensorDto";
 import { redirect } from "react-router-dom";
+import { SensorConfigDto } from "@/api/models/device/SensorConfigDto";
+import { SensorConfigSchema } from "@/schema/SensorConfigSchema";
+import { SensorDto } from "@/api/models/device/SensorDto";
 
-const schema = z.object({
-  deviceId: z.string().min(1, "Device is required"),
-  network: z
-    .object({
-      wifiSsid: z.string().optional(),
-      wifiPassword: z.string().optional(),
-      dhcp: z.boolean().optional().default(true),
-      ip: z.string().optional(),
-      subnetMask: z.string().optional(),
-      gateway: z.string().optional(),
-      dnsServer1: z.string().optional(),
-      dnsServer2: z.string().optional(),
-    })
-    .superRefine((net, ctx) => {
-      if (net.dhcp === false) {
-        if (!net.ip) {
-          ctx.addIssue({
-            code: z.ZodIssueCode.custom,
-            path: ["ip"],
-            message: "Static IP is required when DHCP is disabled",
-          });
-        }
-        if (!net.subnetMask) {
-          ctx.addIssue({
-            code: z.ZodIssueCode.custom,
-            path: ["subnetMask"],
-            message: "Subnet mask is required when DHCP is disabled",
-          });
-        }
-        if (!net.gateway) {
-          ctx.addIssue({
-            code: z.ZodIssueCode.custom,
-            path: ["gateway"],
-            message: "Gateway is required when DHCP is disabled",
-          });
-        }
-      }
-    }),
-  logging: z
-    .object({
-      level: z.enum([]).optional(),
-      enableSerial: z.boolean().optional().default(true),
-      buadrate: z.number().int().optional(),
-      externalServer: z.string().optional(),
-    })
-    .optional(),
-  ota: z
-    .object({
-      enabled: z.boolean().optional().default(false),
-      url: z.string().url().optional(),
-    })
-    .optional(),
-  location: z
-    .object({
-      site: z.string().optional(),
-      floor: z.number().int().optional(),
-      unit: z.string().optional(),
-    })
-    .optional(),
-  protocol: z.enum([]).optional(),
-  timezone: z.string().optional(),
-});
+// const schema = z.object({
+//   deviceId: z.string().min(1, "Device is required"),
+//   network: z
+//     .object({
+//       mac: z.string().optional().default("null"),
+//       wifiSsid: z.string().optional().default("null"),
+//       wifiPassword: z.string().optional().default("null"),
+//       dhcp: z.boolean().optional().default(true),
+//       ip: z.string().optional().default("null"),
+//       subnetMask: z.string().optional().default("null"),
+//       gateway: z.string().optional().default("null"),
+//       dnsServer1: z.string().optional().default("null"),
+//       dnsServer2: z.string().optional().default("null"),
+//       accessPointSsid: z.string().optional().default("null"),
+//       accessPointPassword: z.string().optional().default("null"),
+//     })
+//     .superRefine((net, ctx) => {
+//       if (net.dhcp === false) {
+//         if (!net.ip) {
+//           ctx.addIssue({
+//             code: z.ZodIssueCode.custom,
+//             path: ["ip"],
+//             message: "Static IP is required when DHCP is disabled",
+//           });
+//         }
+//         if (!net.subnetMask) {
+//           ctx.addIssue({
+//             code: z.ZodIssueCode.custom,
+//             path: ["subnetMask"],
+//             message: "Subnet mask is required when DHCP is disabled",
+//           });
+//         }
+//         if (!net.gateway) {
+//           ctx.addIssue({
+//             code: z.ZodIssueCode.custom,
+//             path: ["gateway"],
+//             message: "Gateway is required when DHCP is disabled",
+//           });
+//         }
+//       }
+//     }),
+//   logging: z
+//     .object({
+//       level: z.enum(LogLevel).optional().default(LogLevel.ERROR),
+//       enableSerial: z.boolean().optional().default(true),
+//       buadrate: z.number().int().optional().default(1000),
+//       externalServer: z.string().optional().default("null"),
+//     })
+//     .optional(),
+//   ota: z
+//     .object({
+//       enabled: z.boolean().optional().default(false),
+//       url: z.string().url().optional().default("null"),
+//       checkInterval: z.number().optional().default(-1),
+//     })
+//     .optional(),
+//   location: z
+//     .object({
+//       site: z.string().optional().default("null"),
+//       floor: z.number().int().optional().default(-1),
+//       unit: z.string().optional().default("null"),
+//     })
+//     .optional(),
+//   protocol: z.enum(Protocol).optional().default(Protocol.MQTT),
+//   timezone: z.string().optional().default("null"),
+// });
 
 enum ConfigTabs {
   "NETWORK" = "network",
@@ -84,14 +89,14 @@ enum ConfigTabs {
 
 // Component: Sensor Configuration Page 'READ_ONLY'
 export default function ConfigPage() {
-  const [devices, setDevices] = useState<ResponseGetSensorDto[]>([]);
+  const [devices, setDevices] = useState<SensorDto[]>([]);
   const { socket } = useSocket();
   const { t } = useTranslation();
 
-  const [activeDevice, setActiveDevice] = useState<ResponseGetSensorDto>();
+  const [activeDevice, setActiveDevice] = useState<SensorDto>();
   const [activeTab, setActiveTab] = useState<ConfigTabs>(ConfigTabs.NETWORK);
   const methods = useForm({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(SensorConfigSchema),
     defaultValues: {
       network: { dhcp: true },
       logging: { enableSerial: true },
@@ -105,7 +110,8 @@ export default function ConfigPage() {
     // useDevices()
     if (!socket) return;
 
-    const listener = (res: GetAllDevicesResponse) => {
+    const listener = (res: GetAllDevicesDto) => {
+      console.log({ res });
       if (!res) {
         toast.error(t("config.getAllSensorsError"));
         return;
@@ -117,27 +123,32 @@ export default function ConfigPage() {
     socket.on("ws/message/query/devices/all/response", listener);
   }, [socket]);
 
-  const handleSelectDevice = (e) => {
-    reset({ deviceId: e.target.value });
+  const handleSelectDevice = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setActiveDevice(
       devices.find((device) => device.deviceId === e.target.value)
     );
+    reset({ deviceId: e.target.value });
   };
-  const onSubmit = async (data: z.infer<typeof schema>) => {
-    const payload: SensorConfigRequestDto = {
-      requestId: `req-cfg-${Math.floor(Math.random() * 1000)}`,
-      requestCode: RequestMessageCode.REQUEST_SET_SENSOR_CONFIG,
+  const onSubmit = async (data: z.infer<typeof SensorConfigSchema>) => {
+    console.log({ activeDevice, devices });
+    const payload: SensorConfigDto = {
       deviceId: data.deviceId,
-      timestamp: Date.now(),
+      baseTopic: data.baseTopic,
+      threshold: data.threshold,
+      configVersion: data.configVersion,
+      interval: data.interval,
       network: {
-        wifiSsid: data.network?.wifiSsid,
-        wifiPassword: data.network?.wifiPassword,
+        mac: data.network?.mac,
+        wifiSsid: data.network?.wifiSsid ?? "null",
+        wifiPassword: data.network?.wifiPassword ?? "null",
         dhcp: data.network?.dhcp,
         ip: data.network?.ip,
         subnetMask: data.network?.subnetMask,
         gateway: data.network?.gateway,
         dnsServer1: data.network?.dnsServer1,
         dnsServer2: data.network?.dnsServer2,
+        accessPointSsid: data.network?.accessPointSsid || "null",
+        accessPointPassword: data.network?.accessPointPassword || "null",
       },
       logging: {
         level: data.logging?.level,
@@ -148,6 +159,7 @@ export default function ConfigPage() {
       ota: {
         enabled: data.ota?.enabled,
         url: data.ota?.url,
+        checkInterval: data.ota?.checkInterval,
       },
       location: {
         site: data.location?.site,
@@ -222,7 +234,7 @@ export default function ConfigPage() {
                 <input
                   {...register("network.wifiSsid")}
                   className="input"
-                  defaultValue={activeDevice?.broker}
+                  defaultValue={activeDevice?.configuration?.network?.wifiSsid}
                 />
               </div>
               <div>
@@ -230,11 +242,14 @@ export default function ConfigPage() {
                 <input
                   {...register("network.wifiPassword")}
                   className="input"
+                  defaultValue={
+                    activeDevice?.configuration?.network?.wifiPassword
+                  }
                 />
               </div>
               <div>
                 <label className="inline-flex items-center gap-2">
-                  <input type="checkbox" {...register("network.dhcp")} />
+                  <input type="checkbox" {...register("network.dhcp")} />{" "}
                   {t("config.dhcpEnabled")}
                 </label>
               </div>
@@ -327,7 +342,7 @@ export default function ConfigPage() {
           {activeTab === "location" && (
             <>
               <div>
-                <label>{"config.locationSite"}</label>
+                <label>{t("config.locationSite")}</label>
                 <input {...register("location.site")} className="input" />
               </div>
               <div>

@@ -1,23 +1,20 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { AuthenticationService, loginInputDto, SignupInputDto } from "@/api";
-import { ResponseLoginDto } from "@/api/models/auth/ResponseLoginDto";
-import { ResponseSignupDto } from "@/api/models/auth/ResponseSignupDto";
+import { ResponseAuditDto } from "@/api/models/auth/ResponseAuditDto";
 
 export interface AuthContextValue {
-  user: ResponseLoginDto | ResponseSignupDto | null;
+  user: ResponseAuditDto | null;
   loading: boolean;
   login: (payload: loginInputDto) => Promise<void>;
   signup: (payload: SignupInputDto) => Promise<void>;
   logout: () => Promise<void>;
-  setUser: (u: ResponseLoginDto | ResponseSignupDto | null) => void;
+  setUser: (u: ResponseAuditDto | null) => void;
 }
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<ResponseLoginDto | ResponseSignupDto | null>(
-    null
-  );
+  const [user, setUser] = useState<ResponseAuditDto | null>(null);
   const [loading, setLoading] = useState(true);
 
   // Load user from localStorage at startup
@@ -36,7 +33,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const login = async (payload: loginInputDto) => {
     const userData = await AuthenticationService.authControllerLogin(payload);
     setUser(userData);
-    console.log({ userData });
     localStorage.setItem("user", JSON.stringify(userData));
   };
 
