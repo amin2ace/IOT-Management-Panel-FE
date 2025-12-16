@@ -4,7 +4,7 @@ import { SensorDto } from "./SensorDto";
 /**
  * Discovery response payload sent from backend
  */
-export type ResponseDiscoveryDto = {
+export type DiscoveryResponseDto = {
   /** Unique identifier of the user who initiated the request */
   userId: string;
 

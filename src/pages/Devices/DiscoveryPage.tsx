@@ -14,7 +14,7 @@ import { useSocket } from "@/hooks/useSocket";
 import { useAuth } from "@/context/AuthContext";
 import { DiscoveryRequestDto } from "@/api";
 import { useTranslation } from "react-i18next";
-import { ResponseDiscoveryDto } from "@/api/models/device/ResponseDiscoveryDto";
+import { DiscoveryResponseDto } from "@/api/models/device/ResponseDiscoveryDto";
 import DevicesResultTable from "@/components/DiscoveryResultsTable";
 import DiscoveryMethod from "@/components/DiscoveryMethod";
 import { useDiscoveryStore } from "@/hooks/useDiscoveryStore";
@@ -34,7 +34,7 @@ export default function DiscoveryPage() {
   // -------------------------------
   useEffect(() => {
     if (!socket) return;
-    const listener = (res: ResponseDiscoveryDto) => {
+    const listener = (res: DiscoveryResponseDto) => {
       if (!res || !res.responseId) {
         toast.error(t("discovery.failedToSendDiscovery"));
         return;

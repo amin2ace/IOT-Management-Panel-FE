@@ -1,4 +1,4 @@
-import { ResponseDiscoveryDto } from "@/api/models/device/ResponseDiscoveryDto";
+import { DiscoveryResponseDto } from "@/api/models/device/ResponseDiscoveryDto";
 import {
   CapabilityColorMap,
   ConnectionStateColorMap,
@@ -8,7 +8,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 type Props = {
-  devices: ResponseDiscoveryDto[] | [];
+  devices: DiscoveryResponseDto[] | [];
 };
 
 export default function DevicesResultTable({ devices }: Props) {
@@ -26,7 +26,7 @@ export default function DevicesResultTable({ devices }: Props) {
       <h2 className="text-xl font-semibold mb-4 text-white">
         {t("discovery.discoveredDevices")}
       </h2>
-      <button>clear</button>
+      <button className="form-submit">clear</button>
 
       {/* Scroll wrapper */}
       <div className="overflow-auto max-h-[500px] overscroll-contain rounded-lg">

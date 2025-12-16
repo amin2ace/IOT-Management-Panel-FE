@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { ResponseDiscoveryDto } from "@/api/models/device/ResponseDiscoveryDto";
+import { DiscoveryResponseDto } from "@/api/models/device/ResponseDiscoveryDto";
 
 const STORAGE_KEY = "discovery_devices";
 
 export function useDiscoveryStore() {
-  const [devices, setDevices] = useState<ResponseDiscoveryDto[]>([]);
+  const [devices, setDevices] = useState<DiscoveryResponseDto[]>([]);
 
   // Load from localStorage on mount
   useEffect(() => {
@@ -18,12 +18,16 @@ export function useDiscoveryStore() {
   }, [devices]);
 
   // Add new row
-  function addDevice(device: ResponseDiscoveryDto) {
+  function addDevice(device: DiscoveryResponseDto) {
     setDevices((prev) => {
       // Avoid duplicates (same deviceId)
-      const exists = prev.some((d) => d.deviceId === device.deviceId);
+      const exists = prev.some(
+        (d) => d.sensorData?.deviceId === device.sensorData?.deviceId
+      );
       if (exists) {
-        return prev.map((d) => (d.deviceId === device.deviceId ? device : d));
+        return prev.map((d) =>
+          d.sensorData?.deviceId === device.sensorData?.deviceId ? device : d
+        );
       }
       return [...prev, device];
     });
