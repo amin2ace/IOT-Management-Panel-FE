@@ -3,20 +3,31 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { ControlDeviceDto } from "../models/additionals/ControlDeviceDto";
-import type { DeviceCapabilities } from "../models/enums/DeviceCapabilities";
 import type { RequestDiscoveryDto } from "../models/device/RequestDiscoveryDto";
 import type { RequestHardwareStatusDto } from "../models/configuration/RequestHardwareStatusDto";
-import type { ProvisionState } from "../models/enums/ProvisionStateEnum";
-import type { RequestSensorConfigDto } from "../models/device/RequestSensorConfigDto";
 import type { RequestSensorAssignDto } from "../models/device/RequestSensorAssignDto";
 import type { RequestTelemetryDto } from "../models/device/RequestTelemetryDto";
 import type { CancelablePromise } from "../core/CancelablePromise";
 import { OpenAPI } from "../core/OpenAPI";
 import { request as __request } from "../core/request";
 import { QueryDeviceDto } from "../models/device/QueryDeviceDto";
-import { DiscoveryResponseDto } from "../models/device/ResponseDiscoveryDto";
 import { SensorConfigDto } from "../models/device/SensorConfigDto";
+import { SensorDto } from "../models/device/SensorDto";
 export class DevicesService {
+  /**
+   * Get all devices
+   * @returns any List of devices
+   * @throws ApiError
+   */
+  public static deviceControllerGetAllSensors(): CancelablePromise<
+    SensorDto[]
+  > {
+    return __request(OpenAPI, {
+      method: "GET",
+      url: "/devices/all",
+    });
+  }
+
   /**
    * Get all devices
    * @param provisionState The state of provisioning for device
@@ -30,7 +41,7 @@ export class DevicesService {
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "GET",
-      url: "/api/devices",
+      url: "/devices/query",
       query: {
         provisionState: query.provisionState,
         functionality: query.functionality,
@@ -92,7 +103,7 @@ export class DevicesService {
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "POST",
-      url: "/api/devices/hardware-status",
+      url: "/devices/hardware-status",
       body: requestBody,
       mediaType: "application/json",
     });
@@ -124,7 +135,7 @@ export class DevicesService {
   ): CancelablePromise<void> {
     return __request(OpenAPI, {
       method: "DELETE",
-      url: "/api/devices/{id}",
+      url: "/devices/{id}",
       path: {
         id: id,
       },
@@ -141,7 +152,7 @@ export class DevicesService {
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "POST",
-      url: "/api/devices/config",
+      url: "/devices/config",
       body: requestBody,
       mediaType: "application/json",
     });
@@ -155,7 +166,7 @@ export class DevicesService {
   public static deviceControllerGetHistory(id: string): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "GET",
-      url: "/api/devices/{id}/history",
+      url: "/devices/{id}/history",
       path: {
         id: id,
       },
@@ -174,7 +185,7 @@ export class DevicesService {
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "POST",
-      url: "/api/devices/{id}/control",
+      url: "/devices/{id}/control",
       path: {
         id: id,
       },
@@ -193,7 +204,7 @@ export class DevicesService {
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "GET",
-      url: "/api/devices/{id}/status",
+      url: "/devices/{id}/status",
       path: {
         id: id,
       },
@@ -210,7 +221,7 @@ export class DevicesService {
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "GET",
-      url: "/api/devices/telemetry",
+      url: "/devices/telemetry",
       body: requestBody,
       mediaType: "application/json",
     });

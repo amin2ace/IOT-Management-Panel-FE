@@ -7,13 +7,18 @@ import {
 import { QueryDeviceDto } from "@/api/models/device/QueryDeviceDto";
 import { useQuery, useMutation } from "@tanstack/react-query";
 
-export const useDevices = (params: QueryDeviceDto) =>
+export const useQueryDevices = (params: QueryDeviceDto) =>
   useQuery({
     queryKey: ["devices", params],
     queryFn: async () => {
       const res = await DevicesService.deviceControllerGetSensors(params);
       return res.data;
     },
+  });
+
+export const useDevices = () =>
+  useMutation({
+    mutationFn: () => DevicesService.deviceControllerGetAllSensors(),
   });
 
 export const useUnassignedDevices = () =>
