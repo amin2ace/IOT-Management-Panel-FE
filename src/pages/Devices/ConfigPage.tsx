@@ -5,16 +5,16 @@ import { z } from "zod";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { SensorConfigSchema } from "@/schema/SensorConfigSchema";
-import DeviceSelector from "./components/DeviceSelector";
+import DeviceSelector from "../../components/ConfigPage/DeviceSelector";
 import ConfigTabsNavigation, {
   ConfigTabs,
-} from "./components/ConfigTabsNavigation";
-import NetworkConfigTab from "./components/NetworkConfigTab";
-import LoggingConfigTab from "./components/LoggingConfigTab";
-import OtaConfigTab from "./components/OtaConfigTab";
-import LocationConfigTab from "./components/LocationConfigTab";
-import { useLoadDevices } from "./hooks/useLoadDevices";
-import { useConfigureDevice } from "./hooks/useConfigureDevice";
+} from "../../components/ConfigPage/ConfigTabsNavigation";
+import NetworkConfigTab from "../../components/ConfigPage/NetworkConfigTab";
+import LoggingConfigTab from "../../components/ConfigPage/LoggingConfigTab";
+import OtaConfigTab from "../../components/ConfigPage/OtaConfigTab";
+import LocationConfigTab from "../../components/ConfigPage/LocationConfigTab";
+import { useLoadDevices } from "../../hooks/useLoadDevices";
+import { useConfigureDevice } from "../../hooks/useConfigureDevice";
 
 type FormData = z.infer<typeof SensorConfigSchema>;
 
@@ -80,7 +80,7 @@ export default function ConfigPage() {
 
         {/* Tab Contents */}
         <div className="mt-4 space-y-4">
-          {activeTab === ConfigTabs.NETWORK && dhcpEnabled && (
+          {activeTab === ConfigTabs.NETWORK && (
             <NetworkConfigTab
               dhcpEnabled={dhcpEnabled}
               activeDevice={activeDevice}

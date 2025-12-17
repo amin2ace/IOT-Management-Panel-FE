@@ -5,7 +5,7 @@ import { z } from "zod";
 import { SensorConfigSchema } from "@/schema/SensorConfigSchema";
 
 interface NetworkConfigTabProps {
-  dhcpEnabled: boolean;
+  dhcpEnabled: boolean | undefined;
   activeDevice?: SensorDto;
 }
 
