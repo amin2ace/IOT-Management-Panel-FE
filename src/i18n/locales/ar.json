@@ -78,6 +78,9 @@
   "assign.noDevice": "لا توجد أجهزة غير معينة",
   "assign.provisionButton": "تعيين",
   "assign.reset": "إعادة تعيين",
+  "assign.functionalityNotSelected": "حدد وظيفة واحدة على الأقل",
+  "assign.requestSent": "تم إرسال طلب التعيين",
+  "assign.requestFailed": "فشل طلب التعيين",
 
   "##################################_8": "Dashboard Table Headers ",
 
@@ -112,6 +115,42 @@
   "profile.changePassword": "تغيير كلمة المرور",
   "profile.accountMeta": "بيانات الحساب",
 
+  "##################################_10": "Web Socket ",
+
+  "socke.notConnected": "Socket not connected",
+
+  "##################################_11": "Dashboard Tab's Names",
+  "config.getAllSensorsError": "خطأ في الحصول على جميع المستشعرات",
+  "config.getAllSensorsSuccess": "تم الحصول على جميع المستشعرات بنجاح",
+  "config.configurationSentToDevice": "تم إرسال التكوين إلى الجهاز",
+  "config.deviceConfiguration": "تكوين الجهاز",
+  "config.selectDevice": "حدد جهازاً",
+  "config.chooseDevice": "اختر جهازاً",
+  "config.tab.network": "الشبكة",
+  "config.tab.logging": "التسجيل",
+  "config.tab.ota": "OTA",
+  "config.tab.location": "الموقع",
+  "config.wifiSsid": "شبكة WiFi SSID",
+  "config.wifiPassword": "كلمة مرور WiFi",
+  "config.dhcpEnabled": "تفعيل DHCP",
+  "config.selectIP": "حدد عنوان IP",
+  "config.subnetMask": "قناع الشبكة الجزئية",
+  "config.gateway": "بوابة",
+  "config.dns1": "DNS 1",
+  "config.dns2": "DNS 2",
+  "config.logLevel": "مستوى السجل",
+  "config.enableSerialOutput": "تفعيل مخرجات المسلسل",
+  "config.buadRate": "معدل Baud",
+  "config.externalServer": "خادم خارجي",
+  "config.enableOtaUpdates": "تفعيل تحديثات OTA",
+  "config.firmwareUrl": "عنوان URL الثابتة",
+  "config.locationSite": "الموقع",
+  "config.locationFloor": "الطابق",
+  "config.locationUnit": "الوحدة",
+  "config.saveConfigurations": "حفظ التكوينات",
+  "config.staticIpSettings": "إعدادات IP الثابتة",
+  "config.checkInterval": "فترة الفحص",
+
   "##################################_": "Dashboard Common ",
 
   "common.sending": "جاري الإرسال...",
@@ -127,5 +166,6 @@
   "common.management": "الإدارة",
   "common.settings": "الإعدادات",
   "common.manual": "الوضع اليدوي",
-  "common.automatic": "الوضع التلقائي"
+  "common.automatic": "الوضع التلقائي",
+  "common.seconds": "ثانية"
 }

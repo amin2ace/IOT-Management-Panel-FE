@@ -78,6 +78,9 @@
   "assign.noDevice": "Atanmamış Cihaz Yok",
   "assign.provisionButton": "Ata",
   "assign.reset": "Sıfırla",
+  "assign.functionalityNotSelected": "En az bir işlev seçin",
+  "assign.requestSent": "Atama isteği gönderildi",
+  "assign.requestFailed": "Atama isteği başarısız oldu",
 
   "##################################_8": "Dashboard Table Headers ",
 
@@ -112,6 +115,43 @@
   "profile.changePassword": "Şifreyi Değiştir",
   "profile.accountMeta": "Hesap Bilgileri",
 
+  "##################################_10": "Web Socket ",
+
+  "socke.notConnected": "Socket bağlı değil",
+
+  "##################################_11": "Dashboard Tab's Names",
+  "config.getAllSensorsError": "Tüm Sensörler Alınamadı",
+  "config.getAllSensorsSuccess": "Tüm Sensörler Başarıyla Alındı",
+  "config.configurationSentToDevice": "Yapılandırma cihaza gönderildi",
+  "config.deviceConfiguration": "Cihaz Yapılandırması",
+  "config.selectDevice": "Cihaz Seçin",
+  "config.chooseDevice": "Bir Cihaz Seçin",
+  "config.tab.network": "Ağ",
+  "config.tab.logging": "Günlükleme",
+  "config.tab.ota": "OTA",
+  "config.tab.location": "Konum",
+  "config.wifiSsid": "WiFi SSID",
+  "config.wifiPassword": "WiFi Şifresi",
+  "config.dhcpEnabled": "DHCP Etkin",
+  "config.selectIP": "IP Seçin",
+  "config.subnetMask": "Alt Ağ Maskesi",
+  "config.gateway": "Ağ Geçidi",
+  "config.dns1": "DNS 1",
+  "config.dns2": "DNS 2",
+  "config.logLevel": "Günlük Seviyesi",
+  "config.enableSerialOutput": "Seri Çıktıyı Etkinleştir",
+  "config.buadRate": "Baud Oranı",
+  "config.externalServer": "Harici Sunucu",
+  "config.enableOtaUpdates": "OTA Güncellemelerini Etkinleştir",
+  "config.firmwareUrl": "Ürün Yazılımı URL",
+  "config.locationSite": "Saha",
+  "config.locationFloor": "Kat",
+  "config.locationUnit": "Birim",
+  "config.saveConfigurations": "Yapılandırmaları Kaydet",
+  "config.staticIpSettings": "Statik IP Ayarları",
+  "config.checkInterval": "Kontrol Aralığı",
+  "config.configurationSentError": "Yapılandırma gönderme hatası",
+
   "##################################_": "Dashboard Common ",
 
   "common.sending": "Gönderiliyor...",
@@ -127,5 +167,6 @@
   "common.management": "Yönetim",
   "common.settings": "Ayarlar",
   "common.manual": "Manuel Mod",
-  "common.automatic": "Otomatik Mod"
+  "common.automatic": "Otomatik Mod",
+  "common.seconds": "Saniye"
 }

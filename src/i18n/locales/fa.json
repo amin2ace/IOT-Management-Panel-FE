@@ -78,6 +78,9 @@
   "assign.noDevice": "هیچ دستگاه انتساب نیافته‌ای وجود ندارد",
   "assign.provisionButton": "انتساب",
   "assign.reset": "بازنشانی",
+  "assign.functionalityNotSelected": "حداقل یک قابلیت را انتخاب کنید",
+  "assign.requestSent": "درخواست انتساب ارسال شد",
+  "assign.requestFailed": "درخواست انتساب ناموفق بود",
 
   "##################################_8": "Dashboard Table Headers ",
 
@@ -112,6 +115,43 @@
   "profile.changePassword": "تغییر رمز عبور",
   "profile.accountMeta": "اطلاعات حساب",
 
+  "##################################_10": "Web Socket ",
+
+  "socke.notConnected": "Socket متصل نیست",
+
+  "##################################_11": "Dashboard Tab's Names",
+  "config.getAllSensorsError": "خطای دریافت تمام سنسورها",
+  "config.getAllSensorsSuccess": "دریافت موفق تمام سنسورها",
+  "config.configurationSentToDevice": "پیکربندی به دستگاه ارسال شد",
+  "config.deviceConfiguration": "پیکربندی دستگاه",
+  "config.selectDevice": "دستگاه را انتخاب کنید",
+  "config.chooseDevice": "یک دستگاه را انتخاب کنید",
+  "config.tab.network": "شبکه",
+  "config.tab.logging": "ثبت",
+  "config.tab.ota": "OTA",
+  "config.tab.location": "موقعیت",
+  "config.wifiSsid": "SSID WiFi",
+  "config.wifiPassword": "رمز عبور WiFi",
+  "config.dhcpEnabled": "DHCP فعال",
+  "config.selectIP": "IP را انتخاب کنید",
+  "config.subnetMask": "ماسک زیرشبکه",
+  "config.gateway": "دروازه",
+  "config.dns1": "DNS 1",
+  "config.dns2": "DNS 2",
+  "config.logLevel": "سطح گزارش",
+  "config.enableSerialOutput": "فعال‌سازی خروجی سریال",
+  "config.buadRate": "نرخ Baud",
+  "config.externalServer": "سرور خارجی",
+  "config.enableOtaUpdates": "فعال‌سازی به‌روزرسانی‌های OTA",
+  "config.firmwareUrl": "URL فریم‌ور",
+  "config.locationSite": "سایت",
+  "config.locationFloor": "طبقه",
+  "config.locationUnit": "واحد",
+  "config.saveConfigurations": "ذخیره پیکربندی‌ها",
+  "config.staticIpSettings": "تنظیمات IP ثابت",
+  "config.checkInterval": "فاصله بررسی",
+  "config.configurationSentError": "خطا در ارسال پیکربندی",
+
   "##################################_": "Dashboard Common ",
 
   "common.sending": "در حال ارسال...",
@@ -127,5 +167,6 @@
   "common.management": "مدیریت",
   "common.settings": "تنظیمات",
   "common.manual": "حالت دستی",
-  "common.automatic": "حالت خودکار"
+  "common.automatic": "حالت خودکار",
+  "common.seconds": "ثانیه"
 }

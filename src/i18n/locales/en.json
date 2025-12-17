@@ -164,5 +164,6 @@
   "common.management": "Management",
   "common.settings": "Settings",
   "common.manual": "Manual Mode",
-  "common.automatic": "Automatic Mode"
+  "common.automatic": "Automatic Mode",
+  "common.seconds": "Seconds"
 }
