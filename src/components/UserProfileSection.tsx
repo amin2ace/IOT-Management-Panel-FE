@@ -13,12 +13,6 @@ export function UserProfileSection({ onLogout }: UserProfileSectionProps) {
   if (!authUser) return null;
   return (
     <>
-      {/* <div
-        className="dashboardProfileImage cursor-pointer hover:scale-105 transition-transform"
-        onClick={onProfileClick}
-      >
-        {user?.username?.[0].toUpperCase() || "U"}
-      </div> */}
       <button
         onClick={onLogout}
         className="dashboardLogoutButton"

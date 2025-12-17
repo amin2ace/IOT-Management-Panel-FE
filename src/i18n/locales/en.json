@@ -17,6 +17,7 @@
   "auth.signupFailed": "Signup Failed",
   "auth.signupSuccess": "Signup Successful",
   "auth.emailInUse": "Account already exists, try login",
+  "auth.accessDenied": "Access denied",
 
   "##################################_2": "Dashboard Tab's Names",
 
@@ -26,6 +27,7 @@
   "path.configureTab": "Configure Devices",
   "path.telemetryTab": "Telemetry",
   "path.profile": "Pofile",
+  "path.topics": "Topics",
 
   "##################################_3": "Header Language Selector and Theme Toggle",
 
@@ -62,7 +64,7 @@
   "##################################_6": "Dashboard Home Container ",
 
   "dashboard.title1": "Summary",
-  "dashboard.Clock": "Clock",
+  "dashboard.clock": "Clock",
   "dashboard.uptime": "Up Time",
   "dashboard.buadrate": "Buad Rate",
   "dashboard.connectedSensors": "Sensors",
@@ -78,9 +80,10 @@
   "assign.noDevice": "No Unassigned Devices",
   "assign.provisionButton": "Assign",
   "assign.reset": "Reset",
-  "assign.functionalityNotSelected": "Select at least one functionality",
+  "assign.functionalityNotSelected": "Please select at least one functionality",
   "assign.requestSent": "Assign request sent",
   "assign.requestFailed": "Assign request failed",
+  "assign.loading": "Loading device configuration...",
 
   "##################################_8": "Dashboard Table Headers ",
 
@@ -92,6 +95,7 @@
   "table.lSetPoint": "Low SP",
   "table.hSetPoint": "High SP",
   "table.id": "Device ID ",
+  "table.actions": "Actions",
 
   "##################################_9": "User Profile Pages ",
 
@@ -130,6 +134,7 @@
   "config.tab.logging": "Logging",
   "config.tab.ota": "OTA",
   "config.tab.location": "Location",
+  "config.staticIpSettings": "Static IP Settings",
   "config.wifiSsid": "Wifi SSID",
   "config.wifiPassword": "Wifi Password",
   "config.dhcpEnabled": "DHCP Enabled",
@@ -139,6 +144,7 @@
   "config.dns1": "DNS 1",
   "config.dns2": "DNS 2",
   "config.logLevel": "Log Level",
+  "config.checkInterval": "Interval",
   "config.enableSerialOutput": "Enable Serial Output",
   "config.buadRate": "Buad Rate",
   "config.externalServer": "External Server",
@@ -148,6 +154,14 @@
   "config.locationFloor": "Floor",
   "config.locationUnit": "Unit",
   "config.saveConfigurations": "Save Configurations",
+
+  "##################################_12": "Topics Page",
+  "topic.topics": "Topics",
+  "topic.subscribedTopics": "Subscribed Topics",
+  "topic.noSubscribedTopics": "No subscribed topics yet...",
+  "topic.selectDeviceMessage": "Please select a device to view its topics",
+  "topic.subscribe": "Subscribe",
+  "topic.deviceTopics": "Device Topics",
 
   "##################################_": "Dashboard Common ",
 
@@ -165,5 +179,6 @@
   "common.settings": "Settings",
   "common.manual": "Manual Mode",
   "common.automatic": "Automatic Mode",
-  "common.seconds": "Seconds"
+  "common.seconds": "Seconds",
+  "common.available": "available"
 }

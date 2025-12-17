@@ -15,7 +15,7 @@ type props = {
 export default function DashboardHeader({ showProfile }: props) {
   const { user: authUser, logout } = useAuth();
   const { data: user } = useProfile({
-    enabled: !!authUser,
+    enabled: showProfile && !!authUser,
   });
   const { t } = useTranslation();
 

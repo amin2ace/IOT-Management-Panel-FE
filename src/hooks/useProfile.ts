@@ -20,7 +20,7 @@ export const useProfile = (options?: { enabled?: boolean }) => {
       if (!response) throw new Error("Failed to fetch profile");
       return response;
     },
-    enabled: (options?.enabled ?? true) && !!user, // Default to true if not specified
+    enabled: options?.enabled ?? !!user, // Respect explicit enabled option, default to user existence
   });
 };
 

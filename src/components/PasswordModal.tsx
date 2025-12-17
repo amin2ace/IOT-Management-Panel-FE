@@ -2,12 +2,19 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 
+type ChangePasswordMutation = {
+  mutate: (
+    data: { oldPassword: string; newPassword: string },
+    options?: { onSuccess?: () => void; onError?: () => void }
+  ) => void;
+};
+
 export default function PasswordModal({
   onClose,
   changePassword,
 }: {
   onClose: () => void;
-  changePassword: any;
+  changePassword: ChangePasswordMutation;
 }) {
   const { t } = useTranslation();
 

@@ -5,12 +5,12 @@
 import type { RequestAssignRolesDto } from "../models/auth/RequestAssignRolesDto";
 import type { RequestCreateUserDto } from "../models/auth/RequestCreateUserDto";
 import type { RequestUpdateUserDto } from "../models/auth/RequestUpdateUserDto";
-import type { RequestGetUserDto } from "../models/auth/ResponseGetUserDto";
 import type { CancelablePromise } from "../core/CancelablePromise";
 import { OpenAPI } from "../core/OpenAPI";
 import { request as __request } from "../core/request";
+import { UserResponseDto } from "../models/auth/UserResponseDto";
 export class UsersService {
-  public static usersControllerGetUserProfile(): CancelablePromise<RequestGetUserDto> {
+  public static usersControllerGetUserProfile(): CancelablePromise<UserResponseDto> {
     return __request(OpenAPI, {
       method: "GET",
       url: "/users/profile",
@@ -29,7 +29,7 @@ export class UsersService {
    */
   public static usersControllerUpdateUserProfile(
     requestBody: RequestUpdateUserDto
-  ): CancelablePromise<RequestGetUserDto> {
+  ): CancelablePromise<UserResponseDto> {
     return __request(OpenAPI, {
       method: "PATCH",
       url: "/users/{id}",
@@ -49,7 +49,7 @@ export class UsersService {
    */
   public static usersControllerUploadProfilePhoto(
     fileData: FormData
-  ): CancelablePromise<RequestGetUserDto> {
+  ): CancelablePromise<UserResponseDto> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/users/profile/photo",
@@ -71,7 +71,7 @@ export class UsersService {
    */
   public static usersControllerCreate(
     requestBody: RequestCreateUserDto
-  ): CancelablePromise<RequestGetUserDto> {
+  ): CancelablePromise<UserResponseDto> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/users",
@@ -87,7 +87,7 @@ export class UsersService {
    * @returns any List of users
    * @throws ApiError
    */
-  public static usersControllerFindAll(): CancelablePromise<any> {
+  public static usersControllerFindAll(): CancelablePromise<UserResponseDto[]> {
     return __request(OpenAPI, {
       method: "GET",
       url: "/users",
@@ -104,7 +104,7 @@ export class UsersService {
    */
   public static usersControllerFindById(
     id: string
-  ): CancelablePromise<RequestGetUserDto> {
+  ): CancelablePromise<UserResponseDto> {
     return __request(OpenAPI, {
       method: "GET",
       url: "/users/{id}",
@@ -126,7 +126,7 @@ export class UsersService {
   public static usersControllerUpdate(
     id: string,
     requestBody: RequestUpdateUserDto
-  ): CancelablePromise<RequestGetUserDto> {
+  ): CancelablePromise<UserResponseDto> {
     return __request(OpenAPI, {
       method: "PATCH",
       url: "/users/{id}",
@@ -169,7 +169,7 @@ export class UsersService {
   public static usersControllerAssignRoles(
     id: string,
     requestBody: RequestAssignRolesDto
-  ): CancelablePromise<RequestGetUserDto> {
+  ): CancelablePromise<UserResponseDto> {
     return __request(OpenAPI, {
       method: "PATCH",
       url: "/users/{id}/roles",
@@ -217,7 +217,7 @@ export class UsersService {
   public static usersControllerAddRoles(
     id: string,
     requestBody: RequestAssignRolesDto
-  ): CancelablePromise<RequestGetUserDto> {
+  ): CancelablePromise<UserResponseDto> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/users/{id}/roles/add",
@@ -243,7 +243,7 @@ export class UsersService {
   public static usersControllerRemoveRoles(
     id: string,
     requestBody: RequestAssignRolesDto
-  ): CancelablePromise<RequestGetUserDto> {
+  ): CancelablePromise<UserResponseDto> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/users/{id}/roles/remove",
