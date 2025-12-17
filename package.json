@@ -12,6 +12,7 @@
     "api:watch": "nodemon --watch ../iot-management-panel-be/src --exec \"npm run api:generate\""
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "@hookform/resolvers": "^5.2.2",
     "@tailwindcss/vite": "^4.1.17",
     "@tanstack/react-query": "^5.90.7",
