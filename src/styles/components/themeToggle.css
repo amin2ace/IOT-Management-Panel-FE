@@ -1,3 +1,5 @@
+@reference "tailwindcss";
+
 .themeToggle {
   @apply flex gap-2 bg-gray-200/60 border-gray-300 border
       backdrop-blur-md dark:bg-gray-800/60 dark:border-gray-600 p-2 rounded-xl;

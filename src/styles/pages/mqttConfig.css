@@ -1,0 +1,262 @@
+@reference "tailwindcss";
+
+/* MQTT Config Page Container */
+.mqttConfigContainer {
+  @apply w-full p-4 mx-auto rounded-lg shadow-md
+    bg-white/60 dark:bg-gray-800/40 border
+    space-y-6 text-gray-900 dark:text-gray-100
+    backdrop-blur-xl border-gray-300/40 dark:border-gray-700/40
+    transition-all text-sm;
+}
+
+@media (min-width: 640px) {
+  .mqttConfigContainer {
+    @apply p-6 rounded-xl shadow-lg;
+  }
+}
+
+@media (hover: hover) {
+  .mqttConfigContainer:hover {
+    @apply shadow-lg dark:shadow-xl dark:shadow-gray-500/30;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mqttConfigContainer:hover {
+    @apply shadow-2xl;
+  }
+}
+
+/* Page Header */
+.mqttConfigContainer .config-header {
+  @apply flex items-center justify-between mb-6 pb-4 border-b border-gray-200 dark:border-gray-700;
+}
+
+/* Alert Box */
+.mqtt-alert {
+  @apply px-4 py-3 rounded-lg font-medium text-sm
+    transition-opacity duration-300;
+}
+
+@media (min-width: 640px) {
+  .mqtt-alert {
+    @apply px-6 py-4 rounded-xl text-base;
+  }
+}
+
+.mqtt-alert-error {
+  @apply bg-red-50 dark:bg-red-900/20 text-red-900 dark:text-red-100
+    border border-red-200 dark:border-red-800;
+}
+
+.mqtt-alert-success {
+  @apply bg-green-50 dark:bg-green-900/20 text-green-900 dark:text-green-100
+    border border-green-200 dark:border-green-800;
+}
+
+.mqttConfigContainer .config-header h1 {
+  @apply text-2xl font-semibold text-gray-900 dark:text-white;
+}
+
+@media (min-width: 640px) {
+  .mqttConfigContainer .config-header h1 {
+    @apply text-3xl;
+  }
+}
+
+/* Form Container */
+.mqtt-form {
+  @apply bg-white/5 p-4 rounded-lg
+    border border-gray-200 dark:border-gray-700
+    transition-all duration-300 space-y-6;
+}
+
+@media (min-width: 640px) {
+  .mqtt-form {
+    @apply p-6 rounded-xl;
+  }
+}
+
+/* Section Styles */
+.mqtt-section {
+  @apply space-y-4;
+}
+
+.mqtt-section-title {
+  @apply text-lg font-semibold text-gray-800 dark:text-gray-200
+    pb-3 border-b border-gray-300 dark:border-gray-600;
+}
+
+@media (min-width: 640px) {
+  .mqtt-section-title {
+    @apply text-xl;
+  }
+}
+
+/* Form Fields Grid */
+.mqtt-fields-grid {
+  @apply grid grid-cols-1 gap-4 text-gray-900 dark:text-gray-100;
+}
+
+@media (min-width: 768px) {
+  .mqtt-fields-grid {
+    @apply grid-cols-2 gap-6;
+  }
+}
+
+/* Form Group */
+.mqtt-field-group {
+  @apply flex flex-col space-y-2;
+}
+
+/* Form Label */
+.mqtt-field-group label {
+  @apply text-sm font-semibold text-gray-800 dark:text-gray-200;
+}
+
+/* Form Input */
+.mqtt-field-group input,
+.mqtt-field-group select {
+  @apply px-3 py-2 rounded-md
+    bg-white dark:bg-gray-800
+    border border-gray-300 dark:border-gray-600
+    text-gray-900 dark:text-gray-100
+    text-sm
+    transition-all duration-200;
+}
+
+@media (hover: hover) {
+  .mqtt-field-group input:hover,
+  .mqtt-field-group select:hover {
+    @apply border-gray-400 dark:border-gray-500;
+  }
+}
+
+.mqtt-field-group input:focus,
+.mqtt-field-group select:focus {
+  @apply outline-none border-indigo-500 dark:border-indigo-400
+    ring-2 ring-indigo-200 dark:ring-indigo-900/50;
+}
+
+.mqtt-field-group input:disabled {
+  @apply bg-gray-100 dark:bg-gray-900/50 cursor-not-allowed opacity-60;
+}
+
+/* Checkbox Input */
+.mqtt-field-group input[type="checkbox"] {
+  @apply rounded border-gray-300 dark:border-gray-600
+    text-indigo-600 dark:text-indigo-400;
+}
+
+/* Actions Container */
+.mqtt-actions {
+  @apply flex flex-col gap-3 sm:flex-row sm:items-center pt-4 border-t border-gray-300 dark:border-gray-600;
+}
+
+@media (min-width: 640px) {
+  .mqtt-actions {
+    @apply gap-3;
+  }
+}
+
+/* Button Base Styles */
+.mqtt-button {
+  @apply px-4 py-2 rounded-md font-medium
+    transition-all duration-200 cursor-pointer
+    disabled:opacity-50  disabled:cursor-not-allowed;
+}
+
+@media (min-width: 640px) {
+  .mqtt-button {
+    @apply px-6 py-2 rounded-lg;
+  }
+}
+
+/* Save Button */
+.mqtt-button-save {
+  @apply bg-indigo-600 text-white;
+}
+
+@media (hover: hover) {
+  .mqtt-button-save:hover:not(:disabled) {
+    @apply bg-indigo-700 shadow-lg;
+  }
+}
+
+.mqtt-button-save:active:not(:disabled) {
+  @apply bg-indigo-800;
+}
+
+/* Test Connection Button */
+.mqtt-button-test {
+  @apply bg-gray-600 dark:bg-gray-700 text-white;
+}
+
+@media (hover: hover) {
+  .mqtt-button-test:hover:not(:disabled) {
+    @apply bg-gray-700 dark:bg-gray-600 shadow-lg;
+  }
+}
+
+.mqtt-button-test:active:not(:disabled) {
+  @apply bg-gray-800;
+}
+
+/* Connection Result */
+.mqtt-result {
+  @apply px-4 py-2 rounded-md font-medium
+    text-white text-sm
+    transition-opacity duration-300;
+}
+
+@media (min-width: 640px) {
+  .mqtt-result {
+    @apply px-6 py-2 rounded-lg text-base;
+  }
+}
+
+.mqtt-result-success {
+  @apply bg-green-600 dark:bg-green-700;
+}
+
+@media (hover: hover) {
+  .mqtt-result-success:hover {
+    @apply bg-green-700;
+  }
+}
+
+.mqtt-result-error {
+  @apply bg-red-600 dark:bg-red-700;
+}
+
+@media (hover: hover) {
+  .mqtt-result-error:hover {
+    @apply bg-red-700;
+  }
+}
+
+/* Info Alert */
+.mqtt-info-box {
+  @apply mt-6 p-4 rounded-lg
+    bg-blue-50 dark:bg-blue-900/20
+    border border-blue-200 dark:border-blue-800
+    text-blue-900 dark:text-blue-100
+    text-sm;
+}
+
+@media (min-width: 640px) {
+  .mqtt-info-box {
+    @apply p-6 rounded-xl;
+  }
+}
+
+/* Help Text */
+.mqtt-help-text {
+  @apply text-xs text-gray-600 dark:text-gray-400 mt-1;
+}
+
+@media (min-width: 640px) {
+  .mqtt-help-text {
+    @apply text-sm;
+  }
+}
