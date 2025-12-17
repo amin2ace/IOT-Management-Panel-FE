@@ -7,6 +7,7 @@
 @import "./styles/layouts/dashboardLayout.css";
 @import "./styles/pages/configuration.css";
 @import "./styles/pages/profile.css";
+@import "./styles/pages/topics.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
