@@ -1,4 +1,4 @@
-import DashboardHeader from "@/components/DashboardHeader";
+import DashboardHeader from "@/components/Header/DashboardHeader";
 import { useTranslation } from "react-i18next";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";

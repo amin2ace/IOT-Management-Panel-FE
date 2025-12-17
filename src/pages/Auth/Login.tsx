@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { loginInputDto } from "@/api";
 import { useLogin } from "@/hooks/useLogin";
 import toast from "react-hot-toast";
-import DashboardHeader from "@/components/DashboardHeader";
+import DashboardHeader from "@/components/Header/DashboardHeader";
 
 // Componenet: Login Page 'READ_ONLY', 'The function name for component MUST start with uppercase'
 export default function LoginPage() {

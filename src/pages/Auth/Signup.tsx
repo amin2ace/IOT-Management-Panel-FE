@@ -1,5 +1,5 @@
 import { SignupInputDto } from "@/api";
-import DashboardHeader from "@/components/DashboardHeader";
+import DashboardHeader from "@/components/Header/DashboardHeader";
 import { useSignup } from "@/hooks/useSignup";
 import { useState } from "react";
 import toast from "react-hot-toast";

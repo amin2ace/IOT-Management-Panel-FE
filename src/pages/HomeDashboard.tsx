@@ -1,18 +1,22 @@
 import { useTranslation } from "react-i18next";
+import { useDigitalClock12Hour } from "@/hooks/useDigitalClock";
+import { useSystemMetrics } from "@/hooks/useSystemMetrics";
 
 export default function HomeDashboard() {
   const { t } = useTranslation();
+  const currentTime = useDigitalClock12Hour();
+  const metrics = useSystemMetrics();
 
   const cards = [
-    { title: t("dashboard.Clock"), value: "--" },
-    { title: t("dashboard.uptime"), value: "--" },
+    { title: t("dashboard.clock"), value: currentTime || "--" },
+    { title: t("dashboard.uptime"), value: metrics.uptime },
     { title: t("dashboard.buadrate"), value: "--" },
     { title: t("dashboard.connectedSensors"), value: "--" },
     { title: t("dashboard.connectedControllers"), value: "--" },
-    { title: t("dashboard.cpuUsage"), value: "-- %" },
-    { title: t("dashboard.ramUsage"), value: "-- %" },
-    { title: t("dashboard.errors"), value: "--" },
-    { title: t("dashboard.warnings"), value: "--" },
+    { title: t("dashboard.cpuUsage"), value: `${metrics.cpuUsage} %` },
+    { title: t("dashboard.ramUsage"), value: `${metrics.memoryUsage} %` },
+    { title: t("dashboard.errors"), value: metrics.errors },
+    { title: t("dashboard.warnings"), value: metrics.warnings },
   ];
 
   return (

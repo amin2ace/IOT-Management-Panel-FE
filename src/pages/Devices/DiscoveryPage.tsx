@@ -15,8 +15,8 @@ import { useAuth } from "@/context/AuthContext";
 import { DiscoveryRequestDto } from "@/api";
 import { useTranslation } from "react-i18next";
 import { DiscoveryResponseDto } from "@/api/models/device/ResponseDiscoveryDto";
-import DevicesResultTable from "@/components/DiscoveryResultsTable";
-import DiscoveryMethod from "@/components/DiscoveryMethod";
+import DevicesResultTable from "@/components/DiscoveryPage/DiscoveryResultsTable";
+import DiscoveryMethod from "@/components/DiscoveryPage/DiscoveryMethod";
 import { useDiscoveryStore } from "@/hooks/useDiscoveryStore";
 
 export default function DiscoveryPage() {
