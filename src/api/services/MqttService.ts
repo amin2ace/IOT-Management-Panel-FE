@@ -18,7 +18,7 @@ export class MqttService {
   public static mqttManagementControllerGetConfig(): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "GET",
-      url: "/api/mqtt/config",
+      url: "/mqtt/config",
       errors: {
         500: `Internal server error - Failed to retrieve configuration`,
       },
@@ -36,7 +36,7 @@ export class MqttService {
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "PUT",
-      url: "/api/mqtt/config",
+      url: "/mqtt/config",
       body: requestBody,
       mediaType: "application/json",
       errors: {
@@ -57,7 +57,7 @@ export class MqttService {
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "POST",
-      url: "/api/mqtt/config/validate",
+      url: "/mqtt/config/validate",
       body: requestBody,
       mediaType: "application/json",
       errors: {
@@ -77,7 +77,7 @@ export class MqttService {
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "POST",
-      url: "/api/mqtt/config/test-connection",
+      url: "/mqtt/config/test-connection",
       body: requestBody,
       mediaType: "application/json",
       errors: {
@@ -98,7 +98,7 @@ export class MqttService {
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "POST",
-      url: "/api/mqtt/connect/{broker}",
+      url: "/mqtt/connect/{broker}",
       path: {
         broker: broker,
       },
@@ -116,7 +116,7 @@ export class MqttService {
   public static mqttManagementControllerGetMqttStatus(): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "GET",
-      url: "/api/mqtt/status",
+      url: "/mqtt/status",
       errors: {
         500: `Internal server error - Failed to retrieve connection status`,
       },
@@ -134,7 +134,7 @@ export class MqttService {
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "POST",
-      url: "/api/mqtt/publish",
+      url: "/mqtt/publish",
       body: requestBody,
       mediaType: "application/json",
       errors: {
@@ -155,7 +155,7 @@ export class MqttService {
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "POST",
-      url: "/api/mqtt/subscribe",
+      url: "/mqtt/subscribe",
       body: requestBody,
       mediaType: "application/json",
       errors: {
@@ -176,7 +176,7 @@ export class MqttService {
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "DELETE",
-      url: "/api/mqtt/unsubscribe/{topic}",
+      url: "/mqtt/unsubscribe/{topic}",
       path: {
         topic: topic,
       },
@@ -196,7 +196,7 @@ export class MqttService {
   public static mqttManagementControllerReconnect(): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "POST",
-      url: "/api/mqtt/reconnect",
+      url: "/mqtt/reconnect",
       errors: {
         500: `Internal server error - Failed to initiate reconnection`,
       },

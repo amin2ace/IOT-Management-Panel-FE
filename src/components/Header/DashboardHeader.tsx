@@ -6,7 +6,7 @@ import { useAuth } from "@/context/AuthContext";
 import { LanguageSelector } from "./LanguageSelector";
 import { useProfile } from "@/hooks/useProfile";
 import { useTranslation } from "react-i18next";
-import { UserProfileSection } from "../UserProfileSection";
+import { LogoutButton } from "../LogoutButton";
 
 type props = {
   showProfile: boolean;
@@ -76,7 +76,7 @@ export default function DashboardHeader({ showProfile }: props) {
           <ThemeToggle />
           <LanguageSelector />
           {showProfile && authUser && (
-            <UserProfileSection
+            <LogoutButton
               onProfileClick={() => setIsProfileOpen(true)}
               onLogout={handleLogout}
             />

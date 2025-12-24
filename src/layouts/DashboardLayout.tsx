@@ -10,6 +10,10 @@ import {
   SignalIcon,
   UserCircleIcon,
   BookmarkIcon,
+  GlobeAltIcon,
+  UserGroupIcon,
+  XMarkIcon,
+  Bars3Icon,
 } from "@heroicons/react/24/outline";
 
 export default function DashboardLayout() {
@@ -41,6 +45,8 @@ export default function DashboardLayout() {
     },
     { path: "/profile", label: t("path.profile"), icon: UserCircleIcon },
     { path: "/topics", label: t("path.topics"), icon: BookmarkIcon },
+    { path: "/mqtt", label: t("path.mqttConfig"), icon: GlobeAltIcon },
+    { path: "/users", label: t("path.users"), icon: UserGroupIcon },
   ];
 
   const toggleSidebar = () => {
@@ -81,10 +87,14 @@ export default function DashboardLayout() {
 
         {/* SIDEBAR - Hidden on mobile by default */}
         <aside
+          id="sidebar-nav"
           className={`
             sidebarNav
             ${isSidebarOpen ? "sidebarNavExpanded" : "sidebarNavCollapsed"}
           `}
+          aria-hidden={
+            !isSidebarOpen && window.innerWidth < 1024 ? "true" : "false"
+          }
         >
           {/* Sidebar Header */}
           <div className="navHeader">
@@ -92,31 +102,46 @@ export default function DashboardLayout() {
               <h1 className="responsiveText">{t("nav.header")}</h1>
             )}
             {/* Desktop toggle button - hidden on mobile */}
-            <button onClick={toggleSidebar} className="navHeaderButton">
-              {isSidebarOpen ? "✕" : "☰"}
+            <button
+              onClick={toggleSidebar}
+              className="navHeaderButton"
+              aria-label={
+                isSidebarOpen ? "Close navigation" : "Open navigation"
+              }
+              aria-expanded={isSidebarOpen}
+              aria-controls="sidebar-nav"
+            >
+              {isSidebarOpen ? (
+                <XMarkIcon className="w-5 h-5" />
+              ) : (
+                <Bars3Icon className="w-5 h-5" />
+              )}
             </button>
           </div>
 
           {/* Navigation */}
-          <nav className="navItemsContainer">
+          <nav className="navItemsContainer" aria-label="Main navigation">
             {navItems.map((item) => {
               const IconComponent = item.icon;
+              const isActive = pathname === item.path;
               return (
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`navItems group relative ${pathname === item.path ? "navItemsCurrent" : "navItemsOthers"}`}
+                  className={`navItems group relative transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 dark:focus-visible:outline-indigo-400 ${isActive ? "navItemsCurrent" : "navItemsOthers"}`}
                   title={!isSidebarOpen ? item.label : undefined}
+                  aria-current={isActive ? "page" : undefined}
+                  aria-label={item.label}
                 >
-                  <IconComponent className="w-6 h-6 shrink-0" />
+                  <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 shrink-0 flex-none" />
 
                   {isSidebarOpen && (
-                    <span className="navItemsLabel">{item.label}</span>
+                    <span className="navItemsLabel truncate">{item.label}</span>
                   )}
 
                   {/* Tooltip for collapsed state - only on desktop */}
                   {!isSidebarOpen && (
-                    <div className="navItemsTooltip group-hover:opacity-100">
+                    <div className="navItemsTooltip group-hover:opacity-100 group-focus-visible:opacity-100">
                       {item.label}
                     </div>
                   )}
@@ -134,8 +159,14 @@ export default function DashboardLayout() {
           `}
         >
           {/* Mobile toggle button - Only visible on mobile devices */}
-          <button onClick={toggleSidebar} className="mobileToggleButton">
-            ☰
+          <button
+            onClick={toggleSidebar}
+            className="mobileToggleButton"
+            aria-label="Toggle navigation menu"
+            aria-expanded={isSidebarOpen}
+            aria-controls="sidebar-nav"
+          >
+            <Bars3Icon className="w-6 h-6" />
           </button>
 
           <Outlet />

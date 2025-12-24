@@ -1,0 +1,201 @@
+@reference "tailwindcss";
+
+/* Telemetry Page Container */
+.telemetryPageContainer {
+  @apply w-full p-4 mx-auto rounded-lg shadow-md
+    bg-white/60 dark:bg-gray-800/40 border
+    space-y-6 text-gray-900 dark:text-gray-100
+    backdrop-blur-xl border-gray-300/40 dark:border-gray-700/40
+    transition-all text-sm min-h-screen;
+}
+
+@media (min-width: 640px) {
+  .telemetryPageContainer {
+    @apply p-6 rounded-xl shadow-lg;
+  }
+}
+
+@media (hover: hover) {
+  .telemetryPageContainer:hover {
+    @apply shadow-lg dark:shadow-xl dark:shadow-gray-500/30;
+  }
+}
+
+@media (min-width: 1024px) {
+  .telemetryPageContainer:hover {
+    @apply shadow-2xl;
+  }
+}
+
+/* Page Header */
+.telemetryPageContainer .telemetry-header {
+  @apply flex items-center justify-between mb-6 pb-4 border-b border-gray-200 dark:border-gray-700;
+}
+
+.telemetryPageContainer .telemetry-header h1 {
+  @apply text-2xl font-semibold text-gray-900 dark:text-white;
+}
+
+@media (min-width: 640px) {
+  .telemetryPageContainer .telemetry-header h1 {
+    @apply text-3xl;
+  }
+}
+
+/* Connection Status Badge */
+.telemetry-status-badge {
+  @apply px-3 py-1 rounded-full text-sm font-medium
+    transition-all duration-200;
+}
+
+.telemetry-status-connected {
+  @apply bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300
+    border border-green-300 dark:border-green-700;
+}
+
+.telemetry-status-disconnected {
+  @apply bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300
+    border border-red-300 dark:border-red-700;
+}
+
+/* Metrics Grid */
+.telemetry-grid {
+  @apply grid grid-cols-1 gap-4 text-gray-900 dark:text-gray-100;
+}
+
+@media (min-width: 768px) {
+  .telemetry-grid {
+    @apply grid-cols-2 gap-6;
+  }
+}
+
+@media (min-width: 1024px) {
+  .telemetry-grid {
+    @apply grid-cols-3 gap-6;
+  }
+}
+
+/* Metric Card */
+.telemetry-card {
+  @apply bg-white dark:bg-gray-800 p-4 rounded-lg
+    shadow-md dark:shadow-gray-900/30
+    border border-gray-200 dark:border-gray-700
+    transition-all duration-300;
+}
+
+@media (min-width: 640px) {
+  .telemetry-card {
+    @apply p-6 rounded-xl shadow-lg;
+  }
+}
+
+@media (hover: hover) {
+  .telemetry-card:hover {
+    @apply shadow-lg border-indigo-400 dark:border-indigo-600
+      dark:shadow-indigo-500/20;
+  }
+}
+
+/* Metric Title */
+.telemetry-card-title {
+  @apply text-lg font-semibold text-gray-900 dark:text-white mb-3
+    capitalize;
+}
+
+@media (min-width: 640px) {
+  .telemetry-card-title {
+    @apply text-xl;
+  }
+}
+
+/* Chart Container */
+.telemetry-chart-container {
+  @apply w-full h-48 md:h-56 rounded-md
+    bg-gray-50 dark:bg-gray-900/30
+    border border-gray-200 dark:border-gray-700
+    p-2;
+}
+
+@media (min-width: 640px) {
+  .telemetry-chart-container {
+    @apply h-64;
+  }
+}
+
+/* Chart Styles */
+.telemetry-chart-grid {
+  @apply stroke-gray-300 dark:stroke-gray-600;
+}
+
+.telemetry-chart-axis {
+  @apply stroke-gray-400 dark:stroke-gray-500;
+}
+
+.telemetry-chart-line {
+  @apply stroke-indigo-500 dark:stroke-indigo-400;
+}
+
+.telemetry-chart-tooltip {
+  @apply bg-gray-900 dark:bg-gray-800 rounded-lg
+    border border-gray-700 dark:border-gray-600
+    text-gray-100 dark:text-gray-200 text-sm;
+}
+
+/* Metric Stats */
+.telemetry-card-stats {
+  @apply flex justify-between mt-4 pt-4 border-t border-gray-200 dark:border-gray-700
+    text-sm text-gray-600 dark:text-gray-400;
+}
+
+@media (min-width: 640px) {
+  .telemetry-card-stats {
+    @apply mt-6 pt-6;
+  }
+}
+
+.telemetry-stat-item {
+  @apply flex flex-col gap-1;
+}
+
+.telemetry-stat-label {
+  @apply text-xs font-semibold text-gray-600 dark:text-gray-500
+    uppercase tracking-wider;
+}
+
+.telemetry-stat-value {
+  @apply text-sm font-semibold text-gray-900 dark:text-gray-100;
+}
+
+/* Empty State */
+.telemetry-empty-state {
+  @apply col-span-full py-12 text-center;
+}
+
+.telemetry-empty-message {
+  @apply text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2;
+}
+
+.telemetry-empty-description {
+  @apply text-sm text-gray-600 dark:text-gray-400;
+}
+
+/* Loading Animation */
+.telemetry-loading-skeleton {
+  @apply bg-gray-200 dark:bg-gray-700 rounded-md
+    animate-pulse;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+  .telemetry-grid {
+    @apply gap-3;
+  }
+
+  .telemetry-card {
+    @apply p-3;
+  }
+
+  .telemetry-chart-container {
+    @apply h-40;
+  }
+}

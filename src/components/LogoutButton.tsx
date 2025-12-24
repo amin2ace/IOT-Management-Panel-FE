@@ -1,12 +1,12 @@
 import { useAuth } from "@/context/AuthContext";
 import { useTranslation } from "react-i18next";
 
-interface UserProfileSectionProps {
+interface LogoutButton {
   onProfileClick: () => void;
   onLogout: () => void;
 }
 
-export function UserProfileSection({ onLogout }: UserProfileSectionProps) {
+export function LogoutButton({ onLogout }: LogoutButton) {
   const { user: authUser } = useAuth();
   const { t } = useTranslation();
 

@@ -83,8 +83,7 @@ export default function DiscoveryMethod({
         {activeTab === DiscoverMethod.UNICAST && (
           <div className="space-y-4">
             <p className="text-gray-900 dark:text-gray-400">
-              {t("discovery.discoveryUnicastTitle") ||
-                "Discover specific device by ID"}
+              {t("discovery.unicastTitle") || "Discover specific device by ID"}
             </p>
             {submit && register ? (
               <form

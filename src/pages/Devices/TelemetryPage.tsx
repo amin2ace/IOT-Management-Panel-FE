@@ -11,6 +11,7 @@ import {
 } from "recharts";
 import { motion } from "framer-motion";
 import { ResponseTelemetryDto } from "@/api/models/device/ResponseTelemetryDto";
+import "@/styles/pages/telemetry.css";
 
 interface MetricData {
   metric: string;
@@ -52,81 +53,103 @@ export default function TelemetryPage() {
   }, [socket]);
 
   return (
-    <div className="p-6 min-h-screen bg-linear-to-br from-gray-900 to-gray-800 text-gray-100">
-      <header className="flex items-center justify-between mb-6">
-        <h2 className="text-3xl font-bold tracking-wide">
-          📊 Live Telemetry Dashboard
-        </h2>
+    <div className="telemetryPageContainer">
+      <header className="telemetry-header">
+        <h1>Live Telemetry Dashboard</h1>
         <div
-          className={`px-3 py-1 rounded-full text-sm ${
+          className={`telemetry-status-badge ${
             isConnected
-              ? "bg-green-600/30 text-green-400"
-              : "bg-red-600/30 text-red-400"
+              ? "telemetry-status-connected"
+              : "telemetry-status-disconnected"
           }`}
         >
           {isConnected ? "Connected" : "Disconnected"}
         </div>
       </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="telemetry-grid">
         {Array.from(metrics.values()).map((metric) => (
           <motion.div
             key={metric.metric}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-lg p-5 hover:shadow-indigo-500/20 transition"
+            className="telemetry-card"
           >
-            <h3 className="text-lg font-semibold mb-3 capitalize text-indigo-300">
-              {metric.metric}
-            </h3>
+            <h3 className="telemetry-card-title">{metric.metric}</h3>
 
-            <ResponsiveContainer width="100%" height={200}>
-              <LineChart data={metric.values}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#444" />
-                <XAxis
-                  dataKey="timestamp"
-                  tickFormatter={(ts) =>
-                    new Date(ts).toLocaleTimeString([], {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                      second: "2-digit",
-                    })
-                  }
-                  stroke="#888"
-                  fontSize={10}
-                />
-                <YAxis domain={["auto", "auto"]} stroke="#888" fontSize={10} />
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: "#1f2937",
-                    borderRadius: "8px",
-                    border: "none",
-                  }}
-                  labelStyle={{ color: "#9ca3af" }}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="value"
-                  stroke="#818cf8"
-                  strokeWidth={2}
-                  dot={false}
-                  isAnimationActive={true}
-                />
-              </LineChart>
-            </ResponsiveContainer>
+            <div className="telemetry-chart-container">
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={metric.values}>
+                  <CartesianGrid
+                    strokeDasharray="3 3"
+                    className="telemetry-chart-grid"
+                  />
+                  <XAxis
+                    dataKey="timestamp"
+                    tickFormatter={(ts) =>
+                      new Date(ts).toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        second: "2-digit",
+                      })
+                    }
+                    className="telemetry-chart-axis"
+                    fontSize={10}
+                  />
+                  <YAxis
+                    domain={["auto", "auto"]}
+                    className="telemetry-chart-axis"
+                    fontSize={10}
+                  />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: "rgba(31, 41, 55, 0.95)",
+                      borderRadius: "8px",
+                      border: "1px solid rgba(107, 114, 128, 0.3)",
+                    }}
+                    labelStyle={{ color: "#9ca3af" }}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="value"
+                    className="telemetry-chart-line"
+                    strokeWidth={2}
+                    dot={false}
+                    isAnimationActive={true}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
 
-            <div className="flex justify-between mt-3 text-sm text-gray-400">
-              <span>Latest: {metric.values.at(-1)?.value ?? "--"}</span>
-              <span>
-                {new Date(
-                  metric.values.at(-1)?.timestamp ?? 0
-                ).toLocaleTimeString()}
-              </span>
+            <div className="telemetry-card-stats">
+              <div className="telemetry-stat-item">
+                <span className="telemetry-stat-label">Latest Value</span>
+                <span className="telemetry-stat-value">
+                  {metric.values.at(-1)?.value ?? "--"}
+                </span>
+              </div>
+              <div className="telemetry-stat-item">
+                <span className="telemetry-stat-label">Last Update</span>
+                <span className="telemetry-stat-value">
+                  {new Date(
+                    metric.values.at(-1)?.timestamp ?? 0
+                  ).toLocaleTimeString()}
+                </span>
+              </div>
             </div>
           </motion.div>
         ))}
       </div>
+
+      {metrics.size === 0 && (
+        <div className="telemetry-empty-state">
+          <p className="telemetry-empty-message">No Telemetry Data</p>
+          <p className="telemetry-empty-description">
+            Waiting for telemetry updates from connected devices...
+          </p>
+        </div>
+      )}
     </div>
   );
 }

@@ -10,8 +10,8 @@ export default function HomeDashboard() {
   const cards = [
     { title: t("dashboard.clock"), value: currentTime || "--" },
     { title: t("dashboard.uptime"), value: metrics.uptime },
-    { title: t("dashboard.buadrate"), value: "--" },
-    { title: t("dashboard.connectedSensors"), value: "--" },
+    { title: t("dashboard.mqttStatus"), value: metrics.mqttStatus },
+    { title: t("dashboard.connectedSensors"), value: metrics.connectedSensors },
     { title: t("dashboard.connectedControllers"), value: "--" },
     { title: t("dashboard.cpuUsage"), value: `${metrics.cpuUsage} %` },
     { title: t("dashboard.ramUsage"), value: `${metrics.memoryUsage} %` },

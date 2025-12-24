@@ -26,8 +26,10 @@
   "path.assignTab": "Assign Devices",
   "path.configureTab": "Configure Devices",
   "path.telemetryTab": "Telemetry",
+  "path.mqttConfig": "MQTT Config",
   "path.profile": "Pofile",
   "path.topics": "Topics",
+  "path.users": "Users",
 
   "##################################_3": "Header Language Selector and Theme Toggle",
 
@@ -67,6 +69,7 @@
   "dashboard.clock": "Clock",
   "dashboard.uptime": "Up Time",
   "dashboard.buadrate": "Buad Rate",
+  "dashboard.mqttStatus": "MQTT Status",
   "dashboard.connectedSensors": "Sensors",
   "dashboard.connectedControllers": "Controllers",
   "dashboard.cpuUsage": "CPU Usage",
@@ -163,6 +166,38 @@
   "topic.subscribe": "Subscribe",
   "topic.deviceTopics": "Device Topics",
 
+  "##################################_13": "Dashboard Table Headers ",
+
+  "mqtt.configuration": "MQTT Configuration",
+  "mqtt.connected": " Connected",
+  "mqtt.disconnected": " Disconnected",
+  "mqtt.status": "Status",
+  "mqtt.basicSettings": "Basic Settings",
+  "mqtt.advancedSettings": "Advanced Settings",
+  "mqtt.host": "Host",
+  "mqtt.port": "Port",
+  "mqtt.clientId": "Client ID",
+  "mqtt.protocol": "Protocol",
+  "mqtt.keepalive": "Keepalive (seconds)",
+  "mqtt.cleanSession": "Clean Session",
+  "mqtt.autoReconnect": "Auto Reconnect",
+  "mqtt.tls": "TLS/SSL",
+  "mqtt.readOnly": "Read-Only Mode",
+  "mqtt.connectionInfo": "Connection Information",
+  "mqtt.maxConnectionAttempts": "Max Connection Attempts",
+  "mqtt.connectAttempts": "Connection Attempts",
+  "mqtt.testConnection": "Test Connection",
+  "mqtt.connectionSuccess": "Connection Successful",
+  "mqtt.connectionFailed": "Connection Failed",
+  "mqtt.saveConfiguration": "Save Configuration",
+  "mqtt.configurationSaved": "Configuration Saved",
+  "mqtt.configurationSaveFailed": "Configuration Save Failed",
+  "mqtt.username": "Username",
+  "mqtt.password": "Password",
+  "mqtt.failedToFetchConfig": "Failed to fetch MQTT configuration",
+  "mqtt.failedToUpdateConfig": "Failed to update MQTT configuration",
+  "mqtt.configUpdated": "MQTT configuration updated",
+
   "##################################_": "Dashboard Common ",
 
   "common.sending": "Sending... ",
@@ -180,5 +215,7 @@
   "common.manual": "Manual Mode",
   "common.automatic": "Automatic Mode",
   "common.seconds": "Seconds",
-  "common.available": "available"
+  "common.available": "available",
+  "common.AM": "AM",
+  "common.PM": "PM"
 }

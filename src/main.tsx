@@ -19,6 +19,8 @@ import DiscoveryPage from "./pages/Devices/DiscoveryPage";
 import AssignPage from "./pages/Devices/AssignPage";
 import ProfilePage from "./pages/Auth/Profile";
 import TopicsPage from "./pages/Topics";
+import MqttConfigPage from "./pages/MqttConfig";
+import UsersPage from "./pages/Users";
 
 const queryClient = new QueryClient();
 
@@ -37,7 +39,9 @@ createRoot(document.getElementById("root")!).render(
               <Route path="/devices/assign" element={<AssignPage />} />
               <Route path="/devices/configure" element={<ConfigPage />} />
               <Route path="/devices/telemetry" element={<TelemetryPage />} />
+              <Route path="/mqtt" element={<MqttConfigPage />} />
               <Route path="/topics" element={<TopicsPage />} />
+              <Route path="/users" element={<UsersPage />} />
 
               <Route path="/profile" element={<ProfilePage />} />
               {/* <Route path="hmi" element={<HmiPage />} /> */}

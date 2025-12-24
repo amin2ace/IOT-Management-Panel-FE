@@ -46,7 +46,7 @@ export default function TopicsPage() {
   return (
     <div className="topicsPageContainer">
       <header>
-        <h1 className="topicsPageContainer header h1">{t("topic.topics")}</h1>
+        <h1>{t("topic.topics")}</h1>
       </header>
 
       {/* Device Selector */}

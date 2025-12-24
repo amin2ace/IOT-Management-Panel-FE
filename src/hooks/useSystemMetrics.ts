@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { MqttService, DevicesService } from "@/api";
+import { ConnectionState } from "@/api/models/enums/ConnectionStateEnum";
 
 /**
  * Type definition for Chrome's performance.memory API
@@ -158,15 +160,77 @@ export function useCpuUsage() {
 }
 
 /**
- * Hook to get system metrics from WebSocket or API
- * This would be called to fetch real metrics from backend
+ * Hook to get connected sensors count from backend
+ * Returns number of connected sensors
  */
+export function useConnectedSensors() {
+  const [sensorCount, setSensorCount] = useState<number>(0);
+
+  useEffect(() => {
+    const fetchSensors = async () => {
+      try {
+        const response = await DevicesService.deviceControllerGetAllSensors();
+        if (response && Array.isArray(response)) {
+          // Count sensors that are connected
+          const connectedCount = response.filter(
+            (sensor) => sensor.connectionState === ConnectionState.ONLINE
+          ).length;
+          setSensorCount(connectedCount);
+        }
+      } catch (error) {
+        console.error("Failed to fetch sensors:", error);
+        setSensorCount(0);
+      }
+    };
+
+    fetchSensors();
+    // Refresh every 15 seconds
+    const interval = setInterval(fetchSensors, 15000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return sensorCount;
+}
+
+/**
+ * Hook to get MQTT connection status from backend
+ * Returns "Connected" or "Disconnected"
+ */
+export function useMqttStatus() {
+  const [mqttStatus, setMqttStatus] = useState<string>("--");
+
+  useEffect(() => {
+    const fetchMqttStatus = async () => {
+      try {
+        const response = await MqttService.mqttManagementControllerGetConfig();
+        if (response && response.data) {
+          setMqttStatus(response.data.connected ? "Connected" : "Disconnected");
+        }
+      } catch (error) {
+        console.error("Failed to fetch MQTT status:", error);
+        setMqttStatus("Disconnected");
+      }
+    };
+
+    fetchMqttStatus();
+    // Refresh every 10 seconds
+    const interval = setInterval(fetchMqttStatus, 10000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return mqttStatus;
+}
+
 export interface SystemMetrics {
   cpuUsage: number;
   memoryUsage: number;
   errors: number;
   warnings: number;
   uptime: string;
+  mqttStatus: string;
+  connectedSensors: number;
 }
 
 export function useSystemMetrics(): SystemMetrics {
@@ -175,6 +239,8 @@ export function useSystemMetrics(): SystemMetrics {
   const warningCount = useWarningCount();
   const memoryUsage = useMemoryUsage();
   const cpuUsage = useCpuUsage();
+  const mqttStatus = useMqttStatus();
+  const connectedSensors = useConnectedSensors();
 
   return {
     cpuUsage: cpuUsage === "--" ? 0 : parseInt(cpuUsage),
@@ -182,5 +248,7 @@ export function useSystemMetrics(): SystemMetrics {
     errors: errorCount,
     warnings: warningCount,
     uptime,
+    mqttStatus,
+    connectedSensors,
   };
 }
