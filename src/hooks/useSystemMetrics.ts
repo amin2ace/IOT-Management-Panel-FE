@@ -177,8 +177,8 @@ export function useConnectedSensors() {
           ).length;
           setSensorCount(connectedCount);
         }
-      } catch (error) {
-        console.error("Failed to fetch sensors:", error);
+      } catch (error: unknown) {
+        // console.error("Failed to fetch sensors:", error);
         setSensorCount(0);
       }
     };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   useProfile,
   useUpdateProfile,
@@ -9,16 +9,8 @@ import { useAuth } from "@/context/AuthContext";
 import { useTranslation } from "react-i18next";
 import toast from "react-hot-toast";
 import PasswordModal from "@/components/PasswordModal";
-import { UserResponseDto } from "@/api";
-
-// Role enum (you can import this from your API types if available)
-enum Role {
-  VIEWER = "viewer",
-  TEST = "test",
-  ENGINEER = "engineer",
-  ADMIN = "admin",
-  SUPER_ADMIN = "super_admin",
-}
+import { Role } from "@/api";
+import { UserResponseDto } from "@/api/models/auth/UserResponseDto";
 
 // Helper function to format role display names
 const formatRoleName = (role: string): string => {
@@ -27,7 +19,7 @@ const formatRoleName = (role: string): string => {
     [Role.TEST]: "Test",
     [Role.ENGINEER]: "Engineer",
     [Role.ADMIN]: "Admin",
-    [Role.SUPER_ADMIN]: "Super Admin",
+    [Role.SUPER_ADMIN]: "Super-Admin",
   };
   return roleMap[role as Role] || role;
 };
@@ -36,7 +28,7 @@ export default function ProfilePage() {
   const { logout } = useAuth();
   const { t } = useTranslation();
 
-  const { data: user, refetch } = useProfile({ enabled: false });
+  const { data: user, refetch } = useProfile();
   const updateProfile = useUpdateProfile();
   const changePassword = useChangePassword();
   const uploadPhoto = useUploadProfilePhoto();
@@ -57,19 +49,19 @@ export default function ProfilePage() {
     updatedAt: "",
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (user) {
       setForm({
-        userId: user.userId || "unknown",
-        email: user.email || "unknown",
-        username: user.username || "unknown",
-        firstName: user.firstName || "unknown",
-        lastName: user.lastName || "unknown",
-        photoUrl: user.photoUrl || "unknown",
-        isActive: user.isActive || false,
-        roles: user.roles || [],
-        createdAt: user.createdAt || "unknown",
-        updatedAt: user.updatedAt || "unknown",
+        userId: user?.userId || "unknown",
+        email: user?.email || "unknown",
+        username: user?.username || "unknown",
+        firstName: user?.firstName || "unknown",
+        lastName: user?.lastName || "unknown",
+        photoUrl: user?.photoUrl || "unknown",
+        isActive: user?.isActive || false,
+        roles: user?.roles || [],
+        createdAt: user?.createdAt || "unknown",
+        updatedAt: user?.updatedAt || "unknown",
       });
     }
   }, [user]);
@@ -78,7 +70,6 @@ export default function ProfilePage() {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) {
     setForm({ ...form, [e.target.name]: e.target.value });
-    logout();
   }
 
   function handleRolesChange(e: React.ChangeEvent<HTMLSelectElement>) {
@@ -100,7 +91,7 @@ export default function ProfilePage() {
       onSuccess: () => {
         toast.success(t("profileUpdated"));
         setIsEditing(false);
-        refetch();
+        logout();
       },
       onError: () => toast.error(t("updateFailed")),
     });
@@ -149,15 +140,22 @@ export default function ProfilePage() {
 
         {/* User Fields */}
         <div className="profile-form-grid">
-          {Object.keys(form)
+          {(Object.keys(form) as Array<keyof UserResponseDto>)
             .filter((field) => field !== "roles") // Exclude roles from regular inputs
             .map((field) => (
               <div key={field} className="profile-field">
                 <label className="profile-label">{t("profile." + field)}</label>
                 <input
                   name={field}
-                  disabled={!isEditing || field === "email"}
-                  value={field?.toString() || ""}
+                  disabled={
+                    !isEditing ||
+                    field === "email" ||
+                    field === "userId" ||
+                    field === "isActive" ||
+                    field === "createdAt" ||
+                    field === "updatedAt"
+                  }
+                  defaultValue={user ? user[field]?.toString() : "null"}
                   onChange={handleChange}
                   className="profile-input"
                 />
@@ -166,7 +164,7 @@ export default function ProfilePage() {
 
           {/* Role Dropdown Field */}
           <div className="profile-field">
-            <label className="profile-label">{t("profile.role")}</label>
+            <label className="profile-label">{t("profile.roles")}</label>
             {isEditing ? (
               <select
                 name="role"

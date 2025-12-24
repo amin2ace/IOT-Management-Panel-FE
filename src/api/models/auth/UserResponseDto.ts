@@ -1,6 +1,9 @@
 /* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */
+
+import { Role } from "../enums/RoleEnum";
+
 /* eslint-disable */
 export type UserResponseDto = {
   /**
@@ -34,7 +37,7 @@ export type UserResponseDto = {
   /**
    * User roles for RBAC
    */
-  roles: Array<"viewer" | "test" | "engineer" | "admin" | "super-admin">;
+  roles: Role[];
   /**
    * User registration date
    */

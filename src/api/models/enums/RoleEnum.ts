@@ -6,9 +6,9 @@
  * User role for RBAC
  */
 export enum Role {
-    VIEWER = 'viewer',
-    TEST = 'test',
-    ENGINEER = 'engineer',
-    ADMIN = 'admin',
-    SUPER_ADMIN = 'super_admin',
+  VIEWER = "viewer",
+  TEST = "test",
+  ENGINEER = "engineer",
+  ADMIN = "admin",
+  SUPER_ADMIN = "super-admin",
 }

@@ -11,18 +11,6 @@ export type RequestUpdateUserDto = {
   username?: string;
 
   /**
-   * Valid email address
-   * @format email
-   */
-  email?: string;
-
-  /**
-   * Password must be at least 8 characters
-   * @minLength 8
-   */
-  password?: string;
-
-  /**
    * First name (2-50 characters)
    * @minLength 2
    * @maxLength 50

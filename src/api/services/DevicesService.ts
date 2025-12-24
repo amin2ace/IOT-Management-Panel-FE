@@ -25,6 +25,9 @@ export class DevicesService {
     return __request(OpenAPI, {
       method: "GET",
       url: "/devices/all",
+      errors: {
+        404: `User not found`,
+      },
     });
   }
 

@@ -13,7 +13,7 @@ export class UsersService {
   public static usersControllerGetUserProfile(): CancelablePromise<UserResponseDto> {
     return __request(OpenAPI, {
       method: "GET",
-      url: "/users/profile",
+      url: "/users/profile/get",
       errors: {
         404: `User not found`,
       },
@@ -32,7 +32,7 @@ export class UsersService {
   ): CancelablePromise<UserResponseDto> {
     return __request(OpenAPI, {
       method: "PATCH",
-      url: "/users/{id}",
+      url: "/users/profile/update",
       body: requestBody,
       mediaType: "application/json",
       errors: {
@@ -74,7 +74,7 @@ export class UsersService {
   ): CancelablePromise<UserResponseDto> {
     return __request(OpenAPI, {
       method: "POST",
-      url: "/users",
+      url: "/users/create",
       body: requestBody,
       mediaType: "application/json",
       errors: {
@@ -90,7 +90,7 @@ export class UsersService {
   public static usersControllerFindAll(): CancelablePromise<UserResponseDto[]> {
     return __request(OpenAPI, {
       method: "GET",
-      url: "/users",
+      url: "/users/all",
       errors: {
         403: `Insufficient permissions`,
       },
@@ -107,7 +107,7 @@ export class UsersService {
   ): CancelablePromise<UserResponseDto> {
     return __request(OpenAPI, {
       method: "GET",
-      url: "/users/{id}",
+      url: "/users/find/{id}",
       path: {
         id: id,
       },
@@ -129,7 +129,7 @@ export class UsersService {
   ): CancelablePromise<UserResponseDto> {
     return __request(OpenAPI, {
       method: "PATCH",
-      url: "/users/{id}",
+      url: "/users/update/{id}",
       path: {
         id: id,
       },
@@ -149,7 +149,7 @@ export class UsersService {
   public static usersControllerRemove(id: string): CancelablePromise<void> {
     return __request(OpenAPI, {
       method: "DELETE",
-      url: "/users/{id}",
+      url: "/users/delete/{id}",
       path: {
         id: id,
       },
@@ -172,7 +172,7 @@ export class UsersService {
   ): CancelablePromise<UserResponseDto> {
     return __request(OpenAPI, {
       method: "PATCH",
-      url: "/users/{id}/roles",
+      url: "/roles/update/{id}",
       path: {
         id: id,
       },
@@ -196,7 +196,7 @@ export class UsersService {
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "GET",
-      url: "/users/{id}/roles",
+      url: "/roles/get/{id}",
       path: {
         id: id,
       },
@@ -220,7 +220,7 @@ export class UsersService {
   ): CancelablePromise<UserResponseDto> {
     return __request(OpenAPI, {
       method: "POST",
-      url: "/users/{id}/roles/add",
+      url: "/users/roles/add/{id}",
       path: {
         id: id,
       },
@@ -246,7 +246,7 @@ export class UsersService {
   ): CancelablePromise<UserResponseDto> {
     return __request(OpenAPI, {
       method: "POST",
-      url: "/users/{id}/roles/remove",
+      url: "/users/roles/remove/{id}",
       path: {
         id: id,
       },

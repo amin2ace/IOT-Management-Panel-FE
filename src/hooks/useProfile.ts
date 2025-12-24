@@ -14,8 +14,7 @@ export const useProfile = (options?: { enabled?: boolean }) => {
   return useQuery({
     queryKey: ["profile", user?.userId],
     queryFn: async () => {
-      const response = await UsersService.usersControllerGetUserProfile();
-      console.log(response);
+      const response = UsersService.usersControllerGetUserProfile();
 
       if (!response) throw new Error("Failed to fetch profile");
       return response;

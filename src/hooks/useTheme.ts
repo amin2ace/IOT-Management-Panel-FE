@@ -23,7 +23,7 @@ export function useTheme() {
       ).matches;
       const shouldBeDark = t === "system" ? systemPrefersDark : t === "dark";
 
-      console.log("🎨 Applying:", t, "Dark:", shouldBeDark);
+      // console.log("🎨 Applying:", t, "Dark:", shouldBeDark);
       root.classList.toggle("dark", shouldBeDark);
     };
 
@@ -32,7 +32,7 @@ export function useTheme() {
 
     // React to system changes
     const handleSystemChange = (e: MediaQueryListEvent) => {
-      console.log("💻 System theme changed:", e.matches);
+      // console.log("💻 System theme changed:", e.matches);
       if (theme === "system") {
         root.classList.toggle("dark", e.matches);
       }
