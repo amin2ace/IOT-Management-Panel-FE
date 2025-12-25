@@ -6,7 +6,7 @@ export function useUsers() {
     queryKey: ["users"],
     queryFn: async () => {
       const res = await UsersService.usersControllerFindAll();
-      return res.data;
+      return res;
     },
   });
 }

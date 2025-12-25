@@ -2,6 +2,7 @@
 import { UserResponseDto, UsersService } from "@/api";
 import { useUsers } from "@/hooks/useUsers";
 import React from "react";
+import "@/styles/pages/users.css";
 
 export default function UsersPage() {
   const { data: users = [], isLoading, refetch } = useUsers();
@@ -13,31 +14,35 @@ export default function UsersPage() {
   };
 
   return (
-    <div>
-      <h1 className="text-2xl font-semibold mb-4">Users</h1>
-      {isLoading ? <div>Loading...</div> : null}
+    <div className="usersPageContainer">
+      <header className="users-header">
+        <h1>Users</h1>
+      </header>
 
-      <div className="space-y-3">
-        {users.map((u: UserResponseDto) => (
-          <div
-            key={u.userId}
-            className="p-3 bg-white/5 rounded flex justify-between items-center"
-          >
-            <div>
-              <div className="font-medium">{u.username}</div>
-              <div className="text-xs text-gray-400">{u.email}</div>
+      {isLoading ? <div className="users-loading">Loading users...</div> : null}
+
+      {users.length === 0 && !isLoading ? (
+        <div className="users-empty">No users found</div>
+      ) : (
+        <div className="users-list">
+          {users.map((u: UserResponseDto) => (
+            <div key={u.userId} className="user-item">
+              <div className="user-info">
+                <div className="user-info-name">{u.username}</div>
+                <div className="user-info-email">{u.email}</div>
+              </div>
+              <div className="user-actions">
+                <button
+                  onClick={() => remove(u.userId)}
+                  className="user-delete-btn"
+                >
+                  Delete
+                </button>
+              </div>
             </div>
-            <div className="flex gap-2">
-              <button
-                onClick={() => remove(u.userId)}
-                className="px-3 py-1 bg-red-600 rounded"
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
