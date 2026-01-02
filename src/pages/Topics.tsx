@@ -1,45 +1,52 @@
 // src/pages/Topics/TopicsPage.tsx
-import { TopicsService, DevicesService } from "@/api";
-import React, { useEffect, useState } from "react";
+import { TopicsService } from "@/api";
+import type { TopicDto } from "@/api/models/Mqtt/TopicDto";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { SensorDto } from "@/api/models/device/SensorDto";
 import DeviceSelector from "@/components/ConfigPage/DeviceSelector";
+import "@/styles/pages/topics.css";
+import { useLoadDevices } from "@/hooks/useLoadDevices";
 
 export default function TopicsPage() {
   const { t } = useTranslation();
   const { register } = useForm();
-  const [subscribed, setSubscribed] = useState<string[]>([]);
-  const [devices, setDevices] = useState<SensorDto[]>([]);
+  const { devices } = useLoadDevices(); //TODO: this is loading forever
   const [selectedDevice, setSelectedDevice] = useState<SensorDto | null>(null);
-  const [deviceTopics, setDeviceTopics] = useState<string[]>([]);
+  const [deviceTopics, setDeviceTopics] = useState<TopicDto[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Fetch subscribed topics
-  useEffect(() => {
-    TopicsService.topicControllerGetSubscribedTopics().then((r) =>
-      setSubscribed(r.data || [])
-    );
-  }, []);
-
-  // Fetch available devices
-  useEffect(() => {
-    DevicesService.deviceControllerGetAllSensors()
-      .then((devices) => setDevices(devices || []))
-      .catch((err) => console.error("Failed to fetch devices", err));
-  }, []);
+  // // Fetch available devices
+  // useEffect(() => {
+  //   DevicesService.deviceControllerGetAllSensors()
+  //     .then((devices) => setDevices(devices || []))
+  //     .catch((err) => console.error("Failed to fetch devices", err));
+  // }, []);
 
   // Handle device selection
   const handleSelectDevice = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!e.target.value) {
+      setSelectedDevice(null);
+      setDeviceTopics([]);
+      return;
+    }
     const deviceId = e.target.value;
     const device = devices.find((d) => d.deviceId === deviceId);
     setSelectedDevice(device || null);
 
-    // Extract device topics from configuration if available
-    if (device?.configuration?.network?.wifiSsid) {
-      setDeviceTopics([
-        device.configuration.network.wifiSsid,
-        // Add more topics as needed from device config
-      ]);
+    // Fetch device topics from API
+    if (deviceId) {
+      setIsLoading(true);
+      TopicsService.topicControllerGetDeviceTopicsByDeviceId(deviceId)
+        .then((topics) => setDeviceTopics(topics || []))
+        .catch((err) => {
+          console.error("Failed to fetch device topics", err);
+          setDeviceTopics([]);
+        })
+        .finally(() => setIsLoading(false));
+    } else {
+      setDeviceTopics([]);
     }
   };
 
@@ -58,45 +65,78 @@ export default function TopicsPage() {
         />
       </div>
 
-      <div className="topics-grid">
-        <div className="topics-card">
-          <h3 className="topics-card-header">{t("topic.subscribedTopics")}</h3>
-          <div className="topics-card-content">
-            {subscribed.length === 0 ? (
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                {t("topic.noSubscribedTopics") || "No subscribed topics"}
-              </p>
-            ) : (
-              subscribed.map((topic) => (
-                <div key={topic} className="topic-item">
-                  {topic}
-                </div>
-              ))
-            )}
+      {/* Topics Table */}
+      <div className="topics-table-container">
+        {!selectedDevice ? (
+          <div className="topics-empty-message">
+            <p>
+              {t("topic.selectDeviceMessage") ||
+                "Select a device to view topics"}
+            </p>
           </div>
-        </div>
-
-        <div className="topics-card">
-          <h3 className="topics-card-header">{t("topic.deviceTopics")}</h3>
-          <div className="topics-card-content">
-            {!selectedDevice ? (
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                {t("topic.selectDeviceMessage") ||
-                  "Select a device to view topics"}
-              </p>
-            ) : deviceTopics.length === 0 ? (
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                {t("topic.noDeviceTopics") || "No topics for this device"}
-              </p>
-            ) : (
-              deviceTopics.map((topic) => (
-                <div key={topic} className="topic-item">
-                  {topic}
-                </div>
-              ))
-            )}
+        ) : isLoading ? (
+          <div className="topics-loading-message">
+            <p>{t("common.loading") || "Loading..."}</p>
           </div>
-        </div>
+        ) : deviceTopics.length === 0 ? (
+          <div className="topics-empty-message">
+            <p>{t("topic.noDeviceTopics") || "No topics for this device"}</p>
+          </div>
+        ) : (
+          <table className="topics-table">
+            <thead className="topics-table-head">
+              <tr className="topics-table-header-row">
+                <th className="topics-table-header">
+                  {t("topic.topic") || "Topic"}
+                </th>
+                <th className="topics-table-header">
+                  {t("topic.brokerUrl") || "Broker URL"}
+                </th>
+                <th className="topics-table-header">
+                  {t("topic.useCase") || "Use Case"}
+                </th>
+                <th className="topics-table-header">
+                  {t("topic.subscribed") || "Subscribed"}
+                </th>
+                <th className="topics-table-header">
+                  {t("topic.createdAt") || "Created At"}
+                </th>
+              </tr>
+            </thead>
+            <tbody className="topics-table-body">
+              {deviceTopics.map((topic) => (
+                <tr
+                  key={`${topic.deviceId}-${topic.topic}`}
+                  className="topics-table-row"
+                >
+                  <td className="topics-table-cell topics-table-topic">
+                    {topic.topic}
+                  </td>
+                  <td className="topics-table-cell topics-table-broker">
+                    {topic.brokerUrl}
+                  </td>
+                  <td className="topics-table-cell">
+                    <span className="topic-use-case-badge">
+                      {topic.useCase}
+                    </span>
+                  </td>
+                  <td className="topics-table-cell topics-table-subscribed">
+                    <span
+                      className={`subscription-badge ${topic.isSubscribed ? "subscribed" : "unsubscribed"}`}
+                    >
+                      {topic.isSubscribed
+                        ? t("common.yes") || "Yes"
+                        : t("common.no") || "No"}
+                    </span>
+                  </td>
+                  <td className="topics-table-cell topics-table-date">
+                    {new Date(topic.createdAt).toLocaleDateString()}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );

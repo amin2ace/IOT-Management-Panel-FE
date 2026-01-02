@@ -162,9 +162,16 @@
   "topic.topics": "Topics",
   "topic.subscribedTopics": "Subscribed Topics",
   "topic.noSubscribedTopics": "No subscribed topics yet...",
+  "topic.noDeviceTopics": "No topics for the selected device.",
   "topic.selectDeviceMessage": "Please select a device to view its topics",
   "topic.subscribe": "Subscribe",
   "topic.deviceTopics": "Device Topics",
+  "topic.payload": "Payload",
+  "topic.timestamp": "Timestamp",
+  "topic.brokerUrl": "Broker URL",
+  "topic.useCase": "Use Case",
+  "topic.subscribed": "Subscribed",
+  "topic.createdAt": "Created At",
 
   "##################################_13": "Dashboard Table Headers ",
 
@@ -217,5 +224,7 @@
   "common.seconds": "Seconds",
   "common.available": "available",
   "common.AM": "AM",
-  "common.PM": "PM"
+  "common.PM": "PM",
+  "common.yes": "Yes",
+  "common.no": "No"
 }
