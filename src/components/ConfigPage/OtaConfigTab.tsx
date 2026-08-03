@@ -2,64 +2,45 @@ import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { z } from "zod";
 import { SensorConfigSchema } from "@/schema/SensorConfigSchema";
+import { TextField, CheckboxField } from "@/components/UI/FormFields";
 
 type FormData = z.infer<typeof SensorConfigSchema>;
 
 export default function OtaConfigTab() {
   const { t } = useTranslation();
-  const { register } = useFormContext<FormData>();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<FormData>();
 
   return (
-    <>
-      <div className="flex items-center gap-2">
-        <input
-          type="checkbox"
-          id="ota-enabled"
-          {...register("ota.enabled")}
-          className="w-4 h-4"
-        />
-        <label
-          htmlFor="ota-enabled"
-          className="text-sm font-medium cursor-pointer"
-        >
-          {t("config.enableOtaUpdates")}
-        </label>
-      </div>
+    <div
+      role="tabpanel"
+      id="ota-panel"
+      aria-labelledby="ota-tab"
+      className="space-y-4"
+    >
+      <CheckboxField
+        label={t("config.enableOtaUpdates")}
+        {...register("ota.enabled")}
+      />
 
-      <div>
-        <label
-          htmlFor="firmware-url"
-          className="block text-sm font-medium mb-1"
-        >
-          {t("config.firmwareUrl")}
-        </label>
-        <input
-          id="firmware-url"
-          type="url"
-          {...register("ota.url")}
-          className="input w-full"
-          placeholder="ftp://firmware-server.com/latest.bin"
-        />
-      </div>
+      <TextField
+        label={t("config.firmwareUrl")}
+        type="url"
+        {...register("ota.url")}
+        placeholder="ftp://firmware-server.com/latest.bin"
+        error={errors.ota?.url?.message}
+      />
 
-      <div>
-        <label
-          htmlFor="check-interval"
-          className="block text-sm font-medium mb-1"
-        >
-          {t("config.checkInterval")}
-        </label>
-        <div className="flex items-center gap-2">
-          <input
-            id="check-interval"
-            type="number"
-            {...register("ota.checkInterval")}
-            className="input flex-1"
-            placeholder="3600"
-          />
-          <span className="text-xs text-gray-400">{t("common.seconds")}</span>
-        </div>
-      </div>
-    </>
+      <TextField
+        label={t("config.checkInterval")}
+        type="number"
+        {...register("ota.checkInterval")}
+        placeholder="3600"
+        hint={t("common.seconds")}
+        error={errors.ota?.checkInterval?.message}
+      />
+    </div>
   );
 }

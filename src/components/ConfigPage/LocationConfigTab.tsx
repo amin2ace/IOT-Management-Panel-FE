@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { z } from "zod";
 import { SensorConfigSchema } from "@/schema/SensorConfigSchema";
 import TimezoneSelect from "@/components/TimeZoneSelect";
+import { TextField } from "@/components/UI/FormFields";
 
 type FormData = z.infer<typeof SensorConfigSchema>;
 
@@ -14,61 +15,38 @@ export default function LocationConfigTab({
   setValue,
 }: LocationConfigTabProps) {
   const { t } = useTranslation();
-  const { register } = useFormContext<FormData>();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<FormData>();
 
   return (
-    <>
-      <div>
-        <label
-          htmlFor="location-site"
-          className="block text-sm font-medium mb-1"
-        >
-          {t("config.locationSite")}
-        </label>
-        <input
-          id="location-site"
-          type="text"
-          {...register("location.site")}
-          className="input w-full"
-          placeholder="Building A"
-        />
-      </div>
-
-      <div>
-        <label
-          htmlFor="location-floor"
-          className="block text-sm font-medium mb-1"
-        >
-          {t("config.locationFloor")}
-        </label>
-        <input
-          id="location-floor"
-          type="number"
-          {...register("location.floor")}
-          className="input w-full"
-          placeholder="1"
-        />
-      </div>
-
-      <div>
-        <label
-          htmlFor="location-unit"
-          className="block text-sm font-medium mb-1"
-        >
-          {t("config.locationUnit")}
-        </label>
-        <input
-          id="location-unit"
-          type="text"
-          {...register("location.unit")}
-          className="input w-full"
-          placeholder="Room 101"
-        />
-      </div>
-
-      <div>
-        <TimezoneSelect register={register} setValue={setValue} />
-      </div>
-    </>
+    <div
+      role="tabpanel"
+      id="location-panel"
+      aria-labelledby="location-tab"
+      className="space-y-4"
+    >
+      <TextField
+        label={t("config.locationSite")}
+        {...register("location.site")}
+        placeholder="Building A"
+        error={errors.location?.site?.message}
+      />
+      <TextField
+        label={t("config.locationFloor")}
+        type="number"
+        {...register("location.floor")}
+        placeholder="1"
+        error={errors.location?.floor?.message}
+      />
+      <TextField
+        label={t("config.locationUnit")}
+        {...register("location.unit")}
+        placeholder="Room 101"
+        error={errors.location?.unit?.message}
+      />
+      <TimezoneSelect register={register} setValue={setValue} />
+    </div>
   );
 }

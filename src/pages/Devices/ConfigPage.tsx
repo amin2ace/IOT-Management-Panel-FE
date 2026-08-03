@@ -4,6 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { Loader2, Save } from "lucide-react";
 import { SensorConfigSchema } from "@/schema/SensorConfigSchema";
 import DeviceSelector from "../../components/ConfigPage/DeviceSelector";
 import ConfigTabsNavigation, {
@@ -37,12 +39,13 @@ export default function ConfigPage() {
     mode: "onBlur",
   });
 
-  const { handleSubmit, setValue, watch, reset, register } = methods;
+  const { handleSubmit, setValue, watch, reset, register, formState } = methods;
+  const { errors, isSubmitting } = formState;
   const dhcpEnabled = watch("network.dhcp");
 
   const handleSelectDevice = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedDevice = devices.find(
-      (device) => device.deviceId === e.target.value
+      (device) => device.deviceId === e.target.value,
     );
     setActiveDevice(selectedDevice);
     reset({ deviceId: e.target.value });
@@ -55,56 +58,76 @@ export default function ConfigPage() {
     }
   };
 
+  const isSaveDisabled = isLoading || isSubmitting || devices.length === 0;
+
   return (
     <FormProvider {...methods}>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="dashboardConfigContainer"
-      >
-        <h2 className="text-2xl font-semibold mb-6">
-          {t("config.deviceConfiguration")}
-        </h2>
-
-        {/* Device Selector */}
-        <DeviceSelector
-          devices={devices}
-          register={register("deviceId")}
-          onChange={handleSelectDevice}
+      <div className="relative">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-20 start-1/3 -z-10 h-72 w-72 rounded-full bg-indigo-400/15 blur-3xl dark:bg-indigo-500/10"
         />
 
-        {/* Configuration Tabs Navigation */}
-        <ConfigTabsNavigation
-          activeTab={activeTab}
-          onTabChange={setActiveTab}
-        />
-
-        {/* Tab Contents */}
-        <div className="mt-4 space-y-4">
-          {activeTab === ConfigTabs.NETWORK && (
-            <NetworkConfigTab
-              dhcpEnabled={dhcpEnabled}
-              activeDevice={activeDevice}
-            />
-          )}
-
-          {activeTab === ConfigTabs.LOGGING && <LoggingConfigTab />}
-
-          {activeTab === ConfigTabs.OTA && <OtaConfigTab />}
-
-          {activeTab === ConfigTabs.LOCATION && (
-            <LocationConfigTab setValue={setValue} />
-          )}
-        </div>
-
-        {/* Submit Button */}
-        <button
-          type="submit"
-          disabled={isLoading || devices.length === 0}
-          className="mt-8 bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-600 disabled:cursor-not-allowed px-6 py-2 rounded font-medium transition-colors"
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="rounded-2xl border border-white/40 bg-white/60 p-6 shadow-sm backdrop-blur-xl dark:border-white/10 dark:bg-gray-900/50 sm:p-8"
         >
-          {isLoading ? t("common.loading") : t("config.saveConfigurations")}
-        </button>
-      </form>
+          <h2 className="mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+            {t("config.deviceConfiguration")}
+          </h2>
+
+          <DeviceSelector
+            devices={devices}
+            register={register("deviceId")}
+            onChange={handleSelectDevice}
+            error={errors.deviceId?.message}
+          />
+
+          <ConfigTabsNavigation
+            activeTab={activeTab}
+            onTabChange={setActiveTab}
+          />
+
+          <div className="mt-6">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.15 }}
+              >
+                {activeTab === ConfigTabs.NETWORK && (
+                  <NetworkConfigTab
+                    dhcpEnabled={dhcpEnabled}
+                    activeDevice={activeDevice}
+                  />
+                )}
+                {activeTab === ConfigTabs.LOGGING && <LoggingConfigTab />}
+                {activeTab === ConfigTabs.OTA && <OtaConfigTab />}
+                {activeTab === ConfigTabs.LOCATION && (
+                  <LocationConfigTab setValue={setValue} />
+                )}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          <motion.button
+            type="submit"
+            disabled={isSaveDisabled}
+            whileHover={!isSaveDisabled ? { y: -1 } : undefined}
+            whileTap={!isSaveDisabled ? { scale: 0.98 } : undefined}
+            className="mt-8 flex items-center gap-2 rounded-lg bg-indigo-600 px-6 py-2.5 text-sm font-medium text-white shadow-sm transition-colors hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-gray-500 dark:disabled:bg-gray-700 dark:disabled:text-gray-400"
+          >
+            {isSubmitting ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <Save className="h-4 w-4" />
+            )}
+            {isLoading ? t("common.loading") : t("config.saveConfigurations")}
+          </motion.button>
+        </form>
+      </div>
     </FormProvider>
   );
 }
