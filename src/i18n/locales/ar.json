@@ -1,4 +1,7 @@
 {
+  "app.name": "لوحة إدارة إنترنت الأشياء الصناعي",
+  "app.initializing": "جاري تهيئة النظام...",
+
   "##################################_1": "Auth Pages (Login & Signup)",
 
   "auth.login": "تسجيل الدخول",
@@ -18,6 +21,8 @@
   "auth.signupSuccess": "تم إنشاء الحساب بنجاح",
   "auth.emailInUse": "الحساب موجود بالفعل، حاول تسجيل الدخول",
   "auth.accessDenied": "تم رفض الوصول",
+  "auth.confirmPassword": "تأكيد كلمة المرور",
+  "auth.passwordMismatch": "كلمتا المرور غير متطابقتين",
 
   "##################################_2": "Dashboard Tab's Names",
 
@@ -36,6 +41,8 @@
   "theme.lightMode": "فاتح",
   "theme.darkMode": "داكن",
   "theme.system": "النظام",
+  "theme.label": "السمة",
+  "lang.selectLabel": "اختر اللغة",
   "lang.en": "EN",
   "lang.fa": "FA",
   "lang.ar": "AR",
@@ -62,6 +69,10 @@
   "##################################_5": "Dashboard Navigation Bar",
 
   "nav.header": "إدارة إنترنت الأشياء",
+  "nav.open": "فتح التنقل",
+  "nav.close": "إغلاق التنقل",
+  "nav.expand": "توسيع التنقل",
+  "nav.collapse": "طي التنقل",
 
   "##################################_6": "Dashboard Home Container",
 
@@ -87,6 +98,20 @@
   "assign.requestSent": "تم إرسال طلب التعيين",
   "assign.requestFailed": "فشل طلب التعيين",
   "assign.loading": "جاري تحميل تكوين الجهاز...",
+  "profile.guest": "زائر",
+  "profile.openLabel": "فتح الملف الشخصي لـ {{name}}",
+  "profile.notProvided": "غير متوفر",
+  "profile.unknown": "غير معروف",
+  "profile.selectRole": "اختر دورًا",
+  "profile.noRoles": "لا توجد أدوار",
+  "profile.updated": "تم تحديث الملف الشخصي بنجاح",
+  "profile.updateFailed": "فشل تحديث الملف الشخصي",
+  "profile.photoUpdated": "تم تحديث الصورة بنجاح",
+  "profile.uploadFailed": "فشل رفع الصورة",
+  "profile.oldPassword": "كلمة المرور الحالية",
+  "profile.newPassword": "كلمة المرور الجديدة",
+  "profile.passwordChanged": "تم تغيير كلمة المرور بنجاح",
+  "profile.incorrectPassword": "كلمة المرور غير صحيحة",
 
   "##################################_8": "Dashboard Table Headers",
 
@@ -217,5 +242,10 @@
   "common.seconds": "ثواني",
   "common.available": "متاح",
   "common.AM": "ص",
-  "common.PM": "م"
+  "common.PM": "م",
+  "common.close": "إغلاق",
+  "common.hide": "إخفاء كلمة المرور",
+  "common.show": "إظهار كلمة المرور",
+  "common.signingIn": "جاري تسجيل الدخول...",
+  "common.creatingAccount": "جاري إنشاء الحساب..."
 }

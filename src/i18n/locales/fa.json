@@ -1,4 +1,8 @@
 {
+
+  "app.name": "پنل مدیریت اینترنت اشیاء صنعتی",
+  "app.initializing": "در حال راه‌اندازی سیستم...",
+
   "##################################_1": "Auth Pages (Login & Signup)",
 
   "auth.login": "ورود",
@@ -18,6 +22,9 @@
   "auth.signupSuccess": "ثبت‌نام موفقیت‌آمیز",
   "auth.emailInUse": "حساب از قبل وجود دارد، سعی کنید وارد شوید",
   "auth.accessDenied": "دسترسی رد شد",
+  "auth.confirmPassword": "تأیید رمز عبور",
+  "auth.passwordMismatch": "رمزهای عبور مطابقت ندارند",
+
 
   "##################################_2": "Dashboard Tab's Names",
 
@@ -36,6 +43,8 @@
   "theme.lightMode": "روشن",
   "theme.darkMode": "تاریک",
   "theme.system": "سیستم",
+  "theme.label": "پوسته",
+  "lang.selectLabel": "انتخاب زبان",
   "lang.en": "EN",
   "lang.fa": "FA",
   "lang.ar": "AR",
@@ -62,6 +71,10 @@
   "##################################_5": "Dashboard Navigation Bar",
 
   "nav.header": "مدیریت اینترنت اشیاء",
+  "nav.open": "باز کردن ناوبری",
+  "nav.close": "بستن ناوبری",
+  "nav.expand": "گسترش ناوبری",
+  "nav.collapse": "جمع کردن ناوبری",
 
   "##################################_6": "Dashboard Home Container",
 
@@ -121,6 +134,20 @@
   "profile.edit": "ویرایش پروفایل",
   "profile.changePassword": "تغییر رمز عبور",
   "profile.accountMeta": "اطلاعات حساب",
+   "profile.guest": "مهمان",
+  "profile.openLabel": "باز کردن پروفایل {{name}}",
+  "profile.notProvided": "ارائه نشده",
+  "profile.unknown": "نامشخص",
+  "profile.selectRole": "یک نقش انتخاب کنید",
+  "profile.noRoles": "بدون نقش",
+  "profile.updated": "پروفایل با موفقیت به‌روزرسانی شد",
+  "profile.updateFailed": "به‌روزرسانی پروفایل ناموفق بود",
+  "profile.photoUpdated": "عکس با موفقیت به‌روزرسانی شد",
+  "profile.uploadFailed": "بارگذاری عکس ناموفق بود",
+  "profile.oldPassword": "رمز عبور فعلی",
+  "profile.newPassword": "رمز عبور جدید",
+  "profile.passwordChanged": "رمز عبور با موفقیت تغییر کرد",
+  "profile.incorrectPassword": "رمز عبور نادرست است",
 
   "##################################_10": "Web Socket",
 
@@ -217,5 +244,10 @@
   "common.seconds": "ثانیه",
   "common.available": "موجود",
   "common.AM": "ق.ظ",
-  "common.PM": "ب.ظ"
+  "common.PM": "ب.ظ",
+  "common.close": "بستن",
+  "common.hide": "پنهان کردن رمز عبور",
+  "common.show": "نمایش رمز عبور",
+  "common.signingIn": "در حال ورود...",
+  "common.creatingAccount": "در حال ایجاد حساب..."
 }

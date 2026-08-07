@@ -1,4 +1,7 @@
 {
+  "app.name": "IoT Yönetim Paneli",
+  "app.initializing": "Sistem başlatılıyor...",
+
   "##################################_1": "Auth Pages (Login & Signup)",
 
   "auth.login": "Giriş Yap",
@@ -18,6 +21,8 @@
   "auth.signupSuccess": "Kayıt Başarılı",
   "auth.emailInUse": "Hesap zaten var, giriş yapmayı deneyin",
   "auth.accessDenied": "Erişim Reddedildi",
+  "auth.confirmPassword": "Şifreyi onayla",
+  "auth.passwordMismatch": "Şifreler eşleşmiyor",
 
   "##################################_2": "Dashboard Tab's Names",
 
@@ -36,6 +41,8 @@
   "theme.lightMode": "Açık",
   "theme.darkMode": "Koyu",
   "theme.system": "Sistem",
+  "theme.label": "Tema",
+  "lang.selectLabel": "Dil seçin",
   "lang.en": "EN",
   "lang.fa": "FA",
   "lang.ar": "AR",
@@ -62,6 +69,10 @@
   "##################################_5": "Dashboard Navigation Bar",
 
   "nav.header": "IoT Yönetimi",
+  "nav.open": "Gezinmeyi aç",
+  "nav.close": "Gezinmeyi kapat",
+  "nav.expand": "Gezinmeyi genişlet",
+  "nav.collapse": "Gezinmeyi daralt",
 
   "##################################_6": "Dashboard Home Container",
 
@@ -121,6 +132,20 @@
   "profile.edit": "Profili Düzenle",
   "profile.changePassword": "Şifre Değiştir",
   "profile.accountMeta": "Hesap Meta",
+  "profile.guest": "Misafir",
+  "profile.openLabel": "{{name}} profilini aç",
+  "profile.notProvided": "Belirtilmemiş",
+  "profile.unknown": "Bilinmiyor",
+  "profile.selectRole": "Bir rol seçin",
+  "profile.noRoles": "Rol yok",
+  "profile.updated": "Profil başarıyla güncellendi",
+  "profile.updateFailed": "Profil güncellenemedi",
+  "profile.photoUpdated": "Fotoğraf başarıyla güncellendi",
+  "profile.uploadFailed": "Fotoğraf yüklenemedi",
+  "profile.oldPassword": "Mevcut şifre",
+  "profile.newPassword": "Yeni şifre",
+  "profile.passwordChanged": "Şifre başarıyla değiştirildi",
+  "profile.incorrectPassword": "Şifre yanlış",
 
   "##################################_10": "Web Socket",
 
@@ -217,5 +242,10 @@
   "common.seconds": "Saniye",
   "common.available": "mevcut",
   "common.AM": "ÖÖ",
-  "common.PM": "ÖS"
+  "common.PM": "ÖS",
+  "common.close": "Kapat",
+  "common.hide": "Şifreyi gizle",
+  "common.show": "Şifreyi göster",
+  "common.signingIn": "Giriş yapılıyor...",
+  "common.creatingAccount": "Hesap oluşturuluyor..."
 }
