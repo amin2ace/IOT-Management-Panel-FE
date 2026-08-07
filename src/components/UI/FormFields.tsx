@@ -69,7 +69,9 @@ export const TextField = forwardRef<
         </label>
         <div className="relative">
           {Icon && (
-            <Icon className="pointer-events-none absolute start-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 dark:text-gray-500" />
+            <div className="pointer-events-none absolute inset-y-0 start-0 flex w-9 items-center justify-center">
+              <Icon className="h-4 w-4 text-gray-400 dark:text-gray-500" />
+            </div>
           )}
           <input
             ref={ref}
@@ -90,7 +92,7 @@ export const TextField = forwardRef<
             {...props}
           />
           {endAdornment && (
-            <div className="absolute end-3 top-1/2 -translate-y-1/2">
+            <div className="absolute inset-y-0 end-0 flex w-9 items-center justify-center">
               {endAdornment}
             </div>
           )}

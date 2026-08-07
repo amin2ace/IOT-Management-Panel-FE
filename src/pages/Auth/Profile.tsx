@@ -113,11 +113,11 @@ export default function ProfilePage() {
   async function handleSave() {
     updateProfile.mutate(form, {
       onSuccess: () => {
-        toast.success(t("profileUpdated"));
+        toast.success(t("profile.updated"));
         setIsEditing(false);
         logout();
       },
-      onError: () => toast.error(t("updateFailed")),
+      onError: () => toast.error(t("profile.updateFailed")),
     });
   }
 
@@ -127,10 +127,10 @@ export default function ProfilePage() {
 
     uploadPhoto.mutate(file, {
       onSuccess: () => {
-        toast.success(t("photoUpdated"));
+        toast.success(t("profile.photoUpdated"));
         refetch();
       },
-      onError: () => toast.error(t("uploadFailed")),
+      onError: () => toast.error(t("profile.uploadFailed")),
     });
   }
 
@@ -299,7 +299,7 @@ export default function ProfilePage() {
       {showPasswordModal && (
         <PasswordModal
           onClose={() => setShowPasswordModal(false)}
-          changePassword={changePassword.mutate}
+          changePassword={changePassword}
         />
       )}
     </div>

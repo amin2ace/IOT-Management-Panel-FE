@@ -27,7 +27,9 @@ export default function DeviceSelector({
         {t("config.selectDevice")}
       </label>
       <div className="relative">
-        <Cpu className="pointer-events-none absolute start-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 dark:text-gray-500" />
+        <div className="pointer-events-none absolute inset-y-0 start-0 flex w-9 items-center justify-center">
+          <Cpu className="h-4 w-4 text-gray-400 dark:text-gray-500" />
+        </div>{" "}
         <select
           id="device-select"
           {...register}

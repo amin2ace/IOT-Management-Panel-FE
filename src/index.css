@@ -1,12 +1,10 @@
 @import "tailwindcss";
-@import "./styles/forms.css";
 @import "./styles/globals.css";
 @import "./styles/components/dashboard.css";
 @import "./styles/components/themeToggle.css";
 @import "./styles/components/languageSelector.css";
 @import "./styles/layouts/dashboardLayout.css";
 @import "./styles/pages/configuration.css";
-@import "./styles/pages/profile.css";
 @import "./styles/pages/topics.css";
 @import "./styles/pages/mqttConfig.css";
 @import "./styles/pages/telemetry.css";
@@ -29,9 +27,12 @@ body {
     color 0.3s ease;
 }
 
-/* .input {
-  @apply w-full p-2 rounded bg-gray-700 text-white dark:bg-gray-600 dark:text-gray-100 transition-colors;
-} */
+/* RTL languages (Arabic, Persian) use a typeface with matching script support
+   and balanced metrics — prevents the baseline mismatch that made icons/text
+   look uncentered, and reads as more modern than the OS fallback font. */
+[dir="rtl"] body {
+  font-family: "Vazirmatn", "Inter", sans-serif;
+}
 
 /* Glassmorphism effect */
 .glass-card {

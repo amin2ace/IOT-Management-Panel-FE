@@ -162,13 +162,13 @@ export default function DashboardLayout() {
             "z-40 flex flex-col border-e border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900",
             "transition-[width,transform] duration-200 ease-out",
             // Desktop: static column, width toggles between rail and full
-            "lg:static lg:translate-x-0",
+            "lg:static lg:translate-x-0 lg:rtl:translate-x-0",
             isCollapsed ? "lg:w-20" : "lg:w-64",
             // Mobile: fixed overlay drawer
             "fixed inset-y-0 start-0 w-72",
             isMobileOpen
               ? "translate-x-0"
-              : "-translate-x-full rtl:translate-x-full lg:translate-x-0",
+              : "-translate-x-full rtl:translate-x-full",
           )}
         >
           {/* Sidebar header */}

@@ -4,14 +4,22 @@ import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
 import { KeyRound, Lock, Eye, EyeOff, Loader2, X } from "lucide-react";
 import { TextField } from "@/components/UI/FormFields";
+import { RequestChangePasswordDto } from "@/api/models/auth/RequestChangePasswordDto";
+import { UseMutationResult } from "@tanstack/react-query";
+type ChangePasswordMutation = UseMutationResult<
+  unknown,
+  Error,
+  RequestChangePasswordDto,
+  unknown
+>;
 
-type ChangePasswordMutation = {
-  mutate: (
-    data: { oldPassword: string; newPassword: string },
-    options?: { onSuccess?: () => void; onError?: () => void },
-  ) => void;
-  isPending?: boolean;
-};
+// type ChangePasswordMutation = {
+//   mutate: (
+//     data: { oldPassword: string; newPassword: string },
+//     options?: { onSuccess?: () => void; onError?: () => void },
+//   ) => void;
+//   isPending?: boolean;
+// };
 
 export default function PasswordModal({
   onClose,
@@ -23,16 +31,26 @@ export default function PasswordModal({
   const { t } = useTranslation();
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const [form, setForm] = useState({ oldPassword: "", newPassword: "" });
+  const [form, setForm] = useState({
+    oldPassword: "",
+    newPassword: "",
+    retypePassword: "",
+  });
   const [showOld, setShowOld] = useState(false);
   const [showNew, setShowNew] = useState(false);
+  const [retypeError, setRetypeError] = useState<string | null>(null);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
   function submit() {
-    if (!form.oldPassword || !form.newPassword) return;
+    if (!form.oldPassword || !form.newPassword || !form.retypePassword) return;
+    if (form.newPassword !== form.retypePassword) {
+      setRetypeError(t("auth.passwordMismatch", "Passwords do not match"));
+      return;
+    }
+    setRetypeError(null);
     changePassword.mutate(form, {
       onSuccess: () => {
         toast.success(
@@ -67,7 +85,10 @@ export default function PasswordModal({
   }, [onClose]);
 
   const isDisabled =
-    changePassword.isPending || !form.oldPassword || !form.newPassword;
+    changePassword.isPending ||
+    !form.oldPassword ||
+    !form.newPassword ||
+    !form.retypePassword;
 
   return (
     <AnimatePresence>
@@ -166,6 +187,20 @@ export default function PasswordModal({
                     )}
                   </button>
                 }
+              />
+
+              <TextField
+                type={showNew ? "text" : "password"}
+                name="retypePassword"
+                label={t("auth.confirmPassword", "Confirm password")}
+                icon={Lock}
+                value={form.retypePassword}
+                onChange={(e) => {
+                  handleChange(e);
+                  if (retypeError) setRetypeError(null);
+                }}
+                autoComplete="new-password"
+                error={retypeError ?? undefined}
               />
             </div>
 
