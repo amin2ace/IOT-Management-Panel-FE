@@ -184,6 +184,9 @@
   "config.locationFloor": "طبقه",
   "config.locationUnit": "واحد",
   "config.saveConfigurations": "ذخیره پیکربندی‌ها",
+  "config.timezone": "منطقه زمانی",
+  "config.searchTimezones": "جستجوی منطقه زمانی...",
+  "config.noTimezonesFound": "منطقه زمانی برای \"{{query}}\" یافت نشد",
 
   "##################################_12": "Topics Page",
   "topic.topics": "موضوعات",
@@ -224,6 +227,15 @@
   "mqtt.failedToFetchConfig": "دریافت پیکربندی MQTT ناموفق بود",
   "mqtt.failedToUpdateConfig": "به‌روزرسانی پیکربندی MQTT ناموفق بود",
   "mqtt.configUpdated": "پیکربندی MQTT به‌روزرسانی شد",
+
+  "##################################_14": "Time Zone ",
+
+  "timezone.group.northAmerica": "آمریکای شمالی",
+  "timezone.group.europe": "اروپا",
+  "timezone.group.middleEast": "خاورمیانه",
+  "timezone.group.asia": "آسیا",
+  "timezone.group.oceania": "اقیانوسیه",
+  "timezone.group.africa": "آفریقا",
 
   "##################################_": "Dashboard Common",
 

@@ -182,6 +182,9 @@
   "config.locationFloor": "الطابق",
   "config.locationUnit": "الوحدة",
   "config.saveConfigurations": "حفظ التكوينات",
+  "config.timezone": "المنطقة الزمنية",
+  "config.searchTimezones": "ابحث عن منطقة زمنية...",
+  "config.noTimezonesFound": "لم يتم العثور على مناطق زمنية لـ \"{{query}}\"",
 
   "##################################_12": "Topics Page",
   "topic.topics": "المواضيع",
@@ -222,6 +225,16 @@
   "mqtt.failedToFetchConfig": "فشل جلب تكوين MQTT",
   "mqtt.failedToUpdateConfig": "فشل تحديث تكوين MQTT",
   "mqtt.configUpdated": "تم تحديث تكوين MQTT",
+
+
+  "##################################_14": "Time Zone ",
+
+  "timezone.group.northAmerica": "أمريكا الشمالية",
+  "timezone.group.europe": "أوروبا",
+  "timezone.group.middleEast": "الشرق الأوسط",
+  "timezone.group.asia": "آسيا",
+  "timezone.group.oceania": "أوقيانوسيا",
+  "timezone.group.africa": "أفريقيا",
 
   "##################################_": "Dashboard Common",
 

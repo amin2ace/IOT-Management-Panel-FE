@@ -183,6 +183,9 @@
   "config.locationFloor": "Floor",
   "config.locationUnit": "Unit",
   "config.saveConfigurations": "Save Configurations",
+  "config.timezone": "Timezone",
+  "config.searchTimezones": "Search timezones...",
+  "config.noTimezonesFound": "No timezones found for \"{{query}}\"",
 
   "##################################_12": "Topics Page",
   "topic.topics": "Topics",
@@ -230,6 +233,16 @@
   "mqtt.failedToFetchConfig": "Failed to fetch MQTT configuration",
   "mqtt.failedToUpdateConfig": "Failed to update MQTT configuration",
   "mqtt.configUpdated": "MQTT configuration updated",
+  
+  "##################################_14": "Time Zone ",
+
+  "timezone.group.northAmerica": "North America",
+  "timezone.group.europe": "Europe",
+  "timezone.group.middleEast": "Middle East",
+  "timezone.group.asia": "Asia",
+  "timezone.group.oceania": "Oceania",
+  "timezone.group.africa": "Africa",
+
 
   "##################################_": "Dashboard Common ",
 

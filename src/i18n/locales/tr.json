@@ -182,6 +182,9 @@
   "config.locationFloor": "Kat",
   "config.locationUnit": "Birim",
   "config.saveConfigurations": "Yapılandırmaları Kaydet",
+  "config.timezone": "Saat Dilimi",
+  "config.searchTimezones": "Saat dilimi ara...",
+  "config.noTimezonesFound": "\"{{query}}\" için saat dilimi bulunamadı",
 
   "##################################_12": "Topics Page",
   "topic.topics": "Konular",
@@ -222,6 +225,16 @@
   "mqtt.failedToFetchConfig": "MQTT yapılandırması alınamadı",
   "mqtt.failedToUpdateConfig": "MQTT yapılandırması güncellenemedi",
   "mqtt.configUpdated": "MQTT yapılandırması güncellendi",
+
+
+  "##################################_14": "Time Zone ",
+
+  "timezone.group.northAmerica": "Kuzey Amerika",
+  "timezone.group.europe": "Avrupa",
+  "timezone.group.middleEast": "Orta Doğu",
+  "timezone.group.asia": "Asya",
+  "timezone.group.oceania": "Okyanusya",
+  "timezone.group.africa": "Afrika",
 
   "##################################_": "Dashboard Common",
 
