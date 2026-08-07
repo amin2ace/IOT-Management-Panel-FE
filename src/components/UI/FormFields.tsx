@@ -6,6 +6,7 @@ import {
   type ReactNode,
 } from "react";
 import clsx from "clsx";
+import { LucideIcon } from "lucide-react";
 
 const baseFieldClasses =
   "w-full rounded-lg border bg-white/70 px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 backdrop-blur-sm transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 dark:bg-gray-900/40 dark:text-gray-100 dark:placeholder:text-gray-500";
@@ -49,39 +50,56 @@ function FieldMessage({
 
 export const TextField = forwardRef<
   HTMLInputElement,
-  InputHTMLAttributes<HTMLInputElement> & FieldWrapperProps
->(({ label, error, hint, id, className, ...props }, ref) => {
-  const autoId = useId();
-  const fieldId = id ?? autoId;
-  return (
-    <div>
-      <label
-        htmlFor={fieldId}
-        className="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-300"
-      >
-        {label}
-      </label>
-      <input
-        ref={ref}
-        id={fieldId}
-        aria-invalid={!!error}
-        aria-describedby={
-          error ? `${fieldId}-error` : hint ? `${fieldId}-hint` : undefined
-        }
-        className={clsx(
-          baseFieldClasses,
-          error
-            ? "border-red-400 dark:border-red-500/60"
-            : "border-gray-200 dark:border-gray-700",
-          className,
-        )}
-        {...props}
-      />
-      <FieldMessage id={fieldId} error={error} hint={hint} />
-    </div>
-  );
-});
-TextField.displayName = "TextField";
+  InputHTMLAttributes<HTMLInputElement> &
+    FieldWrapperProps & { icon?: LucideIcon; endAdornment?: ReactNode }
+>(
+  (
+    { label, error, hint, id, className, icon: Icon, endAdornment, ...props },
+    ref,
+  ) => {
+    const autoId = useId();
+    const fieldId = id ?? autoId;
+    return (
+      <div>
+        <label
+          htmlFor={fieldId}
+          className="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-300"
+        >
+          {label}
+        </label>
+        <div className="relative">
+          {Icon && (
+            <Icon className="pointer-events-none absolute start-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 dark:text-gray-500" />
+          )}
+          <input
+            ref={ref}
+            id={fieldId}
+            aria-invalid={!!error}
+            aria-describedby={
+              error ? `${fieldId}-error` : hint ? `${fieldId}-hint` : undefined
+            }
+            className={clsx(
+              baseFieldClasses,
+              Icon && "ps-9",
+              endAdornment && "pe-10",
+              error
+                ? "border-red-400 dark:border-red-500/60"
+                : "border-gray-200 dark:border-gray-700",
+              className,
+            )}
+            {...props}
+          />
+          {endAdornment && (
+            <div className="absolute end-3 top-1/2 -translate-y-1/2">
+              {endAdornment}
+            </div>
+          )}
+        </div>
+        <FieldMessage id={fieldId} error={error} hint={hint} />
+      </div>
+    );
+  },
+);
 
 export const SelectField = forwardRef<
   HTMLSelectElement,
