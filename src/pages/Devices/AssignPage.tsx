@@ -33,12 +33,16 @@ export default function AssignPage() {
     useAssignEditState(devices);
 
   return (
-    <div className="dashboardAssignContainer space-y-4">
-      <AssignPageHeader deviceCount={devices.length} loading={loading} />
+    <div className="relative space-y-4">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-20 start-1/3 -z-10 h-72 w-72 rounded-full bg-indigo-400/15 blur-3xl dark:bg-indigo-500/10"
+      />
 
+      <AssignPageHeader deviceCount={devices.length} loading={loading} />
       <AssignPageIntro deviceCount={devices.length} />
 
-      <div className="bg-white/5 rounded-2xl backdrop-blur-md border border-white/10 overflow-hidden">
+      <div className="overflow-hidden rounded-2xl border border-white/40 bg-white/60 shadow-sm backdrop-blur-xl dark:border-white/10 dark:bg-gray-900/50">
         <AssignTableRefactored
           devices={devices}
           loading={loading}

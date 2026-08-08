@@ -3,6 +3,8 @@ import { DeviceCapabilities } from "@/api";
 import { ResponseGetDevice } from "@/api/models/device/GetSensorResponseDto";
 import { DeviceEditState } from "../../hooks/useAssignPage";
 import AssignTableRow from "./AssignTableRow";
+import AssignDeviceCard from "./AssignDeviceCard";
+import { Loader2 } from "lucide-react";
 
 interface AssignTableProps {
   devices: ResponseGetDevice[];
@@ -18,10 +20,6 @@ interface AssignTableProps {
   };
 }
 
-/**
- * AssignTable component - displays unassigned devices in a table format
- * Shows device capabilities and allows configuration
- */
 export default function AssignTableRefactored({
   devices,
   loading,
@@ -33,56 +31,111 @@ export default function AssignTableRefactored({
 }: AssignTableProps) {
   const { t } = useTranslation();
 
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center gap-2 py-12 text-gray-500 dark:text-gray-400">
+        <Loader2 className="h-5 w-5 animate-spin" />
+        <span className="text-sm">{t("common.loading")}</span>
+      </div>
+    );
+  }
+
+  if (devices.length === 0) {
+    return (
+      <div className="py-12 text-center text-sm text-gray-500 dark:text-gray-400">
+        {t("assign.noDevice")}
+      </div>
+    );
+  }
+
   return (
-    <div className="overflow-x-auto rounded-t-lg border border-white/10">
-      <table className="min-w-full text-left text-sm">
-        <thead>
-          <tr className="bg-gray-300 dark:bg-gray-600 uppercase sticky top-0">
-            <th className="px-4 py-3 font-semibold">{t("table.id")}</th>
-            <th className="px-4 py-3 font-semibold">
-              {t("table.capabilities")}
-            </th>
-            <th className="px-4 py-3 font-semibold">
-              {t("table.functionality")}
-            </th>
-            <th className="px-4 py-3 font-semibold">{t("table.baseTopic")}</th>
-            <th className="px-4 py-3 font-semibold">{t("table.interval")}</th>
-            <th className="px-4 py-3 font-semibold">{t("table.lSetPoint")}</th>
-            <th className="px-4 py-3 font-semibold">{t("table.hSetPoint")}</th>
-            <th className="px-4 py-3 font-semibold">{t("table.actions")}</th>
-          </tr>
-        </thead>
+    <>
+      {/* Mobile: stacked cards */}
+      <div className="grid grid-cols-1 gap-3 p-4 md:hidden">
+        {devices.map((device) => (
+          <AssignDeviceCard
+            key={device.deviceId}
+            device={device}
+            model={editState[device.deviceId]}
+            onUpdate={onUpdate}
+            onToggleFunctionality={onToggleFunctionality}
+            onReset={onReset}
+            constants={constants}
+          />
+        ))}
+      </div>
 
-        <tbody>
-          {loading && (
-            <tr>
-              <td colSpan={8} className="p-6 text-center text-gray-400">
-                {t("common.loading")}
-              </td>
+      {/* Desktop/tablet: table */}
+      <div className="hidden overflow-x-auto md:block">
+        <table className="min-w-full text-left text-sm">
+          <thead>
+            <tr className="sticky top-0 bg-gray-50/95 backdrop-blur-sm dark:bg-gray-900/95">
+              <th
+                scope="col"
+                className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-400"
+              >
+                {t("table.id")}
+              </th>
+              <th
+                scope="col"
+                className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-400"
+              >
+                {t("table.capabilities")}
+              </th>
+              <th
+                scope="col"
+                className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-400"
+              >
+                {t("table.functionality")}
+              </th>
+              <th
+                scope="col"
+                className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-400"
+              >
+                {t("table.baseTopic")}
+              </th>
+              <th
+                scope="col"
+                className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-400"
+              >
+                {t("table.interval")}
+              </th>
+              <th
+                scope="col"
+                className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-400"
+              >
+                {t("table.lSetPoint")}
+              </th>
+              <th
+                scope="col"
+                className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-400"
+              >
+                {t("table.hSetPoint")}
+              </th>
+              <th
+                scope="col"
+                className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-400"
+              >
+                {t("table.actions")}
+              </th>
             </tr>
-          )}
+          </thead>
 
-          {!loading && devices.length === 0 && (
-            <tr>
-              <td colSpan={8} className="p-6 text-center text-gray-400">
-                {t("assign.noDevice")}
-              </td>
-            </tr>
-          )}
-
-          {devices.map((device) => (
-            <AssignTableRow
-              key={device.deviceId}
-              device={device}
-              model={editState[device.deviceId]}
-              onUpdate={onUpdate}
-              onToggleFunctionality={onToggleFunctionality}
-              onReset={onReset}
-              constants={constants}
-            />
-          ))}
-        </tbody>
-      </table>
-    </div>
+          <tbody>
+            {devices.map((device) => (
+              <AssignTableRow
+                key={device.deviceId}
+                device={device}
+                model={editState[device.deviceId]}
+                onUpdate={onUpdate}
+                onToggleFunctionality={onToggleFunctionality}
+                onReset={onReset}
+                constants={constants}
+              />
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 }

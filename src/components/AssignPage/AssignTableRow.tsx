@@ -5,6 +5,8 @@ import { useAssignDevice } from "@/hooks/useAssignDevice";
 import { ResponseGetDevice } from "@/api/models/device/GetSensorResponseDto";
 import { DeviceEditState } from "../../hooks/useAssignPage";
 import { useTranslation } from "react-i18next";
+import { Loader2, RotateCcw, Check } from "lucide-react";
+import toast from "react-hot-toast";
 
 interface AssignTableRowProps {
   device: ResponseGetDevice;
@@ -19,10 +21,6 @@ interface AssignTableRowProps {
   };
 }
 
-/**
- * Single row in the AssignTable
- * Displays device info and configuration fields
- */
 export default function AssignTableRow({
   device,
   model,
@@ -36,8 +34,11 @@ export default function AssignTableRow({
 
   if (!model) {
     return (
-      <tr className="border-t border-gray-700">
-        <td colSpan={8} className="p-4 text-center text-gray-400 text-sm">
+      <tr className="border-t border-gray-200 dark:border-gray-800">
+        <td
+          colSpan={8}
+          className="p-4 text-center text-sm text-gray-500 dark:text-gray-400"
+        >
           {t("assign.loading")}
         </td>
       </tr>
@@ -46,27 +47,29 @@ export default function AssignTableRow({
 
   const handleAssignClick = async () => {
     if (model.functionality.length === 0) {
-      alert(t("assign.functionalityNotSelected"));
+      toast.error(t("assign.functionalityNotSelected"));
       return;
     }
     await handleAssign(device, model);
   };
 
   return (
-    <tr className="border-t border-gray-700 hover:bg-gray-800/30 transition-colors">
-      {/* Device ID & Hardware */}
+    <tr className="border-t border-gray-200 transition-colors hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-white/5">
       <td className="px-4 py-3 align-top">
-        <div className="font-medium">{device.deviceId}</div>
-        <div className="text-xs text-gray-400">{device.deviceHardware}</div>
+        <div className="font-medium text-gray-900 dark:text-white">
+          {device.deviceId}
+        </div>
+        <div className="text-xs text-gray-500 dark:text-gray-400">
+          {device.deviceHardware}
+        </div>
       </td>
 
-      {/* Available Capabilities */}
       <td className="px-4 py-3 align-top">
-        <div className="flex gap-2 flex-wrap">
+        <div className="flex flex-wrap gap-1.5">
           {device?.capabilities?.map((cap) => (
             <span
               key={`cap-${cap}`}
-              className="px-2 py-1 bg-indigo-600/30 text-indigo-300 rounded text-xs whitespace-nowrap"
+              className="whitespace-nowrap rounded-full bg-indigo-50 px-2 py-0.5 text-xs font-medium text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-300"
             >
               {cap}
             </span>
@@ -74,9 +77,8 @@ export default function AssignTableRow({
         </div>
       </td>
 
-      {/* Selected Functionality */}
       <td className="px-4 py-3 align-top">
-        <div className="flex gap-2 flex-wrap">
+        <div className="flex flex-wrap gap-2">
           {device.capabilities.map((cap) => (
             <CapabilityChip
               key={`func-${cap}`}
@@ -88,22 +90,18 @@ export default function AssignTableRow({
         </div>
       </td>
 
-      {/* Publish Topic */}
       <td className="px-4 py-3 align-top">
         <input
           type="text"
-          className="w-full px-2 py-1 rounded bg-gray-700 text-white text-xs focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+          className="w-full rounded-lg border border-gray-200 bg-white/70 px-2 py-1.5 text-xs text-gray-900 backdrop-blur-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 dark:border-gray-700 dark:bg-gray-900/40 dark:text-gray-100"
           value={model.publishTopic}
           onChange={(e) =>
-            onUpdate(device.deviceId, {
-              publishTopic: e.target.value,
-            })
+            onUpdate(device.deviceId, { publishTopic: e.target.value })
           }
           placeholder="topic/path"
         />
       </td>
 
-      {/* Interval */}
       <td className="px-4 py-3 align-top">
         <ValidateNumberInput
           value={model.interval}
@@ -114,7 +112,6 @@ export default function AssignTableRow({
         />
       </td>
 
-      {/* Low Set Point */}
       <td className="px-4 py-3 align-top">
         <ValidateNumberInput
           value={model.lowSetPoint}
@@ -127,7 +124,6 @@ export default function AssignTableRow({
         />
       </td>
 
-      {/* High Set Point */}
       <td className="px-4 py-3 align-top">
         <ValidateNumberInput
           value={model.highSetPoint}
@@ -140,7 +136,6 @@ export default function AssignTableRow({
         />
       </td>
 
-      {/* Actions */}
       <td className="px-4 py-3 align-top">
         <div className="flex gap-2">
           <button
@@ -151,16 +146,22 @@ export default function AssignTableRow({
                 ? t("assign.functionalityNotSelected")
                 : undefined
             }
-            className="flex-1 px-3 py-1 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 disabled:cursor-not-allowed rounded text-white text-xs font-medium transition-colors"
+            className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-indigo-600 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-indigo-700 disabled:cursor-not-allowed disabled:bg-indigo-400"
           >
-            {isAssigning ? "..." : t("assign.provisionButton")}
+            {isAssigning ? (
+              <Loader2 className="h-3.5 w-3.5 animate-spin" />
+            ) : (
+              <Check className="h-3.5 w-3.5" />
+            )}
+            {t("assign.provisionButton")}
           </button>
 
           <button
             onClick={() => onReset(device.deviceId)}
-            className="flex-1 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-white text-xs font-medium transition-colors"
+            className="flex items-center justify-center gap-1.5 rounded-lg border border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-700 transition-colors hover:bg-gray-100 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
           >
-            Reset
+            <RotateCcw className="h-3.5 w-3.5" />
+            {t("assign.reset")}
           </button>
         </div>
       </td>

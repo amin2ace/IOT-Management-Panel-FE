@@ -3,9 +3,9 @@ import React from "react";
 import { DeviceCapabilities } from "@/api";
 import { CapabilityChip } from "@/components/CapabilityChip";
 import { ValidateNumberInput } from "@/components/ValidateNumberInput";
-import { DeviceEditState } from "@/pages";
 import { useAssignDevice } from "@/hooks/useAssignDevice";
 import { ResponseGetDevice } from "@/api/models/device/GetSensorResponseDto";
+import { DeviceEditState } from "@/hooks/useAssignPage";
 
 interface TableRowProps {
   device: ResponseGetDevice;

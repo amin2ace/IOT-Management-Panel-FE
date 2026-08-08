@@ -1,13 +1,10 @@
 import { useTranslation } from "react-i18next";
+
 interface AssignPageHeaderProps {
   deviceCount: number;
   loading: boolean;
 }
 
-/**
- * Header component for AssignPage
- * Displays title and device statistics
- */
 export default function AssignPageHeader({
   deviceCount,
   loading,
@@ -15,13 +12,14 @@ export default function AssignPageHeader({
   const { t } = useTranslation();
 
   return (
-    <header className="flex items-center justify-between mb-5 ml-3">
+    <header className="flex items-center justify-between">
       <div>
-        <h1 className="text-2xl font-semibold">{t("path.assignTab")}</h1>
+        <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">
+          {t("path.assignTab")}
+        </h1>
         {!loading && (
-          <p className="text-sm text-gray-400 mt-1">
-            {deviceCount} {deviceCount === 1 ? "device" : "devices"}{" "}
-            {t("common.available")}
+          <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+            {t("assign.deviceCountText", { count: deviceCount })}
           </p>
         )}
       </div>
