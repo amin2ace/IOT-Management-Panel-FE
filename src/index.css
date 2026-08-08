@@ -2,7 +2,6 @@
 @import "./styles/globals.css";
 @import "./styles/components/dashboard.css";
 @import "./styles/pages/topics.css";
-@import "./styles/pages/mqttConfig.css";
 @import "./styles/pages/telemetry.css";
 @import "./styles/pages/users.css";
 
