@@ -1,7 +1,4 @@
 {
-  "app.name": "لوحة إدارة إنترنت الأشياء الصناعي",
-  "app.initializing": "جاري تهيئة النظام...",
-
   "##################################_1": "Auth Pages (Login & Signup)",
 
   "auth.login": "تسجيل الدخول",
@@ -11,6 +8,9 @@
   "auth.email": "البريد الإلكتروني",
   "auth.username": "اسم المستخدم",
   "auth.password": "كلمة المرور",
+  "auth.confirmPassword": "تأكيد كلمة المرور",
+  "auth.passwordMismatch": "كلمتا المرور غير متطابقتين",
+  "auth.confirmLogout": "هل تريد تسجيل الخروج من حسابك؟",
   "auth.dontHaveAccount": "ليس لديك حساب؟",
   "auth.alreadyHaveAccount": "هل لديك حساب بالفعل؟",
   "auth.createAccount": "إنشاء حساب",
@@ -21,8 +21,6 @@
   "auth.signupSuccess": "تم إنشاء الحساب بنجاح",
   "auth.emailInUse": "الحساب موجود بالفعل، حاول تسجيل الدخول",
   "auth.accessDenied": "تم رفض الوصول",
-  "auth.confirmPassword": "تأكيد كلمة المرور",
-  "auth.passwordMismatch": "كلمتا المرور غير متطابقتين",
 
   "##################################_2": "Dashboard Tab's Names",
 
@@ -42,11 +40,11 @@
   "theme.darkMode": "داكن",
   "theme.system": "النظام",
   "theme.label": "السمة",
-  "lang.selectLabel": "اختر اللغة",
   "lang.en": "EN",
   "lang.fa": "FA",
   "lang.ar": "AR",
   "lang.tr": "TR",
+  "lang.selectLabel": "اختر اللغة",
 
   "##################################_4": "Dashboard Discovery Container",
 
@@ -65,6 +63,21 @@
   "discovery.discoveredDevices": "الأجهزة المكتشفة",
   "discovery.device": "الجهاز",
   "discovery.discover": "اكتشف",
+  "discovery.clear": "مسح",
+  "discovery.scanning": "جاري البحث...",
+  "discovery.table.deviceId": "معرف الجهاز",
+  "discovery.table.hardware": "العتاد",
+  "discovery.table.capabilities": "القدرات",
+  "discovery.table.mac": "MAC",
+  "discovery.table.ip": "IP",
+  "discovery.table.connection": "الاتصال",
+  "discovery.table.protocol": "البروتوكول",
+  "discovery.table.topicPrefix": "بادئة الموضوع",
+  "discovery.table.firmware": "البرنامج الثابت",
+  "discovery.table.location": "الموقع",
+  "discovery.table.broker": "الوسيط",
+  "discovery.table.additionalInfo": "معلومات إضافية",
+  "discovery.table.timestamp": "الطابع الزمني",
 
   "##################################_5": "Dashboard Navigation Bar",
 
@@ -98,20 +111,11 @@
   "assign.requestSent": "تم إرسال طلب التعيين",
   "assign.requestFailed": "فشل طلب التعيين",
   "assign.loading": "جاري تحميل تكوين الجهاز...",
-  "profile.guest": "زائر",
-  "profile.openLabel": "فتح الملف الشخصي لـ {{name}}",
-  "profile.notProvided": "غير متوفر",
-  "profile.unknown": "غير معروف",
-  "profile.selectRole": "اختر دورًا",
-  "profile.noRoles": "لا توجد أدوار",
-  "profile.updated": "تم تحديث الملف الشخصي بنجاح",
-  "profile.updateFailed": "فشل تحديث الملف الشخصي",
-  "profile.photoUpdated": "تم تحديث الصورة بنجاح",
-  "profile.uploadFailed": "فشل رفع الصورة",
-  "profile.oldPassword": "كلمة المرور الحالية",
-  "profile.newPassword": "كلمة المرور الجديدة",
-  "profile.passwordChanged": "تم تغيير كلمة المرور بنجاح",
-  "profile.incorrectPassword": "كلمة المرور غير صحيحة",
+  "assign.deviceCountText_one": "جهاز واحد متاح",
+  "assign.deviceCountText_two": "جهازان متاحان",
+  "assign.deviceCountText_few": "{{count}} أجهزة متاحة",
+  "assign.deviceCountText_many": "{{count}} جهازًا متاحًا",
+  "assign.deviceCountText_other": "{{count}} جهاز متاح",
 
   "##################################_8": "Dashboard Table Headers",
 
@@ -147,9 +151,24 @@
   "profile.changePassword": "تغيير كلمة المرور",
   "profile.accountMeta": "بيانات الحساب",
 
+  "profile.guest": "زائر",
+  "profile.openLabel": "فتح الملف الشخصي لـ {{name}}",
+  "profile.notProvided": "غير متوفر",
+  "profile.unknown": "غير معروف",
+  "profile.selectRole": "اختر دورًا",
+  "profile.noRoles": "لا توجد أدوار",
+  "profile.updated": "تم تحديث الملف الشخصي بنجاح",
+  "profile.updateFailed": "فشل تحديث الملف الشخصي",
+  "profile.photoUpdated": "تم تحديث الصورة بنجاح",
+  "profile.uploadFailed": "فشل رفع الصورة",
+  "profile.oldPassword": "كلمة المرور الحالية",
+  "profile.newPassword": "كلمة المرور الجديدة",
+  "profile.passwordChanged": "تم تغيير كلمة المرور بنجاح",
+  "profile.incorrectPassword": "كلمة المرور غير صحيحة",
+
   "##################################_10": "Web Socket",
 
-  "socke.notConnected": "الاتصال غير متصل",
+  "socke.notConnected": "اتصال سوكت برقرار نيست",
 
   "##################################_11": "Dashboard Tab's Names",
   "config.getAllSensorsError": "خطأ في جلب جميع أجهزة الاستشعار",
@@ -226,8 +245,12 @@
   "mqtt.failedToUpdateConfig": "فشل تحديث تكوين MQTT",
   "mqtt.configUpdated": "تم تحديث تكوين MQTT",
 
+  "##################################_14": "App Shell / Splash",
 
-  "##################################_14": "Time Zone ",
+  "app.name": "لوحة إدارة إنترنت الأشياء الصناعي",
+  "app.initializing": "جاري تهيئة النظام...",
+
+  "##################################_15": "Timezone Groups",
 
   "timezone.group.northAmerica": "أمريكا الشمالية",
   "timezone.group.europe": "أوروبا",

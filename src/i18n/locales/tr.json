@@ -1,7 +1,4 @@
 {
-  "app.name": "IoT Yönetim Paneli",
-  "app.initializing": "Sistem başlatılıyor...",
-
   "##################################_1": "Auth Pages (Login & Signup)",
 
   "auth.login": "Giriş Yap",
@@ -11,6 +8,9 @@
   "auth.email": "E-posta",
   "auth.username": "Kullanıcı Adı",
   "auth.password": "Şifre",
+  "auth.confirmPassword": "Şifreyi onayla",
+  "auth.passwordMismatch": "Şifreler eşleşmiyor",
+  "auth.confirmLogout": "Hesabınızdan çıkış yapmak istiyor musunuz?",
   "auth.dontHaveAccount": "Hesabınız yok mu?",
   "auth.alreadyHaveAccount": "Zaten hesabınız var mı?",
   "auth.createAccount": "Hesap Oluştur",
@@ -21,8 +21,6 @@
   "auth.signupSuccess": "Kayıt Başarılı",
   "auth.emailInUse": "Hesap zaten var, giriş yapmayı deneyin",
   "auth.accessDenied": "Erişim Reddedildi",
-  "auth.confirmPassword": "Şifreyi onayla",
-  "auth.passwordMismatch": "Şifreler eşleşmiyor",
 
   "##################################_2": "Dashboard Tab's Names",
 
@@ -42,11 +40,11 @@
   "theme.darkMode": "Koyu",
   "theme.system": "Sistem",
   "theme.label": "Tema",
-  "lang.selectLabel": "Dil seçin",
   "lang.en": "EN",
   "lang.fa": "FA",
   "lang.ar": "AR",
   "lang.tr": "TR",
+  "lang.selectLabel": "Dil seçin",
 
   "##################################_4": "Dashboard Discovery Container",
 
@@ -65,6 +63,21 @@
   "discovery.discoveredDevices": "Keşfedilen Cihazlar",
   "discovery.device": "Cihaz",
   "discovery.discover": "Keşfet",
+  "discovery.clear": "Temizle",
+  "discovery.scanning": "Taranıyor...",
+  "discovery.table.deviceId": "Cihaz ID",
+  "discovery.table.hardware": "Donanım",
+  "discovery.table.capabilities": "Yetenekler",
+  "discovery.table.mac": "MAC",
+  "discovery.table.ip": "IP",
+  "discovery.table.connection": "Bağlantı",
+  "discovery.table.protocol": "Protokol",
+  "discovery.table.topicPrefix": "Konu Öneki",
+  "discovery.table.firmware": "Firmware",
+  "discovery.table.location": "Konum",
+  "discovery.table.broker": "Broker",
+  "discovery.table.additionalInfo": "Ek Bilgi",
+  "discovery.table.timestamp": "Zaman Damgası",
 
   "##################################_5": "Dashboard Navigation Bar",
 
@@ -98,6 +111,7 @@
   "assign.requestSent": "Atama isteği gönderildi",
   "assign.requestFailed": "Atama isteği başarısız",
   "assign.loading": "Cihaz yapılandırması yükleniyor...",
+  "assign.deviceCountText_other": "{{count}} cihaz mevcut",
 
   "##################################_8": "Dashboard Table Headers",
 
@@ -132,6 +146,7 @@
   "profile.edit": "Profili Düzenle",
   "profile.changePassword": "Şifre Değiştir",
   "profile.accountMeta": "Hesap Meta",
+
   "profile.guest": "Misafir",
   "profile.openLabel": "{{name}} profilini aç",
   "profile.notProvided": "Belirtilmemiş",
@@ -226,8 +241,12 @@
   "mqtt.failedToUpdateConfig": "MQTT yapılandırması güncellenemedi",
   "mqtt.configUpdated": "MQTT yapılandırması güncellendi",
 
+  "##################################_14": "App Shell / Splash",
 
-  "##################################_14": "Time Zone ",
+  "app.name": "IoT Yönetim Paneli",
+  "app.initializing": "Sistem başlatılıyor...",
+
+  "##################################_15": "Timezone Groups",
 
   "timezone.group.northAmerica": "Kuzey Amerika",
   "timezone.group.europe": "Avrupa",

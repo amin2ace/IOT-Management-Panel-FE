@@ -1,8 +1,4 @@
 {
-
-  "app.name": "پنل مدیریت اینترنت اشیاء صنعتی",
-  "app.initializing": "در حال راه‌اندازی سیستم...",
-
   "##################################_1": "Auth Pages (Login & Signup)",
 
   "auth.login": "ورود",
@@ -12,6 +8,9 @@
   "auth.email": "ایمیل",
   "auth.username": "نام کاربری",
   "auth.password": "رمز عبور",
+  "auth.confirmPassword": "تأیید رمز عبور",
+  "auth.passwordMismatch": "رمزهای عبور مطابقت ندارند",
+  "auth.confirmLogout": "از حساب کاربری خود خارج می‌شوید؟",
   "auth.dontHaveAccount": "حساب کاربری ندارید؟",
   "auth.alreadyHaveAccount": "از قبل حساب کاربری دارید؟",
   "auth.createAccount": "ایجاد حساب",
@@ -22,9 +21,6 @@
   "auth.signupSuccess": "ثبت‌نام موفقیت‌آمیز",
   "auth.emailInUse": "حساب از قبل وجود دارد، سعی کنید وارد شوید",
   "auth.accessDenied": "دسترسی رد شد",
-  "auth.confirmPassword": "تأیید رمز عبور",
-  "auth.passwordMismatch": "رمزهای عبور مطابقت ندارند",
-
 
   "##################################_2": "Dashboard Tab's Names",
 
@@ -44,11 +40,11 @@
   "theme.darkMode": "تاریک",
   "theme.system": "سیستم",
   "theme.label": "پوسته",
-  "lang.selectLabel": "انتخاب زبان",
   "lang.en": "EN",
   "lang.fa": "FA",
   "lang.ar": "AR",
   "lang.tr": "TR",
+  "lang.selectLabel": "انتخاب زبان",
 
   "##################################_4": "Dashboard Discovery Container",
 
@@ -67,6 +63,21 @@
   "discovery.discoveredDevices": "دستگاه‌های کشف شده",
   "discovery.device": "دستگاه",
   "discovery.discover": "کشف",
+  "discovery.clear": "پاک کردن",
+  "discovery.scanning": "در حال جستجو...",
+  "discovery.table.deviceId": "شناسه دستگاه",
+  "discovery.table.hardware": "سخت‌افزار",
+  "discovery.table.capabilities": "قابلیت‌ها",
+  "discovery.table.mac": "MAC",
+  "discovery.table.ip": "IP",
+  "discovery.table.connection": "اتصال",
+  "discovery.table.protocol": "پروتکل",
+  "discovery.table.topicPrefix": "پیشوند موضوع",
+  "discovery.table.firmware": "فرم‌ور",
+  "discovery.table.location": "موقعیت",
+  "discovery.table.broker": "کارگزار",
+  "discovery.table.additionalInfo": "اطلاعات اضافی",
+  "discovery.table.timestamp": "زمان",
 
   "##################################_5": "Dashboard Navigation Bar",
 
@@ -100,6 +111,7 @@
   "assign.requestSent": "درخواست انتساب ارسال شد",
   "assign.requestFailed": "درخواست انتساب ناموفق بود",
   "assign.loading": "در حال بارگذاری پیکربندی دستگاه...",
+  "assign.deviceCountText_other": "{{count}} دستگاه موجود",
 
   "##################################_8": "Dashboard Table Headers",
 
@@ -134,7 +146,8 @@
   "profile.edit": "ویرایش پروفایل",
   "profile.changePassword": "تغییر رمز عبور",
   "profile.accountMeta": "اطلاعات حساب",
-   "profile.guest": "مهمان",
+
+  "profile.guest": "مهمان",
   "profile.openLabel": "باز کردن پروفایل {{name}}",
   "profile.notProvided": "ارائه نشده",
   "profile.unknown": "نامشخص",
@@ -228,7 +241,12 @@
   "mqtt.failedToUpdateConfig": "به‌روزرسانی پیکربندی MQTT ناموفق بود",
   "mqtt.configUpdated": "پیکربندی MQTT به‌روزرسانی شد",
 
-  "##################################_14": "Time Zone ",
+  "##################################_14": "App Shell / Splash",
+
+  "app.name": "پنل مدیریت اینترنت اشیاء صنعتی",
+  "app.initializing": "در حال راه‌اندازی سیستم...",
+
+  "##################################_15": "Timezone Groups",
 
   "timezone.group.northAmerica": "آمریکای شمالی",
   "timezone.group.europe": "اروپا",

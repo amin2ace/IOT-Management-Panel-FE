@@ -1,8 +1,4 @@
 {
-
-  "app.name": "IIoT Management Panel",
-  "app.initializing": "Initializing system...",
-
   "##################################_1": "Auth Pages (Login & Signup)",
 
   "auth.login": "Login",
@@ -12,6 +8,9 @@
   "auth.email": "Email",
   "auth.username": "Username",
   "auth.password": "Password",
+  "auth.confirmPassword": "Confirm password",
+  "auth.passwordMismatch": "Passwords do not match",
+  "auth.confirmLogout": "Log out of your account?",
   "auth.dontHaveAccount": "Don't have account?",
   "auth.alreadyHaveAccount": "Already Have Account?",
   "auth.createAccount": "Create Account",
@@ -22,8 +21,6 @@
   "auth.signupSuccess": "Signup Successful",
   "auth.emailInUse": "Account already exists, try login",
   "auth.accessDenied": "Access denied",
-  "auth.confirmPassword": "Confirm password",
-  "auth.passwordMismatch": "Passwords do not match",
 
   "##################################_2": "Dashboard Tab's Names",
 
@@ -43,11 +40,11 @@
   "theme.darkMode": "Dark",
   "theme.system": "System",
   "theme.label": "Theme",
-  "lang.selectLabel": "Select language",
   "lang.en": "EN",
   "lang.fa": "FA",
   "lang.ar": "AR",
   "lang.tr": "TR",
+  "lang.selectLabel": "Select language",
 
   "##################################_4": "Dashboard Discovery Container",
 
@@ -66,6 +63,21 @@
   "discovery.discoveredDevices": "Discovered Devices",
   "discovery.device": "Device ",
   "discovery.discover": "Discover ",
+  "discovery.clear": "Clear",
+  "discovery.scanning": "Scanning...",
+  "discovery.table.deviceId": "Device ID",
+  "discovery.table.hardware": "Hardware",
+  "discovery.table.capabilities": "Capabilities",
+  "discovery.table.mac": "MAC",
+  "discovery.table.ip": "IP",
+  "discovery.table.connection": "Connection",
+  "discovery.table.protocol": "Protocol",
+  "discovery.table.topicPrefix": "Topic Prefix",
+  "discovery.table.firmware": "Firmware",
+  "discovery.table.location": "Location",
+  "discovery.table.broker": "Broker",
+  "discovery.table.additionalInfo": "Additional Info",
+  "discovery.table.timestamp": "Timestamp",
 
   "##################################_5": "Dashboard Navigation Bar ",
 
@@ -99,6 +111,8 @@
   "assign.requestSent": "Assign request sent",
   "assign.requestFailed": "Assign request failed",
   "assign.loading": "Loading device configuration...",
+  "assign.deviceCountText_one": "{{count}} device available",
+  "assign.deviceCountText_other": "{{count}} devices available",
 
   "##################################_8": "Dashboard Table Headers ",
 
@@ -133,6 +147,7 @@
   "profile.edit": "Edit Profile",
   "profile.changePassword": "Change Password",
   "profile.accountMeta": "Account Meta",
+
   "profile.guest": "Guest",
   "profile.openLabel": "Open profile for {{name}}",
   "profile.notProvided": "Not provided",
@@ -233,8 +248,13 @@
   "mqtt.failedToFetchConfig": "Failed to fetch MQTT configuration",
   "mqtt.failedToUpdateConfig": "Failed to update MQTT configuration",
   "mqtt.configUpdated": "MQTT configuration updated",
-  
-  "##################################_14": "Time Zone ",
+
+  "##################################_14": "App Shell / Splash",
+
+  "app.name": "IIoT Management Panel",
+  "app.initializing": "Initializing system...",
+
+  "##################################_15": "Timezone Groups",
 
   "timezone.group.northAmerica": "North America",
   "timezone.group.europe": "Europe",
@@ -242,7 +262,6 @@
   "timezone.group.asia": "Asia",
   "timezone.group.oceania": "Oceania",
   "timezone.group.africa": "Africa",
-
 
   "##################################_": "Dashboard Common ",
 
