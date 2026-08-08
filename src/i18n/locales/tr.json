@@ -202,6 +202,7 @@
   "config.noTimezonesFound": "\"{{query}}\" için saat dilimi bulunamadı",
 
   "##################################_12": "Topics Page",
+  "topic.topic": "Konu",
   "topic.topics": "Konular",
   "topic.subscribedTopics": "Abone Olunan Konular",
   "topic.noSubscribedTopics": "Henüz abone olunan konu yok...",
@@ -254,6 +255,24 @@
   "timezone.group.asia": "Asya",
   "timezone.group.oceania": "Okyanusya",
   "timezone.group.africa": "Afrika",
+
+  "##################################_16": "Kullanıcılar Sayfası",
+
+  "users.loading": "Kullanıcılar yükleniyor...",
+  "users.noUsersFound": "Kullanıcı bulunamadı",
+  "users.delete": "Sil",
+  "users.confirmDelete": "\"{{name}}\" silinsin mi?",
+  "users.deleteSuccess": "Kullanıcı başarıyla silindi",
+  "users.deleteFailed": "Kullanıcı silinemedi",
+
+  "##################################_17": "Telemetri Sayfası",
+
+  "telemetry.latest": "Son",
+  "telemetry.export": "CSV Dışa Aktar",
+  "telemetry.line": "Çizgi",
+  "telemetry.dotLine": "Noktalı Çizgi",
+  "telemetry.overview": "Son Değerler Özeti",
+  "telemetry.noData": "Henüz telemetri verisi alınmadı",
 
   "##################################_": "Dashboard Common",
 

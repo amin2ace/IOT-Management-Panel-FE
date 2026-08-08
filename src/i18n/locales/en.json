@@ -203,6 +203,7 @@
   "config.noTimezonesFound": "No timezones found for \"{{query}}\"",
 
   "##################################_12": "Topics Page",
+  "topic.topic": "Topic",
   "topic.topics": "Topics",
   "topic.subscribedTopics": "Subscribed Topics",
   "topic.noSubscribedTopics": "No subscribed topics yet...",
@@ -263,6 +264,24 @@
   "timezone.group.oceania": "Oceania",
   "timezone.group.africa": "Africa",
 
+  "##################################_16": "Users Page",
+
+  "users.loading": "Loading users...",
+  "users.noUsersFound": "No users found",
+  "users.delete": "Delete",
+  "users.confirmDelete": "Delete \"{{name}}\"?",
+  "users.deleteSuccess": "User deleted successfully",
+  "users.deleteFailed": "Failed to delete user",
+
+  "##################################_17": "Telemetry Page",
+
+  "telemetry.latest": "Latest",
+  "telemetry.export": "Export CSV",
+  "telemetry.line": "Line",
+  "telemetry.dotLine": "Dot Line",
+  "telemetry.overview": "Latest Values Overview",
+  "telemetry.noData": "No telemetry data received yet",
+  
   "##################################_": "Dashboard Common ",
 
   "common.sending": "Sending... ",

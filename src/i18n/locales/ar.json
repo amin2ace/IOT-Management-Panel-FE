@@ -206,6 +206,7 @@
   "config.noTimezonesFound": "لم يتم العثور على مناطق زمنية لـ \"{{query}}\"",
 
   "##################################_12": "Topics Page",
+  "topic.topic": "الموضوع",
   "topic.topics": "المواضيع",
   "topic.subscribedTopics": "المواضيع المشترك بها",
   "topic.noSubscribedTopics": "لا توجد مواضيع مشترك بها بعد...",
@@ -259,6 +260,24 @@
   "timezone.group.oceania": "أوقيانوسيا",
   "timezone.group.africa": "أفريقيا",
 
+  "##################################_16": "صفحة المستخدمين",
+
+  "users.loading": "جاري تحميل المستخدمين...",
+  "users.noUsersFound": "لم يتم العثور على مستخدمين",
+  "users.delete": "حذف",
+  "users.confirmDelete": "حذف \"{{name}}\"؟",
+  "users.deleteSuccess": "تم حذف المستخدم بنجاح",
+  "users.deleteFailed": "فشل حذف المستخدم",
+
+  "##################################_17": "صفحة القياس عن بُعد",
+
+  "telemetry.latest": "الأحدث",
+  "telemetry.export": "تصدير CSV",
+  "telemetry.line": "خطي",
+  "telemetry.dotLine": "خطي بنقاط",
+  "telemetry.overview": "نظرة عامة على أحدث القيم",
+  "telemetry.noData": "لم يتم استلام بيانات قياس عن بُعد بعد",
+  
   "##################################_": "Dashboard Common",
 
   "common.sending": "جاري الإرسال...",

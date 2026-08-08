@@ -202,6 +202,7 @@
   "config.noTimezonesFound": "منطقه زمانی برای \"{{query}}\" یافت نشد",
 
   "##################################_12": "Topics Page",
+  "topic.topic": "موضوع",
   "topic.topics": "موضوعات",
   "topic.subscribedTopics": "موضوعات مشترک شده",
   "topic.noSubscribedTopics": "هنوز موضوعی مشترک نشده است...",
@@ -255,6 +256,24 @@
   "timezone.group.oceania": "اقیانوسیه",
   "timezone.group.africa": "آفریقا",
 
+  "##################################_16": "Users Page",
+
+  "users.loading": "در حال بارگذاری کاربران...",
+  "users.noUsersFound": "کاربری یافت نشد",
+  "users.delete": "حذف",
+  "users.confirmDelete": "حذف \"{{name}}\"؟",
+  "users.deleteSuccess": "کاربر با موفقیت حذف شد",
+  "users.deleteFailed": "حذف کاربر ناموفق بود",
+
+  "##################################_17": "صفحه تله‌متری",
+
+  "telemetry.latest": "آخرین",
+  "telemetry.export": "خروجی CSV",
+  "telemetry.line": "خطی",
+  "telemetry.dotLine": "خطی نقطه‌ای",
+  "telemetry.overview": "نمای کلی آخرین مقادیر",
+  "telemetry.noData": "هنوز داده‌ای دریافت نشده است",
+  
   "##################################_": "Dashboard Common",
 
   "common.sending": "در حال ارسال...",
